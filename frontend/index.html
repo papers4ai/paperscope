@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🔭 Paperscope — AI Research Hub</title>
+  <link rel="stylesheet" href="assets/css/app.css">
+  <script>
+  window.__PAPERSCOPE_CONFIG__ = {
+    SUPABASE_URL: "https://tetmurpgybsfpicbjjwi.supabase.co",
+    SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRldG11cnBneWJzZnBpY2JqandpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5NzY0NjksImV4cCI6MjA5MjU1MjQ2OX0.tPIjHNXce2ckGCRLxr7M-KsRdaLYTQMzmx9A_IKLROw"
+  };
+  </script>
+</head>
+<body>
+  <!-- 页眉：第一层导航 -->
+  <header class="topbar">
+    <div class="brand">🔭 <span>Paperscope</span></div>
+    <nav class="mode-tabs">
+      <button class="mode-tab active" data-mode="feed">📡 速览</button>
+      <button class="mode-tab" data-mode="curated">🏆 精选</button>
+      <button class="mode-tab" data-mode="trending">🔥 热榜</button>
+    </nav>
+    <input class="search" type="search" placeholder="搜索论文 / 作者 / 会议...">
+    <button class="btn-auth" id="btn-auth">登录</button>
+  </header>
+
+  <!-- 第二层：领域栏 -->
+  <nav class="domain-bar">
+    <button class="domain-tab active" data-domain="all">全部</button>
+    <button class="domain-tab" data-domain="world_model">🌍 World Model</button>
+    <button class="domain-tab" data-domain="physical_ai">🤖 Physical AI</button>
+    <button class="domain-tab" data-domain="medical_ai">🏥 Medical AI</button>
+  </nav>
+
+  <!-- 主布局：左筛选 / 中列表 / 右面板 -->
+  <main class="layout">
+    <aside class="sidebar">
+      <section>
+        <h3>来源</h3>
+        <label><input type="checkbox" name="source" value="arxiv" checked> arXiv 预印本</label>
+        <label><input type="checkbox" name="source" value="s2" checked> 会议/期刊</label>
+        <label><input type="checkbox" name="source" value="pubmed" checked> PubMed</label>
+      </section>
+      <section>
+        <h3>年份</h3>
+        <select id="filter-year">
+          <option value="">全部</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+        </select>
+      </section>
+      <section>
+        <h3>类型</h3>
+        <label><input type="checkbox" name="type" value="Method"> Method</label>
+        <label><input type="checkbox" name="type" value="Dataset"> Dataset</label>
+        <label><input type="checkbox" name="type" value="Survey"> Survey</label>
+      </section>
+      <section>
+        <h3>排序</h3>
+        <select id="sort-by">
+          <option value="published_at">最新发表</option>
+          <option value="citation_count">引用最多</option>
+        </select>
+      </section>
+    </aside>
+
+    <section class="paper-list" id="paper-list">
+      <div class="loading">加载中...</div>
+    </section>
+
+    <aside class="detail-panel" id="detail-panel" hidden>
+      <button class="detail-close" id="detail-close">✕</button>
+      <div class="detail-body"></div>
+    </aside>
+  </main>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

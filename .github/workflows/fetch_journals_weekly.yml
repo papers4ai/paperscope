@@ -1,0 +1,37 @@
+name: Fetch Conferences & Journals (Weekly)
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"    # 每周一 UTC 03:00
+  workflow_dispatch:
+    inputs:
+      year_from:
+        description: "从哪一年开始抓"
+        default: "2024"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Fetch Semantic Scholar
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+        run: |
+          YEAR="${{ github.event.inputs.year_from || '2024' }}"
+          python -m backend.main journals-weekly --year-from "$YEAR"
+
+      - name: Fetch PubMed
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          PUBMED_API_KEY: ${{ secrets.PUBMED_API_KEY }}
+        run: python -m backend.main pubmed-weekly --days 14

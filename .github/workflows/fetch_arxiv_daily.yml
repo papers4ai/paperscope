@@ -1,0 +1,22 @@
+name: Fetch arXiv Daily
+
+on:
+  schedule:
+    - cron: "0 2 * * *"    # UTC 02:00 = 北京 10:00
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Fetch arXiv
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python -m backend.main arxiv-daily --days 2

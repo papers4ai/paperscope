@@ -1,0 +1,24 @@
+name: Update Citations (Weekly)
+
+on:
+  schedule:
+    - cron: "0 3 * * 3"    # 每周三 UTC 03:00
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Refresh citation counts
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+        run: python -m backend.main update-citations
