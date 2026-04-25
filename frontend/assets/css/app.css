@@ -9,7 +9,12 @@
   --accent: #10b981;
   --tier-ccf-a: #dc2626;
   --tier-t1: #7c3aed;
+  --tier-t2: #9333ea;
+  --tier-visual: #059669;
+  --tier-robot: #2563eb;
+  --tier-medical: #db2777;
   --tier-arxiv: #6b7280;
+  --gold: #d97706;
 }
 
 [data-theme="dark"] {
@@ -93,9 +98,17 @@ html, body { margin: 0; padding: 0; font-family: -apple-system, "Segoe UI", syst
   padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 12px;
   background: var(--primary-light); color: var(--primary);
 }
-.venue-badge.tier-ccf-a { background: #fee2e2; color: var(--tier-ccf-a); }
-.venue-badge.tier-t1    { background: #ede9fe; color: var(--tier-t1); }
-.venue-badge.tier-arxiv { background: #f3f4f6; color: var(--tier-arxiv); }
+.venue-badge.tier-ccf-a       { background: #fee2e2; color: var(--tier-ccf-a); }
+.venue-badge.tier-t1          { background: #ede9fe; color: var(--tier-t1); }
+.venue-badge.tier-t2          { background: #f3e8ff; color: var(--tier-t2); }
+.venue-badge.tier-视觉顶刊    { background: #d1fae5; color: var(--tier-visual); }
+.venue-badge.tier-机器人顶会  { background: #dbeafe; color: var(--tier-robot); }
+.venue-badge.tier-医学顶会    { background: #fce7f3; color: var(--tier-medical); }
+.venue-badge.tier-arxiv       { background: #f3f4f6; color: var(--tier-arxiv); }
+
+/* curated-only 筛选区：仅在精选模式下可见 */
+.curated-only { display: none; }
+.mode-curated .curated-only { display: block; }
 .citation { font-weight: 600; }
 .paper-authors { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 .paper-tasks { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }

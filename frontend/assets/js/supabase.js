@@ -17,6 +17,7 @@ async function restGet(path, params = {}) {
 export async function listPapers({
   mode = "feed", domain = "all", source = [], year = "",
   paperType = [], sortBy = "published_at", limit = 50, offset = 0, search = "",
+  tier = "", venue = "",
 } = {}) {
   const params = {
     select: "*",
@@ -24,7 +25,7 @@ export async function listPapers({
     limit: String(limit),
     offset: String(offset),
   };
-  // mode: feed=arxiv, curated=s2+pubmed, trending 在别的 endpoint
+  // mode: feed=arxiv, curated=s2+pubmed
   if (mode === "feed") params.source = "eq.arxiv";
   else if (mode === "curated") params.source = "in.(s2,pubmed)";
 
@@ -33,8 +34,30 @@ export async function listPapers({
   if (year) params.year = `eq.${year}`;
   if (paperType.length) params.paper_type = `in.(${paperType.join(",")})`;
   if (search) params.title = `ilike.*${search}*`;
+  if (tier)  params.venue_tier = `eq.${tier}`;
+  if (venue) params.venue = `eq.${venue}`;
 
   return restGet("papers", params);
+}
+
+// 获取精选论文中的 venue 列表（按 tier 过滤），用于下拉联动
+export async function listVenues(tier = "") {
+  const params = {
+    select: "venue,venue_tier",
+    source: "in.(s2,pubmed)",
+    limit: "1000",
+    "venue": "not.is.null",
+  };
+  if (tier) params.venue_tier = `eq.${tier}`;
+  const rows = await restGet("papers", params);
+  // 按 tier 分组，统计每个 venue 的数量
+  const map = {};
+  rows.forEach(r => {
+    if (!r.venue) return;
+    if (!map[r.venue]) map[r.venue] = { venue: r.venue, tier: r.venue_tier, count: 0 };
+    map[r.venue].count++;
+  });
+  return Object.values(map).sort((a, b) => b.count - a.count);
 }
 
 export async function getPaper(id) {

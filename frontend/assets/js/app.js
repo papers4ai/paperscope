@@ -1,4 +1,4 @@
-import { listPapers, getPaper } from "./supabase.js";
+import { listPapers, getPaper, listVenues } from "./supabase.js";
 import { S2_PAPER_API, DOMAINS } from "./config.js";
 
 const state = {
@@ -9,10 +9,58 @@ const state = {
   paperType: [],
   sortBy: "published_at",
   search: "",
+  tier: "",
+  venue: "",
 };
 
 const $ = (sel) => document.querySelector(sel);
 
+// ========== 精选模式 UI 切换 ==========
+function setCuratedMode(on) {
+  document.body.classList.toggle("mode-curated", on);
+  if (on) {
+    refreshVenueList();
+  } else {
+    state.tier = "";
+    state.venue = "";
+    $("#filter-tier").value = "";
+    $("#filter-venue").innerHTML = '<option value="">全部</option>';
+  }
+}
+
+async function refreshVenueList() {
+  const sel = $("#filter-venue");
+  sel.innerHTML = '<option value="">全部期刊/会议</option>';
+  try {
+    const venues = await listVenues(state.tier);
+    // 按 tier 分组，用 optgroup
+    const TIER_ORDER = ["T1", "视觉顶刊", "CCF-A", "机器人顶会", "医学顶会", "T2"];
+    const byTier = {};
+    venues.forEach(v => {
+      const t = v.tier || "other";
+      if (!byTier[t]) byTier[t] = [];
+      byTier[t].push(v);
+    });
+    TIER_ORDER.forEach(t => {
+      if (!byTier[t]?.length) return;
+      // 若已选 tier 则不分组（只有一组）
+      const group = document.createElement("optgroup");
+      group.label = t;
+      byTier[t].forEach(v => {
+        const opt = document.createElement("option");
+        opt.value = v.venue;
+        opt.textContent = `${v.venue} (${v.count})`;
+        if (v.venue === state.venue) opt.selected = true;
+        group.appendChild(opt);
+      });
+      sel.appendChild(group);
+    });
+  } catch (e) {
+    console.warn("listVenues failed:", e);
+  }
+}
+
+// ========== 渲染论文列表 ==========
 function render(papers) {
   const list = $("#paper-list");
   if (!papers.length) {
@@ -51,6 +99,7 @@ function esc(s) {
     ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
 }
 
+// ========== 详情面板 ==========
 async function openDetail(id) {
   const panel = $("#detail-panel");
   const body = panel.querySelector(".detail-body");
@@ -61,7 +110,6 @@ async function openDetail(id) {
   const paper = await getPaper(id);
   if (!paper) { body.innerHTML = "论文不存在"; return; }
 
-  // 实时从 Semantic Scholar 拉完整摘要 + 引用关系（s2 来源）
   let refs = null, cites = null, fullAbstract = paper.abstract_excerpt || "";
   if (paper.source === "s2") {
     try {
@@ -86,6 +134,7 @@ async function openDetail(id) {
   `;
 }
 
+// ========== 加载数据 ==========
 async function reload() {
   $("#paper-list").innerHTML = `<div class="loading">加载中...</div>`;
   try {
@@ -102,6 +151,7 @@ document.querySelectorAll(".mode-tab").forEach((b) =>
     document.querySelectorAll(".mode-tab").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
     state.mode = b.dataset.mode;
+    setCuratedMode(state.mode === "curated");
     reload();
   })
 );
@@ -125,6 +175,21 @@ $(".search").addEventListener("input", (e) => {
 
 $("#filter-year").addEventListener("change", (e) => { state.year = e.target.value; reload(); });
 $("#sort-by").addEventListener("change", (e) => { state.sortBy = e.target.value; reload(); });
+
+// 分类筛选 → 重建 venue 列表 + 重新加载
+$("#filter-tier").addEventListener("change", (e) => {
+  state.tier = e.target.value;
+  state.venue = "";
+  $("#filter-venue").value = "";
+  refreshVenueList();
+  reload();
+});
+
+// 期刊/会议筛选
+$("#filter-venue").addEventListener("change", (e) => {
+  state.venue = e.target.value;
+  reload();
+});
 
 document.querySelectorAll("input[name='source']").forEach((i) =>
   i.addEventListener("change", () => {
