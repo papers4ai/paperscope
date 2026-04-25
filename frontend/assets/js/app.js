@@ -80,21 +80,32 @@ function render(papers) {
 
 function paperCard(p) {
   const tierCls = (p.venue_tier || "").toLowerCase().replace(/[\s·]/g, "-");
+  const domains = p.domains || [];
+  const primaryDomain = domains[0] || "";
   const authors = (p.authors || []).slice(0, 3).map((a) => a.name).join(", ");
   const moreAuthors = p.authors && p.authors.length > 3 ? ` · +${p.authors.length - 3}` : "";
-  const tasks = (p.tasks || []).slice(0, 4).map((t) => `<span class="task-tag">${t}</span>`).join("");
-  const pdfIcon = p.open_access_pdf ? "🔓" : "";
+  const tasks = (p.tasks || []).slice(0, 4).map((t) => `<span class="task-tag">${esc(t)}</span>`).join("");
   const cite = p.citation_count > 0 ? `<span class="citation">📊 ${p.citation_count}</span>` : "";
+  const abs = p.abstract_excerpt ? `<p class="paper-abstract">${esc(p.abstract_excerpt)}</p>` : "";
 
-  return `<article class="paper-card" data-id="${p.id}">
-    <h3 class="paper-title">${pdfIcon} ${esc(p.title)}</h3>
+  const domainBadges = domains.map(d => {
+    const meta = DOMAINS[d];
+    if (!meta) return "";
+    return `<span class="paper-domain-badge ${d}">${meta.icon} ${meta.label}</span>`;
+  }).join("");
+  const typeBadge = p.paper_type ? `<span class="paper-type ${esc(p.paper_type)}">${esc(p.paper_type)}</span>` : "";
+
+  return `<article class="paper-card domain-${primaryDomain}" data-id="${p.id}">
+    <div class="paper-domains">${domainBadges}${typeBadge}</div>
+    <h3 class="paper-title">${esc(p.title)}</h3>
     <div class="paper-meta">
       <span class="venue-badge tier-${tierCls}">${esc(p.venue || "—")}</span>
-      <span>${p.year || ""}</span>
+      ${p.year ? `<span>${p.year}</span>` : ""}
       ${cite}
-      <span>${(p.domains || []).map(d => DOMAINS[d]?.icon || "").join(" ")}</span>
+      ${p.open_access_pdf ? `<span title="开放获取">🔓</span>` : ""}
     </div>
     <div class="paper-authors">${esc(authors)}${moreAuthors}</div>
+    ${abs}
     ${tasks ? `<div class="paper-tasks">${tasks}</div>` : ""}
   </article>`;
 }
@@ -216,6 +227,26 @@ $("#detail-close").addEventListener("click", () => {
 
 $("#btn-auth").addEventListener("click", () => {
   alert("Week 3 功能：Supabase Auth 邮箱登录 + GitHub OAuth，尚未实现");
+});
+
+// ========== 主题切换 ==========
+const themeBtn = $("#theme-toggle");
+const savedTheme = localStorage.getItem("theme") || "dark";
+if (savedTheme === "light") {
+  document.documentElement.setAttribute("data-theme", "light");
+  themeBtn.textContent = "☀️";
+}
+themeBtn.addEventListener("click", () => {
+  const isLight = document.documentElement.getAttribute("data-theme") === "light";
+  if (isLight) {
+    document.documentElement.removeAttribute("data-theme");
+    themeBtn.textContent = "🌙";
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    themeBtn.textContent = "☀️";
+    localStorage.setItem("theme", "light");
+  }
 });
 
 // ========== 初始化 ==========
