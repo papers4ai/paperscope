@@ -188,6 +188,105 @@ body::before {
 }
 .sidebar select:focus { outline: none; border-color: var(--accent); }
 
+/* ========== 仪表盘 (速览模式) ========== */
+.main-col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.dashboard { display: flex; flex-direction: column; gap: 16px; }
+body.mode-curated .feed-only { display: none; }
+
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.stat-card {
+  position: relative; overflow: hidden;
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.1rem 1rem;
+  text-align: center; cursor: pointer;
+  transition: all .3s cubic-bezier(.4,0,.2,1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.stat-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  opacity: 0; transition: opacity .3s; border-radius: 0 0 16px 16px;
+}
+.stat-card[data-key="total"]::after        { background: linear-gradient(90deg, #64748b, #94a3b8, #cbd5e1); }
+.stat-card[data-key="world_model"]::after  { background: linear-gradient(90deg, #6366f1, #818cf8, #a78bfa); }
+.stat-card[data-key="physical_ai"]::after  { background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7); }
+.stat-card[data-key="medical_ai"]::after   { background: linear-gradient(90deg, #f43f5e, #fb7185, #fda4af); }
+.stat-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-hover);
+}
+.stat-card:hover::after { opacity: 1; }
+.stat-value {
+  font-size: 1.95rem; font-weight: 800; line-height: 1; letter-spacing: -.04em;
+  color: var(--text);
+}
+.stat-value.world_model { color: #a5b4fc; text-shadow: 0 0 20px rgba(99,102,241,.4); }
+.stat-value.physical_ai { color: #6ee7b7; text-shadow: 0 0 20px rgba(16,185,129,.4); }
+.stat-value.medical_ai  { color: #fda4af; text-shadow: 0 0 20px rgba(244,63,94,.4); }
+:root[data-theme="light"] .stat-value.world_model { color: #4f46e5; text-shadow: none; }
+:root[data-theme="light"] .stat-value.physical_ai { color: #059669; text-shadow: none; }
+:root[data-theme="light"] .stat-value.medical_ai  { color: #e11d48; text-shadow: none; }
+.stat-label { font-size: .72rem; color: var(--text-muted); margin-top: .45rem; font-weight: 500; }
+.stat-card .new-badge {
+  position: absolute; top: .55rem; right: .55rem;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff; font-size: .58rem; padding: .12rem .4rem; border-radius: 8px;
+  font-weight: 700; box-shadow: 0 2px 8px rgba(34,197,94,.4);
+}
+
+.charts-section { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.chart-panel {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  backdrop-filter: blur(12px);
+  transition: all .3s ease;
+}
+.chart-panel:hover { border-color: var(--border-hover); box-shadow: var(--shadow-card); }
+.chart-header {
+  display: flex; align-items: center; gap: .55rem;
+  padding: .8rem 1.1rem;
+  border-bottom: 1px solid var(--surface-border);
+  background: linear-gradient(135deg, rgba(255,255,255,.02), transparent);
+}
+.chart-icon { font-size: 1rem; }
+.chart-title { font-size: .82rem; font-weight: 700; color: var(--text); }
+.chart-note { font-size: .68rem; color: var(--text-muted); margin-left: auto; }
+.chart-body { padding: 1rem 1.1rem; min-height: 180px; }
+
+/* trends bars */
+.trend-row { display: flex; align-items: center; gap: .7rem; margin-bottom: .55rem; }
+.trend-row:last-child { margin-bottom: 0; }
+.trend-year-label { width: 38px; font-size: .72rem; font-weight: 700; color: var(--text-secondary); }
+.trend-bars {
+  flex: 1; display: flex; height: 20px; border-radius: 6px; overflow: hidden;
+  background: rgba(255,255,255,.03);
+}
+:root[data-theme="light"] .trend-bars { background: rgba(0,0,0,.04); }
+.trend-bar { height: 100%; transition: all .4s cubic-bezier(.4,0,.2,1); min-width: 2px; }
+.trend-bar:hover { filter: brightness(1.25); }
+.trend-bar.world_model { background: linear-gradient(90deg, #6366f1, #818cf8, #a78bfa); }
+.trend-bar.physical_ai { background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7); }
+.trend-bar.medical_ai  { background: linear-gradient(90deg, #f43f5e, #fb7185, #fda4af); }
+.trend-count { width: 50px; text-align: right; font-size: .7rem; font-weight: 700; color: var(--text-secondary); }
+
+/* trending topics */
+.hot-item { display: flex; align-items: center; gap: .65rem; margin-bottom: .55rem; }
+.hot-item:last-child { margin-bottom: 0; }
+.hot-rank {
+  width: 22px; height: 22px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .62rem; font-weight: 800; flex-shrink: 0;
+}
+.hot-rank.rank-1 { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; }
+.hot-rank.rank-2 { background: linear-gradient(135deg, #94a3b8, #64748b); color: #fff; }
+.hot-rank.rank-3 { background: linear-gradient(135deg, #b45309, #92400e); color: #fff; }
+.hot-rank.rank-other { background: var(--surface-bg); color: var(--text-muted); border: 1px solid var(--border); }
+.hot-name { flex: 1; font-size: .79rem; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hot-bar-wrap { width: 78px; height: 7px; background: var(--surface-bg); border-radius: 4px; overflow: hidden; }
+.hot-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), #a78bfa); transition: width .5s ease; }
+.hot-count { width: 32px; text-align: right; font-size: .72rem; font-weight: 700; color: var(--text-secondary); }
+
 /* ========== 论文卡片网格 ========== */
 .paper-list {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
@@ -343,6 +442,8 @@ body::before {
   .layout, .layout.has-detail { grid-template-columns: 1fr; }
   .sidebar, .detail-panel { position: static; max-height: none; }
   .paper-list, .layout.has-detail .paper-list { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .charts-section { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .topbar { flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
@@ -350,4 +451,5 @@ body::before {
   .domain-bar { padding: 10px 12px; overflow-x: auto; flex-wrap: nowrap; }
   .layout { padding: 12px; }
   .paper-list, .layout.has-detail .paper-list { grid-template-columns: 1fr; }
+  .stat-value { font-size: 1.5rem; }
 }

@@ -1,4 +1,4 @@
-import { listPapers, getPaper, listVenues } from "./supabase.js";
+import { listPapers, getPaper, listVenues, fetchDashboardStats, fetchTrendingTopics } from "./supabase.js";
 import { S2_PAPER_API, DOMAINS } from "./config.js";
 
 const state = {
@@ -11,6 +11,7 @@ const state = {
   search: "",
   tier: "",
   venue: "",
+  hasCode: false,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -150,6 +151,82 @@ async function openDetail(id) {
   `;
 }
 
+// ========== 仪表盘 (速览模式) ==========
+let dashboardLoaded = false;
+async function loadDashboard() {
+  if (dashboardLoaded) return;
+  dashboardLoaded = true;
+  try {
+    const stats = await fetchDashboardStats();
+    renderStats(stats);
+    renderTrends(stats.trends);
+  } catch (e) {
+    console.warn("dashboard stats failed:", e);
+  }
+  try {
+    const topics = await fetchTrendingTopics(null, 5);
+    renderTrendingTopics(topics);
+  } catch (e) {
+    console.warn("trending topics failed:", e);
+    $("#chart-trending").innerHTML = `<div class="loading">加载失败</div>`;
+  }
+}
+
+function renderStats(s) {
+  const fmt = (n) => n.toLocaleString("en-US");
+  const dash = $("#dashboard");
+  const setCard = (key, value, recent) => {
+    const card = dash.querySelector(`.stat-card[data-key="${key}"]`);
+    if (!card) return;
+    card.querySelector(".stat-value").textContent = fmt(value);
+    const old = card.querySelector(".new-badge");
+    if (old) old.remove();
+    if (recent > 0) {
+      const b = document.createElement("div");
+      b.className = "new-badge";
+      b.textContent = `+${recent}`;
+      card.appendChild(b);
+    }
+  };
+  setCard("total", s.total, s.recent.total);
+  ["world_model", "physical_ai", "medical_ai"].forEach(d => {
+    setCard(d, s.domains[d], s.recent.domains[d]);
+  });
+}
+
+function renderTrends(trends) {
+  const max = Math.max(1, ...trends.map(t => Object.values(t.counts).reduce((a, b) => a + b, 0)));
+  const html = trends.map(t => {
+    const total = Object.values(t.counts).reduce((a, b) => a + b, 0);
+    const bars = ["world_model", "physical_ai", "medical_ai"].map(d => {
+      const w = max > 0 ? (t.counts[d] / max * 100) : 0;
+      return w > 0 ? `<div class="trend-bar ${d}" style="width:${w}%" title="${d}: ${t.counts[d]}"></div>` : "";
+    }).join("");
+    return `<div class="trend-row">
+      <span class="trend-year-label">${t.year}</span>
+      <div class="trend-bars">${bars}</div>
+      <span class="trend-count">${total.toLocaleString("en-US")}</span>
+    </div>`;
+  }).join("");
+  $("#chart-trends").innerHTML = html || `<div class="loading">暂无数据</div>`;
+}
+
+function renderTrendingTopics(topics) {
+  if (!topics.length) { $("#chart-trending").innerHTML = `<div class="loading">暂无数据</div>`; return; }
+  const max = topics[0].count;
+  const html = topics.map((t, i) => {
+    const rank = i < 3 ? `rank-${i + 1}` : "rank-other";
+    const w = (t.count / max) * 100;
+    return `<div class="hot-item">
+      <div class="hot-rank ${rank}">${i + 1}</div>
+      <div class="hot-name">${esc(t.name)}</div>
+      <div class="hot-bar-wrap"><div class="hot-bar" style="width:${w}%"></div></div>
+      <div class="hot-count">${t.count}</div>
+    </div>`;
+  }).join("");
+  $("#chart-trending").innerHTML = html;
+}
+
 // ========== 加载数据 ==========
 async function reload() {
   $("#paper-list").innerHTML = `<div class="loading">加载中...</div>`;
@@ -213,6 +290,22 @@ document.querySelectorAll("input[name='source']").forEach((i) =>
     reload();
   })
 );
+$("#filter-has-code").addEventListener("change", (e) => {
+  state.hasCode = e.target.checked;
+  reload();
+});
+
+document.querySelectorAll("[data-switch-domain]").forEach((c) =>
+  c.addEventListener("click", () => {
+    const d = c.dataset.switchDomain;
+    document.querySelectorAll(".domain-tab").forEach(x =>
+      x.classList.toggle("active", x.dataset.domain === d));
+    state.domain = d;
+    reload();
+    document.querySelector(".paper-list").scrollIntoView({ behavior: "smooth", block: "start" });
+  })
+);
+
 document.querySelectorAll("input[name='type']").forEach((i) =>
   i.addEventListener("change", () => {
     state.paperType = [...document.querySelectorAll("input[name='type']:checked")].map(x => x.value);
@@ -251,3 +344,4 @@ themeBtn.addEventListener("click", () => {
 
 // ========== 初始化 ==========
 reload();
+loadDashboard();

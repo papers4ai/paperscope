@@ -14,10 +14,28 @@ async function restGet(path, params = {}) {
   return r.json();
 }
 
+// 仅取行数，不拉数据。利用 PostgREST 的 Content-Range header
+async function restCount(path, params = {}) {
+  const url = new URL(`${SUPABASE_URL}/rest/v1/${path}`);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  url.searchParams.set("select", "id");
+  url.searchParams.set("limit", "1");
+  const r = await fetch(url, {
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      Prefer: "count=exact",
+    },
+  });
+  if (!r.ok) throw new Error(`Supabase ${r.status}: ${await r.text()}`);
+  const cr = r.headers.get("Content-Range") || "0-0/0";
+  return parseInt(cr.split("/")[1], 10) || 0;
+}
+
 export async function listPapers({
   mode = "feed", domain = "all", source = [], year = "",
   paperType = [], sortBy = "published_at", limit = 50, offset = 0, search = "",
-  tier = "", venue = "",
+  tier = "", venue = "", hasCode = false,
 } = {}) {
   const params = {
     select: "*",
@@ -25,7 +43,6 @@ export async function listPapers({
     limit: String(limit),
     offset: String(offset),
   };
-  // mode: feed=arxiv, curated=s2+pubmed
   if (mode === "feed") params.source = "eq.arxiv";
   else if (mode === "curated") params.source = "in.(s2,pubmed)";
 
@@ -36,8 +53,74 @@ export async function listPapers({
   if (search) params.title = `ilike.*${search}*`;
   if (tier)  params.venue_tier = `eq.${tier}`;
   if (venue) params.venue = `eq.${venue}`;
+  if (hasCode) params.code_links = "neq.{}";
 
   return restGet("papers", params);
+}
+
+// 速览仪表盘：4 张统计卡 + 年份×领域 趋势
+export async function fetchDashboardStats() {
+  const baseFeed = { source: "eq.arxiv" };
+  const domains = ["world_model", "physical_ai", "medical_ai"];
+  const years = [2023, 2024, 2025, 2026];
+
+  const totalP = restCount("papers", baseFeed);
+  const domainCountsP = Promise.all(
+    domains.map(d => restCount("papers", { ...baseFeed, domains: `cs.{${d}}` }))
+  );
+  const recentP = restCount("papers", {
+    ...baseFeed,
+    published_at: `gte.${new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10)}`,
+  });
+  const recentDomainP = Promise.all(
+    domains.map(d => restCount("papers", {
+      ...baseFeed,
+      domains: `cs.{${d}}`,
+      published_at: `gte.${new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10)}`,
+    }))
+  );
+  const trendsP = Promise.all(
+    years.flatMap(y => domains.map(d =>
+      restCount("papers", { ...baseFeed, year: `eq.${y}`, domains: `cs.{${d}}` })
+        .then(count => ({ year: y, domain: d, count }))
+    ))
+  );
+
+  const [total, domainCounts, recentTotal, recentDomain, trendsFlat] =
+    await Promise.all([totalP, domainCountsP, recentP, recentDomainP, trendsP]);
+
+  const trends = years.map(y => ({
+    year: y,
+    counts: Object.fromEntries(domains.map((d, i) => [d, trendsFlat.find(t => t.year === y && t.domain === d)?.count || 0])),
+  }));
+
+  return {
+    total,
+    domains: Object.fromEntries(domains.map((d, i) => [d, domainCounts[i]])),
+    recent: {
+      total: recentTotal,
+      domains: Object.fromEntries(domains.map((d, i) => [d, recentDomain[i]])),
+    },
+    trends,
+  };
+}
+
+// 取热门 task 标签：随机抽样近期论文，前端聚合
+export async function fetchTrendingTopics(domain = null, limit = 5) {
+  const params = {
+    select: "tasks,domains",
+    source: "eq.arxiv",
+    limit: "500",
+    order: "published_at.desc.nullslast",
+  };
+  if (domain) params.domains = `cs.{${domain}}`;
+  const rows = await restGet("papers", params);
+  const counter = {};
+  rows.forEach(r => (r.tasks || []).forEach(t => { counter[t] = (counter[t] || 0) + 1; }));
+  return Object.entries(counter)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([name, count]) => ({ name, count }));
 }
 
 // 获取精选论文中的 venue 列表（按 tier 过滤），用于下拉联动

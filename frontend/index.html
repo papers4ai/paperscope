@@ -46,6 +46,10 @@
         <label><input type="checkbox" name="source" value="pubmed" checked> PubMed</label>
       </section>
       <section>
+        <h3>代码</h3>
+        <label><input type="checkbox" id="filter-has-code"> 仅显示有开源代码</label>
+      </section>
+      <section>
         <h3>年份</h3>
         <select id="filter-year">
           <option value="">全部</option>
@@ -88,9 +92,51 @@
       </section>
     </aside>
 
-    <section class="paper-list" id="paper-list">
-      <div class="loading">加载中...</div>
-    </section>
+    <div class="main-col">
+      <section class="dashboard feed-only" id="dashboard">
+        <div class="stats-row">
+          <div class="stat-card" data-key="total">
+            <div class="stat-value">—</div>
+            <div class="stat-label">全部 arXiv 论文</div>
+          </div>
+          <div class="stat-card" data-key="world_model" data-switch-domain="world_model">
+            <div class="stat-value world_model">—</div>
+            <div class="stat-label">World Model</div>
+          </div>
+          <div class="stat-card" data-key="physical_ai" data-switch-domain="physical_ai">
+            <div class="stat-value physical_ai">—</div>
+            <div class="stat-label">Physical AI</div>
+          </div>
+          <div class="stat-card" data-key="medical_ai" data-switch-domain="medical_ai">
+            <div class="stat-value medical_ai">—</div>
+            <div class="stat-label">Medical AI</div>
+          </div>
+        </div>
+
+        <div class="charts-section">
+          <div class="chart-panel">
+            <div class="chart-header">
+              <span class="chart-icon">📈</span>
+              <span class="chart-title">发布趋势</span>
+              <span class="chart-note">按年份 × 领域</span>
+            </div>
+            <div class="chart-body" id="chart-trends">加载中...</div>
+          </div>
+          <div class="chart-panel">
+            <div class="chart-header">
+              <span class="chart-icon">🔥</span>
+              <span class="chart-title">热门任务</span>
+              <span class="chart-note">近期 Top 5</span>
+            </div>
+            <div class="chart-body" id="chart-trending">加载中...</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="paper-list" id="paper-list">
+        <div class="loading">加载中...</div>
+      </section>
+    </div>
 
     <aside class="detail-panel" id="detail-panel" hidden>
       <button class="detail-close" id="detail-close">✕</button>
