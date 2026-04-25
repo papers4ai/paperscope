@@ -12,6 +12,7 @@ const state = {
   tier: "",
   venue: "",
   hasCode: false,
+  task: "",
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -153,22 +154,47 @@ async function openDetail(id) {
 
 // ========== 仪表盘 (速览模式) ==========
 let dashboardLoaded = false;
+let trendingData = {};        // { world_model: [...], physical_ai: [...], medical_ai: [...] }
+let taskMeta = {};            // { Task: {zh, en} }
+let domainTasks = {           // fallback
+  world_model: ["VidGen", "NeRF", "MBRL", "Sim2Real", "EmbodiedWM", "Predictive"],
+  physical_ai: ["PINN", "NeuralOp", "Embodied", "RobotLearn", "FluidSim", "Climate", "3DRecon"],
+  medical_ai:  ["Pathology", "MedImg", "Cancer", "MedVLM", "DrugMol", "Protein", "Clinical", "Surgery", "HealthMon"],
+};
+let hotDomain = "world_model";
+let hotExpanded = false;
+
+function tn(task) {
+  const m = taskMeta[task];
+  return m ? (m.zh || m.en || task) : task;
+}
+
+async function loadStaticData() {
+  try {
+    const [tr, tm] = await Promise.all([
+      fetch("data/trending.json").then(r => r.ok ? r.json() : null),
+      fetch("data/task_meta.json").then(r => r.ok ? r.json() : null),
+    ]);
+    if (tr?.trends) trendingData = tr.trends;
+    if (tm?.tasks) taskMeta = tm.tasks;
+    if (tm?.domain_tasks && Object.keys(tm.domain_tasks).length) domainTasks = tm.domain_tasks;
+  } catch (e) {
+    console.warn("static data load failed:", e);
+  }
+}
+
 async function loadDashboard() {
   if (dashboardLoaded) return;
   dashboardLoaded = true;
+  await loadStaticData();
+  renderHotTopics(hotDomain);
+  renderSubdomain();
   try {
     const stats = await fetchDashboardStats();
     renderStats(stats);
     renderTrends(stats.trends);
   } catch (e) {
     console.warn("dashboard stats failed:", e);
-  }
-  try {
-    const topics = await fetchTrendingTopics(null, 5);
-    renderTrendingTopics(topics);
-  } catch (e) {
-    console.warn("trending topics failed:", e);
-    $("#chart-trending").innerHTML = `<div class="loading">加载失败</div>`;
   }
 }
 
@@ -211,20 +237,51 @@ function renderTrends(trends) {
   $("#chart-trends").innerHTML = html || `<div class="loading">暂无数据</div>`;
 }
 
-function renderTrendingTopics(topics) {
-  if (!topics.length) { $("#chart-trending").innerHTML = `<div class="loading">暂无数据</div>`; return; }
-  const max = topics[0].count;
-  const html = topics.map((t, i) => {
+function renderHotTopics(domain) {
+  hotDomain = domain;
+  const items = (trendingData[domain] || []).map(t => ({
+    name: t.display || t.term, count: t.count, desc: t.description || ""
+  }));
+  const tabsHtml = `<div class="hot-tabs">
+    ${["world_model", "physical_ai", "medical_ai"].map(d =>
+      `<button class="hot-tab ${d === domain ? "active" : ""}" data-domain="${d}">${DOMAINS[d]?.label || d}</button>`
+    ).join("")}
+  </div>`;
+  if (!items.length) {
+    $("#chart-trending").innerHTML = tabsHtml + `<div class="loading">暂无数据</div>`;
+    return;
+  }
+  const max = Math.max(...items.map(i => i.count), 1);
+  const TOP = 4;
+  const visible = hotExpanded ? items : items.slice(0, TOP);
+  const itemsHtml = visible.map((it, i) => {
     const rank = i < 3 ? `rank-${i + 1}` : "rank-other";
-    const w = (t.count / max) * 100;
-    return `<div class="hot-item">
+    const w = (it.count / max * 100).toFixed(0);
+    const tip = it.desc ? `title="${esc(it.desc)}"` : "";
+    return `<div class="hot-item" ${tip}>
       <div class="hot-rank ${rank}">${i + 1}</div>
-      <div class="hot-name">${esc(t.name)}</div>
-      <div class="hot-bar-wrap"><div class="hot-bar" style="width:${w}%"></div></div>
-      <div class="hot-count">${t.count}</div>
+      <div class="hot-name">${esc(it.name)}</div>
+      <div class="hot-bar-wrap"><div class="hot-bar ${domain}" style="width:${w}%"></div></div>
+      <div class="hot-count">${it.count}</div>
     </div>`;
   }).join("");
-  $("#chart-trending").innerHTML = html;
+  const more = items.length > TOP
+    ? `<button class="hot-show-all" id="hot-show-all">${hotExpanded ? "收起 ↑" : `查看全部 ${items.length} 个 ↓`}</button>`
+    : "";
+  $("#chart-trending").innerHTML = tabsHtml + itemsHtml + more;
+}
+
+function renderSubdomain() {
+  const sec = $("#subdomain-section");
+  if (state.domain === "all") { sec.hidden = true; return; }
+  sec.hidden = false;
+  const tasks = domainTasks[state.domain] || [];
+  if (!tasks.length) { $("#subdomain-grid").innerHTML = ""; return; }
+  $("#subdomain-grid").innerHTML = tasks.map(task => `
+    <div class="subdomain-item ${state.task === task ? "active" : ""}" data-task="${esc(task)}">
+      <span class="name">${esc(tn(task))}</span>
+    </div>
+  `).join("");
 }
 
 // ========== 加载数据 ==========
@@ -254,9 +311,28 @@ document.querySelectorAll(".domain-tab").forEach((b) =>
     document.querySelectorAll(".domain-tab").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
     state.domain = b.dataset.domain;
+    state.task = "";
+    renderSubdomain();
     reload();
   })
 );
+
+// 热门话题：领域 tab 切换 + 展开
+$("#chart-trending").addEventListener("click", (e) => {
+  const tab = e.target.closest(".hot-tab");
+  if (tab) { hotExpanded = false; renderHotTopics(tab.dataset.domain); return; }
+  if (e.target.id === "hot-show-all") { hotExpanded = !hotExpanded; renderHotTopics(hotDomain); }
+});
+
+// 细分方向：点击 task 筛选
+$("#subdomain-grid").addEventListener("click", (e) => {
+  const item = e.target.closest(".subdomain-item");
+  if (!item) return;
+  const task = item.dataset.task;
+  state.task = state.task === task ? "" : task;
+  renderSubdomain();
+  reload();
+});
 
 $(".search").addEventListener("input", (e) => {
   clearTimeout(window.__searchTimer);

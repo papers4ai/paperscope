@@ -35,7 +35,7 @@ async function restCount(path, params = {}) {
 export async function listPapers({
   mode = "feed", domain = "all", source = [], year = "",
   paperType = [], sortBy = "published_at", limit = 50, offset = 0, search = "",
-  tier = "", venue = "", hasCode = false,
+  tier = "", venue = "", hasCode = false, task = "",
 } = {}) {
   const params = {
     select: "*",
@@ -54,6 +54,7 @@ export async function listPapers({
   if (tier)  params.venue_tier = `eq.${tier}`;
   if (venue) params.venue = `eq.${venue}`;
   if (hasCode) params.code_links = "neq.{}";
+  if (task) params.tasks = `cs.{${task}}`;
 
   return restGet("papers", params);
 }

@@ -1,0 +1,156 @@
+{
+  "generated": "2026-04-24",
+  "months": 6,
+  "trends": {
+    "world_model": [
+      {
+        "term": "video generation",
+        "display": "Video Generation",
+        "count": 143,
+        "specificity": 1.71
+      },
+      {
+        "term": "video diffusion",
+        "display": "Video Diffusion",
+        "count": 38,
+        "specificity": 1.41
+      },
+      {
+        "term": "gaussian splatting dgs",
+        "display": "Gaussian Splatting Dgs",
+        "count": 32,
+        "specificity": 1.68
+      },
+      {
+        "term": "autonomous driving",
+        "display": "Autonomous Driving",
+        "count": 32,
+        "specificity": 1.43
+      },
+      {
+        "term": "predictive control mpc",
+        "display": "Predictive Control Mpc",
+        "count": 27,
+        "specificity": 1.66
+      },
+      {
+        "term": "world modeling",
+        "display": "World Modeling",
+        "count": 25,
+        "specificity": 1.39
+      },
+      {
+        "term": "feed-forward gaussian splatting",
+        "display": "Feed-forward Gaussian Splatting",
+        "count": 22,
+        "specificity": 1.78
+      },
+      {
+        "term": "latent world",
+        "display": "Latent World",
+        "count": 18,
+        "specificity": 1.53
+      }
+    ],
+    "physical_ai": [
+      {
+        "term": "robotic manipulation",
+        "display": "Robotic Manipulation",
+        "count": 61,
+        "specificity": 2.2
+      },
+      {
+        "term": "partial differential equations",
+        "display": "Partial Differential Equations",
+        "count": 28,
+        "specificity": 3.1
+      },
+      {
+        "term": "fluid dynamics",
+        "display": "Fluid Dynamics",
+        "count": 27,
+        "specificity": 3.1
+      },
+      {
+        "term": "weather prediction",
+        "display": "Weather Prediction",
+        "count": 14,
+        "specificity": 2.9
+      },
+      {
+        "term": "optimal control",
+        "display": "Optimal Control",
+        "count": 12,
+        "specificity": 1.69
+      },
+      {
+        "term": "robot control",
+        "display": "Robot Control",
+        "count": 12,
+        "specificity": 2.33
+      },
+      {
+        "term": "robot manipulation",
+        "display": "Robot Manipulation",
+        "count": 10,
+        "specificity": 2.07
+      },
+      {
+        "term": "fourier operator",
+        "display": "Fourier Operator",
+        "count": 9,
+        "specificity": 3.1
+      }
+    ],
+    "medical_ai": [
+      {
+        "term": "drug discovery",
+        "display": "Drug Discovery",
+        "count": 11,
+        "specificity": 5.54
+      },
+      {
+        "term": "medical imaging",
+        "display": "Medical Imaging",
+        "count": 10,
+        "specificity": 8.56
+      },
+      {
+        "term": "medical image segmentation",
+        "display": "Medical Image Segmentation",
+        "count": 10,
+        "specificity": 8.56
+      },
+      {
+        "term": "breast cancer",
+        "display": "Breast Cancer",
+        "count": 9,
+        "specificity": 8.56
+      },
+      {
+        "term": "language llms",
+        "display": "Language Llms",
+        "count": 8,
+        "specificity": 5.27
+      },
+      {
+        "term": "electronic health",
+        "display": "Electronic Health",
+        "count": 8,
+        "specificity": 8.56
+      },
+      {
+        "term": "vision language",
+        "display": "Vision Language",
+        "count": 8,
+        "specificity": 5.7
+      },
+      {
+        "term": "yet their",
+        "display": "Yet Their",
+        "count": 7,
+        "specificity": 4.61
+      }
+    ]
+  }
+}
