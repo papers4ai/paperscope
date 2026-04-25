@@ -13,7 +13,25 @@ const state = {
   venue: "",
   hasCode: false,
   task: "",
+  month: "",
+  favorites: false,
 };
+
+// 收藏存储
+let favorites = new Set(JSON.parse(localStorage.getItem("paperscope_favs") || "[]"));
+function saveFavorites() {
+  localStorage.setItem("paperscope_favs", JSON.stringify([...favorites]));
+}
+
+// 静态 arxiv 数据 (速览模式)
+let feedPapersCache = null;
+async function loadFeedPapers() {
+  if (feedPapersCache) return feedPapersCache;
+  const r = await fetch("data/papers.json");
+  if (!r.ok) throw new Error("papers.json 加载失败");
+  feedPapersCache = await r.json();
+  return feedPapersCache;
+}
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -76,39 +94,69 @@ function render(papers) {
   }
   list.innerHTML = papers.map(paperCard).join("");
   list.querySelectorAll(".paper-card").forEach((el) => {
-    el.addEventListener("click", () => openDetail(el.dataset.id));
+    el.addEventListener("click", (e) => {
+      if (e.target.closest(".fav-btn")) return;
+      openDetail(el.dataset.id);
+    });
+  });
+  list.querySelectorAll(".fav-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.fav;
+      if (favorites.has(id)) { favorites.delete(id); btn.classList.remove("active"); btn.textContent = "☆"; }
+      else { favorites.add(id); btn.classList.add("active"); btn.textContent = "★"; }
+      saveFavorites();
+      if (state.favorites) reload();
+    });
   });
 }
 
-function paperCard(p) {
-  const tierCls = (p.venue_tier || "").toLowerCase().replace(/[\s·]/g, "-");
-  const domains = p.domains || [];
-  const primaryDomain = domains[0] || "";
-  const authors = (p.authors || []).slice(0, 3).map((a) => a.name).join(", ");
-  const moreAuthors = p.authors && p.authors.length > 3 ? ` · +${p.authors.length - 3}` : "";
-  const tasks = (p.tasks || []).slice(0, 4).map((t) => `<span class="task-tag">${esc(t)}</span>`).join("");
-  const cite = p.citation_count > 0 ? `<span class="citation">📊 ${p.citation_count}</span>` : "";
-  const abs = p.abstract_excerpt ? `<p class="paper-abstract">${esc(p.abstract_excerpt)}</p>` : "";
+function normalizePaper(p) {
+  const domains = p._domains || p.domains || [];
+  const tasks = p._tasks || p.tasks || [];
+  const type = p.type || p.paper_type || "";
+  const authors = (p.authors || []).map(a => typeof a === "string" ? a : (a.name || ""));
+  const hasCode = p.has_code === true || (p.code_links && p.code_links.length > 0) || !!p.code;
+  const codeUrl = p.code || (p.code_links && p.code_links[0]) || "";
+  const pdfUrl = p.pdf_url || p.open_access_pdf || "";
+  const arxivUrl = p.arxiv_url || "";
+  const month = p.month || (p.published_at ? Number(p.published_at.slice(5, 7)) : null);
+  const abs = p.abstract_excerpt || p.abstract || "";
+  return { ...p, _n: { domains, tasks, type, authors, hasCode, codeUrl, pdfUrl, arxivUrl, month, abs } };
+}
 
-  const domainBadges = domains.map(d => {
+function paperCard(p) {
+  const n = p._n || normalizePaper(p)._n;
+  const tierCls = (p.venue_tier || "").toLowerCase().replace(/[\s·]/g, "-");
+  const primaryDomain = n.domains[0] || "";
+  const authorStr = n.authors.slice(0, 3).join(", ");
+  const moreAuthors = n.authors.length > 3 ? ` · +${n.authors.length - 3}` : "";
+  const taskTags = n.tasks.slice(0, 4).map((t) => `<span class="task-tag">${esc(tn(t))}</span>`).join("");
+  const cite = p.citation_count > 0 ? `<span class="citation">📊 ${p.citation_count}</span>` : "";
+  const absHtml = n.abs ? `<p class="paper-abstract">${esc(n.abs.slice(0, 240))}${n.abs.length > 240 ? "…" : ""}</p>` : "";
+
+  const domainBadges = n.domains.map(d => {
     const meta = DOMAINS[d];
     if (!meta) return "";
     return `<span class="paper-domain-badge ${d}">${meta.icon} ${meta.label}</span>`;
   }).join("");
-  const typeBadge = p.paper_type ? `<span class="paper-type ${esc(p.paper_type)}">${esc(p.paper_type)}</span>` : "";
+  const typeBadge = n.type ? `<span class="paper-type ${esc(n.type)}">${esc(n.type)}</span>` : "";
+  const fav = favorites.has(p.id);
 
   return `<article class="paper-card domain-${primaryDomain}" data-id="${p.id}">
+    <button class="fav-btn${fav ? " active" : ""}" data-fav="${p.id}" title="收藏">${fav ? "★" : "☆"}</button>
     <div class="paper-domains">${domainBadges}${typeBadge}</div>
     <h3 class="paper-title">${esc(p.title)}</h3>
     <div class="paper-meta">
-      <span class="venue-badge tier-${tierCls}">${esc(p.venue || "—")}</span>
+      ${p.venue ? `<span class="venue-badge tier-${tierCls}">${esc(p.venue)}</span>` : ""}
       ${p.year ? `<span>${p.year}</span>` : ""}
       ${cite}
-      ${p.open_access_pdf ? `<span title="开放获取">🔓</span>` : ""}
+      ${n.pdfUrl ? `<span title="开放获取">🔓</span>` : ""}
+      ${n.hasCode ? `<span title="有开源代码">💻</span>` : ""}
     </div>
-    <div class="paper-authors">${esc(authors)}${moreAuthors}</div>
-    ${abs}
-    ${tasks ? `<div class="paper-tasks">${tasks}</div>` : ""}
+    <div class="paper-authors">${esc(authorStr)}${moreAuthors}</div>
+    ${absHtml}
+    ${taskTags ? `<div class="paper-tasks">${taskTags}</div>` : ""}
   </article>`;
 }
 
@@ -125,10 +173,18 @@ async function openDetail(id) {
   panel.hidden = false;
   body.innerHTML = `<div class="loading">加载详情...</div>`;
 
-  const paper = await getPaper(id);
+  let paper = null;
+  if (state.mode === "feed" && feedPapersCache) {
+    paper = feedPapersCache.find(x => x.id === id) || null;
+    if (paper) paper = normalizePaper(paper);
+  }
+  if (!paper) paper = await getPaper(id);
   if (!paper) { body.innerHTML = "论文不存在"; return; }
+  const n = paper._n || normalizePaper(paper)._n;
+  const fullAbstract0 = paper.abstract || paper.abstract_excerpt || n.abs || "";
+  const authorsStr = n.authors.join(", ");
 
-  let refs = null, cites = null, fullAbstract = paper.abstract_excerpt || "";
+  let refs = null, cites = null, fullAbstract = fullAbstract0;
   if (paper.source === "s2") {
     try {
       const s2 = await fetch(`${S2_PAPER_API}/${paper.source_id}?fields=abstract,references.paperId,references.title,references.citationCount,citations.paperId,citations.title,citations.citationCount`).then(r => r.json());
@@ -141,12 +197,13 @@ async function openDetail(id) {
   body.innerHTML = `
     <h2>${esc(paper.title)}</h2>
     <p><strong>${esc(paper.venue || "")}</strong> · ${paper.year || ""} ${paper.citation_count ? `· 📊 ${paper.citation_count} 引用` : ""}</p>
-    ${paper.open_access_pdf ? `<p><a href="${paper.open_access_pdf}" target="_blank">🔓 打开 PDF</a></p>` : ""}
-    ${paper.arxiv_url ? `<p><a href="${paper.arxiv_url}" target="_blank">arXiv 原文</a></p>` : ""}
+    ${n.pdfUrl ? `<p><a href="${n.pdfUrl}" target="_blank">🔓 打开 PDF</a></p>` : ""}
+    ${n.arxivUrl ? `<p><a href="${n.arxivUrl}" target="_blank">arXiv 原文</a></p>` : ""}
+    ${n.codeUrl ? `<p><a href="${n.codeUrl}" target="_blank">💻 代码</a></p>` : ""}
     <h4>摘要</h4>
     <p>${esc(fullAbstract)}</p>
     <h4>作者</h4>
-    <p>${(paper.authors || []).map(a => esc(a.name)).join(", ")}</p>
+    <p>${esc(authorsStr)}</p>
     ${refs?.length ? `<h4>主要参考文献</h4><ul class="refs-list">${refs.map(r => `<li>${esc(r.title)} · ${r.citationCount || 0} 引用</li>`).join("")}</ul>` : ""}
     ${cites?.length ? `<h4>被引重要论文</h4><ul class="refs-list">${cites.map(r => `<li>${esc(r.title)} · ${r.citationCount || 0} 引用</li>`).join("")}</ul>` : ""}
   `;
@@ -190,12 +247,37 @@ async function loadDashboard() {
   renderHotTopics(hotDomain);
   renderSubdomain();
   try {
-    const stats = await fetchDashboardStats();
+    const papers = await loadFeedPapers();
+    const stats = computeStaticStats(papers);
     renderStats(stats);
     renderTrends(stats.trends);
   } catch (e) {
     console.warn("dashboard stats failed:", e);
   }
+}
+
+function computeStaticStats(papers) {
+  const domains = ["world_model", "physical_ai", "medical_ai"];
+  const years = [2023, 2024, 2025, 2026];
+  const recentCutoff = Date.now() - 7 * 864e5;
+  const stats = {
+    total: papers.length,
+    domains: Object.fromEntries(domains.map(d => [d, 0])),
+    recent: { total: 0, domains: Object.fromEntries(domains.map(d => [d, 0])) },
+    trends: years.map(y => ({ year: y, counts: Object.fromEntries(domains.map(d => [d, 0])) })),
+  };
+  for (const p of papers) {
+    const ds = p._domains || [];
+    const isRecent = p.published && new Date(p.published).getTime() >= recentCutoff;
+    if (isRecent) stats.recent.total++;
+    for (const d of ds) {
+      if (stats.domains[d] != null) stats.domains[d]++;
+      if (isRecent && stats.recent.domains[d] != null) stats.recent.domains[d]++;
+    }
+    const tr = stats.trends.find(t => t.year === p.year);
+    if (tr) for (const d of ds) if (tr.counts[d] != null) tr.counts[d]++;
+  }
+  return stats;
 }
 
 function renderStats(s) {
@@ -284,14 +366,48 @@ function renderSubdomain() {
   `).join("");
 }
 
+// ========== 速览模式：本地过滤 + 排序 ==========
+function applyFeedFilters(papers) {
+  const s = state;
+  const q = s.search.toLowerCase();
+  let out = papers.filter(p => {
+    const n = p._n;
+    if (s.domain !== "all" && !n.domains.includes(s.domain)) return false;
+    if (s.year && String(p.year) !== String(s.year)) return false;
+    if (s.month && String(n.month) !== String(s.month)) return false;
+    if (s.paperType.length && !s.paperType.includes(n.type)) return false;
+    if (s.hasCode && !n.hasCode) return false;
+    if (s.task && !n.tasks.includes(s.task)) return false;
+    if (s.favorites && !favorites.has(p.id)) return false;
+    if (q) {
+      const hay = (p.title + " " + n.authors.join(" ") + " " + n.abs).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  out.sort((a, b) => {
+    if (s.sortBy === "citation_count") return (b.citation_count || 0) - (a.citation_count || 0);
+    return String(b.published || "").localeCompare(String(a.published || ""));
+  });
+  return out;
+}
+
 // ========== 加载数据 ==========
+let feedTotal = 0;
 async function reload() {
   $("#paper-list").innerHTML = `<div class="loading">加载中...</div>`;
   try {
-    const papers = await listPapers(state);
-    render(papers);
+    if (state.mode === "feed") {
+      const all = (await loadFeedPapers()).map(normalizePaper);
+      const filtered = applyFeedFilters(all);
+      feedTotal = filtered.length;
+      render(filtered.slice(0, 100));
+    } else {
+      const papers = await listPapers(state);
+      render(papers);
+    }
   } catch (e) {
-    $("#paper-list").innerHTML = `<div class="loading">加载失败: ${esc(e.message)}<br><br>请检查 Supabase 配置是否已注入到 window.__PAPERSCOPE_CONFIG__</div>`;
+    $("#paper-list").innerHTML = `<div class="loading">加载失败: ${esc(e.message)}</div>`;
   }
 }
 
@@ -370,6 +486,8 @@ $("#filter-has-code").addEventListener("change", (e) => {
   state.hasCode = e.target.checked;
   reload();
 });
+$("#filter-month").addEventListener("change", (e) => { state.month = e.target.value; reload(); });
+$("#filter-favorites").addEventListener("change", (e) => { state.favorites = e.target.checked; reload(); });
 
 document.querySelectorAll("[data-switch-domain]").forEach((c) =>
   c.addEventListener("click", () => {
