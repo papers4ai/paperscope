@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
+  <title>Paperscope — 顶会顶刊</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050508;
+      --card-bg: rgba(18, 18, 28, 0.85);
+      --card-bg-hover: rgba(25, 25, 40, 0.95);
+      --text: #f0f0fa;
+      --text-secondary: #9090a8;
+      --text-muted: #52526a;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.15);
+      --accent: #818cf8;
+      --gold: #f59e0b;
+      --header-bg: rgba(8,8,15,0.9);
+      --surface-bg: rgba(255,255,255,0.03);
+      --surface-border: rgba(255,255,255,0.06);
+      --header-border: rgba(255,255,255,0.08);
+      --logo-gradient: linear-gradient(135deg, #fff 30%, #a78bfa);
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+      --shadow-hover: 0 12px 48px rgba(0,0,0,0.6);
+      --glass-blur: blur(20px);
+      --world-model: #6366f1;
+      --physical-ai: #10b981;
+      --medical-ai: #f43f5e;
+    }
+    :root[data-theme="light"] {
+      --bg: #f0f0f8;
+      --card-bg: #ffffff;
+      --card-bg-hover: #f8f8ff;
+      --text: #111122;
+      --text-secondary: #44445a;
+      --text-muted: #888898;
+      --border: #e0e0ec;
+      --border-hover: #c4c4d8;
+      --accent: #6366f1;
+      --gold: #d97706;
+      --header-bg: rgba(248,248,255,0.95);
+      --surface-bg: rgba(0,0,0,0.025);
+      --surface-border: rgba(0,0,0,0.05);
+      --header-border: rgba(0,0,0,0.06);
+      --logo-gradient: linear-gradient(135deg,#1a1a2e 30%,#6366f1);
+      --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 32px rgba(0,0,0,0.11);
+    }
+    body {
+      font-family: 'Inter','Noto Sans SC',sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% -10%, rgba(245,158,11,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 85% 110%, rgba(99,102,241,0.1) 0%, transparent 50%);
+      pointer-events: none; z-index: -1;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      background: var(--header-bg); border-bottom: 1px solid var(--header-border);
+      padding: 0.75rem 0; position: sticky; top: 0; z-index: 100;
+      backdrop-filter: var(--glass-blur) saturate(180%);
+      -webkit-backdrop-filter: var(--glass-blur) saturate(180%);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .header-content {
+      max-width: 1400px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+    }
+    .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .logo-icon {
+      width: 38px; height: 38px; border-radius: 12px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(245,158,11,0.4);
+    }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .logo h1 {
+      font-size: 1.25rem; font-weight: 700;
+      background: var(--logo-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+    .logo-tagline { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.05em; }
+
+    /* Source tabs */
+    .source-tabs {
+      display: flex; gap: 0.25rem;
+      background: var(--surface-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.18rem;
+    }
+    .source-tab {
+      display: flex; align-items: center; gap: 0.35rem;
+      padding: 0.38rem 0.9rem; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 600;
+      text-decoration: none; color: var(--text-muted);
+      transition: all 0.18s; white-space: nowrap;
+    }
+    .source-tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .source-tab.active {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff; box-shadow: 0 0 14px rgba(245,158,11,0.35);
+    }
+    .source-tab-icon { font-size: 0.85rem; }
+
+    /* Domain tabs */
+    .domain-tabs { display: flex; gap: 0.38rem; flex-wrap: wrap; }
+    .domain-tab {
+      padding: 0.38rem 0.78rem; border-radius: 8px; font-size: 0.77rem; font-weight: 500;
+      cursor: pointer; transition: all 0.18s; border: 1px solid transparent; white-space: nowrap;
+      background: none;
+    }
+    .domain-tab.all { background: var(--surface-bg); color: var(--text-secondary); border-color: var(--border); }
+    .domain-tab.all.active { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.18); color: var(--text); }
+    :root[data-theme="light"] .domain-tab.all.active { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.14); }
+    .domain-tab.world_model { background: rgba(99,102,241,0.08); color: #a5b4fc; border-color: rgba(99,102,241,0.2); }
+    :root[data-theme="light"] .domain-tab.world_model { color: #4f46e5; }
+    .domain-tab.world_model.active { background: rgba(99,102,241,0.17); border-color: var(--world-model); }
+    .domain-tab.physical_ai { background: rgba(16,185,129,0.08); color: #6ee7b7; border-color: rgba(16,185,129,0.2); }
+    :root[data-theme="light"] .domain-tab.physical_ai { color: #059669; }
+    .domain-tab.physical_ai.active { background: rgba(16,185,129,0.17); border-color: var(--physical-ai); }
+    .domain-tab.medical_ai { background: rgba(244,63,94,0.08); color: #fda4af; border-color: rgba(244,63,94,0.2); }
+    :root[data-theme="light"] .domain-tab.medical_ai { color: #e11d48; }
+    .domain-tab.medical_ai.active { background: rgba(244,63,94,0.17); border-color: var(--medical-ai); }
+
+    /* Controls */
+    .header-controls { display: flex; gap: 0.45rem; margin-left: auto; align-items: center; }
+    .toggle-group {
+      display: flex; gap: 0.18rem; align-items: center;
+      background: var(--surface-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.14rem;
+    }
+    .toggle-btn {
+      padding: 0.28rem 0.5rem; border-radius: 6px; cursor: pointer;
+      border: none; background: transparent; color: var(--text-muted);
+      font-size: 0.78rem; line-height: 1; transition: all 0.18s;
+    }
+    .toggle-btn:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .toggle-btn.active { background: var(--accent); color: #fff; }
+
+    /* ─── Container ─── */
+    .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem; }
+
+    /* ─── Hero stats ─── */
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .hero-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.25rem 1.1rem; text-align: center;
+      transition: all 0.3s; position: relative; overflow: hidden;
+      backdrop-filter: blur(12px); cursor: pointer;
+    }
+    .hero-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      opacity: 0; transition: opacity 0.3s; border-radius: 0 0 16px 16px;
+    }
+    .hero-card:hover { transform: translateY(-4px); border-color: var(--border-hover); box-shadow: var(--shadow-hover); }
+    .hero-card:hover::after { opacity: 1; }
+    .hero-card.tier-all::after   { background: linear-gradient(90deg,#f59e0b,#fbbf24); }
+    .hero-card.tier-t1::after    { background: linear-gradient(90deg,#f59e0b,#fcd34d); }
+    .hero-card.tier-ccfa::after  { background: linear-gradient(90deg,#6366f1,#818cf8); }
+    .hero-card.tier-visual::after{ background: linear-gradient(90deg,#10b981,#34d399); }
+    .hero-card.tier-robot::after { background: linear-gradient(90deg,#3b82f6,#60a5fa); }
+    .hero-value {
+      font-size: 2.2rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em;
+    }
+    .tier-all   .hero-value { color: #fbbf24; text-shadow: 0 0 20px rgba(245,158,11,0.4); }
+    .tier-t1    .hero-value { color: #fcd34d; text-shadow: 0 0 20px rgba(245,158,11,0.3); }
+    .tier-ccfa  .hero-value { color: #a5b4fc; text-shadow: 0 0 20px rgba(99,102,241,0.4); }
+    .tier-visual .hero-value{ color: #6ee7b7; text-shadow: 0 0 20px rgba(16,185,129,0.4); }
+    .tier-robot .hero-value { color: #93c5fd; text-shadow: 0 0 20px rgba(59,130,246,0.4); }
+    :root[data-theme="light"] .hero-value { text-shadow: none !important; }
+    :root[data-theme="light"] .tier-all   .hero-value { color: #d97706; }
+    :root[data-theme="light"] .tier-t1    .hero-value { color: #b45309; }
+    :root[data-theme="light"] .tier-ccfa  .hero-value { color: #4f46e5; }
+    :root[data-theme="light"] .tier-visual .hero-value{ color: #059669; }
+    :root[data-theme="light"] .tier-robot .hero-value { color: #2563eb; }
+    .hero-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; font-weight: 500; }
+
+    /* ─── Venue strip ─── */
+    .venue-strip {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+      padding: 0.9rem 1.25rem; margin-bottom: 1.1rem; overflow: hidden;
+    }
+    .venue-strip-title {
+      font-size: 0.7rem; font-weight: 700; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;
+    }
+    .venue-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .venue-chip {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.3rem 0.7rem; border-radius: 20px; cursor: pointer;
+      font-size: 0.75rem; font-weight: 600; transition: all 0.18s;
+      border: 1px solid transparent;
+    }
+    .venue-chip:hover { transform: translateY(-1px); filter: brightness(1.15); }
+    .venue-chip.active { box-shadow: 0 0 12px rgba(245,158,11,0.3); }
+    .venue-chip .chip-count { font-size: 0.65rem; opacity: 0.75; font-weight: 500; }
+
+    /* Tier color mapping */
+    .vc-T1     { background: rgba(245,158,11,0.12); color: #fbbf24; border-color: rgba(245,158,11,0.25); }
+    .vc-T2     { background: rgba(245,158,11,0.07); color: #d97706; border-color: rgba(245,158,11,0.15); }
+    .vc-CCF-A  { background: rgba(99,102,241,0.12); color: #a5b4fc; border-color: rgba(99,102,241,0.25); }
+    .vc-视觉顶刊 { background: rgba(16,185,129,0.12); color: #6ee7b7; border-color: rgba(16,185,129,0.25); }
+    .vc-机器人顶会{ background: rgba(59,130,246,0.12); color: #93c5fd; border-color: rgba(59,130,246,0.25); }
+    .vc-医学顶会 { background: rgba(244,63,94,0.12); color: #fda4af; border-color: rgba(244,63,94,0.25); }
+    :root[data-theme="light"] .vc-T1    { color: #b45309; }
+    :root[data-theme="light"] .vc-T2    { color: #92400e; }
+    :root[data-theme="light"] .vc-CCF-A { color: #4f46e5; }
+    :root[data-theme="light"] .vc-视觉顶刊{ color: #059669; }
+    :root[data-theme="light"] .vc-机器人顶会{ color: #2563eb; }
+    :root[data-theme="light"] .vc-医学顶会{ color: #e11d48; }
+
+    /* ─── Filter row ─── */
+    .filter-row {
+      display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; align-items: center;
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 0.7rem;
+    }
+    .search-box { flex: 1; min-width: 180px; position: relative; }
+    .search-box input {
+      width: 100%; padding: 0.52rem 0.8rem 0.52rem 2.15rem;
+      background: var(--surface-bg); border: 1px solid var(--surface-border);
+      border-radius: 8px; color: var(--text); font-size: 0.82rem; transition: border-color 0.2s;
+    }
+    .search-box input:focus { outline: none; border-color: var(--gold); }
+    .search-box::before { content: '🔍'; position: absolute; left: 0.68rem; top: 50%; transform: translateY(-50%); font-size: 0.8rem; opacity: 0.38; }
+    .filter-select {
+      padding: 0.52rem 0.72rem; background: var(--surface-bg); border: 1px solid var(--surface-border);
+      border-radius: 8px; color: var(--text); font-size: 0.77rem; cursor: pointer; min-width: 94px;
+    }
+    .filter-select:focus { outline: none; border-color: var(--gold); }
+    .action-btn {
+      padding: 0.52rem 0.78rem; border-radius: 8px; font-size: 0.72rem; font-weight: 500;
+      cursor: pointer; border: 1px solid var(--surface-border); background: var(--surface-bg);
+      color: var(--text-secondary); transition: all 0.17s; white-space: nowrap;
+    }
+    .action-btn:hover { background: rgba(245,158,11,0.08); color: var(--text); border-color: rgba(245,158,11,0.2); }
+    .action-btn.active { background: rgba(245,158,11,0.14); color: var(--gold); border-color: rgba(245,158,11,0.3); }
+
+    /* ─── Results header ─── */
+    .results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .results-count { color: var(--text-muted); font-size: 0.77rem; font-weight: 500; }
+
+    /* ─── Paper cards ─── */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .papers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 1rem; }
+    .paper-card {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.15rem 1.15rem 1.05rem;
+      display: flex; flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      animation: cardIn 0.35s ease forwards;
+      position: relative; overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .paper-card:hover {
+      border-color: var(--border-hover); transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(245,158,11,0.1);
+      background: var(--card-bg-hover);
+    }
+
+    /* Venue header bar */
+    .paper-venue-bar {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; flex-wrap: wrap;
+    }
+    .venue-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.22rem 0.6rem; border-radius: 7px;
+      font-size: 0.72rem; font-weight: 700;
+    }
+    .tier-badge {
+      font-size: 0.6rem; padding: 0.12rem 0.4rem; border-radius: 5px;
+      font-weight: 700; letter-spacing: 0.03em;
+    }
+    .vb-T1    { background: rgba(245,158,11,0.18); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+    .vb-T2    { background: rgba(245,158,11,0.1);  color: #d97706; border: 1px solid rgba(245,158,11,0.2); }
+    .vb-CCF-A { background: rgba(99,102,241,0.18); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+    .vb-视觉顶刊{ background: rgba(16,185,129,0.18); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+    .vb-机器人顶会{ background: rgba(59,130,246,0.18); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+    .vb-医学顶会{ background: rgba(244,63,94,0.18); color: #fda4af; border: 1px solid rgba(244,63,94,0.3); }
+    :root[data-theme="light"] .vb-T1    { color: #b45309; }
+    :root[data-theme="light"] .vb-T2    { color: #92400e; }
+    :root[data-theme="light"] .vb-CCF-A { color: #4f46e5; }
+    :root[data-theme="light"] .vb-视觉顶刊{ color: #059669; }
+    :root[data-theme="light"] .vb-机器人顶会{ color: #2563eb; }
+    :root[data-theme="light"] .vb-医学顶会{ color: #e11d48; }
+
+    .paper-year-tag {
+      font-size: 0.68rem; color: var(--text-muted); margin-left: auto;
+      font-weight: 500;
+    }
+
+    /* Domain badges */
+    .paper-domains { display: flex; gap: 0.3rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .paper-domain-badge {
+      font-size: 0.6rem; padding: 0.12rem 0.38rem; border-radius: 5px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .paper-domain-badge.world_model { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    .paper-domain-badge.physical_ai { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+    .paper-domain-badge.medical_ai  { background: rgba(244,63,94,0.15); color: #fda4af; }
+    :root[data-theme="light"] .paper-domain-badge.world_model { color: #4f46e5; }
+    :root[data-theme="light"] .paper-domain-badge.physical_ai { color: #059669; }
+    :root[data-theme="light"] .paper-domain-badge.medical_ai  { color: #e11d48; }
+
+    .paper-title {
+      font-size: 0.93rem; font-weight: 600; margin-bottom: 0.4rem;
+      line-height: 1.5; color: var(--text);
+    }
+    .paper-meta {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.5rem;
+      align-items: center;
+    }
+    .cite-badge {
+      display: inline-flex; align-items: center; gap: 0.2rem;
+      padding: 0.12rem 0.42rem; border-radius: 6px;
+      background: rgba(245,158,11,0.1); color: var(--gold);
+      border: 1px solid rgba(245,158,11,0.2);
+      font-size: 0.68rem; font-weight: 700;
+    }
+    .paper-abstract {
+      font-size: 0.76rem; color: var(--text-secondary); margin-bottom: 0.4rem;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; flex: 1; line-height: 1.55;
+    }
+    .paper-abstract.expanded { -webkit-line-clamp: unset; }
+    .abstract-toggle {
+      font-size: 0.7rem; color: var(--gold); cursor: pointer;
+      margin-bottom: 0.45rem; user-select: none; display: inline-block;
+    }
+    .abstract-toggle:hover { opacity: 0.75; }
+    .paper-actions {
+      display: flex; gap: 0.35rem; margin-top: auto;
+      padding-top: 0.65rem; border-top: 1px solid var(--surface-border);
+      flex-wrap: wrap;
+    }
+    .paper-action {
+      display: inline-flex; align-items: center; gap: 0.22rem;
+      padding: 0.32rem 0.62rem; border-radius: 8px;
+      font-size: 0.7rem; text-decoration: none; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .paper-action:hover { filter: brightness(1.2); transform: translateY(-1px); }
+    .paper-action.arxiv { background: rgba(244,63,94,0.12); color: #fb7185; border: 1px solid rgba(244,63,94,0.2); }
+    .paper-action.pdf   { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+    .paper-action.doi   { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.2); }
+    .paper-action.code  { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+    :root[data-theme="light"] .paper-action.arxiv { color: #e11d48; }
+    :root[data-theme="light"] .paper-action.pdf   { color: #4f46e5; }
+    :root[data-theme="light"] .paper-action.doi   { color: #b45309; }
+    :root[data-theme="light"] .paper-action.code  { color: #059669; }
+
+    /* ─── Pagination ─── */
+    .pagination { display: flex; justify-content: center; gap: 0.4rem; margin-top: 2rem; flex-wrap: wrap; }
+    .page-btn {
+      padding: 0.45rem 0.9rem; border-radius: 10px; font-size: 0.76rem;
+      background: var(--card-bg); border: 1px solid var(--border);
+      color: var(--text-secondary); cursor: pointer; transition: all 0.25s;
+    }
+    .page-btn:hover:not(:disabled) { border-color: var(--border-hover); color: var(--text); }
+    .page-btn.active {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 4px 16px rgba(245,158,11,0.4); font-weight: 600;
+    }
+    .page-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .loading, .empty { text-align: center; padding: 3rem; color: var(--text-muted); }
+
+    /* ─── Footer ─── */
+    .footer {
+      border-top: 1px solid var(--border); padding: 1rem 1.5rem;
+      text-align: center; color: var(--text-muted); font-size: 0.7rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .hero-stats { grid-template-columns: repeat(2,1fr); }
+      .header-content { padding: 0 1rem; }
+      .container { padding: 1rem; }
+    }
+    @media (max-width: 600px) {
+      .header-content { flex-wrap: wrap; gap: 0.5rem; padding: 0 0.75rem; }
+      .domain-tabs { order: 3; width: 100%; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+      .domain-tabs::-webkit-scrollbar { display: none; }
+      .domain-tab { flex-shrink: 0; }
+      .hero-stats { grid-template-columns: repeat(2,1fr); gap: 0.5rem; }
+      .papers-grid { grid-template-columns: 1fr; }
+      .filter-row { flex-direction: column; }
+      .search-box { width: 100%; }
+      .filter-select { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-content">
+      <a class="logo" href="index.html">
+        <div class="logo-icon">🏆</div>
+        <div class="logo-text">
+          <h1>Paperscope</h1>
+          <span class="logo-tagline">Top Venues · Curated Papers</span>
+        </div>
+      </a>
+      <div class="source-tabs">
+        <a class="source-tab" href="index.html">
+          <span class="source-tab-icon">⚡</span>
+          <span class="source-tab-label">arXiv 最新</span>
+        </a>
+        <a class="source-tab active" href="curated.html">
+          <span class="source-tab-icon">🏆</span>
+          <span class="source-tab-label">顶会顶刊</span>
+        </a>
+      </div>
+      <div class="domain-tabs">
+        <button class="domain-tab all active" data-domain="all">全部</button>
+        <button class="domain-tab world_model" data-domain="world_model">World Model</button>
+        <button class="domain-tab physical_ai" data-domain="physical_ai">Physical AI</button>
+        <button class="domain-tab medical_ai" data-domain="medical_ai">Medical AI</button>
+      </div>
+      <div class="header-controls">
+        <div class="toggle-group" id="themeToggle">
+          <button class="toggle-btn" data-theme="dark" title="Dark">🌙</button>
+          <button class="toggle-btn" data-theme="light" title="Light">☀️</button>
+          <button class="toggle-btn" data-theme="system" title="System">💻</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero stats -->
+    <div class="hero-stats" id="heroStats">
+      <div class="hero-card tier-all" data-tier="">
+        <div class="hero-value" id="countAll">-</div>
+        <div class="hero-label">全部论文</div>
+      </div>
+      <div class="hero-card tier-t1" data-tier="T1">
+        <div class="hero-value" id="countT1">-</div>
+        <div class="hero-label">T1 顶刊</div>
+      </div>
+      <div class="hero-card tier-ccfa" data-tier="CCF-A">
+        <div class="hero-value" id="countCCFA">-</div>
+        <div class="hero-label">CCF-A 顶会</div>
+      </div>
+      <div class="hero-card tier-visual" data-tier="视觉顶刊">
+        <div class="hero-value" id="countVisual">-</div>
+        <div class="hero-label">视觉顶刊</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-row">
+      <div class="search-box"><input type="text" id="searchInput" placeholder="搜索标题、作者、机构…"></div>
+      <select class="filter-select" id="yearFilter"></select>
+      <select class="filter-select" id="tierFilter">
+        <option value="">全部分类</option>
+        <option value="T1">T1 顶刊</option>
+        <option value="T2">T2 期刊</option>
+        <option value="CCF-A">CCF-A 顶会</option>
+        <option value="视觉顶刊">视觉顶刊</option>
+        <option value="机器人顶会">机器人顶会</option>
+        <option value="医学顶会">医学顶会</option>
+      </select>
+      <select class="filter-select" id="venueFilter" style="min-width:130px;"></select>
+      <select class="filter-select" id="sortSelect">
+        <option value="cite_desc">引用数 ↓</option>
+        <option value="cite_asc">引用数 ↑</option>
+        <option value="date_desc">最新发表</option>
+        <option value="date_asc">最早发表</option>
+      </select>
+      <button class="action-btn" id="hasCodeBtn">💻 有代码</button>
+    </div>
+
+    <div class="results-header">
+      <span class="results-count" id="resultsCount"></span>
+    </div>
+    <div class="papers-grid" id="papersGrid"><div class="loading">加载中…</div></div>
+    <div class="pagination" id="pagination"></div>
+  </main>
+
+  <footer class="footer">
+    Paperscope · 顶会顶刊精选 · 数据来源 Semantic Scholar &amp; OpenAlex
+  </footer>
+
+  <script>
+  const PAGE_SIZE = 20;
+  let allPapers = [], filtered = [], currentPage = 1;
+  let activeDomain = 'all', hasCodeOnly = false;
+
+  const TIER_ORDER = ['T1','视觉顶刊','CCF-A','机器人顶会','医学顶会','T2'];
+  const DOMAIN_LABEL = { world_model: 'World Model', physical_ai: 'Physical AI', medical_ai: 'Medical AI' };
+
+  // ── Theme ──────────────────────────────────────────
+  function applyTheme(t) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const resolved = t === 'system' ? (prefersDark ? 'dark' : 'light') : t;
+    document.documentElement.setAttribute('data-theme', resolved);
+    document.querySelectorAll('#themeToggle .toggle-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.theme === t)
+    );
+  }
+  applyTheme(localStorage.getItem('theme') || 'system');
+  document.getElementById('themeToggle').addEventListener('click', e => {
+    const btn = e.target.closest('[data-theme]');
+    if (!btn) return;
+    localStorage.setItem('theme', btn.dataset.theme);
+    applyTheme(btn.dataset.theme);
+  });
+
+  // ── Load data ──────────────────────────────────────
+  fetch('output/papers_curated.json')
+    .then(r => r.json())
+    .then(data => {
+      allPapers = data.sort((a, b) => (b.citation_count || 0) - (a.citation_count || 0));
+      buildYearFilter();
+      buildVenueFilter();
+      updateCounts();
+      applyFilters();
+    });
+
+  // ── Build year dropdown ────────────────────────────
+  function buildYearFilter() {
+    const years = [...new Set(allPapers.map(p => p.year))].sort((a,b) => b - a);
+    document.getElementById('yearFilter').innerHTML =
+      '<option value="">全部年份</option>' +
+      years.map(y => `<option value="${y}">${y}</option>`).join('');
+  }
+
+  // ── Build venue dropdown (grouped by tier, filtered by domain+tier) ──
+  function buildVenueFilter() {
+    const tier = document.getElementById('tierFilter').value;
+    const pool = allPapers.filter(p => {
+      if (activeDomain !== 'all' && !(p._domains||[]).includes(activeDomain)) return false;
+      if (tier && p.venue_tier !== tier) return false;
+      return true;
+    });
+
+    // count per venue, keep tier info
+    const venueMap = {};
+    pool.forEach(p => {
+      if (!p.venue) return;
+      if (!venueMap[p.venue]) venueMap[p.venue] = { count: 0, tier: p.venue_tier || '' };
+      venueMap[p.venue].count++;
+    });
+
+    // group by tier order
+    const byTier = {};
+    Object.entries(venueMap).forEach(([venue, info]) => {
+      const t = info.tier || 'other';
+      if (!byTier[t]) byTier[t] = [];
+      byTier[t].push({ venue, count: info.count });
+    });
+
+    const currentVenue = document.getElementById('venueFilter').value;
+    let html = '<option value="">全部会议 / 期刊</option>';
+    TIER_ORDER.forEach(t => {
+      if (!byTier[t]) return;
+      const sorted = byTier[t].sort((a,b) => b.count - a.count);
+      html += `<optgroup label="${t}">`;
+      sorted.forEach(({ venue, count }) => {
+        html += `<option value="${venue}">${venue} (${count})</option>`;
+      });
+      html += '</optgroup>';
+    });
+    document.getElementById('venueFilter').innerHTML = html;
+    // restore selection if still valid
+    if (currentVenue && venueMap[currentVenue]) {
+      document.getElementById('venueFilter').value = currentVenue;
+    }
+  }
+
+  // ── Update hero stat counts ────────────────────────
+  function updateCounts() {
+    const base = activeDomain === 'all' ? allPapers
+      : allPapers.filter(p => (p._domains||[]).includes(activeDomain));
+    document.getElementById('countAll').textContent   = base.length.toLocaleString();
+    document.getElementById('countT1').textContent    = base.filter(p => p.venue_tier === 'T1').length.toLocaleString();
+    document.getElementById('countCCFA').textContent  = base.filter(p => p.venue_tier === 'CCF-A').length.toLocaleString();
+    document.getElementById('countVisual').textContent= base.filter(p => p.venue_tier === '视觉顶刊').length.toLocaleString();
+  }
+
+  // ── Apply all filters ──────────────────────────────
+  function applyFilters() {
+    const q     = document.getElementById('searchInput').value.toLowerCase().trim();
+    const year  = document.getElementById('yearFilter').value;
+    const tier  = document.getElementById('tierFilter').value;
+    const venue = document.getElementById('venueFilter').value;
+    const sort  = document.getElementById('sortSelect').value;
+
+    filtered = allPapers.filter(p => {
+      if (activeDomain !== 'all' && !(p._domains||[]).includes(activeDomain)) return false;
+      if (tier  && p.venue_tier !== tier)   return false;
+      if (venue && p.venue      !== venue)  return false;
+      if (year  && String(p.year) !== year) return false;
+      if (hasCodeOnly && !p.has_code)       return false;
+      if (q) {
+        const hay = `${p.title} ${(p.authors||[]).join(' ')} ${p.institution||''} ${p.venue||''}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+
+    filtered.sort((a,b) => {
+      if (sort === 'cite_desc') return (b.citation_count||0) - (a.citation_count||0);
+      if (sort === 'cite_asc')  return (a.citation_count||0) - (b.citation_count||0);
+      if (sort === 'date_desc') return (b.published||'').localeCompare(a.published||'');
+      if (sort === 'date_asc')  return (a.published||'').localeCompare(b.published||'');
+      return 0;
+    });
+
+    document.getElementById('resultsCount').textContent = `${filtered.length.toLocaleString()} 篇`;
+    currentPage = 1;
+    render();
+  }
+
+  // ── Render cards ───────────────────────────────────
+  function render() {
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const page  = filtered.slice(start, start + PAGE_SIZE);
+    const grid  = document.getElementById('papersGrid');
+
+    if (!filtered.length) {
+      grid.innerHTML = '<div class="empty">暂无匹配论文</div>';
+      document.getElementById('pagination').innerHTML = '';
+      return;
+    }
+
+    grid.innerHTML = page.map(p => cardHTML(p)).join('');
+    renderPagination();
+
+    grid.querySelectorAll('.abstract-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const abs = btn.previousElementSibling;
+        const expanded = abs.classList.toggle('expanded');
+        btn.textContent = expanded ? '收起' : '展开摘要';
+      });
+    });
+  }
+
+  function cardHTML(p) {
+    const tier  = p.venue_tier || '';
+    const vbCls = `vb-${tier}`;
+    const domains = (p._domains||[]).map(d =>
+      `<span class="paper-domain-badge ${d}">${DOMAIN_LABEL[d]||d}</span>`
+    ).join('');
+    const cite = p.citation_count > 0
+      ? `<span class="cite-badge">🔖 ${p.citation_count.toLocaleString()} cited</span>` : '';
+    const institution = p.institution ? `<span>🏛 ${p.institution}</span>` : '';
+    const authors = (p.authors||[]).slice(0,3).join(', ') + ((p.authors||[]).length > 3 ? ' …' : '');
+    const abstract = p.abstract
+      ? `<div class="paper-abstract">${p.abstract}</div><span class="abstract-toggle">展开摘要</span>` : '';
+    const actions = [
+      p.arxiv_url ? `<a class="paper-action arxiv" href="${p.arxiv_url}" target="_blank">arXiv</a>` : '',
+      p.pdf_url   ? `<a class="paper-action pdf"   href="${p.pdf_url}"   target="_blank">PDF</a>`   : '',
+      p.doi       ? `<a class="paper-action doi"   href="https://doi.org/${p.doi}" target="_blank">DOI</a>` : '',
+      p.code      ? `<a class="paper-action code"  href="${p.code}"      target="_blank">Code</a>`  : '',
+    ].filter(Boolean).join('');
+
+    return `
+    <div class="paper-card">
+      <div class="paper-venue-bar">
+        <span class="venue-badge ${vbCls}">${p.venue || '—'}</span>
+        <span class="tier-badge ${vbCls}">${tier}</span>
+        <span class="paper-year-tag">${p.published ? p.published.slice(0,7) : p.year||''}</span>
+      </div>
+      ${domains ? `<div class="paper-domains">${domains}</div>` : ''}
+      <div class="paper-title">${p.title}</div>
+      <div class="paper-meta">
+        <span>${authors}</span>${institution}${cite}
+      </div>
+      ${abstract}
+      ${actions ? `<div class="paper-actions">${actions}</div>` : ''}
+    </div>`;
+  }
+
+  function renderPagination() {
+    const total = Math.ceil(filtered.length / PAGE_SIZE);
+    const pag = document.getElementById('pagination');
+    if (total <= 1) { pag.innerHTML = ''; return; }
+    let html = `<button class="page-btn" ${currentPage===1?'disabled':''} id="prevBtn">‹ 上一页</button>`;
+    pageRange(currentPage, total).forEach(p => {
+      html += p === '…'
+        ? `<span class="page-btn" style="cursor:default">…</span>`
+        : `<button class="page-btn ${p===currentPage?'active':''}" data-page="${p}">${p}</button>`;
+    });
+    html += `<button class="page-btn" ${currentPage===total?'disabled':''} id="nextBtn">下一页 ›</button>`;
+    pag.innerHTML = html;
+    pag.querySelector('#prevBtn')?.addEventListener('click', () => { currentPage--; render(); scrollToTop(); });
+    pag.querySelector('#nextBtn')?.addEventListener('click', () => { currentPage++; render(); scrollToTop(); });
+    pag.querySelectorAll('[data-page]').forEach(b =>
+      b.addEventListener('click', () => { currentPage = +b.dataset.page; render(); scrollToTop(); })
+    );
+  }
+
+  function pageRange(cur, total) {
+    if (total <= 7) return Array.from({length: total}, (_,i) => i+1);
+    if (cur <= 4)         return [1,2,3,4,5,'…',total];
+    if (cur >= total - 3) return [1,'…',total-4,total-3,total-2,total-1,total];
+    return [1,'…',cur-1,cur,cur+1,'…',total];
+  }
+
+  function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+  // ── Event listeners ────────────────────────────────
+  // Domain tabs
+  document.querySelectorAll('.domain-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeDomain = btn.dataset.domain;
+      document.querySelectorAll('.domain-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('venueFilter').value = '';
+      updateCounts();
+      buildVenueFilter();
+      applyFilters();
+    });
+  });
+
+  // Hero stat cards → set tier filter + sync dropdown
+  document.getElementById('heroStats').addEventListener('click', e => {
+    const card = e.target.closest('[data-tier]');
+    if (!card) return;
+    const sel = document.getElementById('tierFilter');
+    sel.value = sel.value === card.dataset.tier ? '' : card.dataset.tier;
+    syncHeroHighlight();
+    document.getElementById('venueFilter').value = '';
+    buildVenueFilter();
+    applyFilters();
+  });
+
+  function syncHeroHighlight() {
+    const tier = document.getElementById('tierFilter').value;
+    document.querySelectorAll('.hero-card').forEach(c => {
+      c.style.borderColor = (c.dataset.tier === tier && tier !== '') ? 'var(--gold)' : '';
+    });
+  }
+
+  // Tier dropdown → rebuild venue list
+  document.getElementById('tierFilter').addEventListener('change', () => {
+    syncHeroHighlight();
+    document.getElementById('venueFilter').value = '';
+    buildVenueFilter();
+    applyFilters();
+  });
+
+  document.getElementById('hasCodeBtn').addEventListener('click', () => {
+    hasCodeOnly = !hasCodeOnly;
+    document.getElementById('hasCodeBtn').classList.toggle('active', hasCodeOnly);
+    currentPage = 1; applyFilters();
+  });
+
+  ['searchInput','yearFilter','venueFilter','sortSelect'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => { currentPage = 1; applyFilters(); });
+  });
+  </script>
+</body>
+</html>
