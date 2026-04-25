@@ -19,11 +19,16 @@ const $ = (sel) => document.querySelector(sel);
 function setCuratedMode(on) {
   document.body.classList.toggle("mode-curated", on);
   if (on) {
+    // 精选模式默认按引用数排序，更符合"精选"语义
+    state.sortBy = "citation_count";
+    $("#sort-by").value = "citation_count";
     refreshVenueList();
   } else {
     state.tier = "";
     state.venue = "";
+    state.sortBy = "published_at";
     $("#filter-tier").value = "";
+    $("#sort-by").value = "published_at";
     $("#filter-venue").innerHTML = '<option value="">全部</option>';
   }
 }
