@@ -88,19 +88,25 @@ async function renderVenuePicker(domain) {
       const dm = DOMAINS[d] || {};
       html += `<div class="vpc-domain-title ${d}">${dm.icon || ""} ${dm.label || d}</div>`;
     }
-    groups.forEach(g => {
+    groups.forEach((g, gi) => {
+      const groupId = `vpc-g-${d}-${gi}`;
+      // 默认展开：有选中 venue 的那组、或第一组
+      const hasActive = g.venues.includes(state.venue);
+      const open = hasActive || gi === 0;
+      const chipsHtml = g.venues.map(v => {
+        const cnt = counts[v] || 0;
+        const active = state.venue === v ? "active" : "";
+        const hasCnt = cnt > 0;
+        return `<button class="vpc-chip ${active} ${hasCnt ? "has-papers" : ""}" data-venue="${esc(v)}" title="${esc(v)} · ${hasCnt ? cnt + " 篇" : "暂无数据"}">
+          ${esc(v)}${hasCnt ? `<span class="vpc-cnt">${cnt}</span>` : ""}
+        </button>`;
+      }).join("");
       html += `<div class="vpc-group">
-        <div class="vpc-category">${esc(g.category)}</div>
-        <div class="vpc-chips">
-          ${g.venues.map(v => {
-            const cnt = counts[v] || 0;
-            const active = state.venue === v ? "active" : "";
-            const hasCnt = cnt > 0;
-            return `<button class="vpc-chip ${active} ${hasCnt ? "has-papers" : ""}" data-venue="${esc(v)}" data-domain="${d}" title="${esc(v)} · ${hasCnt ? cnt + " 篇" : "暂无数据"}">
-              ${esc(v)}${hasCnt ? `<span class="vpc-cnt">${cnt}</span>` : ""}
-            </button>`;
-          }).join("")}
-        </div>
+        <button class="vpc-category-toggle ${open ? "open" : ""}" data-target="${groupId}">
+          <span>${esc(g.category)}</span>
+          <span class="vpc-toggle-icon">${open ? "▲" : "▼"}</span>
+        </button>
+        <div class="vpc-chips ${open ? "" : "collapsed"}" id="${groupId}">${chipsHtml}</div>
       </div>`;
     });
   });
@@ -659,11 +665,20 @@ document.querySelector("#vp-year-row")?.addEventListener("click", e => {
   reload();
 });
 $("#venue-picker-body").addEventListener("click", e => {
+  // 折叠/展开
+  const toggle = e.target.closest(".vpc-category-toggle");
+  if (toggle) {
+    const target = document.getElementById(toggle.dataset.target);
+    const open = toggle.classList.toggle("open");
+    target?.classList.toggle("collapsed", !open);
+    toggle.querySelector(".vpc-toggle-icon").textContent = open ? "▲" : "▼";
+    return;
+  }
+  // 选 venue
   const chip = e.target.closest(".vpc-chip");
   if (!chip) return;
   const v = chip.dataset.venue;
   state.venue = state.venue === v ? "" : v;
-  // 同步 sidebar select
   $("#filter-venue").value = state.venue;
   document.querySelectorAll(".vpc-chip").forEach(c =>
     c.classList.toggle("active", c.dataset.venue === state.venue));
