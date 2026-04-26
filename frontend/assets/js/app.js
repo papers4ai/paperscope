@@ -366,7 +366,7 @@ function renderSubdomain() {
   if (state.domain === "all") {
     sec.hidden = false;
     sec.innerHTML = `<div class="subdomain-hint">
-      💡 点击上方 <b>🌍 World Model</b> / <b>🤖 Physical AI</b> / <b>🏥 Medical AI</b> 任一领域，可展开查看该方向的细分主题与本周新增
+      💡 点击上方 <b>🌍 World Model</b> / <b>🤖 Physical AI</b> / <b>🏥 Medical AI</b> 任一领域 tab，<b>或直接点击下方统计卡片</b>，可展开查看该方向的细分主题与本周新增
     </div>`;
     return;
   }
@@ -541,8 +541,10 @@ document.querySelectorAll("[data-switch-domain]").forEach((c) =>
     document.querySelectorAll(".domain-tab").forEach(x =>
       x.classList.toggle("active", x.dataset.domain === d));
     state.domain = d;
+    state.task = "";
+    renderSubdomain();
     reload();
-    document.querySelector(".paper-list").scrollIntoView({ behavior: "smooth", block: "start" });
+    document.querySelector("#subdomain-section").scrollIntoView({ behavior: "smooth", block: "start" });
   })
 );
 
