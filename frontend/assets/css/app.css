@@ -255,6 +255,17 @@ body.mode-curated .feed-only { display: none; }
 .chart-body { padding: 1rem 1.1rem; min-height: 180px; }
 
 /* trends bars */
+.trend-legend {
+  display: flex; flex-wrap: wrap; gap: .9rem;
+  padding: 0 0 .7rem; margin-bottom: .6rem;
+  border-bottom: 1px dashed var(--border);
+  font-size: .78rem; color: var(--text-dim);
+}
+.trend-legend-item { display: inline-flex; align-items: center; gap: 5px; }
+.trend-legend-dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.trend-legend-dot.world_model { background: linear-gradient(135deg, #6366f1, #a78bfa); }
+.trend-legend-dot.physical_ai { background: linear-gradient(135deg, #10b981, #6ee7b7); }
+.trend-legend-dot.medical_ai  { background: linear-gradient(135deg, #f43f5e, #fda4af); }
 .trend-row { display: flex; align-items: center; gap: .7rem; margin-bottom: .55rem; }
 .trend-row:last-child { margin-bottom: 0; }
 .trend-year-label { width: 38px; font-size: .72rem; font-weight: 700; color: var(--text-secondary); }

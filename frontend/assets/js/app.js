@@ -312,11 +312,16 @@ function renderStats(s) {
 
 function renderTrends(trends) {
   const max = Math.max(1, ...trends.map(t => Object.values(t.counts).reduce((a, b) => a + b, 0)));
-  const html = trends.map(t => {
+  const legend = `<div class="trend-legend">
+    ${["world_model", "physical_ai", "medical_ai"].map(d =>
+      `<span class="trend-legend-item"><span class="trend-legend-dot ${d}"></span>${DOMAINS[d]?.icon || ""} ${DOMAINS[d]?.label || d}</span>`
+    ).join("")}
+  </div>`;
+  const rowsHtml = trends.map(t => {
     const total = Object.values(t.counts).reduce((a, b) => a + b, 0);
     const bars = ["world_model", "physical_ai", "medical_ai"].map(d => {
       const w = max > 0 ? (t.counts[d] / max * 100) : 0;
-      return w > 0 ? `<div class="trend-bar ${d}" style="width:${w}%" title="${d}: ${t.counts[d]}"></div>` : "";
+      return w > 0 ? `<div class="trend-bar ${d}" style="width:${w}%" title="${DOMAINS[d]?.label || d}: ${t.counts[d]} 篇"></div>` : "";
     }).join("");
     return `<div class="trend-row">
       <span class="trend-year-label">${t.year}</span>
@@ -324,7 +329,7 @@ function renderTrends(trends) {
       <span class="trend-count">${total.toLocaleString("en-US")}</span>
     </div>`;
   }).join("");
-  $("#chart-trends").innerHTML = html || `<div class="loading">暂无数据</div>`;
+  $("#chart-trends").innerHTML = (rowsHtml ? legend + rowsHtml : `<div class="loading">暂无数据</div>`);
 }
 
 function renderHotTopics(domain) {
