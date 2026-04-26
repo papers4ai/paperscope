@@ -46,10 +46,10 @@ const $ = (sel) => document.querySelector(sel);
 function setCuratedMode(on) {
   document.body.classList.toggle("mode-curated", on);
   if (on) {
-    // 精选模式默认按引用数排序，更符合"精选"语义
     state.sortBy = "citation_count";
     $("#sort-by").value = "citation_count";
     refreshVenueList();
+    renderVenuePicker(state.domain);
   } else {
     state.tier = "";
     state.venue = "";
@@ -59,6 +59,55 @@ function setCuratedMode(on) {
     $("#filter-venue").innerHTML = '<option value="">全部</option>';
   }
 }
+
+// ========== 精选主区域：领域 × 期刊会议选择器 ==========
+async function renderVenuePicker(domain) {
+  const body = $("#venue-picker-body");
+  if (!body) return;
+  // 同步 domain 按钮高亮
+  document.querySelectorAll(".vpd-btn").forEach(b =>
+    b.classList.toggle("active", b.dataset.domain === domain));
+
+  const catalog = await loadVenuesByDomain();
+  const domains = domain === "all"
+    ? ["world_model", "physical_ai", "medical_ai"]
+    : [domain];
+
+  // 取已有入库数量
+  let counts = {};
+  try {
+    const list = await listVenues("");
+    counts = Object.fromEntries(list.map(v => [v.venue, v.count]));
+  } catch {}
+
+  let html = "";
+  domains.forEach(d => {
+    const groups = catalog[d] || [];
+    if (!groups.length) return;
+    if (domain === "all") {
+      const dm = DOMAINS[d] || {};
+      html += `<div class="vpc-domain-title ${d}">${dm.icon || ""} ${dm.label || d}</div>`;
+    }
+    groups.forEach(g => {
+      html += `<div class="vpc-group">
+        <div class="vpc-category">${esc(g.category)}</div>
+        <div class="vpc-chips">
+          ${g.venues.map(v => {
+            const cnt = counts[v] || 0;
+            const active = state.venue === v ? "active" : "";
+            const hasCnt = cnt > 0;
+            return `<button class="vpc-chip ${active} ${hasCnt ? "has-papers" : ""}" data-venue="${esc(v)}" data-domain="${d}" title="${esc(v)} · ${hasCnt ? cnt + " 篇" : "暂无数据"}">
+              ${esc(v)}${hasCnt ? `<span class="vpc-cnt">${cnt}</span>` : ""}
+            </button>`;
+          }).join("")}
+        </div>
+      </div>`;
+    });
+  });
+  body.innerHTML = html || `<div class="loading">暂无数据</div>`;
+}
+
+
 
 let venuesByDomainCache = null;
 async function loadVenuesByDomain() {
@@ -495,7 +544,7 @@ document.querySelectorAll(".domain-tab").forEach((b) =>
     state.task = "";
     state.venue = "";
     renderSubdomain();
-    if (state.mode === "curated") refreshVenueList();
+    if (state.mode === "curated") { refreshVenueList(); renderVenuePicker(state.domain); }
     reload();
   })
 );
@@ -578,6 +627,31 @@ document.querySelectorAll("input[name='type']").forEach((i) =>
     reload();
   })
 );
+
+// venue picker 事件
+$("#venue-picker-domains").addEventListener("click", e => {
+  const btn = e.target.closest(".vpd-btn");
+  if (!btn) return;
+  state.domain = btn.dataset.domain;
+  state.venue = "";
+  // 同步上方 domain tab
+  document.querySelectorAll(".domain-tab").forEach(x =>
+    x.classList.toggle("active", x.dataset.domain === state.domain));
+  renderVenuePicker(state.domain);
+  refreshVenueList();
+  reload();
+});
+$("#venue-picker-body").addEventListener("click", e => {
+  const chip = e.target.closest(".vpc-chip");
+  if (!chip) return;
+  const v = chip.dataset.venue;
+  state.venue = state.venue === v ? "" : v;
+  // 同步 sidebar select
+  $("#filter-venue").value = state.venue;
+  document.querySelectorAll(".vpc-chip").forEach(c =>
+    c.classList.toggle("active", c.dataset.venue === state.venue));
+  reload();
+});
 
 $("#detail-close").addEventListener("click", () => {
   $(".layout").classList.remove("has-detail");
