@@ -69,9 +69,12 @@ async function renderVenuePicker(domain) {
     b.classList.toggle("active", b.dataset.domain === domain));
 
   const catalog = await loadVenuesByDomain();
-  const domains = domain === "all"
-    ? ["world_model", "physical_ai", "medical_ai"]
-    : [domain];
+  if (domain === "all") {
+    body.innerHTML = `<div class="vpc-hint">👆 请选择上方领域，查看对应的顶会/顶刊列表</div>`;
+    return;
+  }
+
+  const domains = [domain];
 
   // 取已有入库数量
   let counts = {};
@@ -84,10 +87,6 @@ async function renderVenuePicker(domain) {
   domains.forEach(d => {
     const groups = catalog[d] || [];
     if (!groups.length) return;
-    if (domain === "all") {
-      const dm = DOMAINS[d] || {};
-      html += `<div class="vpc-domain-title ${d}">${dm.icon || ""} ${dm.label || d}</div>`;
-    }
     groups.forEach((g, gi) => {
       const groupId = `vpc-g-${d}-${gi}`;
       // 默认展开：有选中 venue 的那组、或第一组

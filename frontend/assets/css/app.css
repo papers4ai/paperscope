@@ -525,6 +525,9 @@ body.mode-curated .feed-only { display: none; }
 .vpd-btn.active.physical_ai               { background: linear-gradient(135deg,#10b981,#34d399); }
 .vpd-btn.active.medical_ai                { background: linear-gradient(135deg,#f43f5e,#fb7185); }
 
+.vpc-hint {
+  padding: .7rem 1rem; color: var(--text-dim); font-size: .88rem;
+}
 .vpc-domain-title {
   font-size: .95rem; font-weight: 700; margin: .9rem 0 .4rem;
   display: flex; align-items: center; gap: .4rem;
