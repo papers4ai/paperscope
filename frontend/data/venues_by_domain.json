@@ -1,0 +1,38 @@
+{
+  "world_model": [
+    {"category": "CCF-A 人工智能", "venues": ["NeurIPS", "ICML", "ICLR", "AAAI", "IJCAI", "COLT"]},
+    {"category": "CCF-A 计算机视觉", "venues": ["CVPR", "ICCV", "ECCV"]},
+    {"category": "CCF-A 图形学/多媒体", "venues": ["SIGGRAPH", "SIGGRAPH Asia", "ACM MM", "IEEE VIS"]},
+    {"category": "CCF-A NLP", "venues": ["ACL", "EMNLP", "NAACL"]},
+    {"category": "统计 AI", "venues": ["AISTATS", "UAI"]},
+    {"category": "视觉 AI 顶刊", "venues": ["TPAMI", "IJCV", "TIP"]},
+    {"category": "机器学习期刊", "venues": ["JMLR", "TMLR", "AIJ", "TNNLS"]},
+    {"category": "图形学期刊", "venues": ["ACM TOG", "IEEE TMM", "IEEE TVCG", "Pattern Recognition"]}
+  ],
+  "physical_ai": [
+    {"category": "CCF-A 人工智能", "venues": ["NeurIPS", "ICML", "ICLR", "AAAI", "IJCAI"]},
+    {"category": "CCF-A 计算机视觉", "venues": ["CVPR", "ICCV", "ECCV"]},
+    {"category": "CCF-A 图形学/多媒体", "venues": ["SIGGRAPH", "SIGGRAPH Asia", "ACM MM", "IEEE VR"]},
+    {"category": "CCF-A NLP", "venues": ["ACL", "EMNLP", "NAACL"]},
+    {"category": "机器人顶会", "venues": ["ICRA", "IROS", "CoRL", "RSS"]},
+    {"category": "规划/多智能体", "venues": ["ICAPS", "AAMAS", "ISMAR"]},
+    {"category": "T1 机器人旗舰期刊", "venues": ["Science Robotics", "Nature Machine Intelligence", "npj Robotics", "IJRR", "TRO"]},
+    {"category": "T2 IEEE 期刊", "venues": ["RA-L", "T-ASE"]},
+    {"category": "T3 专向期刊", "venues": ["JFR", "Soft Robotics", "Autonomous Robots", "IJHR", "Advanced Intelligent Systems"]},
+    {"category": "视觉 AI 共享期刊", "venues": ["TPAMI", "IJCV", "TIP", "JMLR", "TMLR", "ACM TOG", "IEEE TVCG"]}
+  ],
+  "medical_ai": [
+    {"category": "CCF-A 人工智能", "venues": ["NeurIPS", "ICML", "ICLR", "AAAI"]},
+    {"category": "CCF-A 计算机视觉", "venues": ["CVPR", "ICCV", "ECCV"]},
+    {"category": "CCF-A NLP", "venues": ["ACL", "EMNLP", "NAACL"]},
+    {"category": "医学专属顶会", "venues": ["MICCAI", "MIDL"]},
+    {"category": "医疗 ML 专属", "venues": ["CHIL", "AMIA"]},
+    {"category": "HCI", "venues": ["CHI"]},
+    {"category": "T1 Nature/Science", "venues": ["Nature", "Science", "PNAS", "Nature Medicine", "Nature Methods", "Nature Biomedical Engineering", "Nature Machine Intelligence", "npj Digital Medicine", "npj Precision Oncology", "Nature Communications", "Science Translational Medicine"]},
+    {"category": "T2 医学权威期刊", "venues": ["The Lancet", "The Lancet Digital Health", "NEJM AI", "JAMA", "BMJ", "Cell", "Cell Systems"]},
+    {"category": "T3 医学影像专属", "venues": ["TMI", "MIA", "Radiology", "Radiology: AI"]},
+    {"category": "T3 医学信息学", "venues": ["JAMIA", "IEEE JBHI", "Artificial Intelligence in Medicine", "Journal of Biomedical Informatics"]},
+    {"category": "T3 生物信息学", "venues": ["Bioinformatics", "Briefings in Bioinformatics", "IEEE TCBB", "BMC Bioinformatics"]},
+    {"category": "T4 视觉 AI 通用", "venues": ["TPAMI", "IJCV", "TIP"]}
+  ]
+}

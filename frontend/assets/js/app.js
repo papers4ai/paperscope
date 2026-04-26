@@ -60,36 +60,53 @@ function setCuratedMode(on) {
   }
 }
 
+let venuesByDomainCache = null;
+async function loadVenuesByDomain() {
+  if (venuesByDomainCache) return venuesByDomainCache;
+  try {
+    venuesByDomainCache = await fetch("data/venues_by_domain.json").then(r => r.json());
+  } catch { venuesByDomainCache = {}; }
+  return venuesByDomainCache;
+}
+
 async function refreshVenueList() {
   const sel = $("#filter-venue");
   sel.innerHTML = '<option value="">全部期刊/会议</option>';
+  const catalog = await loadVenuesByDomain();
+  // 取实际数据库里有论文的 venue → 计数（用于在选项中标注篇数）
+  let counts = {};
   try {
-    const venues = await listVenues(state.tier);
-    // 按 tier 分组，用 optgroup
-    const TIER_ORDER = ["T1", "视觉顶刊", "CCF-A", "机器人顶会", "医学顶会", "T2"];
-    const byTier = {};
-    venues.forEach(v => {
-      const t = v.tier || "other";
-      if (!byTier[t]) byTier[t] = [];
-      byTier[t].push(v);
-    });
-    TIER_ORDER.forEach(t => {
-      if (!byTier[t]?.length) return;
-      // 若已选 tier 则不分组（只有一组）
-      const group = document.createElement("optgroup");
-      group.label = t;
-      byTier[t].forEach(v => {
+    const venuesWithCounts = await listVenues(state.tier);
+    counts = Object.fromEntries(venuesWithCounts.map(v => [v.venue, v.count]));
+  } catch (e) { console.warn("listVenues failed:", e); }
+
+  // 决定要展示的领域分组：state.domain==='all' 时合并三个领域
+  const domains = state.domain === "all"
+    ? ["world_model", "physical_ai", "medical_ai"]
+    : [state.domain];
+
+  domains.forEach(d => {
+    const groups = catalog[d] || [];
+    if (state.domain === "all" && groups.length) {
+      const header = document.createElement("optgroup");
+      header.label = `── ${DOMAINS[d]?.label || d} ──`;
+      header.disabled = true;
+      sel.appendChild(header);
+    }
+    groups.forEach(g => {
+      const og = document.createElement("optgroup");
+      og.label = g.category;
+      g.venues.forEach(v => {
         const opt = document.createElement("option");
-        opt.value = v.venue;
-        opt.textContent = `${v.venue} (${v.count})`;
-        if (v.venue === state.venue) opt.selected = true;
-        group.appendChild(opt);
+        opt.value = v;
+        const c = counts[v];
+        opt.textContent = c ? `${v} (${c})` : v;
+        if (v === state.venue) opt.selected = true;
+        og.appendChild(opt);
       });
-      sel.appendChild(group);
+      sel.appendChild(og);
     });
-  } catch (e) {
-    console.warn("listVenues failed:", e);
-  }
+  });
 }
 
 // ========== 渲染论文列表 ==========
@@ -476,7 +493,9 @@ document.querySelectorAll(".domain-tab").forEach((b) =>
     b.classList.add("active");
     state.domain = b.dataset.domain;
     state.task = "";
+    state.venue = "";
     renderSubdomain();
+    if (state.mode === "curated") refreshVenueList();
     reload();
   })
 );
