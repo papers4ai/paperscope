@@ -548,6 +548,7 @@ function openFavModal() {
   const modal = $("#fav-modal");
   const body = $("#fav-modal-body");
   modal.hidden = false;
+  modal.style.display = "flex";
   updateFavCount();
   if (!favorites.size) {
     body.innerHTML = `<div class="loading">还没有收藏的论文。点击论文卡片右上角的 ☆ 进行收藏。</div>`;
@@ -579,8 +580,8 @@ function openFavModal() {
   });
 }
 $("#btn-favorites-summary").addEventListener("click", openFavModal);
-$("#fav-modal-close").addEventListener("click", () => { $("#fav-modal").hidden = true; });
-$("#fav-modal").querySelector(".fav-modal-backdrop").addEventListener("click", () => { $("#fav-modal").hidden = true; });
+$("#fav-modal-close").addEventListener("click", () => { { const m=$("#fav-modal"); m.hidden=true; m.style.display="none"; } });
+$("#fav-modal").querySelector(".fav-modal-backdrop").addEventListener("click", () => { { const m=$("#fav-modal"); m.hidden=true; m.style.display="none"; } });
 $("#fav-clear").addEventListener("click", () => {
   if (!favorites.size) return;
   if (!confirm(`确定清空全部 ${favorites.size} 个收藏？`)) return;
