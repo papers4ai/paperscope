@@ -21,6 +21,13 @@ const state = {
 let favorites = new Set(JSON.parse(localStorage.getItem("paperscope_favs") || "[]"));
 function saveFavorites() {
   localStorage.setItem("paperscope_favs", JSON.stringify([...favorites]));
+  updateFavCount();
+}
+function updateFavCount() {
+  const el = document.querySelector("#fav-count");
+  if (el) el.textContent = favorites.size;
+  const el2 = document.querySelector("#fav-modal-count");
+  if (el2) el2.textContent = favorites.size;
 }
 
 // 静态 arxiv 数据 (速览模式)
@@ -120,9 +127,10 @@ function normalizePaper(p) {
   const codeUrl = p.code || (p.code_links && p.code_links[0]) || "";
   const pdfUrl = p.pdf_url || p.open_access_pdf || "";
   const arxivUrl = p.arxiv_url || "";
-  const month = p.month || (p.published_at ? Number(p.published_at.slice(5, 7)) : null);
+  const dateStr = p.published || p.published_at || "";
+  const month = p.month || (dateStr ? Number(dateStr.slice(5, 7)) : null);
   const abs = p.abstract_excerpt || p.abstract || "";
-  return { ...p, _n: { domains, tasks, type, authors, hasCode, codeUrl, pdfUrl, arxivUrl, month, abs } };
+  return { ...p, _n: { domains, tasks, type, authors, hasCode, codeUrl, pdfUrl, arxivUrl, month, abs, dateStr } };
 }
 
 function paperCard(p) {
@@ -149,10 +157,10 @@ function paperCard(p) {
     <h3 class="paper-title">${esc(p.title)}</h3>
     <div class="paper-meta">
       ${p.venue ? `<span class="venue-badge tier-${tierCls}">${esc(p.venue)}</span>` : ""}
-      ${p.year ? `<span>${p.year}</span>` : ""}
+      ${n.dateStr ? `<span class="paper-date" title="发表日期">📅 ${esc(n.dateStr.slice(0, 10))}</span>` : (p.year ? `<span>${p.year}</span>` : "")}
       ${cite}
-      ${n.pdfUrl ? `<span title="开放获取">🔓</span>` : ""}
-      ${n.hasCode ? `<span title="有开源代码">💻</span>` : ""}
+      ${n.pdfUrl ? `<a class="meta-link" href="${esc(n.pdfUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="开放获取 PDF">🔓 PDF</a>` : ""}
+      ${n.hasCode && n.codeUrl ? `<a class="meta-link code-link" href="${esc(n.codeUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="开源代码">💻 Code</a>` : (n.hasCode ? `<span title="有开源代码">💻</span>` : "")}
     </div>
     <div class="paper-authors">${esc(authorStr)}${moreAuthors}</div>
     ${absHtml}
@@ -245,12 +253,12 @@ async function loadDashboard() {
   dashboardLoaded = true;
   await loadStaticData();
   renderHotTopics(hotDomain);
-  renderSubdomain();
   try {
     const papers = await loadFeedPapers();
     const stats = computeStaticStats(papers);
     renderStats(stats);
     renderTrends(stats.trends);
+    renderSubdomain();
   } catch (e) {
     console.warn("dashboard stats failed:", e);
   }
@@ -355,15 +363,38 @@ function renderHotTopics(domain) {
 
 function renderSubdomain() {
   const sec = $("#subdomain-section");
-  if (state.domain === "all") { sec.hidden = true; return; }
   sec.hidden = false;
-  const tasks = domainTasks[state.domain] || [];
-  if (!tasks.length) { $("#subdomain-grid").innerHTML = ""; return; }
-  $("#subdomain-grid").innerHTML = tasks.map(task => `
-    <div class="subdomain-item ${state.task === task ? "active" : ""}" data-task="${esc(task)}">
-      <span class="name">${esc(tn(task))}</span>
-    </div>
-  `).join("");
+  const papers = feedPapersCache || [];
+  const weekAgo = Date.now() - 7 * 864e5;
+  const domainsToShow = state.domain === "all"
+    ? ["world_model", "physical_ai", "medical_ai"]
+    : [state.domain];
+  let html = "";
+  domainsToShow.forEach(d => {
+    const tasks = domainTasks[d] || [];
+    if (!tasks.length) return;
+    if (state.domain === "all") {
+      html += `<div class="subdomain-domain-header ${d}">${DOMAINS[d]?.icon || ""} ${DOMAINS[d]?.label || d}</div>`;
+    }
+    const pool = papers.filter(p => (p._domains || []).includes(d));
+    tasks.forEach(task => {
+      let total = 0, fresh = 0;
+      pool.forEach(p => {
+        if ((p._tasks || []).includes(task)) {
+          total++;
+          if (p.published && new Date(p.published).getTime() >= weekAgo) fresh++;
+        }
+      });
+      if (!total) return;
+      const active = state.task === task ? "active" : "";
+      const badge = fresh > 0 ? `<span class="new-badge">+${fresh}</span>` : "";
+      html += `<div class="subdomain-item ${active} ${d}" data-task="${esc(task)}">
+        <span class="name">${esc(tn(task))}</span>
+        <span class="count">${total}</span>${badge}
+      </div>`;
+    });
+  });
+  $("#subdomain-grid").innerHTML = html || `<div class="loading">暂无数据</div>`;
 }
 
 // ========== 速览模式：本地过滤 + 排序 ==========
@@ -512,6 +543,60 @@ $("#detail-close").addEventListener("click", () => {
   $("#detail-panel").hidden = true;
 });
 
+// ========== 收藏汇总 Modal ==========
+function openFavModal() {
+  const modal = $("#fav-modal");
+  const body = $("#fav-modal-body");
+  modal.hidden = false;
+  updateFavCount();
+  if (!favorites.size) {
+    body.innerHTML = `<div class="loading">还没有收藏的论文。点击论文卡片右上角的 ☆ 进行收藏。</div>`;
+    return;
+  }
+  const all = feedPapersCache || [];
+  const items = [...favorites].map(id => all.find(p => p.id === id)).filter(Boolean).map(normalizePaper);
+  if (!items.length) {
+    body.innerHTML = `<div class="loading">收藏的论文不在当前数据集中。</div>`;
+    return;
+  }
+  body.innerHTML = items.map(paperCard).join("");
+  body.querySelectorAll(".paper-card").forEach(el => {
+    el.addEventListener("click", (e) => {
+      if (e.target.closest(".fav-btn")) return;
+      modal.hidden = true;
+      openDetail(el.dataset.id);
+    });
+  });
+  body.querySelectorAll(".fav-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.fav;
+      favorites.delete(id);
+      saveFavorites();
+      openFavModal();
+      reload();
+    });
+  });
+}
+$("#btn-favorites-summary").addEventListener("click", openFavModal);
+$("#fav-modal-close").addEventListener("click", () => { $("#fav-modal").hidden = true; });
+$("#fav-modal").querySelector(".fav-modal-backdrop").addEventListener("click", () => { $("#fav-modal").hidden = true; });
+$("#fav-clear").addEventListener("click", () => {
+  if (!favorites.size) return;
+  if (!confirm(`确定清空全部 ${favorites.size} 个收藏？`)) return;
+  favorites.clear(); saveFavorites(); openFavModal(); reload();
+});
+$("#fav-export").addEventListener("click", () => {
+  const all = feedPapersCache || [];
+  const items = [...favorites].map(id => all.find(p => p.id === id)).filter(Boolean);
+  const blob = new Blob([JSON.stringify(items, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `paperscope-favorites-${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
 $("#btn-auth").addEventListener("click", () => {
   alert("Week 3 功能：Supabase Auth 邮箱登录 + GitHub OAuth，尚未实现");
 });
@@ -537,5 +622,6 @@ themeBtn.addEventListener("click", () => {
 });
 
 // ========== 初始化 ==========
+updateFavCount();
 reload();
 loadDashboard();

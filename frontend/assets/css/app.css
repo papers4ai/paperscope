@@ -412,6 +412,64 @@ body.mode-curated .feed-only { display: none; }
 .fav-btn:hover { transform: scale(1.2); color: #fbbf24; }
 .fav-btn.active { color: #fbbf24; }
 
+/* 卡片日期 + 代码/PDF 链接 */
+.paper-date { color: var(--text-dim); font-size: .85em; }
+.meta-link {
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 1px 8px; border-radius: 999px;
+  background: rgba(99,102,241,.12); color: #a5b4fc;
+  text-decoration: none; font-size: .8em; font-weight: 500;
+  border: 1px solid rgba(99,102,241,.25);
+  transition: all .2s;
+}
+.meta-link:hover { background: rgba(99,102,241,.22); transform: translateY(-1px); }
+.meta-link.code-link { background: rgba(16,185,129,.12); color: #6ee7b7; border-color: rgba(16,185,129,.25); }
+.meta-link.code-link:hover { background: rgba(16,185,129,.22); }
+
+/* 细分方向：含 count + new-badge */
+.subdomain-item { position: relative; display: inline-flex; align-items: center; gap: 6px; }
+.subdomain-item .count { font-weight: 700; color: var(--text); font-size: .8em; opacity: .8; }
+.subdomain-item .new-badge {
+  background: linear-gradient(135deg, #f43f5e, #fb7185);
+  color: #fff; font-size: .65em; font-weight: 700;
+  padding: 1px 6px; border-radius: 999px; line-height: 1.4;
+}
+.subdomain-domain-header {
+  width: 100%; margin: .6rem 0 .3rem; font-size: .8rem; font-weight: 700;
+  color: var(--text-dim); letter-spacing: .04em; text-transform: uppercase;
+}
+.subdomain-domain-header:first-child { margin-top: 0; }
+.subdomain-domain-header.world_model { color: #a5b4fc; }
+.subdomain-domain-header.physical_ai { color: #6ee7b7; }
+.subdomain-domain-header.medical_ai  { color: #fda4af; }
+
+/* 收藏汇总 Modal */
+.fav-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.fav-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+.fav-modal-content {
+  position: relative; background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 16px; max-width: 900px; width: 90%; max-height: 85vh;
+  display: flex; flex-direction: column; box-shadow: 0 24px 64px rgba(0,0,0,.5);
+}
+.fav-modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.4rem; border-bottom: 1px solid var(--border);
+}
+.fav-modal-header h2 { margin: 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+.fav-count-pill {
+  background: rgba(251,191,36,.18); color: #fbbf24;
+  padding: 2px 10px; border-radius: 999px; font-size: .85rem; font-weight: 700;
+}
+.fav-modal-actions { display: flex; gap: 8px; align-items: center; }
+.fav-mini-btn {
+  background: rgba(255,255,255,.06); border: 1px solid var(--border); color: var(--text);
+  padding: 4px 10px; border-radius: 8px; font-size: .8rem; cursor: pointer; transition: all .2s;
+}
+.fav-mini-btn:hover { background: rgba(255,255,255,.12); }
+.fav-modal-body {
+  padding: 1rem 1.4rem; overflow-y: auto; display: grid; gap: .8rem;
+}
+
 .paper-domains { display: flex; gap: .3rem; margin-bottom: .5rem; align-items: center; flex-wrap: wrap; }
 .paper-domain-badge {
   font-size: .6rem; padding: .14rem .4rem; border-radius: 6px;

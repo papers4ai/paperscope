@@ -24,6 +24,7 @@
       <button class="mode-tab" data-mode="trending">🔥 热榜</button>
     </nav>
     <input class="search" type="search" placeholder="搜索论文 / 作者 / 会议...">
+    <button class="theme-toggle" id="btn-favorites-summary" title="我的收藏">⭐ <span id="fav-count">0</span></button>
     <button class="theme-toggle" id="theme-toggle" title="切换主题">🌙</button>
     <button class="btn-auth" id="btn-auth">登录</button>
   </header>
@@ -39,9 +40,8 @@
   <!-- 主布局：左筛选 / 中列表 / 右面板 -->
   <main class="layout">
     <aside class="sidebar">
-      <section>
+      <section class="curated-only" hidden>
         <h3>来源</h3>
-        <label><input type="checkbox" name="source" value="arxiv" checked> arXiv 预印本</label>
         <label><input type="checkbox" name="source" value="s2" checked> 会议/期刊</label>
         <label><input type="checkbox" name="source" value="pubmed" checked> PubMed</label>
       </section>
@@ -157,6 +157,20 @@
       </section>
     </div>
 
+    <div class="fav-modal" id="fav-modal" hidden>
+      <div class="fav-modal-backdrop"></div>
+      <div class="fav-modal-content">
+        <div class="fav-modal-header">
+          <h2>⭐ 我的收藏 <span id="fav-modal-count" class="fav-count-pill">0</span></h2>
+          <div class="fav-modal-actions">
+            <button id="fav-export" class="fav-mini-btn" title="导出 JSON">📥 导出</button>
+            <button id="fav-clear" class="fav-mini-btn" title="清空收藏">🗑 清空</button>
+            <button id="fav-modal-close" class="detail-close">✕</button>
+          </div>
+        </div>
+        <div class="fav-modal-body" id="fav-modal-body"></div>
+      </div>
+    </div>
     <aside class="detail-panel" id="detail-panel" hidden>
       <button class="detail-close" id="detail-close">✕</button>
       <div class="detail-body"></div>
