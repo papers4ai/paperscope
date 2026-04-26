@@ -443,6 +443,30 @@ body.mode-curated .feed-only { display: none; }
 .subdomain-domain-header.physical_ai { color: #6ee7b7; }
 .subdomain-domain-header.medical_ai  { color: #fda4af; }
 
+.subdomain-hint {
+  padding: .9rem 1.1rem; border-radius: 12px;
+  background: rgba(99,102,241,.06); border: 1px dashed rgba(99,102,241,.25);
+  color: var(--text-dim); font-size: .88rem; line-height: 1.6;
+}
+.subdomain-title {
+  display: flex; align-items: center; gap: .8rem; margin-bottom: .6rem;
+  font-size: .9rem; flex-wrap: wrap;
+}
+.subdomain-domain-tag {
+  padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: .85rem;
+  background: rgba(255,255,255,.06); border: 1px solid var(--border);
+}
+.subdomain-domain-tag.world_model { color: #a5b4fc; border-color: rgba(99,102,241,.4); background: rgba(99,102,241,.08); }
+.subdomain-domain-tag.physical_ai { color: #6ee7b7; border-color: rgba(16,185,129,.4); background: rgba(16,185,129,.08); }
+.subdomain-domain-tag.medical_ai  { color: #fda4af; border-color: rgba(244,63,94,.4); background: rgba(244,63,94,.08); }
+.subdomain-sub { color: var(--text-dim); font-size: .8rem; }
+.subdomain-clear {
+  margin-left: auto; padding: 3px 10px; border-radius: 8px;
+  background: rgba(244,63,94,.12); border: 1px solid rgba(244,63,94,.3);
+  color: #fda4af; font-size: .78rem; cursor: pointer; transition: all .2s;
+}
+.subdomain-clear:hover { background: rgba(244,63,94,.22); }
+
 /* 收藏汇总 Modal */
 .fav-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; }
 .fav-modal[hidden] { display: none !important; }

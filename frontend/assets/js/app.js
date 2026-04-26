@@ -363,38 +363,50 @@ function renderHotTopics(domain) {
 
 function renderSubdomain() {
   const sec = $("#subdomain-section");
+  if (state.domain === "all") {
+    sec.hidden = false;
+    sec.innerHTML = `<div class="subdomain-hint">
+      💡 点击上方 <b>🌍 World Model</b> / <b>🤖 Physical AI</b> / <b>🏥 Medical AI</b> 任一领域，可展开查看该方向的细分主题与本周新增
+    </div>`;
+    return;
+  }
   sec.hidden = false;
+  const d = state.domain;
+  const meta = DOMAINS[d] || {};
   const papers = feedPapersCache || [];
   const weekAgo = Date.now() - 7 * 864e5;
-  const domainsToShow = state.domain === "all"
-    ? ["world_model", "physical_ai", "medical_ai"]
-    : [state.domain];
-  let html = "";
-  domainsToShow.forEach(d => {
-    const tasks = domainTasks[d] || [];
-    if (!tasks.length) return;
-    if (state.domain === "all") {
-      html += `<div class="subdomain-domain-header ${d}">${DOMAINS[d]?.icon || ""} ${DOMAINS[d]?.label || d}</div>`;
-    }
-    const pool = papers.filter(p => (p._domains || []).includes(d));
-    tasks.forEach(task => {
-      let total = 0, fresh = 0;
-      pool.forEach(p => {
-        if ((p._tasks || []).includes(task)) {
-          total++;
-          if (p.published && new Date(p.published).getTime() >= weekAgo) fresh++;
-        }
-      });
-      if (!total) return;
-      const active = state.task === task ? "active" : "";
-      const badge = fresh > 0 ? `<span class="new-badge">+${fresh}</span>` : "";
-      html += `<div class="subdomain-item ${active} ${d}" data-task="${esc(task)}">
-        <span class="name">${esc(tn(task))}</span>
-        <span class="count">${total}</span>${badge}
-      </div>`;
+  const tasks = domainTasks[d] || [];
+  const pool = papers.filter(p => (p._domains || []).includes(d));
+  const items = tasks.map(task => {
+    let total = 0, fresh = 0;
+    pool.forEach(p => {
+      if ((p._tasks || []).includes(task)) {
+        total++;
+        if (p.published && new Date(p.published).getTime() >= weekAgo) fresh++;
+      }
     });
-  });
-  $("#subdomain-grid").innerHTML = html || `<div class="loading">暂无数据</div>`;
+    return { task, total, fresh };
+  }).filter(x => x.total > 0).sort((a, b) => b.total - a.total);
+
+  const itemsHtml = items.map(({ task, total, fresh }) => {
+    const m = taskMeta[task] || {};
+    const tip = `${m.zh || task}${m.en ? " · " + m.en : ""}（${total} 篇${fresh ? "，本周新增 " + fresh : ""}）`;
+    const active = state.task === task ? "active" : "";
+    const badge = fresh > 0 ? `<span class="new-badge">+${fresh}</span>` : "";
+    return `<div class="subdomain-item ${active} ${d}" data-task="${esc(task)}" title="${esc(tip)}">
+      <span class="name">${esc(tn(task))}</span>
+      <span class="count">${total}</span>${badge}
+    </div>`;
+  }).join("");
+
+  sec.innerHTML = `
+    <div class="subdomain-title">
+      <span class="subdomain-domain-tag ${d}">${meta.icon || ""} ${meta.label || d}</span>
+      <span class="subdomain-sub">细分方向 · 共 ${items.length} 个主题 · 悬停查看说明</span>
+      ${state.task ? `<button class="subdomain-clear" id="subdomain-clear">清除筛选 ✕</button>` : ""}
+    </div>
+    <div class="subdomain-grid" id="subdomain-grid">${itemsHtml || '<div class="loading">暂无数据</div>'}</div>
+  `;
 }
 
 // ========== 速览模式：本地过滤 + 排序 ==========
@@ -471,8 +483,11 @@ $("#chart-trending").addEventListener("click", (e) => {
   if (e.target.id === "hot-show-all") { hotExpanded = !hotExpanded; renderHotTopics(hotDomain); }
 });
 
-// 细分方向：点击 task 筛选
-$("#subdomain-grid").addEventListener("click", (e) => {
+// 细分方向：点击 task 筛选 (事件委托到 section，innerHTML 重建后仍生效)
+$("#subdomain-section").addEventListener("click", (e) => {
+  if (e.target.closest("#subdomain-clear")) {
+    state.task = ""; renderSubdomain(); reload(); return;
+  }
   const item = e.target.closest(".subdomain-item");
   if (!item) return;
   const task = item.dataset.task;
