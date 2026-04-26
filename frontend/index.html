@@ -6,7 +6,7 @@
   <title>🔭 Paperscope — AI Research Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/app.css?v=20260426f">
+  <link rel="stylesheet" href="assets/css/app.css?v=20260426g">
   <script>
   window.__PAPERSCOPE_CONFIG__ = {
     SUPABASE_URL: "https://tetmurpgybsfpicbjjwi.supabase.co",
@@ -37,15 +37,25 @@
     <button class="domain-tab" data-domain="medical_ai">🏥 Medical AI</button>
   </nav>
 
-  <!-- 精选模式：全宽领域 × 期刊/会议选择器 -->
+  <!-- 精选模式：全宽领域 × 年份 × 期刊/会议选择器 -->
   <section class="venue-picker curated-only" id="venue-picker">
-    <div class="venue-picker-domains" id="venue-picker-domains">
-      <button class="vpd-btn active" data-domain="all">全部领域</button>
-      <button class="vpd-btn world_model" data-domain="world_model">🌍 World Model</button>
-      <button class="vpd-btn physical_ai" data-domain="physical_ai">🤖 Physical AI</button>
-      <button class="vpd-btn medical_ai" data-domain="medical_ai">🏥 Medical AI</button>
+    <div class="vp-header">
+      <div class="venue-picker-domains" id="venue-picker-domains">
+        <button class="vpd-btn active" data-domain="all">🔭 全部领域</button>
+        <button class="vpd-btn world_model" data-domain="world_model">🌍 World Model</button>
+        <button class="vpd-btn physical_ai" data-domain="physical_ai">🤖 Physical AI</button>
+        <button class="vpd-btn medical_ai" data-domain="medical_ai">🏥 Medical AI</button>
+      </div>
+      <div class="vp-year-row" id="vp-year-row">
+        <span class="vp-year-label">年份</span>
+        <button class="vpy-btn active" data-year="">全部</button>
+        <button class="vpy-btn" data-year="2026">2026</button>
+        <button class="vpy-btn" data-year="2025">2025</button>
+        <button class="vpy-btn" data-year="2024">2024</button>
+        <button class="vpy-btn" data-year="2023">2023</button>
+      </div>
     </div>
-    <div class="venue-picker-body" id="venue-picker-body">加载中...</div>
+    <div class="venue-picker-body" id="venue-picker-body">请选择领域</div>
   </section>
 
   <!-- 主布局：左筛选 / 中列表 / 右面板 -->
@@ -188,6 +198,6 @@
     </aside>
   </main>
 
-  <script type="module" src="assets/js/app.js?v=20260426f"></script>
+  <script type="module" src="assets/js/app.js?v=20260426g"></script>
 </body>
 </html>

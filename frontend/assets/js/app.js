@@ -577,7 +577,12 @@ $(".search").addEventListener("input", (e) => {
   }, 300);
 });
 
-$("#filter-year").addEventListener("change", (e) => { state.year = e.target.value; reload(); });
+$("#filter-year").addEventListener("change", (e) => {
+  state.year = e.target.value;
+  document.querySelectorAll(".vpy-btn").forEach(b =>
+    b.classList.toggle("active", b.dataset.year === state.year));
+  reload();
+});
 $("#sort-by").addEventListener("change", (e) => { state.sortBy = e.target.value; reload(); });
 
 // 分类筛选 → 重建 venue 列表 + 重新加载
@@ -639,6 +644,18 @@ $("#venue-picker-domains").addEventListener("click", e => {
     x.classList.toggle("active", x.dataset.domain === state.domain));
   renderVenuePicker(state.domain);
   refreshVenueList();
+  reload();
+});
+
+// 年份快选
+document.querySelector("#vp-year-row")?.addEventListener("click", e => {
+  const btn = e.target.closest(".vpy-btn");
+  if (!btn) return;
+  state.year = btn.dataset.year;
+  document.querySelectorAll(".vpy-btn").forEach(b =>
+    b.classList.toggle("active", b.dataset.year === state.year));
+  // 同步 sidebar year select
+  $("#filter-year").value = state.year;
   reload();
 });
 $("#venue-picker-body").addEventListener("click", e => {
