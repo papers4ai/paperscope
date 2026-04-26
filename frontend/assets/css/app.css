@@ -445,6 +445,7 @@ body.mode-curated .feed-only { display: none; }
 
 /* 收藏汇总 Modal */
 .fav-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.fav-modal[hidden] { display: none !important; }
 .fav-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
 .fav-modal-content {
   position: relative; background: var(--card-bg); border: 1px solid var(--border);
