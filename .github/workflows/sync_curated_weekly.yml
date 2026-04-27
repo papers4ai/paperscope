@@ -1,0 +1,27 @@
+name: Sync curated papers from upstream (weekly)
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"   # 每周一 03:00 UTC ≈ 北京 11:00
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run curated sync
+        run: python scripts/sync_curated.py
+      - name: Commit & push if changed
+        run: |
+          if git diff --quiet frontend/data/papers_curated.json; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/data/papers_curated.json
+          git commit -m "chore: weekly sync papers_curated.json from upstream"
+          git push

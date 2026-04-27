@@ -40,6 +40,27 @@ async function loadFeedPapers() {
   return feedPapersCache;
 }
 
+// 静态精选数据 (精选模式)
+let curatedPapersCache = null;
+async function loadCuratedPapers() {
+  if (curatedPapersCache) return curatedPapersCache;
+  const r = await fetch("data/papers_curated.json");
+  if (!r.ok) return [];   // 文件不存在时降级为空
+  curatedPapersCache = (await r.json()).map(normalizeCurated);
+  return curatedPapersCache;
+}
+
+function normalizeCurated(p) {
+  return {
+    ...p,
+    _domains: p._domains || [],
+    _tasks:   p._tasks   || [],
+    has_code: p.has_code === true || !!(p.code),
+    authors:  (p.authors || []).map(a => typeof a === "string" ? a : (a.name || "")),
+    _isCurated: true,
+  };
+}
+
 const $ = (sel) => document.querySelector(sel);
 
 // ========== 精选模式 UI 切换 ==========
@@ -76,11 +97,12 @@ async function renderVenuePicker(domain) {
 
   const domains = [domain];
 
-  // 取已有入库数量
+  // 取本地精选数据中各 venue 篇数
   let counts = {};
   try {
-    const list = await listVenues("");
-    counts = Object.fromEntries(list.map(v => [v.venue, v.count]));
+    const all = await loadCuratedPapers();
+    const pool = domain === "all" ? all : all.filter(p => (p._domains||[]).includes(domain));
+    pool.forEach(p => { if (p.venue) counts[p.venue] = (counts[p.venue] || 0) + 1; });
   } catch {}
 
   let html = "";
@@ -485,6 +507,30 @@ function renderSubdomain() {
   `;
 }
 
+// ========== 精选模式：本地过滤 ==========
+function applyCuratedFilters(papers) {
+  const s = state;
+  const q = s.search.toLowerCase();
+  let out = papers.filter(p => {
+    if (s.domain !== "all" && !(p._domains || []).includes(s.domain)) return false;
+    if (s.venue && p.venue !== s.venue) return false;
+    if (s.year && String(p.year) !== String(s.year)) return false;
+    if (s.paperType.length && !s.paperType.includes(p.type)) return false;
+    if (s.hasCode && !p.has_code) return false;
+    if (s.favorites && !favorites.has(p.id)) return false;
+    if (q) {
+      const hay = (p.title + " " + (p.authors||[]).join(" ")).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  out.sort((a, b) => {
+    if (s.sortBy === "citation_count") return (b.citation_count || 0) - (a.citation_count || 0);
+    return String(b.published || "").localeCompare(String(a.published || ""));
+  });
+  return out;
+}
+
 // ========== 速览模式：本地过滤 + 排序 ==========
 function applyFeedFilters(papers) {
   const s = state;
@@ -520,6 +566,10 @@ async function reload() {
       const all = (await loadFeedPapers()).map(normalizePaper);
       const filtered = applyFeedFilters(all);
       feedTotal = filtered.length;
+      render(filtered.slice(0, 100));
+    } else if (state.mode === "curated") {
+      const all = await loadCuratedPapers();
+      const filtered = applyCuratedFilters(all);
       render(filtered.slice(0, 100));
     } else {
       const papers = await listPapers(state);
