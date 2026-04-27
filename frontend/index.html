@@ -6,7 +6,7 @@
   <title>🔭 Paperscope — AI Research Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/app.css?v=20260427b">
+  <link rel="stylesheet" href="assets/css/app.css?v=20260427c">
   <script>
   window.__PAPERSCOPE_CONFIG__ = {
     SUPABASE_URL: "https://tetmurpgybsfpicbjjwi.supabase.co",
@@ -61,10 +61,9 @@
   <!-- 主布局：左筛选 / 中列表 / 右面板 -->
   <main class="layout">
     <aside class="sidebar">
-      <section class="curated-only" hidden>
+      <section class="feed-only">
         <h3>来源</h3>
-        <label><input type="checkbox" name="source" value="s2" checked> 会议/期刊</label>
-        <label><input type="checkbox" name="source" value="pubmed" checked> PubMed</label>
+        <label><input type="checkbox" name="source" value="arxiv" checked> arXiv 预印本</label>
       </section>
       <section>
         <h3>代码</h3>
@@ -94,24 +93,9 @@
         <h3>收藏</h3>
         <label><input type="checkbox" id="filter-favorites"> 仅显示收藏</label>
       </section>
-      <section id="filter-tier-section" class="curated-only" hidden>
-        <h3>分类</h3>
-        <select id="filter-tier">
-          <option value="">全部分类</option>
-          <option value="T1">T1 顶刊</option>
-          <option value="T2">T2 期刊</option>
-          <option value="CCF-A">CCF-A 顶会</option>
-          <option value="视觉顶刊">视觉顶刊</option>
-          <option value="机器人顶会">机器人顶会</option>
-          <option value="医学顶会">医学顶会</option>
-        </select>
-      </section>
-      <section id="filter-venue-section" class="curated-only" hidden>
-        <h3>期刊 / 会议</h3>
-        <select id="filter-venue">
-          <option value="">全部</option>
-        </select>
-      </section>
+      <!-- 分类/期刊会议已移至主区域 venue picker，精选模式不再在侧栏展示 -->
+      <select id="filter-tier" hidden></select>
+      <select id="filter-venue" hidden></select>
       <section>
         <h3>类型</h3>
         <label><input type="checkbox" name="type" value="Method"> Method</label>
