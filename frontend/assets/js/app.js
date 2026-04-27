@@ -67,15 +67,21 @@ const $ = (sel) => document.querySelector(sel);
 function setCuratedMode(on) {
   document.body.classList.toggle("mode-curated", on);
   if (on) {
+    state.year = "";   // 切换到精选时重置年份，由 venue picker 控制
     state.sortBy = "citation_count";
     $("#sort-by").value = "citation_count";
+    // 同步 vp-year-row 高亮到"全部"
+    document.querySelectorAll(".vpy-btn").forEach(b =>
+      b.classList.toggle("active", b.dataset.year === ""));
     refreshVenueList();
     renderVenuePicker(state.domain);
   } else {
+    state.year = "";
     state.tier = "";
     state.venue = "";
     state.sortBy = "published_at";
     $("#filter-tier").value = "";
+    $("#filter-year").value = "";
     $("#sort-by").value = "published_at";
     $("#filter-venue").innerHTML = '<option value="">全部</option>';
   }
@@ -275,11 +281,18 @@ async function openDetail(id) {
   body.innerHTML = `<div class="loading">加载详情...</div>`;
 
   let paper = null;
+  // 先在本地缓存查找（速览模式）
   if (state.mode === "feed" && feedPapersCache) {
     paper = feedPapersCache.find(x => x.id === id) || null;
     if (paper) paper = normalizePaper(paper);
   }
-  if (!paper) paper = await getPaper(id);
+  // 精选模式：从精选缓存查找
+  if (!paper && state.mode === "curated" && curatedPapersCache) {
+    const raw = curatedPapersCache.find(x => x.id === id) || null;
+    if (raw) paper = normalizePaper(raw);
+  }
+  // 兜底：尝试 Supabase（feed 模式且本地未命中）
+  if (!paper && state.mode !== "curated") paper = await getPaper(id);
   if (!paper) { body.innerHTML = "论文不存在"; return; }
   const n = paper._n || normalizePaper(paper)._n;
   const fullAbstract0 = paper.abstract || paper.abstract_excerpt || n.abs || "";
