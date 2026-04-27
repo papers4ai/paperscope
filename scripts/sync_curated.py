@@ -11,9 +11,11 @@ import argparse, json, os, sys, urllib.request
 REMOTE = "https://raw.githubusercontent.com/Jefferyzhifeng/Paperscope-hub/main/output/papers_curated.json"
 OUT = os.path.join(os.path.dirname(__file__), "..", "frontend", "data", "papers_curated.json")
 
-KEEP = ["id", "title", "abstract", "authors", "published", "year", "month",
+# abstract 不写入前端（单文件体积 218 MB → 88 MB）
+# 详情页摘要可在前端按需从 arXiv API 补充
+KEEP = ["id", "title", "authors", "published", "year", "month",
         "pdf_url", "arxiv_url", "code", "has_code", "type",
-        "_domains", "_tasks", "venue", "venue_tier", "citation_count", "source_id"]
+        "_domains", "_tasks", "venue", "venue_tier", "citation_count"]
 
 
 def slim(p):
