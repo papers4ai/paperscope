@@ -48,12 +48,16 @@ let curatedPapersCache = null;
 async function loadCuratedPapers() {
   if (curatedPapersCache) return curatedPapersCache;
 
-  const DOMAIN_FILES = ["world_model", "physical_ai", "medical_ai"];
+  // world_model 按年份拆分为 4 个文件，其余两个领域各一个文件
+  const WM_YEARS = [2023, 2024, 2025, 2026];
+  const files = [
+    ...WM_YEARS.map(y => `data/papers_curated_world_model_${y}.json`),
+    "data/papers_curated_physical_ai.json",
+    "data/papers_curated_medical_ai.json",
+  ];
   const results = await Promise.all(
-    DOMAIN_FILES.map(d =>
-      fetch(`data/papers_curated_${d}.json`)
-        .then(r => r.ok ? r.json() : [])
-        .catch(() => [])
+    files.map(f =>
+      fetch(f).then(r => r.ok ? r.json() : []).catch(() => [])
     )
   );
 
@@ -254,7 +258,7 @@ function normalizePaper(p) {
   const arxivUrl = p.arxiv_url || "";
   const dateStr = p.published || p.published_at || "";
   const month = p.month || (dateStr ? Number(dateStr.slice(5, 7)) : null);
-  const abs = p.abstract_short || p.abstract_excerpt || p.abstract || "";
+  const abs = p.abstract || p.abstract_short || p.abstract_excerpt || "";
   return { ...p, _n: { domains, tasks, type, authors, hasCode, codeUrl, pdfUrl, arxivUrl, month, abs, dateStr } };
 }
 
@@ -266,7 +270,8 @@ function paperCard(p) {
   const moreAuthors = n.authors.length > 3 ? ` · +${n.authors.length - 3}` : "";
   const taskTags = n.tasks.slice(0, 4).map((t) => `<span class="task-tag">${esc(tn(t))}</span>`).join("");
   const cite = p.citation_count > 0 ? `<span class="citation">📊 ${p.citation_count}</span>` : "";
-  const absHtml = n.abs ? `<p class="paper-abstract">${esc(n.abs.slice(0, 240))}${n.abs.length > 240 ? "…" : ""}</p>` : "";
+  const absPreview = n.abs.slice(0, 300);
+  const absHtml = n.abs ? `<p class="paper-abstract">${esc(absPreview)}${n.abs.length > 300 ? "…" : ""}</p>` : "";
 
   const domainBadges = n.domains.map(d => {
     const meta = DOMAINS[d];

@@ -74,7 +74,7 @@ def _parse_entry(entry) -> dict:
         "published_at": entry.published[:10] if entry.get("published") else None,
         "arxiv_url": entry.link,
         "open_access_pdf": pdf,
-        "abstract_excerpt": entry.summary.strip().replace("\n", " ")[:500],
+        "abstract_excerpt": entry.summary.strip().replace("\n", " "),
     }
 
 
