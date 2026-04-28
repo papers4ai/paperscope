@@ -41,12 +41,33 @@ async function loadFeedPapers() {
 }
 
 // 静态精选数据 (精选模式)
+// 数据按领域拆成 3 个文件（各 ~15-50 MB），并行加载后合并去重
 let curatedPapersCache = null;
 async function loadCuratedPapers() {
   if (curatedPapersCache) return curatedPapersCache;
-  const r = await fetch("data/papers_curated.json");
-  if (!r.ok) return [];   // 文件不存在时降级为空
-  curatedPapersCache = (await r.json()).map(normalizeCurated);
+
+  const DOMAIN_FILES = ["world_model", "physical_ai", "medical_ai"];
+  const results = await Promise.all(
+    DOMAIN_FILES.map(d =>
+      fetch(`data/papers_curated_${d}.json`)
+        .then(r => r.ok ? r.json() : [])
+        .catch(() => [])
+    )
+  );
+
+  // 合并并按 id 去重（跨领域论文会在多个文件中出现）
+  const seen = new Set();
+  const merged = [];
+  for (const list of results) {
+    for (const p of list) {
+      if (p.id && !seen.has(p.id)) {
+        seen.add(p.id);
+        merged.push(p);
+      }
+    }
+  }
+
+  curatedPapersCache = merged.map(normalizeCurated);
   return curatedPapersCache;
 }
 
