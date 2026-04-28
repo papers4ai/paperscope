@@ -730,6 +730,17 @@ let hotExpanded = false;
 let hotLastUpdated = null;
 let hotUpdateInterval = null;
 
+// 先定义formatHotUpdateTime，避免函数提升问题
+function formatHotUpdateTime() {
+  if (!hotLastUpdated) return currentLang === "en" ? "Not updated yet" : "尚未更新";
+  const now = new Date();
+  const diff = Math.floor((now - hotLastUpdated) / 1000);
+  if (diff < 60) return currentLang === "en" ? "Just updated" : "刚刚更新";
+  if (diff < 3600) return currentLang === "en" ? `${Math.floor(diff / 60)} minutes ago` : `${Math.floor(diff / 60)} 分钟前更新`;
+  if (diff < 86400) return currentLang === "en" ? `${Math.floor(diff / 3600)} hours ago` : `${Math.floor(diff / 3600)} 小时前更新`;
+  return hotLastUpdated.toLocaleString(currentLang === "en" ? "en-US" : "zh-CN");
+}
+
 function tn(task) {
   const m = taskMeta[task];
   return m ? (m.zh || m.en || task) : task;
@@ -1546,16 +1557,31 @@ $("#hot-refresh-btn")?.addEventListener("click", async () => {
   setTimeout(() => { btn.style.transform = ""; }, 500);
 });
 
-// ========== 热榜定时更新 ==========
-function formatHotUpdateTime() {
-  if (!hotLastUpdated) return "尚未更新";
-  const now = new Date();
-  const diff = Math.floor((now - hotLastUpdated) / 1000);
-  if (diff < 60) return `刚刚更新`;
-  if (diff < 3600) return `${Math.floor(diff / 60)} 分钟前更新`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)} 小时前更新`;
-  return hotLastUpdated.toLocaleString("zh-CN");
+// ========== 语言切换 ==========
+const langToggleBtn = $("#lang-toggle");
+
+function updateLangButton() {
+  langToggleBtn.textContent = currentLang === "en" ? "🌐 EN" : "🌐 中文";
 }
+
+function toggleLanguage() {
+  const newLang = currentLang === "en" ? "zh" : "en";
+  setLanguage(newLang);
+  updateLangButton();
+  // 更新HTML lang属性
+  document.documentElement.lang = newLang;
+  // 如果在热榜模式，更新时间显示
+  if (state.mode === "trending" && hotLastUpdated) {
+    const timeEl = document.getElementById("hot-last-updated");
+    if (timeEl) timeEl.textContent = formatHotUpdateTime();
+  }
+}
+
+
+
+langToggleBtn?.addEventListener("click", toggleLanguage);
+
+// ========== 热榜定时更新 ==========
 
 async function refreshHotData() {
   try {
@@ -1588,6 +1614,9 @@ applyTheme(localStorage.getItem("theme") || "system");
 
 // ========== 初始化 ==========
 updateFavCount();
+// 初始化语言（默认英文）
+updateLangButton();
+updateUI();
 reload();
 loadDashboard();
 startHotUpdateInterval();

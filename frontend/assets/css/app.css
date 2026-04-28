@@ -185,6 +185,11 @@ body::before {
   font-size: 14px; transition: all .18s;
 }
 .theme-toggle:hover { color: var(--text); border-color: var(--surface-hover-border); }
+.lang-toggle {
+  min-width: 65px;
+  text-align: center;
+  font-weight: 500;
+}
 
 /* ========== 三栏布局 ========== */
 .layout {
