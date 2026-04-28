@@ -79,7 +79,7 @@ body::before {
 
 /* ========== 顶部 topbar ========== */
 .topbar {
-  display: flex; align-items: center; gap: 16px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: nowrap;
   padding: 12px 24px; background: var(--header-bg);
   border-bottom: 1px solid var(--header-border);
   position: sticky; top: 0; z-index: 100;
@@ -715,8 +715,16 @@ body.mode-curated .feed-only { display: none; }
   .charts-section { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .topbar { flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
-  .search { max-width: none; order: 5; width: 100%; }
+  .topbar { flex-wrap: wrap; gap: 8px 12px; padding: 10px 12px; }
+  /* 行1: brand(左) + topbar-right(右) */
+  .brand       { order: 1; }
+  .topbar-right { order: 2; margin-left: auto; }
+  /* 行2: 导航标签全宽 */
+  .mode-tabs   { order: 3; width: 100%; gap: 6px; }
+  .mode-tab    { flex: 1; text-align: center; padding: 6px 8px; font-size: 13px; }
+  /* 行3: 搜索框全宽 */
+  .search      { order: 4; width: 100%; max-width: none; }
+
   .domain-bar { padding: 10px 12px; overflow-x: auto; flex-wrap: nowrap; }
   .layout { padding: 12px; }
   .paper-list, .layout.has-detail .paper-list { grid-template-columns: 1fr; }
