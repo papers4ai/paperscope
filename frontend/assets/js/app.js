@@ -71,11 +71,7 @@ async function loadCuratedPapers() {
 
   curatedPapersCache = merged.map(normalizeCurated);
 
-  // 更新 footer 最新数据时间
-  const dates = curatedPapersCache.map(p => p.published || "").filter(Boolean).sort();
-  const latestDate = dates[dates.length - 1];
-  const footerEl = document.getElementById("footer-last-updated");
-  if (footerEl && latestDate) footerEl.textContent = latestDate.slice(0, 10);
+  // 更新 footer 最新数据时间（由 meta.json 负责，这里不再重复计算）
 
   return curatedPapersCache;
 }
@@ -372,13 +368,16 @@ function tn(task) {
 
 async function loadStaticData() {
   try {
-    const [tr, tm] = await Promise.all([
+    const [tr, tm, meta] = await Promise.all([
       fetch("data/trending.json").then(r => r.ok ? r.json() : null),
       fetch("data/task_meta.json").then(r => r.ok ? r.json() : null),
+      fetch("data/meta.json").then(r => r.ok ? r.json() : null),
     ]);
     if (tr?.trends) trendingData = tr.trends;
     if (tm?.tasks) taskMeta = tm.tasks;
     if (tm?.domain_tasks && Object.keys(tm.domain_tasks).length) domainTasks = tm.domain_tasks;
+    const footerEl = document.getElementById("footer-last-updated");
+    if (footerEl && meta?.last_updated) footerEl.textContent = meta.last_updated;
   } catch (e) {
     console.warn("static data load failed:", e);
   }

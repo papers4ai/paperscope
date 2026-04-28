@@ -10,6 +10,7 @@ import argparse, json, os, sys
 from datetime import date
 
 LOCAL = os.path.join(os.path.dirname(__file__), "..", "frontend", "data", "papers.json")
+META = os.path.join(os.path.dirname(__file__), "..", "frontend", "data", "meta.json")
 KEEP_FIELDS = ["id", "title", "abstract", "authors", "published", "year", "month",
                "pdf_url", "arxiv_url", "code", "has_code", "type", "_domains", "_tasks"]
 
@@ -108,6 +109,13 @@ def main():
     os.replace(tmp, LOCAL)
     size_mb = os.path.getsize(LOCAL) / 1024 / 1024
     print(f"Wrote {len(merged)} papers ({size_mb:.2f} MB) to {LOCAL}")
+
+    # 更新 meta.json 最新日期
+    latest = max((p.get("published") or "" for p in merged if p.get("published")), default="")
+    if latest:
+        with open(META, "w", encoding="utf-8") as f:
+            json.dump({"last_updated": latest[:10]}, f)
+        print(f"Updated meta.json: last_updated={latest[:10]}")
     return 0
 
 
