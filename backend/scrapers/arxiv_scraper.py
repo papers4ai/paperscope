@@ -40,16 +40,22 @@ def _fetch_page(query: str, start: int, page_size: int) -> list[dict]:
     for attempt in range(MAX_RETRIES):
         try:
             r = requests.get(url, timeout=60)
+            if r.status_code == 429:
+                wait = 30 * (attempt + 1)
+                print(f"  [arxiv] 429 rate limit, retry {attempt + 1}/{MAX_RETRIES} in {wait}s...")
+                time.sleep(wait)
+                continue
             r.raise_for_status()
             feed = feedparser.parse(r.text)
             return [_parse_entry(e) for e in feed.entries]
         except requests.exceptions.Timeout:
             if attempt < MAX_RETRIES - 1:
-                wait = 10 * (attempt + 1)
+                wait = 15 * (attempt + 1)
                 print(f"  [arxiv] timeout, retry {attempt + 1}/{MAX_RETRIES} in {wait}s...")
                 time.sleep(wait)
             else:
                 raise
+    return []
 
 
 def _parse_entry(entry) -> dict:
@@ -94,13 +100,17 @@ def fetch_domain(domain: str, days: int = 3, max_results: int = 500,
 def fetch_all_domains(days: int = 3) -> list[dict]:
     """抓取三个领域，按 id 去重（同一篇可能跨域）。"""
     merged: dict[str, dict] = {}
-    for domain in DOMAINS:
+    domain_list = list(DOMAINS.keys())
+    for i, domain in enumerate(domain_list):
         for paper in fetch_domain(domain, days=days):
             if paper["id"] in merged:
                 existing = merged[paper["id"]]
                 existing["domains"] = list(set(existing["domains"] + [domain]))
             else:
                 merged[paper["id"]] = paper
+        # 域间间隔，避免连续请求触发限流
+        if i < len(domain_list) - 1:
+            time.sleep(10)
     return list(merged.values())
 
 
