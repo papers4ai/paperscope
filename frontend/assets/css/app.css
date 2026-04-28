@@ -1522,4 +1522,389 @@ body.mode-curated .feed-only { display: none; }
   font-size: 15px; line-height: 22px; text-align: center;
   background: var(--surface-bg);
 }
+
+/* ========== Responsive Design & Beautification ========== */
+
+/* Tablet & Small Desktop */
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 200px 1fr 0;
+    padding: 16px 20px;
+  }
+  .search {
+    max-width: 300px;
+  }
+  .dashboard {
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+/* Mobile & Tablet */
+@media (max-width: 900px) {
+  /* Topbar */
+  .topbar {
+    padding: 10px 16px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-size: 18px;
+  }
+  .mode-tabs {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+  .mode-tab {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  .search {
+    max-width: none;
+    flex: 1;
+    min-width: 120px;
+  }
+  .topbar-right {
+    gap: 6px;
+  }
+  .theme-toggle, .lang-toggle {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  .btn-about {
+    width: 34px;
+    height: 34px;
+  }
+  .btn-auth {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  /* Domain Bar */
+  .domain-bar {
+    padding: 10px 16px;
+    gap: 6px;
+  }
+  .domain-tab {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  /* Layout */
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 12px 16px 40px;
+    gap: 16px;
+  }
+  .sidebar {
+    position: static;
+    padding: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 4px;
+  }
+  .detail-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    transform: translateX(100%);
+  }
+  .detail-panel.active {
+    transform: translateX(0);
+  }
+  .detail-content {
+    height: 100%;
+    border-radius: 0;
+  }
+  .detail-close {
+    display: flex;
+  }
+}
+
+/* Mobile Only */
+@media (max-width: 640px) {
+  /* Topbar */
+  .topbar {
+    padding: 8px 12px;
+  }
+  .brand {
+    font-size: 16px;
+  }
+  .mode-tabs {
+    gap: 6px;
+  }
+  .mode-tab {
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+  .search {
+    padding: 7px 10px 7px 32px;
+    background-position: 10px center;
+    font-size: 14px;
+  }
+  .theme-toggle, .lang-toggle {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+  .btn-about {
+    width: 32px;
+    height: 32px;
+  }
+  .btn-about svg {
+    width: 16px;
+    height: 16px;
+  }
+  .btn-auth {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Domain Bar */
+  .domain-bar {
+    padding: 8px 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+  .domain-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .domain-tab {
+    padding: 7px 14px;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  /* Paper Cards */
+  .paper-card {
+    padding: 14px;
+  }
+  .paper-title {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .paper-meta {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .paper-venue, .paper-date {
+    font-size: 12px;
+  }
+  .paper-actions {
+    gap: 6px;
+  }
+  .paper-fav-btn, .paper-link-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Dashboard */
+  .dashboard {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 12px;
+  }
+  .stat-card {
+    padding: 14px;
+  }
+  .stat-value {
+    font-size: 22px;
+  }
+  .stat-label {
+    font-size: 13px;
+  }
+
+  /* Trending View */
+  .trending-overview {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .trending-section {
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .section-header h2 {
+    font-size: 16px;
+  }
+  .section-header p {
+    font-size: 13px;
+  }
+  .bar-chart-container {
+    gap: 10px;
+  }
+  .bar-item {
+    padding: 10px 12px;
+  }
+  .radar-container {
+    padding: 20px 0;
+  }
+  .radar-chart svg {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+  }
+  .hot-topic-grid {
+    grid-template-columns: 1fr;
+  }
+  .hot-topic-card {
+    padding: 14px;
+  }
+  .outlook-grid {
+    grid-template-columns: 1fr;
+  }
+  .outlook-card {
+    padding: 16px;
+  }
+
+  /* About Modal */
+  .about-content-wrapper {
+    padding: 20px 16px;
+  }
+  .about-modal-content {
+    padding: 24px 20px;
+    max-width: 100%;
+  }
+  .about-title {
+    font-size: 20px;
+  }
+  .about-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .feature-card {
+    padding: 16px;
+  }
+
+  /* Detail Panel */
+  .detail-content {
+    padding: 16px;
+  }
+  .detail-header h1 {
+    font-size: 18px;
+  }
+  .detail-authors {
+    font-size: 13px;
+  }
+  .detail-abstract {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .detail-links a {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  /* Empty State */
+  .empty-state {
+    padding: 60px 20px;
+  }
+  .empty-icon {
+    font-size: 48px;
+  }
+  .empty-title {
+    font-size: 16px;
+  }
+  .empty-text {
+    font-size: 14px;
+  }
+}
+
+/* Beautification Enhancements */
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better Selection */
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* Enhanced Button Effects */
+.mode-tab, .domain-tab, .theme-toggle, .lang-toggle, .btn-about, .btn-auth, .paper-fav-btn, .paper-link-btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mode-tab:active, .domain-tab:active, .btn-about:active, .btn-auth:active, .paper-fav-btn:active, .paper-link-btn:active {
+  transform: scale(0.97);
+}
+
+/* Enhanced Hover Effects */
+.paper-card {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.paper-card:hover {
+  transform: translateY(-2px);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Improved Typography */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better Focus States */
+.search:focus-visible,
+.mode-tab:focus-visible,
+.domain-tab:focus-visible,
+.theme-toggle:focus-visible,
+.lang-toggle:focus-visible,
+.btn-about:focus-visible,
+.btn-auth:focus-visible,
+.paper-fav-btn:focus-visible,
+.paper-link-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Animated Background Gradient */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.btn-auth {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Subtle Pulse Animation for Active State */
+@keyframes subtlePulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(129,140,248,.4); }
+  50% { box-shadow: 0 0 20px rgba(129,140,248,.6); }
+}
+
+.mode-tab.active {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* Better Loading States */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, var(--surface-bg) 25%, var(--card-bg) 50%, var(--surface-bg) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
 .btn-auth.logged-in .btn-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
