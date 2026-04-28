@@ -719,6 +719,30 @@ body.mode-curated .feed-only { display: none; }
   .stat-value { font-size: 1.5rem; }
 }
 
+/* ========== Footer ========== */
+.site-footer {
+  margin-top: 40px;
+  padding: 20px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--header-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+.footer-inner {
+  max-width: 1600px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 8px 28px;
+}
+.footer-stat {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 13px; color: var(--text-muted);
+}
+.footer-icon { font-size: 14px; }
+.footer-num {
+  font-weight: 600; color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
 /* ========== Auth Modal ========== */
 .auth-modal {
   position: fixed; inset: 0; z-index: 9000;

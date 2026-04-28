@@ -70,6 +70,13 @@ async function loadCuratedPapers() {
   }
 
   curatedPapersCache = merged.map(normalizeCurated);
+
+  // 更新 footer 最新数据时间
+  const dates = curatedPapersCache.map(p => p.published || "").filter(Boolean).sort();
+  const latestDate = dates[dates.length - 1];
+  const footerEl = document.getElementById("footer-last-updated");
+  if (footerEl && latestDate) footerEl.textContent = latestDate.slice(0, 10);
+
   return curatedPapersCache;
 }
 
