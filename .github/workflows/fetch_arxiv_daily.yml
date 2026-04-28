@@ -15,6 +15,25 @@ jobs:
           python-version: "3.11"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Debug secrets
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          echo "SUPABASE_URL=${SUPABASE_URL}"
+          echo "SERVICE_KEY prefix: ${SUPABASE_SERVICE_KEY:0:40}"
+          echo "SERVICE_KEY length: ${#SUPABASE_SERVICE_KEY}"
+          python3 - <<'EOF'
+          import os, base64
+          key = os.environ.get("SUPABASE_SERVICE_KEY","")
+          parts = key.split(".")
+          if len(parts)==3:
+              payload = parts[1] + "=" * (-len(parts[1]) % 4)
+              print("JWT payload:", base64.b64decode(payload).decode())
+          else:
+              print("Key is not a valid JWT, parts:", len(parts))
+          EOF
+
       - name: Fetch arXiv
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
