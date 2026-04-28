@@ -251,7 +251,7 @@ function normalizePaper(p) {
   const arxivUrl = p.arxiv_url || "";
   const dateStr = p.published || p.published_at || "";
   const month = p.month || (dateStr ? Number(dateStr.slice(5, 7)) : null);
-  const abs = p.abstract_excerpt || p.abstract || "";
+  const abs = p.abstract_short || p.abstract_excerpt || p.abstract || "";
   return { ...p, _n: { domains, tasks, type, authors, hasCode, codeUrl, pdfUrl, arxivUrl, month, abs, dateStr } };
 }
 

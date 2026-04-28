@@ -19,16 +19,22 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend", "data")
 
 DOMAINS = ["world_model", "physical_ai", "medical_ai"]
 
-# 写入前端的字段（不含 abstract，控制文件体积）
+# 写入前端的字段（abstract 截断为 200 字，控制文件体积）
 KEEP = [
     "id", "title", "authors", "published", "year", "month",
     "pdf_url", "arxiv_url", "code", "has_code", "type",
     "_domains", "_tasks", "venue", "venue_tier", "citation_count",
 ]
+ABSTRACT_LIMIT = 200
 
 
 def slim(p: dict) -> dict:
-    return {k: p[k] for k in KEEP if k in p and p[k] is not None}
+    out = {k: p[k] for k in KEEP if k in p and p[k] is not None}
+    # 保留截断摘要，卡片预览用；完整摘要由详情面板按需从 S2 API 拉取
+    raw_abs = (p.get("abstract") or "").strip()
+    if raw_abs:
+        out["abstract_short"] = raw_abs[:ABSTRACT_LIMIT] + ("…" if len(raw_abs) > ABSTRACT_LIMIT else "")
+    return out
 
 
 def main():
