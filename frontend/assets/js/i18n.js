@@ -78,6 +78,7 @@ const i18n = {
     stats: "Stats",
     statTrends: "Trends",
     statDistribution: "Distribution",
+    filters: "Filters",
 
     // Auth
     signIn: "Sign In",
@@ -172,6 +173,7 @@ const i18n = {
     stats: "统计",
     statTrends: "趋势",
     statDistribution: "分布",
+    filters: "筛选器",
 
     // Auth
     signIn: "登录",

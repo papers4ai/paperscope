@@ -72,10 +72,15 @@
   <!-- 主布局：左筛选 / 中列表 / 右面板 -->
   <main class="layout">
     <aside class="sidebar">
-      <section class="feed-only">
-        <h3>来源</h3>
-        <label><input type="checkbox" name="source" value="arxiv" checked> arXiv 预印本</label>
-      </section>
+      <button class="sidebar-toggle" id="sidebar-toggle">
+        <span class="toggle-icon">⚙️</span>
+        <span class="toggle-text" data-i18n="filters">Filters</span>
+      </button>
+      <div class="sidebar-content" id="sidebar-content">
+        <section class="feed-only">
+          <h3>来源</h3>
+          <label><input type="checkbox" name="source" value="arxiv" checked> arXiv 预印本</label>
+        </section>
       <section>
         <h3>代码</h3>
         <label><input type="checkbox" id="filter-has-code"> 仅显示有开源代码</label>
@@ -120,6 +125,7 @@
           <option value="citation_count">引用最多</option>
         </select>
       </section>
+      </div>
     </aside>
 
     <div class="main-col">

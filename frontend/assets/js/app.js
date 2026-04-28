@@ -1581,6 +1581,14 @@ function toggleLanguage() {
 
 langToggleBtn?.addEventListener("click", toggleLanguage);
 
+// ========== Sidebar Toggle ==========
+const sidebarToggle = document.getElementById("sidebar-toggle");
+const sidebarContent = document.getElementById("sidebar-content");
+
+sidebarToggle?.addEventListener("click", () => {
+  sidebarContent?.classList.toggle("open");
+});
+
 // ========== 热榜定时更新 ==========
 
 async function refreshHotData() {
