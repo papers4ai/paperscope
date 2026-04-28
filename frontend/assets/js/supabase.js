@@ -59,13 +59,15 @@ export async function signInWithEmail(email, password) {
  * 邮箱注册
  */
 export async function signUpWithEmail(email, password) {
+  // emailRedirectTo：确认邮件点击后跳回当前页面（自动适配本地 / 线上）
+  const emailRedirectTo = window.location.origin + window.location.pathname;
   const r = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       apikey: SUPABASE_ANON_KEY,
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password, options: { emailRedirectTo } }),
   });
   const data = await r.json();
   if (!r.ok) throw new Error(data.error_description || data.msg || "注册失败");
@@ -104,33 +106,37 @@ export async function signOut() {
  * 返回解析到的 session 或 null
  */
 export function handleOAuthCallback() {
-  const hash = window.location.hash.slice(1);
-  if (!hash) return null;
-  const params = Object.fromEntries(hash.split("&").map(p => p.split("=")));
+  // Supabase 有时用 hash（#access_token=...），有时用 query（?access_token=...）
+  const hash   = window.location.hash.slice(1);
+  const search = window.location.search.slice(1);
+  const raw    = hash || search;
+  if (!raw) return null;
+
+  const params = Object.fromEntries(
+    raw.split("&").map(p => { const [k, ...v] = p.split("="); return [k, decodeURIComponent(v.join("="))]; })
+  );
   if (!params.access_token) return null;
 
   // 构造 session 对象
   const session = {
-    access_token: params.access_token,
+    access_token:  params.access_token,
     refresh_token: params.refresh_token || "",
-    token_type: params.token_type || "bearer",
-    expires_in: Number(params.expires_in || 3600),
-    user: params.user ? JSON.parse(decodeURIComponent(params.user)) : null,
+    token_type:    params.token_type || "bearer",
+    expires_in:    Number(params.expires_in || 3600),
+    user: null,
   };
 
-  // 如果没有 user 字段，用 access_token 去拉用户信息
-  if (!session.user) {
-    fetch(`${SUPABASE_URL}/auth/v1/user`, {
-      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${session.access_token}` },
-    })
-      .then(r => r.json())
-      .then(u => { session.user = u; saveSession(session); })
-      .catch(() => {});
-  }
+  // 用 access_token 拉取用户信息（hash 里不含 user 字段）
+  fetch(`${SUPABASE_URL}/auth/v1/user`, {
+    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${session.access_token}` },
+  })
+    .then(r => r.json())
+    .then(u => { session.user = u; saveSession(session); })
+    .catch(() => { saveSession(session); });
 
   saveSession(session);
-  // 清掉 URL hash，避免刷新后重复处理
-  history.replaceState(null, "", window.location.pathname + window.location.search);
+  // 清掉 URL hash / query，避免刷新后重复处理
+  history.replaceState(null, "", window.location.pathname);
   return session;
 }
 
