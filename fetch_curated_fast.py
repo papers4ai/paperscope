@@ -313,11 +313,16 @@ S2_HEADERS     = {
     "User-Agent": "Paperscope/4.0 (mailto:admin@paperscope.dev)",
     "Accept-Encoding": "gzip, deflate",
 }
-# 若有 API Key，取消下面注释并填入（可提升至 1000 req/min）：
-# S2_HEADERS["x-api-key"] = "YOUR_S2_API_KEY"
-S2_CONCURRENCY = 2    # S2 免费限额约 100 req/min，保守并发
+# API Key 优先从环境变量读取，其次可在此处硬编码（可提升限额至 1000 req/min）
+_S2_API_KEY = os.environ.get("S2_API_KEY", "")
+if _S2_API_KEY:
+    S2_HEADERS["x-api-key"] = _S2_API_KEY
+    S2_CONCURRENCY = 8    # 有 Key：并发提升
+    S2_REQUEST_GAP = 0.15 # 有 Key：请求间隔缩短
+else:
+    S2_CONCURRENCY = 2    # 免费限额约 100 req/min，保守并发
+    S2_REQUEST_GAP = 1.2  # 翻页间隔（秒）：2 并发 × 1.2s ≈ 100 req/min
 S2_PER_PAGE    = 1000 # bulk 端点单次最大 1000
-S2_REQUEST_GAP = 1.2  # 翻页间隔（秒）：2 并发 × 1.2s ≈ 100 req/min
 S2_FIELDS      = "title,abstract,year,venue,citationCount,externalIds,authors,publicationDate"
 
 # ── 通用 ─────────────────────────────────────────────────────────────────────

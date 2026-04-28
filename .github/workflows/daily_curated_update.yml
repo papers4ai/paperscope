@@ -1,0 +1,119 @@
+name: Daily Curated Update
+
+on:
+  schedule:
+    - cron: "0 2 * * *"   # 每天 UTC 02:00（北京时间 10:00）
+  workflow_dispatch:        # 支持手动触发
+    inputs:
+      year_from:
+        description: "从哪年开始抓（默认当年）"
+        default: ""
+      mode:
+        description: "抓取模式: all / oa-only / s2-only"
+        default: "all"
+
+permissions:
+  contents: write           # 允许 Actions 提交推送
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90     # S2 限速下约 30-60 分钟
+
+    steps:
+      # ── 1. 检出代码 ──────────────────────────────────────────────────────────
+      - uses: actions/checkout@v4
+
+      # ── 2. 安装依赖 ──────────────────────────────────────────────────────────
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      # ── 3. 从 3 个前端文件重建 output/papers_curated.json ───────────────────
+      #    GitHub Actions 上没有本地 output 文件，用已提交的 frontend/data/ 重建
+      - name: Rebuild output from frontend domain files
+        run: |
+          python3 - <<'EOF'
+          import json, os
+
+          domains = ["world_model", "physical_ai", "medical_ai"]
+          seen = set()
+          papers = []
+
+          for d in domains:
+              path = f"frontend/data/papers_curated_{d}.json"
+              if not os.path.exists(path):
+                  print(f"  [skip] {path} not found")
+                  continue
+              batch = json.load(open(path, encoding="utf-8"))
+              added = 0
+              for p in batch:
+                  pid = p.get("id")
+                  if pid and pid not in seen:
+                      seen.add(pid)
+                      papers.append(p)
+                      added += 1
+              print(f"  {path}: {added} papers loaded")
+
+          os.makedirs("output", exist_ok=True)
+          with open("output/papers_curated.json", "w", encoding="utf-8") as f:
+              json.dump(papers, f, ensure_ascii=False, separators=(",", ":"))
+          print(f"Rebuilt: {len(papers)} total papers → output/papers_curated.json")
+          EOF
+
+      # ── 4. 增量抓取新论文 ────────────────────────────────────────────────────
+      - name: Fetch new curated papers
+        env:
+          # 可选：Semantic Scholar API Key（免费限额已够用，有 key 可提速 10×）
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+        run: |
+          # 确定抓取年份：手动输入优先，否则抓「去年+今年」
+          if [ -n "${{ github.event.inputs.year_from }}" ]; then
+            YEAR="${{ github.event.inputs.year_from }}"
+          else
+            YEAR=$(python3 -c "import datetime; print(datetime.date.today().year - 1)")
+          fi
+
+          # 确定抓取模式
+          MODE="${{ github.event.inputs.mode }}"
+          FLAG=""
+          if [ "$MODE" = "oa-only" ]; then FLAG="--oa-only"; fi
+          if [ "$MODE" = "s2-only" ]; then FLAG="--s2-only"; fi
+
+          echo "▶ Fetching from year=$YEAR, mode=${MODE:-all}"
+
+          # 如果有 S2 API Key，注入到环境（脚本会读取）
+          if [ -n "$S2_API_KEY" ]; then
+            echo "  S2_API_KEY detected, using higher rate limit"
+            export S2_API_KEY
+          fi
+
+          python fetch_curated_fast.py --year-from "$YEAR" $FLAG
+
+      # ── 5. 同步到前端（按领域拆分，去掉 abstract） ───────────────────────────
+      - name: Sync to frontend data
+        run: python scripts/sync_curated.py --local output/papers_curated.json
+
+      # ── 6. 提交推送（有变化才提交） ─────────────────────────────────────────
+      - name: Commit and push if changed
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add frontend/data/papers_curated_world_model.json \
+                  frontend/data/papers_curated_physical_ai.json \
+                  frontend/data/papers_curated_medical_ai.json
+
+          # 统计变化
+          CHANGED=$(git diff --staged --stat | tail -1)
+          echo "Changed: $CHANGED"
+
+          if git diff --staged --quiet; then
+            echo "✓ No new papers found, skipping commit"
+          else
+            DATE=$(date +%Y-%m-%d)
+            git commit -m "data: daily curated update $DATE"
+            git push
+            echo "✓ Pushed updated curated data"
+          fi
