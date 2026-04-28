@@ -32,6 +32,308 @@ function updateFavCount() {
   if (el2) el2.textContent = favorites.size;
 }
 
+// ── 标签系统 ──────────────────────────────────────────────────────────────
+let favTags = JSON.parse(localStorage.getItem("paperscope_tags") || "[]");
+// paperTags: { paperId: [tagId, ...] }
+let paperTags = JSON.parse(localStorage.getItem("paperscope_paper_tags") || "{}");
+let activeTagFilter = null; // null = 全部
+let _tagPickerCloseHandler = null;
+
+const TAG_PALETTE = ["#818cf8","#34d399","#fb923c","#f472b6","#60a5fa","#a78bfa","#fbbf24","#f87171","#2dd4bf","#e879f9"];
+
+function saveTags() {
+  localStorage.setItem("paperscope_tags", JSON.stringify(favTags));
+  localStorage.setItem("paperscope_paper_tags", JSON.stringify(paperTags));
+}
+
+function createTag(name, color) {
+  const id = "tag_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
+  favTags.push({ id, name, color });
+  saveTags();
+  return id;
+}
+
+function deleteTag(tagId) {
+  favTags = favTags.filter(t => t.id !== tagId);
+  for (const pid in paperTags) {
+    paperTags[pid] = paperTags[pid].filter(t => t !== tagId);
+    if (!paperTags[pid].length) delete paperTags[pid];
+  }
+  if (activeTagFilter === tagId) activeTagFilter = null;
+  saveTags();
+}
+
+function togglePaperTag(paperId, tagId) {
+  if (!paperTags[paperId]) paperTags[paperId] = [];
+  const idx = paperTags[paperId].indexOf(tagId);
+  if (idx >= 0) {
+    paperTags[paperId].splice(idx, 1);
+    if (!paperTags[paperId].length) delete paperTags[paperId];
+  } else {
+    paperTags[paperId].push(tagId);
+  }
+  saveTags();
+}
+
+function getTagsForPaper(paperId) {
+  return (paperTags[paperId] || []).map(tid => favTags.find(t => t.id === tid)).filter(Boolean);
+}
+
+/** 渲染左侧标签侧栏 */
+function renderTagSidebar(showCreateForm = false, selectedColor = TAG_PALETTE[0]) {
+  const sidebar = $("#fav-tag-sidebar");
+  // 统计每个标签下的论文数
+  const counts = {};
+  favTags.forEach(t => { counts[t.id] = 0; });
+  Object.values(paperTags).forEach(tids => tids.forEach(tid => {
+    if (counts[tid] !== undefined) counts[tid]++;
+  }));
+
+  const allCount = favorites.size;
+  const tagItems = favTags.map(t => `
+    <div class="fav-tag-item${activeTagFilter === t.id ? " active" : ""}" data-tag-id="${t.id}">
+      <span class="fav-tag-dot" style="background:${t.color}"></span>
+      <span class="fav-tag-name" title="${esc(t.name)}">${esc(t.name)}</span>
+      <span class="fav-tag-count">${counts[t.id] || 0}</span>
+      <button class="fav-tag-del" data-del-tag="${t.id}" title="删除标签">✕</button>
+    </div>`).join("");
+
+  const createFormHtml = showCreateForm ? `
+    <div class="fav-tag-create-form" id="fav-tag-create-form">
+      <input type="text" id="fav-tag-name-input" placeholder="标签名称" maxlength="20" autocomplete="off">
+      <div class="fav-tag-color-row" id="fav-tag-color-row">
+        ${TAG_PALETTE.map(c => `<span class="fav-tag-color-swatch${c === selectedColor ? " selected" : ""}" data-color="${c}" style="background:${c}"></span>`).join("")}
+      </div>
+      <div class="fav-tag-create-actions">
+        <button class="fav-tag-create-confirm" id="fav-tag-create-confirm">✓ 创建</button>
+        <button class="fav-tag-create-cancel" id="fav-tag-create-cancel">✕</button>
+      </div>
+    </div>` : `<button class="fav-tag-new-btn" id="fav-tag-new-btn">＋ 新建标签</button>`;
+
+  sidebar.innerHTML = `
+    <div class="fav-tag-sidebar-title">标签</div>
+    <div class="fav-tag-item${activeTagFilter === null ? " active" : ""}" data-tag-id="__all__">
+      <span class="fav-tag-dot" style="background:var(--text-muted)"></span>
+      <span class="fav-tag-name">全部收藏</span>
+      <span class="fav-tag-count">${allCount}</span>
+    </div>
+    ${tagItems}
+    ${createFormHtml}
+  `;
+
+  // 绑定事件
+  sidebar.querySelectorAll(".fav-tag-item").forEach(el => {
+    el.addEventListener("click", (e) => {
+      if (e.target.closest(".fav-tag-del")) return;
+      const tid = el.dataset.tagId;
+      activeTagFilter = (tid === "__all__") ? null : tid;
+      renderFavModalBody();
+      renderTagSidebar();
+    });
+  });
+
+  sidebar.querySelectorAll(".fav-tag-del").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const tid = btn.dataset.delTag;
+      const tag = favTags.find(t => t.id === tid);
+      if (!tag) return;
+      if (!confirm(`删除标签「${tag.name}」？此操作不会删除论文。`)) return;
+      deleteTag(tid);
+      renderFavModalBody();
+      renderTagSidebar();
+    });
+  });
+
+  const newBtn = sidebar.querySelector("#fav-tag-new-btn");
+  if (newBtn) {
+    newBtn.addEventListener("click", () => renderTagSidebar(true));
+  }
+
+  // 颜色选择
+  let _currentColor = selectedColor;
+  sidebar.querySelectorAll(".fav-tag-color-swatch").forEach(swatch => {
+    swatch.addEventListener("click", () => {
+      _currentColor = swatch.dataset.color;
+      sidebar.querySelectorAll(".fav-tag-color-swatch").forEach(s => s.classList.toggle("selected", s.dataset.color === _currentColor));
+    });
+  });
+
+  const confirmBtn = sidebar.querySelector("#fav-tag-create-confirm");
+  const cancelBtn  = sidebar.querySelector("#fav-tag-create-cancel");
+  const nameInput  = sidebar.querySelector("#fav-tag-name-input");
+  if (confirmBtn) {
+    confirmBtn.addEventListener("click", () => {
+      const name = (nameInput?.value || "").trim();
+      if (!name) { nameInput?.focus(); return; }
+      createTag(name, _currentColor);
+      renderTagSidebar(false);
+      renderFavModalBody();
+    });
+  }
+  if (cancelBtn) {
+    cancelBtn.addEventListener("click", () => renderTagSidebar(false));
+  }
+  if (nameInput) {
+    nameInput.focus();
+    nameInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") confirmBtn?.click();
+      if (e.key === "Escape") cancelBtn?.click();
+    });
+  }
+}
+
+/** 渲染右侧论文列表（含标签 chips） */
+function renderFavModalBody() {
+  const body = $("#fav-modal-body");
+  if (!favorites.size) {
+    body.innerHTML = `<div class="loading">还没有收藏的论文。点击论文卡片右上角的 ☆ 进行收藏。</div>`;
+    return;
+  }
+  // 获取所有收藏论文（从缓存）
+  const allCached = [...(feedPapersCache || []), ...(curatedPapersCache || [])];
+  const seen = new Set();
+  const allFav = [...favorites].map(id => {
+    const found = allCached.find(p => p.id === id);
+    return found;
+  }).filter(p => p && !seen.has(p.id) && seen.add(p.id)).map(normalizePaper);
+
+  // 按标签过滤
+  const items = activeTagFilter
+    ? allFav.filter(p => (paperTags[p.id] || []).includes(activeTagFilter))
+    : allFav;
+
+  if (!items.length) {
+    const tagName = activeTagFilter ? (favTags.find(t => t.id === activeTagFilter)?.name || "") : "";
+    body.innerHTML = `<div class="loading">${activeTagFilter ? `标签「${esc(tagName)}」下暂无收藏论文。` : "收藏的论文暂未加载到缓存中，请先访问速览页面。"}</div>`;
+    return;
+  }
+
+  body.innerHTML = items.map(p => {
+    const cardHtml = paperCard(p);
+    const tags = getTagsForPaper(p.id);
+    const tagChips = tags.map(t => `
+      <span class="paper-tag-chip" style="background:color-mix(in srgb,${t.color} 18%,transparent);color:${t.color};border:1px solid color-mix(in srgb,${t.color} 35%,transparent)">
+        <span class="fav-tag-dot" style="background:${t.color};width:6px;height:6px"></span>
+        ${esc(t.name)}
+        <button class="paper-tag-chip-del" data-paper-id="${p.id}" data-tag-id="${t.id}" title="移除标签">✕</button>
+      </span>`).join("");
+    const addBtn = `<button class="paper-tag-add-btn" data-paper-id="${p.id}" title="添加标签">＋ 标签</button>`;
+    const chipsRow = `<div class="paper-tag-chips" data-paper-id="${p.id}">${tagChips}${addBtn}</div>`;
+    // 把 chips row 插入到卡片末尾（替换 </article> 前插入）
+    return cardHtml.replace(/<\/article>\s*$/, chipsRow + "</article>");
+  }).join("");
+
+  // 卡片点击打开详情
+  body.querySelectorAll(".paper-card").forEach(el => {
+    el.addEventListener("click", (e) => {
+      if (e.target.closest(".fav-btn") || e.target.closest(".paper-tag-chips")) return;
+      const modal = $("#fav-modal");
+      modal.hidden = true; modal.style.display = "none";
+      openDetail(el.dataset.id);
+    });
+  });
+
+  // 收藏按钮（取消收藏）
+  body.querySelectorAll(".fav-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.fav;
+      favorites.delete(id);
+      saveFavorites();
+      renderTagSidebar();
+      renderFavModalBody();
+      reload();
+    });
+  });
+
+  // 移除标签 chip
+  body.querySelectorAll(".paper-tag-chip-del").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      togglePaperTag(btn.dataset.paperId, btn.dataset.tagId);
+      renderTagSidebar();
+      renderFavModalBody();
+    });
+  });
+
+  // 添加标签按钮 → 弹出 tag picker
+  body.querySelectorAll(".paper-tag-add-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openTagPicker(btn.dataset.paperId, btn);
+    });
+  });
+}
+
+/** 浮动标签选择气泡 */
+function openTagPicker(paperId, anchorEl) {
+  // 关闭已有的 picker
+  closeTagPicker();
+
+  if (!favTags.length) {
+    // 没有标签时提示去创建
+    renderTagSidebar(true);
+    return;
+  }
+
+  const assigned = paperTags[paperId] || [];
+  const popup = document.createElement("div");
+  popup.className = "tag-picker-popup";
+  popup.id = "tag-picker-popup";
+
+  popup.innerHTML = favTags.map(t => `
+    <div class="tag-picker-item" data-tag-id="${t.id}">
+      <span class="fav-tag-dot" style="background:${t.color}"></span>
+      <span>${esc(t.name)}</span>
+      ${assigned.includes(t.id) ? `<span class="tag-picker-check">✓</span>` : ""}
+    </div>`).join("") +
+    `<div class="tag-picker-item tag-picker-new" id="tag-picker-new-btn">＋ 新建标签</div>`;
+
+  document.body.appendChild(popup);
+
+  // 定位气泡
+  const rect = anchorEl.getBoundingClientRect();
+  const popupW = 165;
+  let left = rect.left;
+  if (left + popupW > window.innerWidth - 10) left = window.innerWidth - popupW - 10;
+  popup.style.top = (rect.bottom + 6) + "px";
+  popup.style.left = left + "px";
+
+  popup.querySelectorAll(".tag-picker-item[data-tag-id]").forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation();
+      togglePaperTag(paperId, item.dataset.tagId);
+      closeTagPicker();
+      renderTagSidebar();
+      renderFavModalBody();
+    });
+  });
+
+  popup.querySelector("#tag-picker-new-btn")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeTagPicker();
+    renderTagSidebar(true);
+  });
+
+  // 点击外部关闭
+  setTimeout(() => {
+    _tagPickerCloseHandler = (e) => {
+      if (!popup.contains(e.target)) closeTagPicker();
+    };
+    document.addEventListener("click", _tagPickerCloseHandler, { once: false });
+  }, 10);
+}
+
+function closeTagPicker() {
+  const existing = document.getElementById("tag-picker-popup");
+  if (existing) existing.remove();
+  if (_tagPickerCloseHandler) {
+    document.removeEventListener("click", _tagPickerCloseHandler);
+    _tagPickerCloseHandler = null;
+  }
+}
+
 // 可用年份（由 meta.json 决定，自动扩展；初始值兜底）
 let availableYears = [2023, 2024, 2025, 2026, 2027];
 
@@ -814,51 +1116,36 @@ $("#detail-close").addEventListener("click", () => {
 // ========== 收藏汇总 Modal ==========
 function openFavModal() {
   const modal = $("#fav-modal");
-  const body = $("#fav-modal-body");
   modal.hidden = false;
   modal.style.display = "flex";
   updateFavCount();
-  if (!favorites.size) {
-    body.innerHTML = `<div class="loading">还没有收藏的论文。点击论文卡片右上角的 ☆ 进行收藏。</div>`;
-    return;
-  }
-  const all = feedPapersCache || [];
-  const items = [...favorites].map(id => all.find(p => p.id === id)).filter(Boolean).map(normalizePaper);
-  if (!items.length) {
-    body.innerHTML = `<div class="loading">收藏的论文不在当前数据集中。</div>`;
-    return;
-  }
-  body.innerHTML = items.map(paperCard).join("");
-  body.querySelectorAll(".paper-card").forEach(el => {
-    el.addEventListener("click", (e) => {
-      if (e.target.closest(".fav-btn")) return;
-      modal.hidden = true;
-      openDetail(el.dataset.id);
-    });
-  });
-  body.querySelectorAll(".fav-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const id = btn.dataset.fav;
-      favorites.delete(id);
-      saveFavorites();
-      openFavModal();
-      reload();
-    });
-  });
+  renderTagSidebar();
+  renderFavModalBody();
 }
+
+function closeFavModal() {
+  const m = $("#fav-modal");
+  m.hidden = true; m.style.display = "none";
+  closeTagPicker();
+}
+
 $("#btn-favorites-summary").addEventListener("click", openFavModal);
-$("#fav-modal-close").addEventListener("click", () => { { const m=$("#fav-modal"); m.hidden=true; m.style.display="none"; } });
-$("#fav-modal").querySelector(".fav-modal-backdrop").addEventListener("click", () => { { const m=$("#fav-modal"); m.hidden=true; m.style.display="none"; } });
+$("#fav-modal-close").addEventListener("click", closeFavModal);
+$("#fav-modal").querySelector(".fav-modal-backdrop").addEventListener("click", closeFavModal);
 $("#fav-clear").addEventListener("click", () => {
   if (!favorites.size) return;
-  if (!confirm(`确定清空全部 ${favorites.size} 个收藏？`)) return;
-  favorites.clear(); saveFavorites(); openFavModal(); reload();
+  if (!confirm(`确定清空全部 ${favorites.size} 个收藏？（标签数据将保留）`)) return;
+  favorites.clear(); saveFavorites();
+  renderTagSidebar(); renderFavModalBody(); reload();
 });
 $("#fav-export").addEventListener("click", () => {
-  const all = feedPapersCache || [];
-  const items = [...favorites].map(id => all.find(p => p.id === id)).filter(Boolean);
-  const blob = new Blob([JSON.stringify(items, null, 2)], { type: "application/json" });
+  const allCached = [...(feedPapersCache || []), ...(curatedPapersCache || [])];
+  const seen = new Set();
+  const items = [...favorites].map(id => allCached.find(p => p.id === id))
+    .filter(p => p && !seen.has(p.id) && seen.add(p.id));
+  // 导出时附上标签信息
+  const withTags = items.map(p => ({ ...p, _tags: getTagsForPaper(p.id).map(t => t.name) }));
+  const blob = new Blob([JSON.stringify(withTags, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = `paperscope-favorites-${new Date().toISOString().slice(0, 10)}.json`;

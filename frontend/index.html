@@ -6,7 +6,7 @@
   <title>🔭 Paperscope — AI Research Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/app.css?v=20260428c">
+  <link rel="stylesheet" href="assets/css/app.css?v=20260428d">
   <script>
   window.__PAPERSCOPE_CONFIG__ = {
     SUPABASE_URL: "https://vefqbfgcgfowuczmygmm.supabase.co",
@@ -175,7 +175,12 @@
             <button id="fav-modal-close" class="detail-close">✕</button>
           </div>
         </div>
-        <div class="fav-modal-body" id="fav-modal-body"></div>
+        <div class="fav-modal-layout">
+          <!-- 左侧标签侧栏 -->
+          <div class="fav-tag-sidebar" id="fav-tag-sidebar"></div>
+          <!-- 右侧论文列表 -->
+          <div class="fav-modal-body" id="fav-modal-body"></div>
+        </div>
       </div>
     </div>
     <aside class="detail-panel" id="detail-panel" hidden>
@@ -248,6 +253,6 @@
     </div>
   </div>
 
-  <script type="module" src="assets/js/app.js?v=20260428c"></script>
+  <script type="module" src="assets/js/app.js?v=20260428d"></script>
 </body>
 </html>
