@@ -14,6 +14,14 @@ KEEP_FIELDS = ["id", "title", "abstract", "authors", "published", "year", "month
                "pdf_url", "arxiv_url", "code", "has_code", "type", "_domains", "_tasks"]
 
 
+def strip_prefix(raw_id: str) -> str:
+    """把 'arxiv:2604.xxxxx' 统一成 '2604.xxxxx'"""
+    for prefix in ("arxiv:", "s2:", "pubmed:"):
+        if raw_id.startswith(prefix):
+            return raw_id[len(prefix):]
+    return raw_id
+
+
 def to_frontend(row: dict) -> dict:
     published = (row.get("published_at") or "")[:10]
     month = int(published[5:7]) if len(published) >= 7 else None
@@ -22,7 +30,7 @@ def to_frontend(row: dict) -> dict:
     code_url = code_links[0] if isinstance(code_links, list) and code_links else ""
 
     return {
-        "id": row["id"],
+        "id": strip_prefix(row["id"]),
         "title": row.get("title", ""),
         "abstract": row.get("abstract_excerpt") or "",
         "authors": row.get("authors") or [],
