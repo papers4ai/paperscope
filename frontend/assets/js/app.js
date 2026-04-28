@@ -1138,19 +1138,106 @@ $("#fav-clear").addEventListener("click", () => {
   favorites.clear(); saveFavorites();
   renderTagSidebar(); renderFavModalBody(); reload();
 });
-$("#fav-export").addEventListener("click", () => {
+// ── 导出工具函数 ──────────────────────────────────────────────────────────
+function getFavItems() {
   const allCached = [...(feedPapersCache || []), ...(curatedPapersCache || [])];
   const seen = new Set();
-  const items = [...favorites].map(id => allCached.find(p => p.id === id))
+  return [...favorites]
+    .map(id => allCached.find(p => p.id === id))
     .filter(p => p && !seen.has(p.id) && seen.add(p.id));
-  // 导出时附上标签信息
-  const withTags = items.map(p => ({ ...p, _tags: getTagsForPaper(p.id).map(t => t.name) }));
-  const blob = new Blob([JSON.stringify(withTags, null, 2)], { type: "application/json" });
+}
+
+function downloadBlob(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = `paperscope-favorites-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = filename;
   a.click();
   URL.revokeObjectURL(a.href);
+}
+
+function exportCSV(items) {
+  const dateStr = new Date().toISOString().slice(0, 10);
+  const cols = ["标题", "作者", "年份", "会议/期刊", "标签", "引用数", "arXiv链接", "PDF链接", "代码链接"];
+  const csvEsc = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const rows = items.map(p => {
+    const authors = (p.authors || []).join("; ");
+    const tags = getTagsForPaper(p.id).map(t => t.name).join("; ");
+    return [
+      p.title, authors, p.year ?? "", p.venue ?? "",
+      tags, p.citation_count ?? "",
+      p.arxiv_url ?? "", p.pdf_url ?? "", p.code ?? ""
+    ].map(csvEsc).join(",");
+  });
+  const bom = "﻿"; // UTF-8 BOM，让 Excel 正确识别中文
+  downloadBlob(bom + [cols.map(csvEsc).join(","), ...rows].join("\r\n"),
+    `paperscope-favorites-${dateStr}.csv`, "text/csv;charset=utf-8");
+}
+
+function exportBibTeX(items) {
+  const dateStr = new Date().toISOString().slice(0, 10);
+  const sanitizeKey = s => String(s || "").replace(/[^a-zA-Z0-9_]/g, "").slice(0, 20);
+  const bibEsc = s => String(s || "").replace(/[{}&%$#_^~\\]/g, c => `\\${c}`);
+  const entries = items.map(p => {
+    const authors = (p.authors || []).join(" and ");
+    // key = 第一作者姓+年份+id前4位
+    const firstAuthor = (p.authors?.[0] || "unknown").split(/\s+/).pop();
+    const key = sanitizeKey(firstAuthor) + (p.year ?? "") + sanitizeKey((p.id || "").slice(0, 5));
+    const venue = p.venue || "arXiv";
+    const type = (p.venue && !p.arxiv_url?.includes("arxiv")) ? "article" : "misc";
+    const urlField = p.arxiv_url ? `  url          = {${p.arxiv_url}},\n` : (p.pdf_url ? `  url          = {${p.pdf_url}},\n` : "");
+    const codeField = p.code ? `  note         = {Code: ${p.code}},\n` : "";
+    const tagsField = getTagsForPaper(p.id).map(t => t.name);
+    const keywordsField = tagsField.length ? `  keywords     = {${tagsField.join(", ")}},\n` : "";
+    return `@${type}{${key},\n  title        = {${bibEsc(p.title)}},\n  author       = {${bibEsc(authors)}},\n  year         = {${p.year ?? ""}},\n  journal      = {${bibEsc(venue)}},\n${urlField}${codeField}${keywordsField}}`;
+  });
+  downloadBlob(entries.join("\n\n"),
+    `paperscope-favorites-${dateStr}.bib`, "text/plain;charset=utf-8");
+}
+
+function exportJSON(items) {
+  const dateStr = new Date().toISOString().slice(0, 10);
+  const withTags = items.map(p => ({ ...p, _tags: getTagsForPaper(p.id).map(t => t.name) }));
+  downloadBlob(JSON.stringify(withTags, null, 2),
+    `paperscope-favorites-${dateStr}.json`, "application/json");
+}
+
+// ── 导出按钮 & 菜单 ──────────────────────────────────────────────────────
+const favExportMenu = $("#fav-export-menu");
+let _exportMenuCloseHandler = null;
+
+function closeExportMenu() {
+  favExportMenu.hidden = true;
+  if (_exportMenuCloseHandler) {
+    document.removeEventListener("click", _exportMenuCloseHandler);
+    _exportMenuCloseHandler = null;
+  }
+}
+
+$("#fav-export").addEventListener("click", (e) => {
+  e.stopPropagation();
+  const isOpen = !favExportMenu.hidden;
+  closeExportMenu();
+  if (!isOpen) {
+    favExportMenu.hidden = false;
+    setTimeout(() => {
+      _exportMenuCloseHandler = () => closeExportMenu();
+      document.addEventListener("click", _exportMenuCloseHandler, { once: true });
+    }, 10);
+  }
+});
+
+favExportMenu.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const item = e.target.closest(".fav-export-item");
+  if (!item) return;
+  const fmt = item.dataset.fmt;
+  closeExportMenu();
+  const items = getFavItems();
+  if (!items.length) { alert("没有可导出的收藏论文。"); return; }
+  if (fmt === "csv")  exportCSV(items);
+  if (fmt === "bib")  exportBibTeX(items);
+  if (fmt === "json") exportJSON(items);
 });
 
 // ==================== Auth ====================
