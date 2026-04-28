@@ -2,7 +2,7 @@ const i18n = {
   en: {
     // Navigation
     feed: "arXiv",
-    curated: "Curated",
+    curated: "Publications",
     trending: "Trending",
     favorites: "Favorites",
     login: "Login",
@@ -13,7 +13,7 @@ const i18n = {
     aboutDescription: "Your gateway to the latest AI research",
     features: "Features",
     feature1: "📡 Real-time arXiv paper tracking",
-    feature2: "🏆 Curated top conference papers",
+    feature2: "🏆 Publications from top conferences",
     feature3: "🔥 Trending research hotspots",
     feature4: "⭐ Favorites with tags and exports",
     contact: "Contact",
@@ -96,7 +96,7 @@ const i18n = {
   zh: {
     // Navigation
     feed: "arXiv",
-    curated: "精选",
+    curated: "出版物",
     trending: "热榜",
     favorites: "收藏",
     login: "登录",
@@ -107,7 +107,7 @@ const i18n = {
     aboutDescription: "AI 研究前沿的入口",
     features: "功能介绍",
     feature1: "📡 实时追踪 arXiv 最新论文",
-    feature2: "🏆 精选顶会顶刊论文",
+    feature2: "🏆 出版物顶会顶刊论文",
     feature3: "🔥 热门研究热点",
     feature4: "⭐ 收藏支持标签和导出",
     contact: "联系方式",
