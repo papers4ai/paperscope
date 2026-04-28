@@ -1,4 +1,6 @@
-import { listPapers, getPaper, listVenues, fetchDashboardStats, fetchTrendingTopics } from "./supabase.js";
+import { listPapers, getPaper, listVenues, fetchDashboardStats, fetchTrendingTopics,
+         signInWithEmail, signUpWithEmail, signInWithGitHub, signOut,
+         onAuthStateChange, handleOAuthCallback, getStoredSession } from "./supabase.js";
 import { S2_PAPER_API, DOMAINS } from "./config.js";
 
 const state = {
@@ -828,8 +830,167 @@ $("#fav-export").addEventListener("click", () => {
   URL.revokeObjectURL(a.href);
 });
 
-$("#btn-auth").addEventListener("click", () => {
-  alert("Week 3 功能：Supabase Auth 邮箱登录 + GitHub OAuth，尚未实现");
+// ==================== Auth ====================
+
+const authModal   = $("#auth-modal");
+const authBtnEl   = $("#btn-auth");
+
+/** 打开 / 关闭 Auth Modal */
+function openAuthModal()  { authModal.hidden = false; document.body.style.overflow = "hidden"; }
+function closeAuthModal() { authModal.hidden = true;  document.body.style.overflow = ""; }
+
+// 更新顶栏按钮外观
+function updateAuthButton(user) {
+  if (user) {
+    const avatarUrl = user.user_metadata?.avatar_url || "";
+    const email     = user.email || user.user_metadata?.email || "已登录";
+    const shortName = email.split("@")[0].slice(0, 12);
+    authBtnEl.classList.add("logged-in");
+    authBtnEl.innerHTML = `
+      <span class="btn-avatar">
+        ${avatarUrl ? `<img src="${avatarUrl}" alt="">` : "👤"}
+      </span>
+      <span>${shortName}</span>`;
+  } else {
+    authBtnEl.classList.remove("logged-in");
+    authBtnEl.innerHTML = "登录";
+  }
+}
+
+// 监听 auth 状态变化
+onAuthStateChange(user => {
+  updateAuthButton(user);
+  // 若 modal 已打开且用户已登录 → 切换到已登录视图
+  if (user && !authModal.hidden) {
+    showLoggedInView(user);
+  }
+});
+
+// 处理 OAuth 回调（页面 URL hash 里携带 access_token）
+handleOAuthCallback();
+
+// 点击登录按钮
+authBtnEl.addEventListener("click", () => {
+  const sess = getStoredSession();
+  if (sess?.user) {
+    // 已登录 → 打开 modal 显示账户信息
+    showLoggedInView(sess.user);
+    openAuthModal();
+  } else {
+    showLoginView();
+    openAuthModal();
+  }
+});
+
+// 关闭按钮 & backdrop 点击
+$("#auth-close").addEventListener("click", closeAuthModal);
+$("#auth-backdrop").addEventListener("click", closeAuthModal);
+
+// ESC 键关闭
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && !authModal.hidden) closeAuthModal();
+});
+
+// Tab 切换：登录 / 注册
+document.querySelectorAll(".auth-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".auth-tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    const target = tab.dataset.tab;
+    document.querySelectorAll(".auth-form").forEach(f => f.classList.toggle("hidden", f.dataset.tab !== target));
+    $("#auth-form-login").classList.toggle("hidden", target !== "login");
+    $("#auth-form-register").classList.toggle("hidden", target !== "register");
+    clearAuthErrors();
+  });
+});
+
+function clearAuthErrors() {
+  $("#auth-err-login").textContent = "";
+  $("#auth-err-register").textContent = "";
+}
+
+function showLoginView() {
+  $("#auth-logged-in").classList.add("hidden");
+  $("#auth-form-login").classList.remove("hidden");
+  $("#auth-form-register").classList.add("hidden");
+  $("#auth-github").style.display = "";
+  document.querySelector(".auth-divider").style.display = "";
+  document.querySelectorAll(".auth-tab").forEach(t => t.classList.toggle("active", t.dataset.tab === "login"));
+  document.querySelector(".auth-tabs").style.display = "";
+}
+
+function showLoggedInView(user) {
+  $("#auth-form-login").classList.add("hidden");
+  $("#auth-form-register").classList.add("hidden");
+  document.querySelectorAll(".auth-tab").forEach(t => t.classList.remove("active"));
+  document.querySelector(".auth-tabs").style.display = "none";
+  document.querySelector(".auth-divider").style.display = "none";
+  $("#auth-github").style.display = "none";
+
+  const avatarUrl = user.user_metadata?.avatar_url || "";
+  const email = user.email || user.user_metadata?.email || "已登录";
+  const avatarEl = $("#auth-avatar");
+  avatarEl.innerHTML = avatarUrl ? `<img src="${avatarUrl}" alt="">` : "👤";
+  $("#auth-user-email").textContent = email;
+  $("#auth-logged-in").classList.remove("hidden");
+}
+
+// 登录表单提交
+$("#auth-form-login").addEventListener("submit", async e => {
+  e.preventDefault();
+  const email = $("#auth-email-login").value.trim();
+  const pass  = $("#auth-pass-login").value;
+  const errEl = $("#auth-err-login");
+  const btn   = e.target.querySelector(".auth-submit");
+  errEl.textContent = "";
+  btn.disabled = true;
+  btn.textContent = "登录中...";
+  try {
+    const data = await signInWithEmail(email, pass);
+    closeAuthModal();
+  } catch (err) {
+    errEl.textContent = err.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "登录";
+  }
+});
+
+// 注册表单提交
+$("#auth-form-register").addEventListener("submit", async e => {
+  e.preventDefault();
+  const email = $("#auth-email-register").value.trim();
+  const pass  = $("#auth-pass-register").value;
+  const errEl = $("#auth-err-register");
+  const btn   = e.target.querySelector(".auth-submit");
+  errEl.textContent = "";
+  if (pass.length < 8) { errEl.textContent = "密码至少 8 位"; return; }
+  btn.disabled = true;
+  btn.textContent = "注册中...";
+  try {
+    const data = await signUpWithEmail(email, pass);
+    if (data.access_token) {
+      closeAuthModal();
+    } else {
+      // Supabase 默认需要邮件确认
+      errEl.style.color = "var(--physical-ai)";
+      errEl.textContent = "注册成功！请查收确认邮件后登录。";
+    }
+  } catch (err) {
+    errEl.textContent = err.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "注册";
+  }
+});
+
+// GitHub OAuth
+$("#auth-github").addEventListener("click", () => signInWithGitHub());
+
+// 退出登录
+$("#auth-signout").addEventListener("click", async () => {
+  await signOut();
+  showLoginView();
 });
 
 // ========== 主题切换 ==========

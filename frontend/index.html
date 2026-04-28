@@ -6,7 +6,7 @@
   <title>🔭 Paperscope — AI Research Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/app.css?v=20260428a">
+  <link rel="stylesheet" href="assets/css/app.css?v=20260428b">
   <script>
   window.__PAPERSCOPE_CONFIG__ = {
     SUPABASE_URL: "https://tetmurpgybsfpicbjjwi.supabase.co",
@@ -182,6 +182,51 @@
     </aside>
   </main>
 
-  <script type="module" src="assets/js/app.js?v=20260428a"></script>
+  <!-- ========== Auth Modal ========== -->
+  <div class="auth-modal" id="auth-modal" hidden>
+    <div class="auth-backdrop" id="auth-backdrop"></div>
+    <div class="auth-box">
+      <button class="auth-close" id="auth-close">✕</button>
+
+      <!-- Tab 切换：登录 / 注册 -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">登录</button>
+        <button class="auth-tab" data-tab="register">注册</button>
+      </div>
+
+      <!-- 登录表单 -->
+      <form class="auth-form" id="auth-form-login" data-tab="login">
+        <label>邮箱<input type="email" id="auth-email-login" placeholder="you@example.com" autocomplete="email"></label>
+        <label>密码<input type="password" id="auth-pass-login" placeholder="至少 8 位" autocomplete="current-password"></label>
+        <div class="auth-error" id="auth-err-login"></div>
+        <button type="submit" class="auth-submit">登录</button>
+      </form>
+
+      <!-- 注册表单 -->
+      <form class="auth-form hidden" id="auth-form-register" data-tab="register">
+        <label>邮箱<input type="email" id="auth-email-register" placeholder="you@example.com" autocomplete="email"></label>
+        <label>密码<input type="password" id="auth-pass-register" placeholder="至少 8 位" autocomplete="new-password"></label>
+        <div class="auth-error" id="auth-err-register"></div>
+        <button type="submit" class="auth-submit">注册</button>
+      </form>
+
+      <div class="auth-divider"><span>或</span></div>
+
+      <!-- GitHub OAuth -->
+      <button class="auth-github" id="auth-github">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        使用 GitHub 登录
+      </button>
+
+      <!-- 已登录状态 -->
+      <div class="auth-logged-in hidden" id="auth-logged-in">
+        <div class="auth-avatar" id="auth-avatar">👤</div>
+        <div class="auth-user-email" id="auth-user-email"></div>
+        <button class="auth-signout" id="auth-signout">退出登录</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/app.js?v=20260428b"></script>
 </body>
 </html>

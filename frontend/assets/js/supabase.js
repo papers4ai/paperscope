@@ -1,6 +1,141 @@
 // 轻量 Supabase REST 封装 (避免引入完整 SDK，保持前端体积小)。
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./config.js";
 
+// ==================== Auth ====================
+
+const AUTH_STORAGE_KEY = "paperscope_session";
+
+/** 从 localStorage 读取当前 session */
+export function getStoredSession() {
+  try {
+    return JSON.parse(localStorage.getItem(AUTH_STORAGE_KEY) || "null");
+  } catch { return null; }
+}
+
+/** 持久化 session */
+function saveSession(session) {
+  if (session) {
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(session));
+  } else {
+    localStorage.removeItem(AUTH_STORAGE_KEY);
+  }
+  _notifyAuthChange(session ? session.user : null);
+}
+
+/** 内部 auth 状态变更通知 */
+const _authListeners = [];
+function _notifyAuthChange(user) {
+  _authListeners.forEach(fn => fn(user));
+}
+
+/** 注册 auth 状态变更回调（用户登入/登出时触发） */
+export function onAuthStateChange(callback) {
+  _authListeners.push(callback);
+  // 立即触发一次，传递当前状态
+  const sess = getStoredSession();
+  callback(sess ? sess.user : null);
+}
+
+/**
+ * 邮箱 + 密码登录
+ * @returns {user, access_token, ...}
+ */
+export async function signInWithEmail(email, password) {
+  const r = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: SUPABASE_ANON_KEY,
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.error_description || data.msg || "登录失败");
+  saveSession(data);
+  return data;
+}
+
+/**
+ * 邮箱注册
+ */
+export async function signUpWithEmail(email, password) {
+  const r = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: SUPABASE_ANON_KEY,
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.error_description || data.msg || "注册失败");
+  if (data.access_token) saveSession(data);
+  return data;
+}
+
+/**
+ * GitHub OAuth —— 跳转到 Supabase 授权页面
+ * 授权成功后 GitHub 会回调到 redirect_to，带上 #access_token=...
+ */
+export function signInWithGitHub() {
+  const redirectTo = encodeURIComponent(window.location.origin + window.location.pathname);
+  window.location.href = `${SUPABASE_URL}/auth/v1/authorize?provider=github&redirect_to=${redirectTo}`;
+}
+
+/**
+ * 登出
+ */
+export async function signOut() {
+  const sess = getStoredSession();
+  if (sess?.access_token) {
+    await fetch(`${SUPABASE_URL}/auth/v1/logout`, {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${sess.access_token}`,
+      },
+    }).catch(() => {});
+  }
+  saveSession(null);
+}
+
+/**
+ * 处理 OAuth 回调：页面 URL hash 里含 access_token 时调用
+ * 返回解析到的 session 或 null
+ */
+export function handleOAuthCallback() {
+  const hash = window.location.hash.slice(1);
+  if (!hash) return null;
+  const params = Object.fromEntries(hash.split("&").map(p => p.split("=")));
+  if (!params.access_token) return null;
+
+  // 构造 session 对象
+  const session = {
+    access_token: params.access_token,
+    refresh_token: params.refresh_token || "",
+    token_type: params.token_type || "bearer",
+    expires_in: Number(params.expires_in || 3600),
+    user: params.user ? JSON.parse(decodeURIComponent(params.user)) : null,
+  };
+
+  // 如果没有 user 字段，用 access_token 去拉用户信息
+  if (!session.user) {
+    fetch(`${SUPABASE_URL}/auth/v1/user`, {
+      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${session.access_token}` },
+    })
+      .then(r => r.json())
+      .then(u => { session.user = u; saveSession(session); })
+      .catch(() => {});
+  }
+
+  saveSession(session);
+  // 清掉 URL hash，避免刷新后重复处理
+  history.replaceState(null, "", window.location.pathname + window.location.search);
+  return session;
+}
+
+// ==================== REST helpers ====================
+
 async function restGet(path, params = {}) {
   const url = new URL(`${SUPABASE_URL}/rest/v1/${path}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
