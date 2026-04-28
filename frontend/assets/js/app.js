@@ -993,25 +993,39 @@ $("#auth-signout").addEventListener("click", async () => {
   showLoginView();
 });
 
-// ========== 主题切换 ==========
+// ========== 主题切换（黑夜 / 白天 / 跟随系统，循环切换） ==========
 const themeBtn = $("#theme-toggle");
-const savedTheme = localStorage.getItem("theme") || "dark";
-if (savedTheme === "light") {
-  document.documentElement.setAttribute("data-theme", "light");
-  themeBtn.textContent = "☀️";
-}
-themeBtn.addEventListener("click", () => {
-  const isLight = document.documentElement.getAttribute("data-theme") === "light";
-  if (isLight) {
-    document.documentElement.removeAttribute("data-theme");
-    themeBtn.textContent = "🌙";
-    localStorage.setItem("theme", "dark");
-  } else {
+const THEME_CYCLE = ["dark", "light", "system"];
+const THEME_ICON  = { dark: "🌙", light: "☀️", system: "💻" };
+const THEME_LABEL = { dark: "深色", light: "浅色", system: "跟随系统" };
+
+function applyTheme(theme) {
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const effectiveLight = theme === "light" || (theme === "system" && !prefersDark);
+  if (effectiveLight) {
     document.documentElement.setAttribute("data-theme", "light");
-    themeBtn.textContent = "☀️";
-    localStorage.setItem("theme", "light");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
   }
+  themeBtn.textContent = THEME_ICON[theme];
+  themeBtn.title = THEME_LABEL[theme];
+  localStorage.setItem("theme", theme);
+}
+
+// 点击循环：深色 → 浅色 → 跟随系统 → 深色
+themeBtn.addEventListener("click", () => {
+  const cur = localStorage.getItem("theme") || "system";
+  const next = THEME_CYCLE[(THEME_CYCLE.indexOf(cur) + 1) % THEME_CYCLE.length];
+  applyTheme(next);
 });
+
+// OS 主题变化时，若当前是"跟随系统"模式则自动更新
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+  if ((localStorage.getItem("theme") || "system") === "system") applyTheme("system");
+});
+
+// 初始化主题
+applyTheme(localStorage.getItem("theme") || "system");
 
 // ========== 初始化 ==========
 updateFavCount();
