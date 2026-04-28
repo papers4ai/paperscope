@@ -462,9 +462,9 @@ body.mode-curated .feed-only { display: none; }
 .subdomain-domain-header.medical_ai  { color: #fda4af; }
 
 .subdomain-hint {
-  padding: .9rem 1.1rem; border-radius: 12px;
+  padding: .4rem .8rem; border-radius: 8px;
   background: rgba(99,102,241,.06); border: 1px dashed rgba(99,102,241,.25);
-  color: var(--text-dim); font-size: .88rem; line-height: 1.6;
+  color: var(--text-dim); font-size: .8rem; line-height: 1.5;
 }
 .subdomain-title {
   display: flex; align-items: center; gap: .8rem; margin-bottom: .6rem;
