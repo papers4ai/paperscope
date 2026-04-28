@@ -91,8 +91,8 @@ function setCuratedMode(on) {
   document.body.classList.toggle("mode-curated", on);
   if (on) {
     state.year = "";   // 切换到精选时重置年份，由 venue picker 控制
-    state.sortBy = "citation_count";
-    $("#sort-by").value = "citation_count";
+    state.sortBy = "published_at";
+    $("#sort-by").value = "published_at";
     // 同步 vp-year-row 高亮到"全部"
     document.querySelectorAll(".vpy-btn").forEach(b =>
       b.classList.toggle("active", b.dataset.year === ""));
