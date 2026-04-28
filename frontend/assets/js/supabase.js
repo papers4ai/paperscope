@@ -59,15 +59,17 @@ export async function signInWithEmail(email, password) {
  * 邮箱注册
  */
 export async function signUpWithEmail(email, password) {
-  // emailRedirectTo：确认邮件点击后跳回当前页面（自动适配本地 / 线上）
+  // emailRedirectTo 通过 X-Redirect-To Header 传递（GoTrue REST API 规范）
+  // 自动取当前页面 URL，本地 / 线上都能正确回跳
   const emailRedirectTo = window.location.origin + window.location.pathname;
   const r = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       apikey: SUPABASE_ANON_KEY,
+      "X-Redirect-To": emailRedirectTo,
     },
-    body: JSON.stringify({ email, password, options: { emailRedirectTo } }),
+    body: JSON.stringify({ email, password }),
   });
   const data = await r.json();
   if (!r.ok) throw new Error(data.error_description || data.msg || "注册失败");
