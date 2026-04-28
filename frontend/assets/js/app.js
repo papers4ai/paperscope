@@ -36,9 +36,11 @@ function updateFavCount() {
 let feedPapersCache = null;
 async function loadFeedPapers() {
   if (feedPapersCache) return feedPapersCache;
-  const r = await fetch("data/papers.json");
-  if (!r.ok) throw new Error("papers.json 加载失败");
-  feedPapersCache = await r.json();
+  const YEARS = [2023, 2024, 2025, 2026];
+  const results = await Promise.all(
+    YEARS.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
+  );
+  feedPapersCache = results.flat();
   return feedPapersCache;
 }
 
@@ -48,13 +50,12 @@ let curatedPapersCache = null;
 async function loadCuratedPapers() {
   if (curatedPapersCache) return curatedPapersCache;
 
-  // world_model 按年份拆分为 4 个文件，其余两个领域各一个文件
-  const WM_YEARS = [2023, 2024, 2025, 2026];
-  const files = [
-    ...WM_YEARS.map(y => `data/papers_curated_world_model_${y}.json`),
-    "data/papers_curated_physical_ai.json",
-    "data/papers_curated_medical_ai.json",
-  ];
+  // 三个领域均按年份拆分
+  const CURATED_DOMAINS = ["world_model", "physical_ai", "medical_ai"];
+  const CURATED_YEARS = [2023, 2024, 2025, 2026];
+  const files = CURATED_DOMAINS.flatMap(d =>
+    CURATED_YEARS.map(y => `data/papers_curated_${d}_${y}.json`)
+  );
   const results = await Promise.all(
     files.map(f =>
       fetch(f).then(r => r.ok ? r.json() : []).catch(() => [])

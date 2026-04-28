@@ -21,7 +21,7 @@ REMOTE = "https://raw.githubusercontent.com/Jefferyzhifeng/Paperscope-hub/main/o
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend", "data")
 
 DOMAINS = ["world_model", "physical_ai", "medical_ai"]
-WORLD_MODEL_YEARS = [2023, 2024, 2025, 2026]
+YEARS = [2023, 2024, 2025, 2026]
 
 KEEP = [
     "id", "title", "authors", "published", "year", "month",
@@ -69,24 +69,18 @@ def main():
     papers = [p for p in papers if (p.get("year") or 0) >= 2023 and p.get("venue")]
     print(f"Total after filter (2023+, has venue): {len(papers)}\n")
 
-    # ── world_model：按年份拆分 ────────────────────────────────────────────────
-    wm_by_year: dict = {y: [] for y in WORLD_MODEL_YEARS}
-    for p in papers:
-        if "world_model" not in (p.get("_domains") or []):
-            continue
-        year = p.get("year")
-        if year in wm_by_year:
-            wm_by_year[year].append(slim(p))
-
-    for year in WORLD_MODEL_YEARS:
-        path = os.path.join(DATA_DIR, f"papers_curated_world_model_{year}.json")
-        write_file(path, wm_by_year[year], args.dry_run)
-
-    # ── physical_ai / medical_ai：单文件 ──────────────────────────────────────
-    for domain in ["physical_ai", "medical_ai"]:
-        bucket = [slim(p) for p in papers if domain in (p.get("_domains") or [])]
-        path = os.path.join(DATA_DIR, f"papers_curated_{domain}.json")
-        write_file(path, bucket, args.dry_run)
+    # ── 三个领域全部按年份拆分 ────────────────────────────────────────────────
+    for domain in DOMAINS:
+        by_year: dict = {y: [] for y in YEARS}
+        for p in papers:
+            if domain not in (p.get("_domains") or []):
+                continue
+            year = p.get("year")
+            if year in by_year:
+                by_year[year].append(slim(p))
+        for year in YEARS:
+            path = os.path.join(DATA_DIR, f"papers_curated_{domain}_{year}.json")
+            write_file(path, by_year[year], args.dry_run)
 
     if args.dry_run:
         print("\n[dry-run] 未写文件")

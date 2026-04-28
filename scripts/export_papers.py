@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""从 Supabase 导出 arXiv 论文到 frontend/data/papers.json（增量合并）
+"""从 Supabase 导出 arXiv 论文到 frontend/data/papers_{year}.json（按年增量合并）
 
 用法：
     python scripts/export_papers.py
@@ -7,16 +7,19 @@
 """
 from __future__ import annotations
 import argparse, json, os, sys
-from datetime import date
+from datetime import date, timedelta
+from collections import defaultdict
 
-LOCAL = os.path.join(os.path.dirname(__file__), "..", "frontend", "data", "papers.json")
-META = os.path.join(os.path.dirname(__file__), "..", "frontend", "data", "meta.json")
-KEEP_FIELDS = ["id", "title", "abstract", "authors", "published", "year", "month",
-               "pdf_url", "arxiv_url", "code", "has_code", "type", "_domains", "_tasks"]
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend", "data")
+META = os.path.join(DATA_DIR, "meta.json")
+YEARS = [2023, 2024, 2025, 2026]
+
+
+def local_path(year: int) -> str:
+    return os.path.join(DATA_DIR, f"papers_{year}.json")
 
 
 def strip_prefix(raw_id: str) -> str:
-    """把 'arxiv:2604.xxxxx' 统一成 '2604.xxxxx'"""
     for prefix in ("arxiv:", "s2:", "pubmed:"):
         if raw_id.startswith(prefix):
             return raw_id[len(prefix):]
@@ -26,10 +29,8 @@ def strip_prefix(raw_id: str) -> str:
 def to_frontend(row: dict) -> dict:
     published = (row.get("published_at") or "")[:10]
     month = int(published[5:7]) if len(published) >= 7 else None
-
     code_links = row.get("code_links") or []
     code_url = code_links[0] if isinstance(code_links, list) and code_links else ""
-
     return {
         "id": strip_prefix(row["id"]),
         "title": row.get("title", ""),
@@ -56,15 +57,21 @@ def main():
     from backend.db import get_client
     client = get_client()
 
-    # 加载现有本地数据
-    local: list[dict] = []
-    if os.path.exists(LOCAL):
-        local = json.load(open(LOCAL, encoding="utf-8"))
-    seen = {p["id"] for p in local if p.get("id")}
-    print(f"Local: {len(local)} papers")
+    # 加载现有本地各年份文件
+    local_by_year: dict[int, list] = {}
+    seen: set[str] = set()
+    for year in YEARS:
+        path = local_path(year)
+        if os.path.exists(path):
+            papers = json.load(open(path, encoding="utf-8"))
+            local_by_year[year] = papers
+            seen.update(p["id"] for p in papers if p.get("id"))
+        else:
+            local_by_year[year] = []
+    total_local = sum(len(v) for v in local_by_year.values())
+    print(f"Local: {total_local} papers across {len(YEARS)} year files")
 
-    # 从 Supabase 拉取最近 6 天的 arxiv 论文
-    from datetime import timedelta
+    # 从 Supabase 拉取最近 3 天的 arxiv 论文
     since = (date.today() - timedelta(days=3)).isoformat()
     remote: list[dict] = []
     page_size = 1000
@@ -88,30 +95,44 @@ def main():
         offset += page_size
     print(f"Supabase: {len(remote)} arxiv papers (since {since})")
 
-    new_papers = [to_frontend(r) for r in remote if r["id"] not in seen and (r.get("domains") or [])]
-    print(f"New: {len(new_papers)} papers to append")
+    new_by_year: dict[int, list] = defaultdict(list)
+    for r in remote:
+        pid = strip_prefix(r["id"])
+        if pid in seen or not (r.get("domains") or []):
+            continue
+        p = to_frontend(r)
+        year = p.get("year") or date.today().year
+        if year in YEARS:
+            new_by_year[year].append(p)
 
-    if not new_papers:
+    total_new = sum(len(v) for v in new_by_year.values())
+    print(f"New: {total_new} papers to append")
+
+    if not total_new:
         print("Nothing to add.")
         return 0
 
     if args.dry_run:
-        for p in new_papers[:5]:
-            print(f"  + {p['id']} {p['published']} {p['title'][:80]}")
-        if len(new_papers) > 5:
-            print(f"  ... and {len(new_papers) - 5} more")
+        for year, papers in sorted(new_by_year.items()):
+            print(f"  {year}: +{len(papers)} papers")
         return 0
 
-    merged = local + new_papers
-    tmp = LOCAL + ".tmp"
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(merged, f, ensure_ascii=False, separators=(",", ":"))
-    os.replace(tmp, LOCAL)
-    size_mb = os.path.getsize(LOCAL) / 1024 / 1024
-    print(f"Wrote {len(merged)} papers ({size_mb:.2f} MB) to {LOCAL}")
+    latest = ""
+    for year in YEARS:
+        if not new_by_year[year]:
+            continue
+        merged = local_by_year[year] + new_by_year[year]
+        path = local_path(year)
+        tmp = path + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(merged, f, ensure_ascii=False, separators=(",", ":"))
+        os.replace(tmp, path)
+        size_mb = os.path.getsize(path) / 1024 / 1024
+        print(f"  papers_{year}.json: {len(merged)} papers ({size_mb:.1f} MB)")
+        yr_latest = max((p.get("published") or "" for p in merged if p.get("published")), default="")
+        if yr_latest > latest:
+            latest = yr_latest
 
-    # 更新 meta.json 最新日期
-    latest = max((p.get("published") or "" for p in merged if p.get("published")), default="")
     if latest:
         with open(META, "w", encoding="utf-8") as f:
             json.dump({"last_updated": latest[:10]}, f)
