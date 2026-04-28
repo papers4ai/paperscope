@@ -261,68 +261,118 @@ function renderFavModalBody() {
   body.querySelectorAll(".paper-tag-add-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      openTagPicker(btn.dataset.paperId, btn);
+      openTagPicker(btn.dataset.paperId, btn, { inFavModal: true });
     });
   });
 }
 
 /** 浮动标签选择气泡 */
-function openTagPicker(paperId, anchorEl) {
-  // 关闭已有的 picker
+/**
+ * 通用标签选择气泡
+ * @param {string} paperId
+ * @param {HTMLElement} anchorEl  气泡定位锚点
+ * @param {object} opts
+ *   opts.inFavModal  {boolean}  是否在收藏弹窗内（影响关闭后的刷新行为）
+ *   opts.onDone      {Function} 选择/跳过后的回调
+ */
+function openTagPicker(paperId, anchorEl, opts = {}) {
   closeTagPicker();
-
-  if (!favTags.length) {
-    // 没有标签时提示去创建
-    renderTagSidebar(true);
-    return;
-  }
 
   const assigned = paperTags[paperId] || [];
   const popup = document.createElement("div");
   popup.className = "tag-picker-popup";
   popup.id = "tag-picker-popup";
 
-  popup.innerHTML = favTags.map(t => `
+  const tagRows = favTags.map(t => `
     <div class="tag-picker-item" data-tag-id="${t.id}">
       <span class="fav-tag-dot" style="background:${t.color}"></span>
       <span>${esc(t.name)}</span>
       ${assigned.includes(t.id) ? `<span class="tag-picker-check">✓</span>` : ""}
-    </div>`).join("") +
-    `<div class="tag-picker-item tag-picker-new" id="tag-picker-new-btn">＋ 新建标签</div>`;
+    </div>`).join("");
+
+  const emptyHint = !favTags.length
+    ? `<div class="tag-picker-empty">暂无标签</div>` : "";
+
+  // "跳过"只在收藏时弹出（inFavModal=false）才显示
+  const skipRow = !opts.inFavModal
+    ? `<div class="tag-picker-item tag-picker-skip" id="tag-picker-skip-btn" style="border-top:1px solid var(--border);margin-top:.3rem;padding-top:.35rem;color:var(--text-muted)">— 暂不添加标签</div>`
+    : "";
+
+  popup.innerHTML = emptyHint + tagRows +
+    `<div class="tag-picker-item tag-picker-new" id="tag-picker-new-btn" style="border-top:1px solid var(--border);margin-top:.3rem;padding-top:.35rem;color:var(--accent)">＋ 新建标签</div>` +
+    skipRow;
 
   document.body.appendChild(popup);
 
   // 定位气泡
   const rect = anchorEl.getBoundingClientRect();
-  const popupW = 165;
+  const popupW = 172;
   let left = rect.left;
   if (left + popupW > window.innerWidth - 10) left = window.innerWidth - popupW - 10;
-  popup.style.top = (rect.bottom + 6) + "px";
+  if (left < 10) left = 10;
+  let top = rect.bottom + 6;
+  // 若超出屏幕底部，改为向上弹出
+  if (top + 160 > window.innerHeight - 10) top = rect.top - 160;
+  popup.style.top = top + "px";
   popup.style.left = left + "px";
+
+  const done = (tagId) => {
+    closeTagPicker();
+    if (opts.inFavModal) { renderTagSidebar(); renderFavModalBody(); }
+    opts.onDone?.(tagId);
+  };
 
   popup.querySelectorAll(".tag-picker-item[data-tag-id]").forEach(item => {
     item.addEventListener("click", (e) => {
       e.stopPropagation();
       togglePaperTag(paperId, item.dataset.tagId);
-      closeTagPicker();
-      renderTagSidebar();
-      renderFavModalBody();
+      done(item.dataset.tagId);
     });
   });
 
   popup.querySelector("#tag-picker-new-btn")?.addEventListener("click", (e) => {
     e.stopPropagation();
     closeTagPicker();
-    renderTagSidebar(true);
+    if (opts.inFavModal) {
+      renderTagSidebar(true);
+    } else {
+      // 在主列表中：打开收藏弹窗并进入新建标签状态
+      openFavModal();
+      renderTagSidebar(true);
+    }
+  });
+
+  popup.querySelector("#tag-picker-skip-btn")?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    done(null);
   });
 
   // 点击外部关闭
   setTimeout(() => {
     _tagPickerCloseHandler = (e) => {
-      if (!popup.contains(e.target)) closeTagPicker();
+      if (!popup.contains(e.target)) {
+        closeTagPicker();
+        opts.onDone?.(null);
+      }
     };
     document.addEventListener("click", _tagPickerCloseHandler, { once: false });
   }, 10);
+}
+
+/**
+ * 收藏一篇论文并立即弹出标签选择气泡
+ * @param {string} paperId
+ * @param {HTMLElement} btnEl  ☆ 按钮元素（用于定位气泡）
+ * @param {Function} onFaved   收藏成功后更新 UI 的回调 (btn, id) => void
+ */
+function addToFavWithTagPicker(paperId, btnEl, onFaved) {
+  favorites.add(paperId);
+  saveFavorites();
+  onFaved?.(btnEl, paperId);
+  openTagPicker(paperId, btnEl, {
+    inFavModal: false,
+    onDone: () => { /* 标签已选或跳过，不需额外操作 */ }
+  });
 }
 
 function closeTagPicker() {
@@ -543,10 +593,19 @@ function render(papers) {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
       const id = btn.dataset.fav;
-      if (favorites.has(id)) { favorites.delete(id); btn.classList.remove("active"); btn.textContent = "☆"; }
-      else { favorites.add(id); btn.classList.add("active"); btn.textContent = "★"; }
-      saveFavorites();
-      if (state.favorites) reload();
+      if (favorites.has(id)) {
+        // 取消收藏
+        favorites.delete(id);
+        btn.classList.remove("active"); btn.textContent = "☆";
+        saveFavorites();
+        if (state.favorites) reload();
+      } else {
+        // 新增收藏 → 弹出标签选择
+        addToFavWithTagPicker(id, btn, (b) => {
+          b.classList.add("active"); b.textContent = "★";
+          if (state.favorites) reload();
+        });
+      }
     });
   });
 }
