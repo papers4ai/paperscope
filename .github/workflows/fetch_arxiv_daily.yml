@@ -31,7 +31,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: python -m backend.main arxiv-daily --days 6
+        run: python -m backend.main arxiv-daily --days 3
       - name: Export Supabase → papers.json
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

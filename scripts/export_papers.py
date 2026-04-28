@@ -64,7 +64,7 @@ def main():
 
     # 从 Supabase 拉取最近 6 天的 arxiv 论文
     from datetime import timedelta
-    since = (date.today() - timedelta(days=6)).isoformat()
+    since = (date.today() - timedelta(days=3)).isoformat()
     remote: list[dict] = []
     page_size = 1000
     offset = 0
