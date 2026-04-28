@@ -36,26 +36,27 @@
 }
 
 :root[data-theme="light"] {
-  --bg: #f0f0f8;
+  --bg: #f4f6f9;
   --card-bg: #ffffff;
-  --card-bg-hover: #f8f8ff;
-  --text: #111122;
-  --text-secondary: #44445a;
-  --text-muted: #888898;
-  --border: #e0e0ec;
-  --border-hover: #c4c4d8;
-  --accent: #6366f1;
-  --header-bg: rgba(248, 248, 255, 0.95);
-  --surface-bg: rgba(0, 0, 0, 0.025);
-  --surface-border: rgba(0, 0, 0, 0.05);
-  --surface-hover-border: rgba(0, 0, 0, 0.10);
-  --header-border: rgba(0, 0, 0, 0.06);
-  --logo-gradient: linear-gradient(135deg, #1a1a2e 30%, #6366f1);
-  --glow-a: rgba(99, 102, 241, 0.07);
-  --glow-b: rgba(16, 185, 129, 0.05);
-  --glow-c: rgba(244, 63, 94, 0.05);
-  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.11);
+  --card-bg-hover: #fafbfe;
+  --text: #0f1117;
+  --text-secondary: #3d3f52;
+  --text-muted: #7c7f96;
+  --border: #e2e5ed;
+  --border-hover: #b8bdcc;
+  --accent: #5b5ef6;
+  --header-bg: rgba(255, 255, 255, 0.97);
+  --surface-bg: rgba(0, 0, 0, 0.03);
+  --surface-border: rgba(0, 0, 0, 0.07);
+  --surface-hover-border: rgba(0, 0, 0, 0.13);
+  --header-border: rgba(0, 0, 0, 0.07);
+  --logo-gradient: linear-gradient(135deg, #1e1b4b 30%, #5b5ef6);
+  --glow-a: rgba(91, 94, 246, 0.06);
+  --glow-b: rgba(16, 185, 129, 0.04);
+  --glow-c: rgba(244, 63, 94, 0.04);
+  --shadow-card: 0 1px 4px rgba(0,0,0,.05), 0 4px 16px rgba(0,0,0,.05);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,.07), 0 12px 32px rgba(0,0,0,.08);
+  --glass-blur: blur(16px);
 }
 
 * { box-sizing: border-box; }
@@ -75,6 +76,12 @@ body::before {
     linear-gradient(180deg, transparent 0%, rgba(5,5,8,0.5) 100%);
   animation: bgPulse 20s ease-in-out infinite;
 }
+:root[data-theme="light"] body::before {
+  background:
+    radial-gradient(ellipse 100% 70% at 10% -10%, var(--glow-a) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 90% 110%, var(--glow-b) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, var(--glow-c) 0%, transparent 60%);
+}
 @keyframes bgPulse { 0%,100% { opacity: 1; } 50% { opacity: .8; } }
 
 /* ========== 顶部 topbar ========== */
@@ -86,6 +93,9 @@ body::before {
   backdrop-filter: var(--glass-blur) saturate(180%);
   -webkit-backdrop-filter: var(--glass-blur) saturate(180%);
   box-shadow: 0 4px 30px rgba(0,0,0,.3);
+}
+:root[data-theme="light"] .topbar {
+  box-shadow: 0 1px 0 var(--header-border), 0 2px 8px rgba(0,0,0,.04);
 }
 .brand {
   font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
@@ -417,6 +427,19 @@ body.mode-curated .feed-only { display: none; }
 .paper-card.domain-world_model:hover { box-shadow: 0 16px 48px rgba(99,102,241,.18); }
 .paper-card.domain-physical_ai:hover { box-shadow: 0 16px 48px rgba(16,185,129,.18); }
 .paper-card.domain-medical_ai:hover  { box-shadow: 0 16px 48px rgba(244,63,94,.18); }
+
+:root[data-theme="light"] .paper-card {
+  box-shadow: var(--shadow-card);
+  border-color: #e2e5ed;
+}
+:root[data-theme="light"] .paper-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: #c8cde0;
+}
+:root[data-theme="light"] .paper-card::after { display: none; }
+:root[data-theme="light"] .paper-card.domain-world_model:hover { box-shadow: 0 8px 28px rgba(91,94,246,.13), 0 2px 8px rgba(0,0,0,.06); }
+:root[data-theme="light"] .paper-card.domain-physical_ai:hover { box-shadow: 0 8px 28px rgba(16,185,129,.12), 0 2px 8px rgba(0,0,0,.06); }
+:root[data-theme="light"] .paper-card.domain-medical_ai:hover  { box-shadow: 0 8px 28px rgba(244,63,94,.12),  0 2px 8px rgba(0,0,0,.06); }
 :root[data-theme="light"] .paper-card:hover { border-color: #b8b8c8; }
 .fav-btn {
   position: absolute; bottom: .55rem; right: .65rem; z-index: 2;
