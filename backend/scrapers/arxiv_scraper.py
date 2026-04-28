@@ -14,9 +14,10 @@ import requests
 
 from backend.config import DOMAINS
 
-ARXIV_API = "http://export.arxiv.org/api/query"
+ARXIV_API = "https://export.arxiv.org/api/query"
 DEFAULT_DELAY = 3.0
 MAX_RESULTS_PER_PAGE = 100
+MAX_RETRIES = 3
 
 
 def _build_query(keywords: list[str], days: int) -> str:
@@ -36,10 +37,19 @@ def _fetch_page(query: str, start: int, page_size: int) -> list[dict]:
         "sortOrder": "descending",
     }
     url = f"{ARXIV_API}?" + "&".join(f"{k}={quote_plus(str(v))}" for k, v in params.items())
-    r = requests.get(url, timeout=30)
-    r.raise_for_status()
-    feed = feedparser.parse(r.text)
-    return [_parse_entry(e) for e in feed.entries]
+    for attempt in range(MAX_RETRIES):
+        try:
+            r = requests.get(url, timeout=60)
+            r.raise_for_status()
+            feed = feedparser.parse(r.text)
+            return [_parse_entry(e) for e in feed.entries]
+        except requests.exceptions.Timeout:
+            if attempt < MAX_RETRIES - 1:
+                wait = 10 * (attempt + 1)
+                print(f"  [arxiv] timeout, retry {attempt + 1}/{MAX_RETRIES} in {wait}s...")
+                time.sleep(wait)
+            else:
+                raise
 
 
 def _parse_entry(entry) -> dict:
