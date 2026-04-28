@@ -1,7 +1,7 @@
 const i18n = {
   en: {
     // Navigation
-    feed: "Feed",
+    feed: "arXiv",
     curated: "Curated",
     trending: "Trending",
     favorites: "Favorites",
@@ -95,7 +95,7 @@ const i18n = {
   },
   zh: {
     // Navigation
-    feed: "速览",
+    feed: "arXiv",
     curated: "精选",
     trending: "热榜",
     favorites: "收藏",
