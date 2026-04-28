@@ -119,6 +119,14 @@ const i18n = {
     sort: "Sort",
     latestPublished: "Latest Published",
     mostCited: "Most Cited",
+    subdomainHint: "💡 Click on any domain tab above (🌍 World Model / 🤖 Physical AI / 🏥 Medical AI), or directly click the stats cards below to expand and view subcategories and new this week",
+    subdomainSub: "Subcategories · {count} topics · Hover for details",
+    showAll: "Show all {count} ↓",
+    collapse: "Collapse ↑",
+    articles: " articles",
+    newThisWeek: ", {count} new this week",
+    clearFilter: "Clear Filter ✕",
+    noData: "No data",
 
     // Auth
     signIn: "Sign In",
@@ -254,6 +262,14 @@ const i18n = {
     sort: "排序",
     latestPublished: "最新发表",
     mostCited: "引用最多",
+    subdomainHint: "💡 点击上方 <b>🌍 World Model</b> / <b>🤖 Physical AI</b> / <b>🏥 Medical AI</b> 任一领域 tab，<b>或直接点击下方统计卡片</b>，可展开查看该方向的细分主题与本周新增",
+    subdomainSub: "细分方向 · 共 {count} 个主题 · 悬停查看说明",
+    showAll: "查看全部 {count} ↓",
+    collapse: "收起 ↑",
+    articles: " 篇",
+    newThisWeek: "，本周新增 {count}",
+    clearFilter: "清除筛选 ✕",
+    noData: "暂无数据",
 
     // Auth
     signIn: "登录",

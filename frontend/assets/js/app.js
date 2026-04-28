@@ -508,7 +508,7 @@ async function renderVenuePicker(domain) {
         const cnt = counts[v] || 0;
         const active = state.venue === v ? "active" : "";
         const hasCnt = cnt > 0;
-        return `<button class="vpc-chip ${active} ${hasCnt ? "has-papers" : ""}" data-venue="${esc(v)}" title="${esc(v)} · ${hasCnt ? cnt + " 篇" : "暂无数据"}">
+        return `<button class="vpc-chip ${active} ${hasCnt ? "has-papers" : ""}" data-venue="${esc(v)}" title="${esc(v)} · ${hasCnt ? cnt + t("articles") : t("noData")}">
           ${esc(v)}${hasCnt ? `<span class="vpc-cnt">${cnt}</span>` : ""}
         </button>`;
       }).join("");
@@ -521,7 +521,7 @@ async function renderVenuePicker(domain) {
       </div>`;
     });
   });
-  body.innerHTML = html || `<div class="loading">暂无数据</div>`;
+  body.innerHTML = html || `<div class="loading">${t("noData")}</div>`;
 }
 
 
@@ -868,7 +868,7 @@ function renderTrends(trends) {
       <span class="trend-count">${total.toLocaleString("en-US")}</span>
     </div>`;
   }).join("");
-  $("#chart-trends").innerHTML = (rowsHtml ? legend + rowsHtml : `<div class="loading">暂无数据</div>`);
+  $("#chart-trends").innerHTML = (rowsHtml ? legend + rowsHtml : `<div class="loading">${t("noData")}</div>`);
 }
 
 function renderHotTopics(domain) {
@@ -882,7 +882,7 @@ function renderHotTopics(domain) {
     ).join("")}
   </div>`;
   if (!items.length) {
-    $("#chart-trending").innerHTML = tabsHtml + `<div class="loading">暂无数据</div>`;
+    $("#chart-trending").innerHTML = tabsHtml + `<div class="loading">${t("noData")}</div>`;
     return;
   }
   const max = Math.max(...items.map(i => i.count), 1);
@@ -900,7 +900,7 @@ function renderHotTopics(domain) {
     </div>`;
   }).join("");
   const more = items.length > TOP
-    ? `<button class="hot-show-all" id="hot-show-all">${hotExpanded ? "收起 ↑" : `查看全部 ${items.length} 个 ↓`}</button>`
+    ? `<button class="hot-show-all" id="hot-show-all">${hotExpanded ? t("collapse") : t("showAll").replace("{count}", items.length)}</button>`
     : "";
   $("#chart-trending").innerHTML = tabsHtml + itemsHtml + more;
 }
@@ -910,7 +910,7 @@ function renderSubdomain() {
   if (state.domain === "all") {
     sec.hidden = false;
     sec.innerHTML = `<div class="subdomain-hint">
-      💡 点击上方 <b>🌍 World Model</b> / <b>🤖 Physical AI</b> / <b>🏥 Medical AI</b> 任一领域 tab，<b>或直接点击下方统计卡片</b>，可展开查看该方向的细分主题与本周新增
+      ${t("subdomainHint")}
     </div>`;
     return;
   }
@@ -934,7 +934,9 @@ function renderSubdomain() {
 
   const itemsHtml = items.map(({ task, total, fresh }) => {
     const m = taskMeta[task] || {};
-    const tip = `${m.zh || task}${m.en ? " · " + m.en : ""}（${total} 篇${fresh ? "，本周新增 " + fresh : ""}）`;
+    const articlesText = t("articles");
+    const newThisWeekText = fresh ? t("newThisWeek").replace("{count}", fresh) : "";
+    const tip = `${m.zh || task}${m.en ? " · " + m.en : ""}（${total}${articlesText}${newThisWeekText}）`;
     const active = state.task === task ? "active" : "";
     const badge = fresh > 0 ? `<span class="new-badge">+${fresh}</span>` : "";
     return `<div class="subdomain-item ${active} ${d}" data-task="${esc(task)}" title="${esc(tip)}">
@@ -946,10 +948,10 @@ function renderSubdomain() {
   sec.innerHTML = `
     <div class="subdomain-title">
       <span class="subdomain-domain-tag ${d}">${meta.icon || ""} ${meta.label || d}</span>
-      <span class="subdomain-sub">细分方向 · 共 ${items.length} 个主题 · 悬停查看说明</span>
-      ${state.task ? `<button class="subdomain-clear" id="subdomain-clear">清除筛选 ✕</button>` : ""}
+      <span class="subdomain-sub">${t("subdomainSub").replace("{count}", items.length)}</span>
+      ${state.task ? `<button class="subdomain-clear" id="subdomain-clear">${t("clearFilter")}</button>` : ""}
     </div>
-    <div class="subdomain-grid" id="subdomain-grid">${itemsHtml || '<div class="loading">暂无数据</div>'}</div>
+    <div class="subdomain-grid" id="subdomain-grid">${itemsHtml || '<div class="loading">' + t("noData") + '</div>'}</div>
   `;
 }
 
