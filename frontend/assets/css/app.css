@@ -113,6 +113,10 @@ body::before {
   transition: border-color .2s;
 }
 .search:focus { outline: none; border-color: var(--accent); }
+.topbar-right {
+  display: flex; align-items: center; gap: 8px;
+  margin-left: auto; flex-shrink: 0;
+}
 .btn-auth {
   padding: 8px 16px; border: none; border-radius: 8px;
   background: linear-gradient(135deg, var(--accent), #a78bfa);
