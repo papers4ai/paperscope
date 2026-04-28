@@ -27,6 +27,13 @@
     <div class="topbar-right">
       <button class="theme-toggle" id="btn-favorites-summary" title="我的收藏">⭐ <span id="fav-count">0</span></button>
       <button class="theme-toggle" id="theme-toggle" title="切换主题">🌙</button>
+      <button class="btn-about" id="btn-about" title="关于项目">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+      </button>
       <button class="btn-auth" id="btn-auth">登录</button>
     </div>
   </header>
@@ -159,6 +166,301 @@
         </div>
       </section>
 
+      <section class="trending-view" id="trending-view" hidden>
+        <div class="hot-update-info">
+          <span id="hot-last-updated">加载中...</span>
+          <button class="hot-refresh-btn" id="hot-refresh-btn" title="手动刷新">🔄</button>
+        </div>
+        <!-- 领域概览卡片 -->
+        <div class="trending-overview">
+          <div class="overview-card world-model-card">
+            <div class="overview-icon">🌍</div>
+            <div class="overview-content">
+              <h3>World Model</h3>
+              <p class="overview-desc">虚拟世界构建与模拟</p>
+              <div class="overview-stats">
+                <span class="stat-item">📊 <span class="stat-num">143</span> 热门主题</span>
+                <span class="stat-item">📈 <span class="stat-num">+45%</span> 增长率</span>
+              </div>
+            </div>
+            <div class="overview-trend up">↑</div>
+          </div>
+          <div class="overview-card physical-ai-card">
+            <div class="overview-icon">🤖</div>
+            <div class="overview-content">
+              <h3>Physical AI</h3>
+              <p class="overview-desc">物理世界智能感知与控制</p>
+              <div class="overview-stats">
+                <span class="stat-item">📊 <span class="stat-num">61</span> 热门主题</span>
+                <span class="stat-item">📈 <span class="stat-num">+32%</span> 增长率</span>
+              </div>
+            </div>
+            <div class="overview-trend up">↑</div>
+          </div>
+          <div class="overview-card medical-ai-card">
+            <div class="overview-icon">🏥</div>
+            <div class="overview-content">
+              <h3>Medical AI</h3>
+              <p class="overview-desc">医疗健康智能应用</p>
+              <div class="overview-stats">
+                <span class="stat-item">📊 <span class="stat-num">11</span> 热门主题</span>
+                <span class="stat-item">📈 <span class="stat-num">+58%</span> 增长率</span>
+              </div>
+            </div>
+            <div class="overview-trend up">↑</div>
+          </div>
+        </div>
+
+        <!-- 热门主题对比 -->
+        <div class="trending-section">
+          <div class="section-header">
+            <h2>🔥 领域热点对比</h2>
+            <p class="section-desc">近6个月各领域热门研究主题分布</p>
+          </div>
+          <div class="trending-comparison">
+            <div class="comparison-chart">
+              <div class="chart-title">热门主题热度</div>
+              <div class="bar-chart-container">
+                <div class="bar-item">
+                  <span class="bar-label">Video Generation</span>
+                  <div class="bar-wrapper">
+                    <div class="bar world-model-bar" style="width: 100%"></div>
+                  </div>
+                  <span class="bar-value">143</span>
+                </div>
+                <div class="bar-item">
+                  <span class="bar-label">Robotic Manipulation</span>
+                  <div class="bar-wrapper">
+                    <div class="bar physical-ai-bar" style="width: 42.6%"></div>
+                  </div>
+                  <span class="bar-value">61</span>
+                </div>
+                <div class="bar-item">
+                  <span class="bar-label">Drug Discovery</span>
+                  <div class="bar-wrapper">
+                    <div class="bar medical-ai-bar" style="width: 7.7%"></div>
+                  </div>
+                  <span class="bar-value">11</span>
+                </div>
+                <div class="bar-item">
+                  <span class="bar-label">Video Diffusion</span>
+                  <div class="bar-wrapper">
+                    <div class="bar world-model-bar" style="width: 26.6%"></div>
+                  </div>
+                  <span class="bar-value">38</span>
+                </div>
+                <div class="bar-item">
+                  <span class="bar-label">PDEs</span>
+                  <div class="bar-wrapper">
+                    <div class="bar physical-ai-bar" style="width: 19.6%"></div>
+                  </div>
+                  <span class="bar-value">28</span>
+                </div>
+                <div class="bar-item">
+                  <span class="bar-label">Medical Imaging</span>
+                  <div class="bar-wrapper">
+                    <div class="bar medical-ai-bar" style="width: 7%"></div>
+                  </div>
+                  <span class="bar-value">10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 热度雷达图 -->
+        <div class="trending-section">
+          <div class="section-header">
+            <h2>📡 研究方向雷达图</h2>
+            <p class="section-desc">各领域在不同技术维度的表现</p>
+          </div>
+          <div class="radar-container">
+            <div class="radar-chart">
+              <svg viewBox="0 0 480 480">
+                <polygon points="240,70 390,150 390,330 240,410 90,330 90,150" fill="none" stroke="var(--border)" stroke-width="1"/>
+                <polygon points="240,120 330,180 330,300 240,360 150,300 150,180" fill="none" stroke="var(--border)" stroke-width="1"/>
+                <polygon points="240,170 280,210 280,270 240,310 200,270 200,210" fill="none" stroke="var(--border)" stroke-width="1"/>
+                <line x1="240" y1="70" x2="240" y2="410" stroke="var(--border)" stroke-width="1"/>
+                <line x1="90" y1="150" x2="390" y2="330" stroke="var(--border)" stroke-width="1"/>
+                <line x1="90" y1="330" x2="390" y2="150" stroke="var(--border)" stroke-width="1"/>
+                <text x="240" y="40" text-anchor="middle" font-size="14" fill="var(--text-secondary)">生成能力</text>
+                <text x="415" y="170" text-anchor="start" font-size="14" fill="var(--text-secondary)">物理建模</text>
+                <text x="415" y="330" text-anchor="start" font-size="14" fill="var(--text-secondary)">控制精度</text>
+                <text x="240" y="450" text-anchor="middle" font-size="14" fill="var(--text-secondary)">推理深度</text>
+                <text x="65" y="330" text-anchor="end" font-size="14" fill="var(--text-secondary)">数据效率</text>
+                <text x="65" y="170" text-anchor="end" font-size="14" fill="var(--text-secondary)">泛化能力</text>
+                <polygon class="radar-polygon world-model-radar" points="240,95 330,140 310,240 240,340 170,240 185,140" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="2"/>
+                <polygon class="radar-polygon physical-ai-radar" points="240,130 350,190 360,290 240,380 120,290 130,190" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2"/>
+                <polygon class="radar-polygon medical-ai-radar" points="240,180 290,220 280,270 240,320 200,270 210,220" fill="rgba(244,63,94,0.2)" stroke="#f43f5e" stroke-width="2"/>
+              </svg>
+              <div class="radar-legend">
+                <span class="legend-item"><span class="legend-dot world-model-dot"></span> World Model</span>
+                <span class="legend-item"><span class="legend-dot physical-ai-dot"></span> Physical AI</span>
+                <span class="legend-item"><span class="legend-dot medical-ai-dot"></span> Medical AI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 热点主题详细分析 -->
+        <div class="trending-section">
+          <div class="section-header">
+            <h2>🎯 热点主题深度分析</h2>
+            <p class="section-desc">各领域核心研究方向解析</p>
+          </div>
+          <div class="topics-grid">
+            <div class="topic-card world-model-topic">
+              <div class="topic-header">
+                <span class="topic-icon">🎬</span>
+                <div class="topic-title-row">
+                  <h3>Video Generation</h3>
+                  <span class="topic-tag">核心热点</span>
+                </div>
+              </div>
+              <p class="topic-desc">视频生成技术近期爆发，Diffusion 模型架构持续演进，从文本到视频的生成质量大幅提升。</p>
+              <div class="topic-metrics">
+                <span class="metric">🔥 热度指数: 98/100</span>
+                <span class="metric">📈 趋势: +45%</span>
+              </div>
+              <div class="topic-keywords">
+                <span>Text-to-Video</span>
+                <span>Diffusion Models</span>
+                <span>Consistency Models</span>
+              </div>
+            </div>
+            <div class="topic-card physical-ai-topic">
+              <div class="topic-header">
+                <span class="topic-icon">🦾</span>
+                <div class="topic-title-row">
+                  <h3>Robotic Manipulation</h3>
+                  <span class="topic-tag">核心热点</span>
+                </div>
+              </div>
+              <p class="topic-desc">机器人操控研究聚焦于灵巧操作和复杂环境适应，结合大语言模型实现更自然的人机交互。</p>
+              <div class="topic-metrics">
+                <span class="metric">🔥 热度指数: 87/100</span>
+                <span class="metric">📈 趋势: +32%</span>
+              </div>
+              <div class="topic-keywords">
+                <span>LLM Planning</span>
+                <span>Deformable Objects</span>
+                <span>Skill Learning</span>
+              </div>
+            </div>
+            <div class="topic-card medical-ai-topic">
+              <div class="topic-header">
+                <span class="topic-icon">💊</span>
+                <div class="topic-title-row">
+                  <h3>Drug Discovery</h3>
+                  <span class="topic-tag">新兴热点</span>
+                </div>
+              </div>
+              <p class="topic-desc">AI辅助药物发现成为新增长点，结合分子模拟和生成模型加速药物研发流程。</p>
+              <div class="topic-metrics">
+                <span class="metric">🔥 热度指数: 92/100</span>
+                <span class="metric">📈 趋势: +58%</span>
+              </div>
+              <div class="topic-keywords">
+                <span>Generative Design</span>
+                <span>Molecular Graph</span>
+                <span>Binding Affinity</span>
+              </div>
+            </div>
+            <div class="topic-card world-model-topic">
+              <div class="topic-header">
+                <span class="topic-icon">✨</span>
+                <div class="topic-title-row">
+                  <h3>Gaussian Splatting</h3>
+                  <span class="topic-tag">技术突破</span>
+                </div>
+              </div>
+              <p class="topic-desc">3D重建技术革新，Gaussian Splatting实现实时高质量渲染，推动数字孪生应用落地。</p>
+              <div class="topic-metrics">
+                <span class="metric">🔥 热度指数: 85/100</span>
+                <span class="metric">📈 趋势: +62%</span>
+              </div>
+              <div class="topic-keywords">
+                <span>3D Reconstruction</span>
+                <span>Neural Rendering</span>
+                <span>Real-time</span>
+              </div>
+            </div>
+            <div class="topic-card physical-ai-topic">
+              <div class="topic-header">
+                <span class="topic-icon">🌊</span>
+                <div class="topic-title-row">
+                  <h3>Fluid Dynamics</h3>
+                  <span class="topic-tag">基础研究</span>
+                </div>
+              </div>
+              <p class="topic-desc">基于神经网络的流体模拟取得进展，结合物理先验提升模拟精度和效率。</p>
+              <div class="topic-metrics">
+                <span class="metric">🔥 热度指数: 78/100</span>
+                <span class="metric">📈 趋势: +28%</span>
+              </div>
+              <div class="topic-keywords">
+                <span>Flow Prediction</span>
+                <span>Navier-Stokes</span>
+                <span>Neural PDE</span>
+              </div>
+            </div>
+            <div class="topic-card medical-ai-topic">
+              <div class="topic-header">
+                <span class="topic-icon">🩻</span>
+                <div class="topic-title-row">
+                  <h3>Medical Imaging</h3>
+                  <span class="topic-tag">成熟应用</span>
+                </div>
+              </div>
+              <p class="topic-desc">医学影像分析技术日趋成熟，多模态融合和自监督学习成为新方向。</p>
+              <div class="topic-metrics">
+                <span class="metric">🔥 热度指数: 88/100</span>
+                <span class="metric">📈 趋势: +35%</span>
+              </div>
+              <div class="topic-keywords">
+                <span>Segmentation</span>
+                <span>Classification</span>
+                <span>Foundation Models</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 趋势预测 -->
+        <div class="trending-section">
+          <div class="section-header">
+            <h2>🔮 趋势预测</h2>
+            <p class="section-desc">基于数据分析的未来研究方向展望</p>
+          </div>
+          <div class="predictions-container">
+            <div class="prediction-card">
+              <div class="prediction-icon">🚀</div>
+              <div class="prediction-content">
+                <h3>多模态世界模型</h3>
+                <p>整合视觉、语言、物理的统一世界模型将成为研究焦点，实现更真实的虚拟环境模拟。</p>
+                <span class="prediction-tag">2026-2027 重点方向</span>
+              </div>
+            </div>
+            <div class="prediction-card">
+              <div class="prediction-icon">⚡</div>
+              <div class="prediction-content">
+                <h3>实时物理模拟</h3>
+                <p>基于神经网络的实时物理模拟将在机器人和游戏领域广泛应用，突破传统数值方法限制。</p>
+                <span class="prediction-tag">2026-2027 重点方向</span>
+              </div>
+            </div>
+            <div class="prediction-card">
+              <div class="prediction-icon">💡</div>
+              <div class="prediction-content">
+                <h3>AI辅助精准医疗</h3>
+                <p>结合大语言模型和医学数据，实现个性化治疗方案推荐和疾病风险预测。</p>
+                <span class="prediction-tag">2026-2027 重点方向</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="paper-list" id="paper-list">
         <div class="loading">加载中...</div>
       </section>
@@ -226,6 +528,67 @@
 
   <!-- 不蒜子访客统计（异步，不阻塞渲染） -->
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <!-- ========== About Modal ========== -->
+  <div class="about-modal" id="about-modal" hidden>
+    <div class="about-backdrop" id="about-backdrop"></div>
+    <div class="about-content-wrapper">
+      <div class="about-modal-content">
+        <div class="about-header">
+          <div class="about-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+          </div>
+          <h2>关于 Paperscope</h2>
+          <p class="about-tagline">探索人工智能前沿研究的一站式平台</p>
+        </div>
+        
+        <div class="about-features-grid">
+          <div class="feature-card">
+            <div class="feature-icon feed-icon">📡</div>
+            <h3>速览模式</h3>
+            <p>实时追踪 arXiv 最新论文，按领域分类浏览</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon curated-icon">🏆</div>
+            <h3>精选模式</h3>
+            <p>人工精选顶会顶刊论文，按期刊会议筛选</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon trending-icon">🔥</div>
+            <h3>热榜模式</h3>
+            <p>查看引用飙升论文、热门研究方向</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon favorite-icon">⭐</div>
+            <h3>收藏管理</h3>
+            <p>收藏喜欢的论文，支持标签分类和多格式导出</p>
+          </div>
+        </div>
+        
+        <div class="about-contact">
+          <h3>联系方式</h3>
+          <a href="mailto:zhifengwang686@gmail.com" class="contact-email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            zhifengwang686@gmail.com
+          </a>
+        </div>
+        
+        <button class="about-close" id="about-close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ========== Auth Modal ========== -->
   <div class="auth-modal" id="auth-modal" hidden>

@@ -727,6 +727,8 @@ let domainTasks = {           // fallback
 };
 let hotDomain = "world_model";
 let hotExpanded = false;
+let hotLastUpdated = null;
+let hotUpdateInterval = null;
 
 function tn(task) {
   const m = taskMeta[task];
@@ -993,23 +995,45 @@ function applyFeedFilters(papers) {
 // ========== 加载数据 ==========
 let feedTotal = 0;
 async function reload() {
-  $("#paper-list").innerHTML = `<div class="loading">加载中...</div>`;
   try {
-    if (state.mode === "feed") {
-      const all = (await loadFeedPapers()).map(normalizePaper);
-      const filtered = applyFeedFilters(all);
-      feedTotal = filtered.length;
-      render(filtered.slice(0, 100));
-    } else if (state.mode === "curated") {
-      const all = await loadCuratedPapers();
-      const filtered = applyCuratedFilters(all);
-      render(filtered.slice(0, 100));
+    if (state.mode === "trending") {
+      // 热榜模式：显示热榜视图，隐藏论文列表
+      $("#trending-view").hidden = false;
+      $("#paper-list").hidden = true;
+      $("#dashboard").hidden = true;
+      // 初始化更新时间
+      if (!hotLastUpdated) {
+        await refreshHotData();
+      } else {
+        const timeEl = document.getElementById("hot-last-updated");
+        if (timeEl) timeEl.textContent = formatHotUpdateTime();
+      }
     } else {
-      const papers = await listPapers(state);
-      render(papers);
+      // 其他模式：显示论文列表，隐藏热榜视图
+      $("#trending-view").hidden = true;
+      $("#paper-list").hidden = false;
+      $("#dashboard").hidden = state.mode !== "feed";
+      
+      $("#paper-list").innerHTML = `<div class="loading">加载中...</div>`;
+      
+      if (state.mode === "feed") {
+        const all = (await loadFeedPapers()).map(normalizePaper);
+        const filtered = applyFeedFilters(all);
+        feedTotal = filtered.length;
+        render(filtered.slice(0, 100));
+      } else if (state.mode === "curated") {
+        const all = await loadCuratedPapers();
+        const filtered = applyCuratedFilters(all);
+        render(filtered.slice(0, 100));
+      } else {
+        const papers = await listPapers(state);
+        render(papers);
+      }
     }
   } catch (e) {
-    $("#paper-list").innerHTML = `<div class="loading">加载失败: ${esc(e.message)}</div>`;
+    if (state.mode !== "trending") {
+      $("#paper-list").innerHTML = `<div class="loading">加载失败: ${esc(e.message)}</div>`;
+    }
   }
 }
 
@@ -1360,6 +1384,27 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape" && !authModal.hidden) closeAuthModal();
 });
 
+// ==================== About Modal ====================
+const aboutModal = $("#about-modal");
+
+function openAboutModal() {
+  aboutModal.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeAboutModal() {
+  aboutModal.hidden = true;
+  document.body.style.overflow = "";
+}
+
+$("#btn-about").addEventListener("click", openAboutModal);
+$("#about-close").addEventListener("click", closeAboutModal);
+$("#about-backdrop").addEventListener("click", closeAboutModal);
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && !aboutModal.hidden) closeAboutModal();
+});
+
 // Tab 切换：登录 / 注册
 document.querySelectorAll(".auth-tab").forEach(tab => {
   tab.addEventListener("click", () => {
@@ -1493,6 +1538,51 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
   if ((localStorage.getItem("theme") || "system") === "system") applyTheme("system");
 });
 
+// 热榜手动刷新按钮
+$("#hot-refresh-btn")?.addEventListener("click", async () => {
+  const btn = $("#hot-refresh-btn");
+  btn.style.transform = "rotate(360deg)";
+  await refreshHotData();
+  setTimeout(() => { btn.style.transform = ""; }, 500);
+});
+
+// ========== 热榜定时更新 ==========
+function formatHotUpdateTime() {
+  if (!hotLastUpdated) return "尚未更新";
+  const now = new Date();
+  const diff = Math.floor((now - hotLastUpdated) / 1000);
+  if (diff < 60) return `刚刚更新`;
+  if (diff < 3600) return `${Math.floor(diff / 60)} 分钟前更新`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)} 小时前更新`;
+  return hotLastUpdated.toLocaleString("zh-CN");
+}
+
+async function refreshHotData() {
+  try {
+    const tr = await fetch("data/trending.json?t=" + Date.now()).then(r => r.ok ? r.json() : null);
+    if (tr?.trends) {
+      trendingData = tr.trends;
+      hotLastUpdated = new Date();
+      if (state.mode === "trending") {
+        renderHotTopics(hotDomain);
+        const timeEl = document.getElementById("hot-last-updated");
+        if (timeEl) timeEl.textContent = formatHotUpdateTime();
+      }
+    }
+  } catch (e) {
+    console.warn("刷新热榜数据失败", e);
+  }
+}
+
+function startHotUpdateInterval() {
+  if (hotUpdateInterval) clearInterval(hotUpdateInterval);
+  hotUpdateInterval = setInterval(() => {
+    if (state.mode === "trending") {
+      refreshHotData();
+    }
+  }, 86400000); // 每24小时更新一次
+}
+
 // 初始化主题
 applyTheme(localStorage.getItem("theme") || "system");
 
@@ -1500,3 +1590,4 @@ applyTheme(localStorage.getItem("theme") || "system");
 updateFavCount();
 reload();
 loadDashboard();
+startHotUpdateInterval();
