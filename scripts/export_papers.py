@@ -15,7 +15,8 @@ META = os.path.join(DATA_DIR, "meta.json")
 START_YEAR = 2023
 
 def get_years() -> list[int]:
-    return list(range(START_YEAR, date.today().year + 1))
+    # +1 多包含下一年，防止年底提交的论文被丢弃
+    return list(range(START_YEAR, date.today().year + 2))
 
 
 def local_path(year: int) -> str:
@@ -106,8 +107,10 @@ def main():
             continue
         p = to_frontend(r)
         year = p.get("year") or date.today().year
-        if year in YEARS:
-            new_by_year[year].append(p)
+        # 超出范围时落回当前年，不丢弃
+        if year not in YEARS:
+            year = date.today().year
+        new_by_year[year].append(p)
 
     total_new = sum(len(v) for v in new_by_year.values())
     print(f"New: {total_new} papers to append")

@@ -32,8 +32,8 @@ function updateFavCount() {
   if (el2) el2.textContent = favorites.size;
 }
 
-// 可用年份（由 meta.json 决定，自动扩展）
-let availableYears = [2023, 2024, 2025, 2026];
+// 可用年份（由 meta.json 决定，自动扩展；初始值兜底）
+let availableYears = [2023, 2024, 2025, 2026, 2027];
 
 // 静态 arxiv 数据 (速览模式)
 let feedPapersCache = null;
