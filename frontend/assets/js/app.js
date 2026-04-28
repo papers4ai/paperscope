@@ -272,8 +272,7 @@ function paperCard(p) {
   const moreAuthors = n.authors.length > 3 ? ` · +${n.authors.length - 3}` : "";
   const taskTags = n.tasks.slice(0, 4).map((t) => `<span class="task-tag">${esc(tn(t))}</span>`).join("");
   const cite = p.citation_count > 0 ? `<span class="citation">📊 ${p.citation_count}</span>` : "";
-  const absPreview = n.abs.slice(0, 300);
-  const absHtml = n.abs ? `<p class="paper-abstract">${esc(absPreview)}${n.abs.length > 300 ? "…" : ""}</p>` : "";
+  const absHtml = n.abs ? `<p class="paper-abstract">${esc(n.abs)}</p>` : "";
 
   const domainBadges = n.domains.map(d => {
     const meta = DOMAINS[d];
