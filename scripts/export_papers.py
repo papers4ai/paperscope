@@ -54,7 +54,9 @@ def main():
     seen = {p["id"] for p in local if p.get("id")}
     print(f"Local: {len(local)} papers")
 
-    # 从 Supabase 拉取 arxiv 论文（分页）
+    # 从 Supabase 拉取最近 6 天的 arxiv 论文
+    from datetime import timedelta
+    since = (date.today() - timedelta(days=6)).isoformat()
     remote: list[dict] = []
     page_size = 1000
     offset = 0
@@ -63,6 +65,7 @@ def main():
             client.table("papers")
             .select("id,title,abstract_excerpt,authors,published_at,year,open_access_pdf,arxiv_url,code_links,paper_type,domains,tasks")
             .eq("source", "arxiv")
+            .gte("published_at", since)
             .order("published_at", desc=True)
             .range(offset, offset + page_size - 1)
             .execute()
@@ -74,7 +77,7 @@ def main():
         if len(rows) < page_size:
             break
         offset += page_size
-    print(f"Supabase: {len(remote)} arxiv papers")
+    print(f"Supabase: {len(remote)} arxiv papers (since {since})")
 
     new_papers = [to_frontend(r) for r in remote if r["id"] not in seen and (r.get("domains") or [])]
     print(f"New: {len(new_papers)} papers to append")
