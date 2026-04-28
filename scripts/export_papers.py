@@ -12,7 +12,10 @@ from collections import defaultdict
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend", "data")
 META = os.path.join(DATA_DIR, "meta.json")
-YEARS = [2023, 2024, 2025, 2026]
+START_YEAR = 2023
+
+def get_years() -> list[int]:
+    return list(range(START_YEAR, date.today().year + 1))
 
 
 def local_path(year: int) -> str:
@@ -58,6 +61,7 @@ def main():
     client = get_client()
 
     # 加载现有本地各年份文件
+    YEARS = get_years()
     local_by_year: dict[int, list] = {}
     seen: set[str] = set()
     for year in YEARS:
@@ -135,8 +139,8 @@ def main():
 
     if latest:
         with open(META, "w", encoding="utf-8") as f:
-            json.dump({"last_updated": latest[:10]}, f)
-        print(f"Updated meta.json: last_updated={latest[:10]}")
+            json.dump({"last_updated": latest[:10], "years": YEARS}, f)
+        print(f"Updated meta.json: last_updated={latest[:10]}, years={YEARS}")
     return 0
 
 

@@ -32,13 +32,15 @@ function updateFavCount() {
   if (el2) el2.textContent = favorites.size;
 }
 
+// 可用年份（由 meta.json 决定，自动扩展）
+let availableYears = [2023, 2024, 2025, 2026];
+
 // 静态 arxiv 数据 (速览模式)
 let feedPapersCache = null;
 async function loadFeedPapers() {
   if (feedPapersCache) return feedPapersCache;
-  const YEARS = [2023, 2024, 2025, 2026];
   const results = await Promise.all(
-    YEARS.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
+    availableYears.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
   );
   feedPapersCache = results.flat();
   return feedPapersCache;
@@ -50,11 +52,10 @@ let curatedPapersCache = null;
 async function loadCuratedPapers() {
   if (curatedPapersCache) return curatedPapersCache;
 
-  // 三个领域均按年份拆分
+  // 三个领域均按年份拆分（使用 meta.json 中的可用年份）
   const CURATED_DOMAINS = ["world_model", "physical_ai", "medical_ai"];
-  const CURATED_YEARS = [2023, 2024, 2025, 2026];
   const files = CURATED_DOMAINS.flatMap(d =>
-    CURATED_YEARS.map(y => `data/papers_curated_${d}_${y}.json`)
+    availableYears.map(y => `data/papers_curated_${d}_${y}.json`)
   );
   const results = await Promise.all(
     files.map(f =>
@@ -372,6 +373,26 @@ function tn(task) {
   return m ? (m.zh || m.en || task) : task;
 }
 
+function renderYearControls(years) {
+  // 侧栏年份下拉
+  const sel = document.getElementById("filter-year");
+  if (sel) {
+    const cur = sel.value;
+    sel.innerHTML = `<option value="">全部</option>` +
+      [...years].reverse().map(y => `<option value="${y}"${cur == y ? " selected" : ""}>${y}</option>`).join("");
+  }
+  // 精选年份按钮行
+  const row = document.getElementById("vp-year-row");
+  if (row) {
+    const curYear = state.year;
+    const btns = [...years].reverse().map(y =>
+      `<button class="vpy-btn${curYear == y ? " active" : ""}" data-year="${y}">${y}</button>`
+    ).join("");
+    row.innerHTML = `<span class="vp-year-label">年份</span>` +
+      `<button class="vpy-btn${!curYear ? " active" : ""}" data-year="">全部</button>` + btns;
+  }
+}
+
 async function loadStaticData() {
   try {
     const [tr, tm, meta] = await Promise.all([
@@ -382,6 +403,10 @@ async function loadStaticData() {
     if (tr?.trends) trendingData = tr.trends;
     if (tm?.tasks) taskMeta = tm.tasks;
     if (tm?.domain_tasks && Object.keys(tm.domain_tasks).length) domainTasks = tm.domain_tasks;
+    if (meta?.years?.length) {
+      availableYears = meta.years;
+      renderYearControls(availableYears);
+    }
     const footerEl = document.getElementById("footer-last-updated");
     if (footerEl && meta?.last_updated) footerEl.textContent = meta.last_updated;
   } catch (e) {
@@ -407,7 +432,7 @@ async function loadDashboard() {
 
 function computeStaticStats(papers) {
   const domains = ["world_model", "physical_ai", "medical_ai"];
-  const years = [2023, 2024, 2025, 2026];
+  const years = availableYears;
   const recentCutoff = Date.now() - 7 * 864e5;
   const stats = {
     total: papers.length,

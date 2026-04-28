@@ -21,7 +21,11 @@ REMOTE = "https://raw.githubusercontent.com/Jefferyzhifeng/Paperscope-hub/main/o
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "frontend", "data")
 
 DOMAINS = ["world_model", "physical_ai", "medical_ai"]
-YEARS = [2023, 2024, 2025, 2026]
+START_YEAR = 2023
+
+def get_years() -> list:
+    from datetime import date
+    return list(range(START_YEAR, date.today().year + 1))
 
 KEEP = [
     "id", "title", "authors", "published", "year", "month",
@@ -70,6 +74,7 @@ def main():
     print(f"Total after filter (2023+, has venue): {len(papers)}\n")
 
     # ── 三个领域全部按年份拆分 ────────────────────────────────────────────────
+    YEARS = get_years()
     for domain in DOMAINS:
         by_year: dict = {y: [] for y in YEARS}
         for p in papers:
