@@ -546,14 +546,14 @@ body.mode-curated .feed-only { display: none; }
 /* Radar Chart */
 .radar-container {
   display: flex; justify-content: center;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 .radar-chart {
   position: relative;
 }
 .radar-chart svg {
-  width: 500px;
-  height: 500px;
+  width: 420px;
+  height: 420px;
 }
 .radar-polygon {
   transition: all .3s ease;
@@ -1742,12 +1742,12 @@ body.mode-curated .feed-only { display: none; }
     padding: 10px 12px;
   }
   .radar-container {
-    padding: 20px 0;
+    padding: 15px 0;
   }
   .radar-chart svg {
     width: 100%;
     height: auto;
-    max-width: 400px;
+    max-width: 320px;
   }
   .hot-topic-grid {
     grid-template-columns: 1fr;
