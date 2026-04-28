@@ -78,17 +78,17 @@
       </button>
       <div class="sidebar-content" id="sidebar-content">
         <section class="feed-only">
-          <h3>来源</h3>
-          <label><input type="checkbox" name="source" value="arxiv" checked> arXiv 预印本</label>
+          <h3 data-i18n="source">Source</h3>
+          <label><input type="checkbox" name="source" value="arxiv" checked> <span data-i18n="arxivPreprint">arXiv Preprint</span></label>
         </section>
       <section>
-        <h3>代码</h3>
-        <label><input type="checkbox" id="filter-has-code"> 仅显示有开源代码</label>
+        <h3 data-i18n="code">Code</h3>
+        <label><input type="checkbox" id="filter-has-code"> <span data-i18n="onlyWithCode">Only show with open source code</span></label>
       </section>
       <section class="feed-only">
-        <h3>年份</h3>
+        <h3 data-i18n="year">Year</h3>
         <select id="filter-year">
-          <option value="">全部</option>
+          <option value="" data-i18n="all">All</option>
           <option value="2026">2026</option>
           <option value="2025">2025</option>
           <option value="2024">2024</option>
@@ -96,33 +96,33 @@
         </select>
       </section>
       <section class="feed-only">
-        <h3>月份</h3>
+        <h3 data-i18n="month">Month</h3>
         <select id="filter-month">
-          <option value="">全部月份</option>
-          <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
-          <option value="4">4月</option><option value="5">5月</option><option value="6">6月</option>
-          <option value="7">7月</option><option value="8">8月</option><option value="9">9月</option>
-          <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
+          <option value="" data-i18n="allMonths">All months</option>
+          <option value="1" data-i18n="jan">Jan</option><option value="2" data-i18n="feb">Feb</option><option value="3" data-i18n="mar">Mar</option>
+          <option value="4" data-i18n="apr">Apr</option><option value="5" data-i18n="may">May</option><option value="6" data-i18n="jun">Jun</option>
+          <option value="7" data-i18n="jul">Jul</option><option value="8" data-i18n="aug">Aug</option><option value="9" data-i18n="sep">Sep</option>
+          <option value="10" data-i18n="oct">Oct</option><option value="11" data-i18n="nov">Nov</option><option value="12" data-i18n="dec">Dec</option>
         </select>
       </section>
       <section>
-        <h3>收藏</h3>
-        <label><input type="checkbox" id="filter-favorites"> 仅显示收藏</label>
+        <h3 data-i18n="favorites">Favorites</h3>
+        <label><input type="checkbox" id="filter-favorites"> <span data-i18n="onlyFavorites">Only show favorites</span></label>
       </section>
       <!-- 分类/期刊会议已移至主区域 venue picker，精选模式不再在侧栏展示 -->
       <select id="filter-tier" hidden></select>
       <select id="filter-venue" hidden></select>
       <section>
-        <h3>类型</h3>
+        <h3 data-i18n="type">Type</h3>
         <label><input type="checkbox" name="type" value="Method"> Method</label>
         <label><input type="checkbox" name="type" value="Dataset"> Dataset</label>
         <label><input type="checkbox" name="type" value="Survey"> Survey</label>
       </section>
       <section>
-        <h3>排序</h3>
+        <h3 data-i18n="sort">Sort</h3>
         <select id="sort-by">
-          <option value="published_at">最新发表</option>
-          <option value="citation_count">引用最多</option>
+          <option value="published_at" data-i18n="latestPublished">Latest Published</option>
+          <option value="citation_count" data-i18n="mostCited">Most Cited</option>
         </select>
       </section>
       </div>
@@ -133,7 +133,7 @@
         <div class="stats-row">
           <div class="stat-card" data-key="total">
             <div class="stat-value">—</div>
-            <div class="stat-label">全部 arXiv 论文</div>
+            <div class="stat-label" data-i18n="totalArXivPapers">All arXiv Papers</div>
           </div>
           <div class="stat-card" data-key="world_model" data-switch-domain="world_model">
             <div class="stat-value world_model">—</div>
@@ -150,7 +150,7 @@
         </div>
 
         <section class="subdomain-section feed-only" id="subdomain-section" hidden>
-          <div class="subdomain-title">细分方向 · 本周新增</div>
+          <div class="subdomain-title" data-i18n="subdirThisWeek">Subcategories · New This Week</div>
           <div class="subdomain-grid" id="subdomain-grid"></div>
         </section>
 
@@ -166,8 +166,8 @@
           <div class="chart-panel">
             <div class="chart-header">
               <span class="chart-icon">🔥</span>
-              <span class="chart-title">热门研究方向</span>
-              <span class="chart-note">近 6 个月</span>
+              <span class="chart-title" data-i18n="hotResearchTopics">Hot Research Topics</span>
+              <span class="chart-note" data-i18n="last6Months">Last 6 months</span>
             </div>
             <div class="chart-body" id="chart-trending">加载中...</div>
           </div>
@@ -279,8 +279,8 @@
         <!-- 热度雷达图 -->
         <div class="trending-section">
           <div class="section-header">
-            <h2>📡 研究方向雷达图</h2>
-            <p class="section-desc">各领域在不同技术维度的表现</p>
+            <h2>📡 <span data-i18n="researchRadar">Research Direction Radar</span></h2>
+            <p class="section-desc" data-i18n="radarDesc">Performance of each field in different technical dimensions</p>
           </div>
           <div class="radar-container">
             <div class="radar-chart">
@@ -313,8 +313,8 @@
         <!-- 热点主题详细分析 -->
         <div class="trending-section">
           <div class="section-header">
-            <h2>🎯 热点主题深度分析</h2>
-            <p class="section-desc">各领域核心研究方向解析</p>
+            <h2>🎯 <span data-i18n="deepAnalysis">Hotspot Topic Deep Analysis</span></h2>
+            <p class="section-desc" data-i18n="deepAnalysisDesc">Analysis of core research directions in each field</p>
           </div>
           <div class="topics-grid">
             <div class="topic-card world-model-topic">
@@ -322,13 +322,13 @@
                 <span class="topic-icon">🎬</span>
                 <div class="topic-title-row">
                   <h3>Video Generation</h3>
-                  <span class="topic-tag">核心热点</span>
+                  <span class="topic-tag" data-i18n="coreHotspot">Core Hotspot</span>
                 </div>
               </div>
-              <p class="topic-desc">视频生成技术近期爆发，Diffusion 模型架构持续演进，从文本到视频的生成质量大幅提升。</p>
+              <p class="topic-desc" data-i18n="videoGenDesc">Video generation technology has recently exploded, with continuous evolution of Diffusion model architectures, significantly improving text-to-video generation quality.</p>
               <div class="topic-metrics">
-                <span class="metric">🔥 热度指数: 98/100</span>
-                <span class="metric">📈 趋势: +45%</span>
+                <span class="metric">🔥 <span data-i18n="heatIndex">Heat Index</span>: 98/100</span>
+                <span class="metric">📈 <span data-i18n="trend">Trend</span>: +45%</span>
               </div>
               <div class="topic-keywords">
                 <span>Text-to-Video</span>
@@ -341,13 +341,13 @@
                 <span class="topic-icon">🦾</span>
                 <div class="topic-title-row">
                   <h3>Robotic Manipulation</h3>
-                  <span class="topic-tag">核心热点</span>
+                  <span class="topic-tag" data-i18n="coreHotspot">Core Hotspot</span>
                 </div>
               </div>
-              <p class="topic-desc">机器人操控研究聚焦于灵巧操作和复杂环境适应，结合大语言模型实现更自然的人机交互。</p>
+              <p class="topic-desc" data-i18n="robotManipDesc">Robot manipulation research focuses on dexterous operation and complex environment adaptation, combining large language models for more natural human-machine interaction.</p>
               <div class="topic-metrics">
-                <span class="metric">🔥 热度指数: 87/100</span>
-                <span class="metric">📈 趋势: +32%</span>
+                <span class="metric">🔥 <span data-i18n="heatIndex">Heat Index</span>: 87/100</span>
+                <span class="metric">📈 <span data-i18n="trend">Trend</span>: +32%</span>
               </div>
               <div class="topic-keywords">
                 <span>LLM Planning</span>
@@ -360,13 +360,13 @@
                 <span class="topic-icon">💊</span>
                 <div class="topic-title-row">
                   <h3>Drug Discovery</h3>
-                  <span class="topic-tag">新兴热点</span>
+                  <span class="topic-tag" data-i18n="emergingHotspot">Emerging Hotspot</span>
                 </div>
               </div>
-              <p class="topic-desc">AI辅助药物发现成为新增长点，结合分子模拟和生成模型加速药物研发流程。</p>
+              <p class="topic-desc" data-i18n="drugDiscoveryDesc">AI-assisted drug discovery has become a new growth point, combining molecular simulation and generative models to accelerate the drug development process.</p>
               <div class="topic-metrics">
-                <span class="metric">🔥 热度指数: 92/100</span>
-                <span class="metric">📈 趋势: +58%</span>
+                <span class="metric">🔥 <span data-i18n="heatIndex">Heat Index</span>: 92/100</span>
+                <span class="metric">📈 <span data-i18n="trend">Trend</span>: +58%</span>
               </div>
               <div class="topic-keywords">
                 <span>Generative Design</span>
