@@ -1,6 +1,17 @@
+# HTTP / 异步
 requests>=2.31.0
-python-dotenv>=1.0.0
-supabase>=2.0.0
-openai>=1.0.0
+aiohttp>=3.9.0          # fetch_curated_fast.py 异步抓取
+
+# 数据处理
 feedparser>=6.0.0
+pandas>=2.0.0
 tqdm>=4.66.0
+
+# 环境变量
+python-dotenv>=1.0.0
+
+# Supabase（前端数据库同步）
+supabase>=2.0.0
+
+# LLM 关键词更新（支持 GLM / DeepSeek / OpenAI 等兼容接口）
+openai>=1.30.0
