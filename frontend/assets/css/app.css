@@ -1891,23 +1891,38 @@ body.mode-curated .feed-only { display: none; }
     padding: 16px;
   }
 
-  /* Detail Panel */
-  .detail-content {
-    padding: 16px;
+  /* Detail Panel — mobile content */
+  .detail-panel {
+    box-sizing: border-box;
   }
-  .detail-header h1 {
-    font-size: 18px;
+  .detail-body {
+    overflow-x: hidden;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
   }
-  .detail-authors {
-    font-size: 13px;
+  .detail-body h2 {
+    font-size: 1rem;
+    line-height: 1.4;
   }
-  .detail-abstract {
-    font-size: 14px;
-    line-height: 1.7;
+  .detail-body h4 {
+    font-size: .7rem;
+    margin-top: 16px;
   }
-  .detail-links a {
-    padding: 10px 16px;
-    font-size: 13px;
+  .detail-body p {
+    font-size: .82rem;
+    line-height: 1.65;
+  }
+  .detail-body a {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .refs-list li {
+    font-size: .78rem;
+    word-break: break-word;
   }
 
   /* Empty State */
