@@ -1390,6 +1390,14 @@ function updateAuthButton(user) {
   }
 }
 
+// 确保登录状态在页面加载后正确显示
+function ensureAuthDisplay() {
+  const sess = getStoredSession();
+  if (sess?.user) {
+    updateAuthButton(sess.user);
+  }
+}
+
 // 监听 auth 状态变化
 onAuthStateChange(user => {
   updateAuthButton(user);
@@ -1401,6 +1409,16 @@ onAuthStateChange(user => {
 
 // 处理 OAuth 回调（页面 URL hash 里携带 access_token）
 handleOAuthCallback();
+
+// 页面加载完成后再次确认登录状态显示
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", ensureAuthDisplay);
+} else {
+  ensureAuthDisplay();
+}
+
+// 定期检查登录状态（防止 localStorage 被意外清除）
+setInterval(ensureAuthDisplay, 5000);
 
 // 点击登录按钮
 authBtnEl.addEventListener("click", () => {
