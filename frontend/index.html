@@ -6,7 +6,7 @@
   <title>🔭 Paperscope — AI Research Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/app.css?v=20260429b">
+  <link rel="stylesheet" href="assets/css/app.css?v=20260429c">
   <script src="assets/js/i18n.js"></script>
   <script>
   window.__PAPERSCOPE_CONFIG__ = {
@@ -291,12 +291,12 @@
                 <line x1="240" y1="70" x2="240" y2="410" stroke="var(--border)" stroke-width="1"/>
                 <line x1="90" y1="150" x2="390" y2="330" stroke="var(--border)" stroke-width="1"/>
                 <line x1="90" y1="330" x2="390" y2="150" stroke="var(--border)" stroke-width="1"/>
-                <text x="240" y="40" text-anchor="middle" font-size="14" fill="var(--text-secondary)">生成能力</text>
-                <text x="415" y="170" text-anchor="start" font-size="14" fill="var(--text-secondary)">物理建模</text>
-                <text x="415" y="330" text-anchor="start" font-size="14" fill="var(--text-secondary)">控制精度</text>
-                <text x="240" y="450" text-anchor="middle" font-size="14" fill="var(--text-secondary)">推理深度</text>
-                <text x="65" y="330" text-anchor="end" font-size="14" fill="var(--text-secondary)">数据效率</text>
-                <text x="65" y="170" text-anchor="end" font-size="14" fill="var(--text-secondary)">泛化能力</text>
+                <text x="240" y="40" text-anchor="middle" font-size="14" fill="var(--text-secondary)" data-i18n="radarGen">Generation</text>
+                <text x="415" y="170" text-anchor="start" font-size="14" fill="var(--text-secondary)" data-i18n="radarPhysics">Physics</text>
+                <text x="415" y="330" text-anchor="start" font-size="14" fill="var(--text-secondary)" data-i18n="radarControl">Control</text>
+                <text x="240" y="450" text-anchor="middle" font-size="14" fill="var(--text-secondary)" data-i18n="radarReasoning">Reasoning</text>
+                <text x="65" y="330" text-anchor="end" font-size="14" fill="var(--text-secondary)" data-i18n="radarEfficiency">Efficiency</text>
+                <text x="65" y="170" text-anchor="end" font-size="14" fill="var(--text-secondary)" data-i18n="radarGeneralization">Generalization</text>
                 <polygon class="radar-polygon world-model-radar" points="240,95 330,140 310,240 240,340 170,240 185,140" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="2"/>
                 <polygon class="radar-polygon physical-ai-radar" points="240,130 350,190 360,290 240,380 120,290 130,190" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2"/>
                 <polygon class="radar-polygon medical-ai-radar" points="240,180 290,220 280,270 240,320 200,270 210,220" fill="rgba(244,63,94,0.2)" stroke="#f43f5e" stroke-width="2"/>
@@ -379,13 +379,13 @@
                 <span class="topic-icon">✨</span>
                 <div class="topic-title-row">
                   <h3>Gaussian Splatting</h3>
-                  <span class="topic-tag">技术突破</span>
+                  <span class="topic-tag" data-i18n="tagTechBreakthrough">Tech Breakthrough</span>
                 </div>
               </div>
-              <p class="topic-desc">3D重建技术革新，Gaussian Splatting实现实时高质量渲染，推动数字孪生应用落地。</p>
+              <p class="topic-desc" data-i18n="gaussianSplattingDesc">3D reconstruction revolution: Gaussian Splatting enables real-time high-quality rendering, accelerating digital twin applications.</p>
               <div class="topic-metrics">
-                <span class="metric">🔥 热度指数: 85/100</span>
-                <span class="metric">📈 趋势: +62%</span>
+                <span class="metric">🔥 <span data-i18n="gaussianHeat">Heat Index: 85/100</span></span>
+                <span class="metric">📈 <span data-i18n="gaussianTrend">Trend: +62%</span></span>
               </div>
               <div class="topic-keywords">
                 <span>3D Reconstruction</span>
@@ -398,13 +398,13 @@
                 <span class="topic-icon">🌊</span>
                 <div class="topic-title-row">
                   <h3>Fluid Dynamics</h3>
-                  <span class="topic-tag">基础研究</span>
+                  <span class="topic-tag" data-i18n="tagFundamental">Fundamental Research</span>
                 </div>
               </div>
-              <p class="topic-desc">基于神经网络的流体模拟取得进展，结合物理先验提升模拟精度和效率。</p>
+              <p class="topic-desc" data-i18n="fluidDynamicsDesc">Neural network-based fluid simulation advances with physics priors to improve accuracy and efficiency.</p>
               <div class="topic-metrics">
-                <span class="metric">🔥 热度指数: 78/100</span>
-                <span class="metric">📈 趋势: +28%</span>
+                <span class="metric">🔥 <span data-i18n="fluidHeat">Heat Index: 78/100</span></span>
+                <span class="metric">📈 <span data-i18n="fluidTrend">Trend: +28%</span></span>
               </div>
               <div class="topic-keywords">
                 <span>Flow Prediction</span>
@@ -417,13 +417,13 @@
                 <span class="topic-icon">🩻</span>
                 <div class="topic-title-row">
                   <h3>Medical Imaging</h3>
-                  <span class="topic-tag">成熟应用</span>
+                  <span class="topic-tag" data-i18n="tagMature">Mature Application</span>
                 </div>
               </div>
-              <p class="topic-desc">医学影像分析技术日趋成熟，多模态融合和自监督学习成为新方向。</p>
+              <p class="topic-desc" data-i18n="medicalImagingDesc">Medical image analysis matures with multimodal fusion and self-supervised learning as new directions.</p>
               <div class="topic-metrics">
-                <span class="metric">🔥 热度指数: 88/100</span>
-                <span class="metric">📈 趋势: +35%</span>
+                <span class="metric">🔥 <span data-i18n="medicalHeat">Heat Index: 88/100</span></span>
+                <span class="metric">📈 <span data-i18n="medicalTrend">Trend: +35%</span></span>
               </div>
               <div class="topic-keywords">
                 <span>Segmentation</span>
@@ -434,35 +434,35 @@
           </div>
         </div>
 
-        <!-- 趋势预测 -->
+        <!-- Trend Predictions -->
         <div class="trending-section">
           <div class="section-header">
-            <h2>🔮 趋势预测</h2>
-            <p class="section-desc">基于数据分析的未来研究方向展望</p>
+            <h2>🔮 <span data-i18n="trendPredictions">Trend Predictions</span></h2>
+            <p class="section-desc" data-i18n="trendPredictionsDesc">Future research direction outlook based on data analysis</p>
           </div>
           <div class="predictions-container">
             <div class="prediction-card">
               <div class="prediction-icon">🚀</div>
               <div class="prediction-content">
-                <h3>多模态世界模型</h3>
-                <p>整合视觉、语言、物理的统一世界模型将成为研究焦点，实现更真实的虚拟环境模拟。</p>
-                <span class="prediction-tag">2026-2027 重点方向</span>
+                <h3 data-i18n="pred1Title">Multimodal World Models</h3>
+                <p data-i18n="pred1Desc">Unified world models integrating vision, language, and physics will become the research focus for more realistic virtual environment simulation.</p>
+                <span class="prediction-tag" data-i18n="pred1Tag">2026-2027 Key Direction</span>
               </div>
             </div>
             <div class="prediction-card">
               <div class="prediction-icon">⚡</div>
               <div class="prediction-content">
-                <h3>实时物理模拟</h3>
-                <p>基于神经网络的实时物理模拟将在机器人和游戏领域广泛应用，突破传统数值方法限制。</p>
-                <span class="prediction-tag">2026-2027 重点方向</span>
+                <h3 data-i18n="pred2Title">Real-time Physics Simulation</h3>
+                <p data-i18n="pred2Desc">Neural network-based real-time physics simulation will be widely applied in robotics and gaming, breaking traditional numerical method limits.</p>
+                <span class="prediction-tag" data-i18n="pred2Tag">2026-2027 Key Direction</span>
               </div>
             </div>
             <div class="prediction-card">
               <div class="prediction-icon">💡</div>
               <div class="prediction-content">
-                <h3>AI辅助精准医疗</h3>
-                <p>结合大语言模型和医学数据，实现个性化治疗方案推荐和疾病风险预测。</p>
-                <span class="prediction-tag">2026-2027 重点方向</span>
+                <h3 data-i18n="pred3Title">AI-assisted Precision Medicine</h3>
+                <p data-i18n="pred3Desc">Combining large language models with medical data to achieve personalized treatment recommendations and disease risk prediction.</p>
+                <span class="prediction-tag" data-i18n="pred3Tag">2026-2027 Key Direction</span>
               </div>
             </div>
           </div>
@@ -478,10 +478,10 @@
       <div class="fav-modal-backdrop"></div>
       <div class="fav-modal-content">
         <div class="fav-modal-header">
-          <h2>⭐ 我的收藏 <span id="fav-modal-count" class="fav-count-pill">0</span></h2>
+          <h2><span data-i18n="myFavorites">⭐ My Favorites</span> <span id="fav-modal-count" class="fav-count-pill">0</span></h2>
           <div class="fav-modal-actions">
             <div class="fav-export-wrap">
-              <button id="fav-export" class="fav-mini-btn" title="导出收藏">📥 导出 ▾</button>
+              <button id="fav-export" class="fav-mini-btn" data-i18n-title="exportTitle" data-i18n="exportFav">📥 Export ▾</button>
               <div class="fav-export-menu" id="fav-export-menu" hidden>
                 <div class="fav-export-item" data-fmt="csv">
                   <span class="fav-export-item-icon">📊</span>
@@ -496,11 +496,11 @@
                 <div class="fav-export-item" data-fmt="json">
                   <span class="fav-export-item-icon">🗂</span>
                   <span class="fav-export-item-label">JSON</span>
-                  <span class="fav-export-item-hint">开发者 / 备份</span>
+                  <span class="fav-export-item-hint" data-i18n="jsonHint">Dev / Backup</span>
                 </div>
               </div>
             </div>
-            <button id="fav-clear" class="fav-mini-btn" title="清空收藏">🗑 清空</button>
+            <button id="fav-clear" class="fav-mini-btn" data-i18n="clearFav">🗑 Clear</button>
             <button id="fav-modal-close" class="detail-close">✕</button>
           </div>
         </div>
@@ -643,6 +643,6 @@
     </div>
   </div>
 
-  <script type="module" src="assets/js/app.js?v=20260429b"></script>
+  <script type="module" src="assets/js/app.js?v=20260429c"></script>
 </body>
 </html>

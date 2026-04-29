@@ -172,6 +172,54 @@ const i18n = {
     signInWithGithub: "Sign in with GitHub",
     signOut: "Sign Out",
 
+    // Radar chart labels
+    radarGen: "Generation",
+    radarPhysics: "Physics",
+    radarControl: "Control",
+    radarReasoning: "Reasoning",
+    radarEfficiency: "Efficiency",
+    radarGeneralization: "Generalization",
+
+    // Topic tags
+    tagTechBreakthrough: "Tech Breakthrough",
+    tagFundamental: "Fundamental Research",
+    tagMature: "Mature Application",
+
+    // Gaussian Splatting topic card
+    gaussianSplattingDesc: "3D reconstruction revolution: Gaussian Splatting enables real-time high-quality rendering, accelerating digital twin applications.",
+    gaussianHeat: "Heat Index: 85/100",
+    gaussianTrend: "Trend: +62%",
+
+    // Fluid Dynamics topic card
+    fluidDynamicsDesc: "Neural network-based fluid simulation advances with physics priors to improve accuracy and efficiency.",
+    fluidHeat: "Heat Index: 78/100",
+    fluidTrend: "Trend: +28%",
+
+    // Medical Imaging topic card
+    medicalImagingDesc: "Medical image analysis matures with multimodal fusion and self-supervised learning as new directions.",
+    medicalHeat: "Heat Index: 88/100",
+    medicalTrend: "Trend: +35%",
+
+    // Trend predictions section
+    trendPredictions: "Trend Predictions",
+    trendPredictionsDesc: "Future research direction outlook based on data analysis",
+    pred1Title: "Multimodal World Models",
+    pred1Desc: "Unified world models integrating vision, language, and physics will become the research focus for more realistic virtual environment simulation.",
+    pred1Tag: "2026-2027 Key Direction",
+    pred2Title: "Real-time Physics Simulation",
+    pred2Desc: "Neural network-based real-time physics simulation will be widely applied in robotics and gaming, breaking traditional numerical method limits.",
+    pred2Tag: "2026-2027 Key Direction",
+    pred3Title: "AI-assisted Precision Medicine",
+    pred3Desc: "Combining large language models with medical data to achieve personalized treatment recommendations and disease risk prediction.",
+    pred3Tag: "2026-2027 Key Direction",
+
+    // Favorites modal
+    myFavorites: "⭐ My Favorites",
+    exportFav: "📥 Export ▾",
+    exportTitle: "Export Favorites",
+    clearFav: "🗑 Clear",
+    jsonHint: "Dev / Backup",
+
     // Language
     language: "Language",
     english: "English",
@@ -349,6 +397,54 @@ const i18n = {
     forgotPassword: "忘记密码？",
     signInWithGithub: "用 GitHub 登录",
     signOut: "退出登录",
+
+    // Radar chart labels
+    radarGen: "生成能力",
+    radarPhysics: "物理建模",
+    radarControl: "控制精度",
+    radarReasoning: "推理深度",
+    radarEfficiency: "数据效率",
+    radarGeneralization: "泛化能力",
+
+    // Topic tags
+    tagTechBreakthrough: "技术突破",
+    tagFundamental: "基础研究",
+    tagMature: "成熟应用",
+
+    // Gaussian Splatting topic card
+    gaussianSplattingDesc: "3D重建技术革新，Gaussian Splatting实现实时高质量渲染，推动数字孪生应用落地。",
+    gaussianHeat: "热度指数: 85/100",
+    gaussianTrend: "趋势: +62%",
+
+    // Fluid Dynamics topic card
+    fluidDynamicsDesc: "基于神经网络的流体模拟取得进展，结合物理先验提升模拟精度和效率。",
+    fluidHeat: "热度指数: 78/100",
+    fluidTrend: "趋势: +28%",
+
+    // Medical Imaging topic card
+    medicalImagingDesc: "医学影像分析技术日趋成熟，多模态融合和自监督学习成为新方向。",
+    medicalHeat: "热度指数: 88/100",
+    medicalTrend: "趋势: +35%",
+
+    // Trend predictions section
+    trendPredictions: "趋势预测",
+    trendPredictionsDesc: "基于数据分析的未来研究方向展望",
+    pred1Title: "多模态世界模型",
+    pred1Desc: "整合视觉、语言、物理的统一世界模型将成为研究焦点，实现更真实的虚拟环境模拟。",
+    pred1Tag: "2026-2027 重点方向",
+    pred2Title: "实时物理模拟",
+    pred2Desc: "基于神经网络的实时物理模拟将在机器人和游戏领域广泛应用，突破传统数值方法限制。",
+    pred2Tag: "2026-2027 重点方向",
+    pred3Title: "AI辅助精准医疗",
+    pred3Desc: "结合大语言模型和医学数据，实现个性化治疗方案推荐和疾病风险预测。",
+    pred3Tag: "2026-2027 重点方向",
+
+    // Favorites modal
+    myFavorites: "⭐ 我的收藏",
+    exportFav: "📥 导出 ▾",
+    exportTitle: "导出收藏",
+    clearFav: "🗑 清空",
+    jsonHint: "开发者 / 备份",
 
     // Language
     language: "语言",
