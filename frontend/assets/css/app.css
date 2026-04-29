@@ -1679,17 +1679,18 @@ body.mode-curated .feed-only { display: none; }
   }
   .detail-close-back { display: inline; }
   .detail-close-x { display: none; }
-  /* Back button on mobile — full-width top bar */
+  /* Back button on mobile — sticky top bar inside scrollable panel */
   .detail-close {
     display: flex;
     align-items: center;
     gap: 6px;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
     z-index: 10;
-    width: 100%;
+    width: calc(100% + 40px);
+    margin: -60px -20px 20px -20px;
     height: 50px;
     padding: 0 16px;
     border-radius: 0;

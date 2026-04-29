@@ -1211,10 +1211,22 @@ function closeDetail() {
   setTimeout(() => { panel.hidden = true; }, 300);
 }
 $("#detail-close").addEventListener("click", closeDetail);
-// 手机端：点遮罩关闭详情
-$("#detail-panel").addEventListener("click", (e) => {
-  if (e.target === $("#detail-panel")) closeDetail();
-});
+
+// 手机端：右滑手势关闭详情面板
+(function () {
+  const panel = $("#detail-panel");
+  let touchStartX = 0, touchStartY = 0;
+  panel.addEventListener("touchstart", (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  panel.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // 右滑距离 > 60px 且水平位移大于垂直位移（避免误触滚动）
+    if (dx > 60 && Math.abs(dx) > Math.abs(dy)) closeDetail();
+  }, { passive: true });
+})();
 
 // ========== 收藏汇总 Modal ==========
 function openFavModal() {
