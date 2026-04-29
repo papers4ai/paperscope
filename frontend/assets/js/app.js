@@ -1577,9 +1577,10 @@ function toggleLanguage() {
   const newLang = currentLang === "en" ? "zh" : "en";
   setLanguage(newLang);
   updateLangButton();
-  // 更新HTML lang属性
   document.documentElement.lang = newLang;
-  // 如果在热榜模式，更新时间显示
+  // Re-render JS-built sections so dynamic t() calls pick up the new language
+  renderSubdomain();
+  if (hotDomain) renderHotTopics(hotDomain);
   if (state.mode === "trending" && hotLastUpdated) {
     const timeEl = document.getElementById("hot-last-updated");
     if (timeEl) timeEl.textContent = formatHotUpdateTime();
