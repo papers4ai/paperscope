@@ -1625,6 +1625,14 @@ body.mode-curated .feed-only { display: none; }
     font-size: 13px;
   }
 
+  /* Topic cards & predictions — 2 columns on tablet */
+  .topics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .predictions-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   /* Layout */
   .layout {
     grid-template-columns: 1fr;
@@ -1825,6 +1833,29 @@ body.mode-curated .feed-only { display: none; }
   }
   .outlook-card {
     padding: 16px;
+  }
+
+  /* Topic cards & predictions — single column on mobile */
+  .topics-grid {
+    grid-template-columns: 1fr;
+  }
+  .predictions-container {
+    grid-template-columns: 1fr;
+  }
+  .prediction-card {
+    padding: 16px;
+    gap: 12px;
+  }
+  .prediction-content h3 {
+    font-size: .85rem;
+  }
+  .prediction-content p {
+    font-size: .75rem;
+    line-height: 1.6;
+  }
+  .prediction-tag {
+    display: inline-block;
+    margin-top: 4px;
   }
 
   /* About Modal */
