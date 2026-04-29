@@ -670,6 +670,7 @@ async function openDetail(id) {
   const body = panel.querySelector(".detail-body");
   $(".layout").classList.add("has-detail");
   panel.hidden = false;
+  requestAnimationFrame(() => panel.classList.add("active")); // mobile slide-in
   body.innerHTML = `<div class="loading">${t('loadingDetail')}</div>`;
 
   let paper = null;
@@ -1203,9 +1204,16 @@ $("#venue-picker-body").addEventListener("click", e => {
   reload();
 });
 
-$("#detail-close").addEventListener("click", () => {
+function closeDetail() {
+  const panel = $("#detail-panel");
+  panel.classList.remove("active");
   $(".layout").classList.remove("has-detail");
-  $("#detail-panel").hidden = true;
+  setTimeout(() => { panel.hidden = true; }, 300);
+}
+$("#detail-close").addEventListener("click", closeDetail);
+// 手机端：点遮罩关闭详情
+$("#detail-panel").addEventListener("click", (e) => {
+  if (e.target === $("#detail-panel")) closeDetail();
 });
 
 // ========== 收藏汇总 Modal ==========
