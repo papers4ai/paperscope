@@ -95,26 +95,26 @@ function renderTagSidebar(showCreateForm = false, selectedColor = TAG_PALETTE[0]
       <span class="fav-tag-dot" style="background:${t.color}"></span>
       <span class="fav-tag-name" title="${esc(t.name)}">${esc(t.name)}</span>
       <span class="fav-tag-count">${counts[t.id] || 0}</span>
-      <button class="fav-tag-del" data-del-tag="${t.id}" title="删除标签">✕</button>
+      <button class="fav-tag-del" data-del-tag="${t.id}" title="Delete tag">✕</button>
     </div>`).join("");
 
   const createFormHtml = showCreateForm ? `
     <div class="fav-tag-create-form" id="fav-tag-create-form">
-      <input type="text" id="fav-tag-name-input" placeholder="标签名称" maxlength="20" autocomplete="off">
+      <input type="text" id="fav-tag-name-input" placeholder="${t('tagNamePlaceholder')}" maxlength="20" autocomplete="off">
       <div class="fav-tag-color-row" id="fav-tag-color-row">
         ${TAG_PALETTE.map(c => `<span class="fav-tag-color-swatch${c === selectedColor ? " selected" : ""}" data-color="${c}" style="background:${c}"></span>`).join("")}
       </div>
       <div class="fav-tag-create-actions">
-        <button class="fav-tag-create-confirm" id="fav-tag-create-confirm">✓ 创建</button>
-        <button class="fav-tag-create-cancel" id="fav-tag-create-cancel">✕</button>
+        <button class="fav-tag-create-confirm" id="fav-tag-create-confirm">${t('confirmTag')}</button>
+        <button class="fav-tag-create-cancel" id="fav-tag-create-cancel">${t('cancelTag')}</button>
       </div>
-    </div>` : `<button class="fav-tag-new-btn" id="fav-tag-new-btn">＋ 新建标签</button>`;
+    </div>` : `<button class="fav-tag-new-btn" id="fav-tag-new-btn">${t('addNewTag')}</button>`;
 
   sidebar.innerHTML = `
-    <div class="fav-tag-sidebar-title">标签</div>
+    <div class="fav-tag-sidebar-title">Tags</div>
     <div class="fav-tag-item${activeTagFilter === null ? " active" : ""}" data-tag-id="__all__">
       <span class="fav-tag-dot" style="background:var(--text-muted)"></span>
-      <span class="fav-tag-name">全部收藏</span>
+      <span class="fav-tag-name">${t('allFavorites')}</span>
       <span class="fav-tag-count">${allCount}</span>
     </div>
     ${tagItems}
@@ -138,7 +138,7 @@ function renderTagSidebar(showCreateForm = false, selectedColor = TAG_PALETTE[0]
       const tid = btn.dataset.delTag;
       const tag = favTags.find(t => t.id === tid);
       if (!tag) return;
-      if (!confirm(`删除标签「${tag.name}」？此操作不会删除论文。`)) return;
+      if (!confirm(t('deleteTagConfirm').replace('{name}', tag.name))) return;
       deleteTag(tid);
       renderFavModalBody();
       renderTagSidebar();
@@ -187,7 +187,7 @@ function renderTagSidebar(showCreateForm = false, selectedColor = TAG_PALETTE[0]
 function renderFavModalBody() {
   const body = $("#fav-modal-body");
   if (!favorites.size) {
-    body.innerHTML = `<div class="loading">还没有收藏的论文。点击论文卡片右上角的 ☆ 进行收藏。</div>`;
+    body.innerHTML = `<div class="loading">${t('noFavorites')}</div>`;
     return;
   }
   // 获取所有收藏论文（从缓存）
@@ -205,7 +205,7 @@ function renderFavModalBody() {
 
   if (!items.length) {
     const tagName = activeTagFilter ? (favTags.find(t => t.id === activeTagFilter)?.name || "") : "";
-    body.innerHTML = `<div class="loading">${activeTagFilter ? `标签「${esc(tagName)}」下暂无收藏论文。` : "收藏的论文暂未加载到缓存中，请先访问速览页面。"}</div>`;
+    body.innerHTML = `<div class="loading">${activeTagFilter ? `No favorites under tag "${esc(tagName)}".` : t('favNotLoaded')}</div>`;
     return;
   }
 
@@ -291,15 +291,14 @@ function openTagPicker(paperId, anchorEl, opts = {}) {
     </div>`).join("");
 
   const emptyHint = !favTags.length
-    ? `<div class="tag-picker-empty">暂无标签</div>` : "";
+    ? `<div class="tag-picker-empty">${t('noTagsYet')}</div>` : "";
 
-  // "跳过"只在收藏时弹出（inFavModal=false）才显示
   const skipRow = !opts.inFavModal
-    ? `<div class="tag-picker-item tag-picker-skip" id="tag-picker-skip-btn" style="border-top:1px solid var(--border);margin-top:.3rem;padding-top:.35rem;color:var(--text-muted)">— 暂不添加标签</div>`
+    ? `<div class="tag-picker-item tag-picker-skip" id="tag-picker-skip-btn" style="border-top:1px solid var(--border);margin-top:.3rem;padding-top:.35rem;color:var(--text-muted)">${t('skipTag')}</div>`
     : "";
 
   popup.innerHTML = emptyHint + tagRows +
-    `<div class="tag-picker-item tag-picker-new" id="tag-picker-new-btn" style="border-top:1px solid var(--border);margin-top:.3rem;padding-top:.35rem;color:var(--accent)">＋ 新建标签</div>` +
+    `<div class="tag-picker-item tag-picker-new" id="tag-picker-new-btn" style="border-top:1px solid var(--border);margin-top:.3rem;padding-top:.35rem;color:var(--accent)">${t('addNewTag')}</div>` +
     skipRow;
 
   document.body.appendChild(popup);
@@ -481,7 +480,7 @@ async function renderVenuePicker(domain) {
 
   const catalog = await loadVenuesByDomain();
   if (domain === "all") {
-    body.innerHTML = `<div class="vpc-hint">👆 请选择上方领域，查看对应的顶会/顶刊列表</div>`;
+    body.innerHTML = `<div class="vpc-hint">${t('selectDomainHint')}</div>`;
     return;
   }
 
@@ -537,7 +536,7 @@ async function loadVenuesByDomain() {
 
 async function refreshVenueList() {
   const sel = $("#filter-venue");
-  sel.innerHTML = '<option value="">全部期刊/会议</option>';
+  sel.innerHTML = `<option value="">${t('allVenues')}</option>`;
   const catalog = await loadVenuesByDomain();
   // 取实际数据库里有论文的 venue → 计数（用于在选项中标注篇数）
   let counts = {};
@@ -579,7 +578,7 @@ async function refreshVenueList() {
 function render(papers) {
   const list = $("#paper-list");
   if (!papers.length) {
-    list.innerHTML = `<div class="loading">暂无论文</div>`;
+    list.innerHTML = `<div class="loading">${t('noPapers')}</div>`;
     return;
   }
   list.innerHTML = papers.map(paperCard).join("");
@@ -671,7 +670,7 @@ async function openDetail(id) {
   const body = panel.querySelector(".detail-body");
   $(".layout").classList.add("has-detail");
   panel.hidden = false;
-  body.innerHTML = `<div class="loading">加载详情...</div>`;
+  body.innerHTML = `<div class="loading">${t('loadingDetail')}</div>`;
 
   let paper = null;
   // 先在本地缓存查找（速览模式）
@@ -686,7 +685,7 @@ async function openDetail(id) {
   }
   // 兜底：尝试 Supabase（feed 模式且本地未命中）
   if (!paper && state.mode !== "curated") paper = await getPaper(id);
-  if (!paper) { body.innerHTML = "论文不存在"; return; }
+  if (!paper) { body.innerHTML = t('paperNotFound'); return; }
   const n = paper._n || normalizePaper(paper)._n;
   const fullAbstract0 = paper.abstract || paper.abstract_excerpt || n.abs || "";
   const authorsStr = n.authors.join(", ");
@@ -703,16 +702,16 @@ async function openDetail(id) {
 
   body.innerHTML = `
     <h2>${esc(paper.title)}</h2>
-    <p><strong>${esc(paper.venue || "")}</strong> · ${paper.year || ""} ${paper.citation_count ? `· 📊 ${paper.citation_count} 引用` : ""}</p>
-    ${n.pdfUrl ? `<p><a href="${n.pdfUrl}" target="_blank">🔓 打开 PDF</a></p>` : ""}
-    ${n.arxivUrl ? `<p><a href="${n.arxivUrl}" target="_blank">arXiv 原文</a></p>` : ""}
-    ${n.codeUrl ? `<p><a href="${n.codeUrl}" target="_blank">💻 代码</a></p>` : ""}
-    <h4>摘要</h4>
+    <p><strong>${esc(paper.venue || "")}</strong> · ${paper.year || ""} ${paper.citation_count ? `· 📊 ${paper.citation_count} citations` : ""}</p>
+    ${n.pdfUrl ? `<p><a href="${n.pdfUrl}" target="_blank">${t('openPDF')}</a></p>` : ""}
+    ${n.arxivUrl ? `<p><a href="${n.arxivUrl}" target="_blank">${t('arxivSource')}</a></p>` : ""}
+    ${n.codeUrl ? `<p><a href="${n.codeUrl}" target="_blank">💻 Code</a></p>` : ""}
+    <h4>${t('abstract')}</h4>
     <p>${esc(fullAbstract)}</p>
-    <h4>作者</h4>
+    <h4>${t('authors')}</h4>
     <p>${esc(authorsStr)}</p>
-    ${refs?.length ? `<h4>主要参考文献</h4><ul class="refs-list">${refs.map(r => `<li>${esc(r.title)} · ${r.citationCount || 0} 引用</li>`).join("")}</ul>` : ""}
-    ${cites?.length ? `<h4>被引重要论文</h4><ul class="refs-list">${cites.map(r => `<li>${esc(r.title)} · ${r.citationCount || 0} 引用</li>`).join("")}</ul>` : ""}
+    ${refs?.length ? `<h4>References</h4><ul class="refs-list">${refs.map(r => `<li>${esc(r.title)} · ${r.citationCount || 0} citations</li>`).join("")}</ul>` : ""}
+    ${cites?.length ? `<h4>Citing Papers</h4><ul class="refs-list">${cites.map(r => `<li>${esc(r.title)} · ${r.citationCount || 0} citations</li>`).join("")}</ul>` : ""}
   `;
 }
 
@@ -751,7 +750,7 @@ function renderYearControls(years) {
   const sel = document.getElementById("filter-year");
   if (sel) {
     const cur = sel.value;
-    sel.innerHTML = `<option value="">全部</option>` +
+    sel.innerHTML = `<option value="">${t('all')}</option>` +
       [...years].reverse().map(y => `<option value="${y}"${cur == y ? " selected" : ""}>${y}</option>`).join("");
   }
   // 精选年份按钮行
@@ -761,8 +760,8 @@ function renderYearControls(years) {
     const btns = [...years].reverse().map(y =>
       `<button class="vpy-btn${curYear == y ? " active" : ""}" data-year="${y}">${y}</button>`
     ).join("");
-    row.innerHTML = `<span class="vp-year-label">年份</span>` +
-      `<button class="vpy-btn${!curYear ? " active" : ""}" data-year="">全部</button>` + btns;
+    row.innerHTML = `<span class="vp-year-label">${t('year')}</span>` +
+      `<button class="vpy-btn${!curYear ? " active" : ""}" data-year="">${t('all')}</button>` + btns;
   }
 }
 
@@ -1027,7 +1026,7 @@ async function reload() {
       $("#paper-list").hidden = false;
       $("#dashboard").hidden = state.mode !== "feed";
       
-      $("#paper-list").innerHTML = `<div class="loading">加载中...</div>`;
+      $("#paper-list").innerHTML = `<div class="loading">${t('loading')}</div>`;
       
       if (state.mode === "feed") {
         const all = (await loadFeedPapers()).map(normalizePaper);
@@ -1230,7 +1229,7 @@ $("#fav-modal-close").addEventListener("click", closeFavModal);
 $("#fav-modal").querySelector(".fav-modal-backdrop").addEventListener("click", closeFavModal);
 $("#fav-clear").addEventListener("click", () => {
   if (!favorites.size) return;
-  if (!confirm(`确定清空全部 ${favorites.size} 个收藏？（标签数据将保留）`)) return;
+  if (!confirm(t('clearFavConfirm').replace('{n}', favorites.size))) return;
   favorites.clear(); saveFavorites();
   renderTagSidebar(); renderFavModalBody(); reload();
 });
@@ -1254,7 +1253,7 @@ function downloadBlob(content, filename, mime) {
 
 function exportCSV(items) {
   const dateStr = new Date().toISOString().slice(0, 10);
-  const cols = ["标题", "作者", "年份", "会议/期刊", "标签", "引用数", "arXiv链接", "PDF链接", "代码链接"];
+  const cols = t('csvCols').split(',');
   const csvEsc = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
   const rows = items.map(p => {
     const authors = (p.authors || []).join("; ");
@@ -1330,7 +1329,7 @@ favExportMenu.addEventListener("click", (e) => {
   const fmt = item.dataset.fmt;
   closeExportMenu();
   const items = getFavItems();
-  if (!items.length) { alert("没有可导出的收藏论文。"); return; }
+  if (!items.length) { alert(t('noExportItems')); return; }
   if (fmt === "csv")  exportCSV(items);
   if (fmt === "bib")  exportBibTeX(items);
   if (fmt === "json") exportJSON(items);

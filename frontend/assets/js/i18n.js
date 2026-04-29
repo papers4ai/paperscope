@@ -128,6 +128,41 @@ const i18n = {
     clearFilter: "Clear Filter ✕",
     noData: "No data",
 
+    // Venue picker
+    allDomains: "🔭 All Domains",
+    selectDomainHint: "👆 Select a domain above to view top venues",
+    allVenues: "All Venues",
+
+    // Charts / Dashboard
+    publishTrend: "Publication Trends",
+    byYearDomain: "By Year × Domain",
+    loading: "Loading...",
+    noPapers: "No papers",
+    loadingDetail: "Loading detail...",
+    paperNotFound: "Paper not found",
+
+    // Detail panel
+    openPDF: "🔓 Open PDF",
+    arxivSource: "arXiv Source",
+    abstract: "Abstract",
+    authors: "Authors",
+    hotTopicHeat: "Hot Topic Heat",
+
+    // Favorites & Tags
+    allFavorites: "All Favorites",
+    noFavorites: "No favorites yet. Click ☆ on any paper card to save it.",
+    favNotLoaded: "Saved papers not yet loaded. Visit the Feed tab first.",
+    tagNamePlaceholder: "Tag name",
+    confirmTag: "✓ Create",
+    cancelTag: "✕",
+    addNewTag: "＋ New Tag",
+    noTagsYet: "No tags yet",
+    skipTag: "— Skip for now",
+    deleteTagConfirm: "Delete tag \"{name}\"? Papers won't be deleted.",
+    clearFavConfirm: "Clear all {n} favorites? (Tags will be kept)",
+    noExportItems: "No favorites to export.",
+    csvCols: "Title,Authors,Year,Venue,Tags,Citations,arXiv URL,PDF URL,Code URL",
+
     // Auth
     signIn: "Sign In",
     signUp: "Sign Up",
@@ -270,6 +305,41 @@ const i18n = {
     newThisWeek: "，本周新增 {count}",
     clearFilter: "清除筛选 ✕",
     noData: "暂无数据",
+
+    // Venue picker
+    allDomains: "🔭 全部领域",
+    selectDomainHint: "👆 请选择上方领域，查看对应的顶会/顶刊列表",
+    allVenues: "全部期刊/会议",
+
+    // Charts / Dashboard
+    publishTrend: "发布趋势",
+    byYearDomain: "按年份 × 领域",
+    loading: "加载中...",
+    noPapers: "暂无论文",
+    loadingDetail: "加载详情...",
+    paperNotFound: "论文不存在",
+
+    // Detail panel
+    openPDF: "🔓 打开 PDF",
+    arxivSource: "arXiv 原文",
+    abstract: "摘要",
+    authors: "作者",
+    hotTopicHeat: "热门主题热度",
+
+    // Favorites & Tags
+    allFavorites: "全部收藏",
+    noFavorites: "还没有收藏的论文。点击论文卡片右上角的 ☆ 进行收藏。",
+    favNotLoaded: "收藏的论文暂未加载，请先访问速览页面。",
+    tagNamePlaceholder: "标签名称",
+    confirmTag: "✓ 创建",
+    cancelTag: "✕",
+    addNewTag: "＋ 新建标签",
+    noTagsYet: "暂无标签",
+    skipTag: "— 暂不添加标签",
+    deleteTagConfirm: "删除标签「{name}」？此操作不会删除论文。",
+    clearFavConfirm: "确定清空全部 {n} 个收藏？（标签数据将保留）",
+    noExportItems: "没有可导出的收藏论文。",
+    csvCols: "标题,作者,年份,会议/期刊,标签,引用数,arXiv链接,PDF链接,代码链接",
 
     // Auth
     signIn: "登录",
