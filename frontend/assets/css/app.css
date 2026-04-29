@@ -572,7 +572,7 @@ body.mode-curated .feed-only { display: none; }
 /* Radar Chart */
 .radar-container {
   display: flex; justify-content: center;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 .radar-chart {
   position: relative;
@@ -1830,7 +1830,7 @@ body.mode-curated .feed-only { display: none; }
     padding: 10px 12px;
   }
   .radar-container {
-    padding: 15px 0;
+    padding: 8px 0;
   }
   .radar-chart svg {
     width: 100%;
