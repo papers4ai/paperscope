@@ -172,6 +172,9 @@ const i18n = {
     signInWithGithub: "Sign in with GitHub",
     signOut: "Sign Out",
 
+    // Detail panel
+    back: "Back",
+
     // Radar chart labels
     radarGen: "Generation",
     radarPhysics: "Physics",
@@ -397,6 +400,9 @@ const i18n = {
     forgotPassword: "忘记密码？",
     signInWithGithub: "用 GitHub 登录",
     signOut: "退出登录",
+
+    // Detail panel
+    back: "返回",
 
     // Radar chart labels
     radarGen: "生成能力",
