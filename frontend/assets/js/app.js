@@ -513,7 +513,7 @@ async function renderVenuePicker(domain) {
       }).join("");
       html += `<div class="vpc-group">
         <button class="vpc-category-toggle ${open ? "open" : ""}" data-target="${groupId}">
-          <span>${esc(g.category)}</span>
+          <span>${esc(tVenueCategory(g.category))}</span>
           <span class="vpc-toggle-icon">${open ? "▲" : "▼"}</span>
         </button>
         <div class="vpc-chips ${open ? "" : "collapsed"}" id="${groupId}">${chipsHtml}</div>
@@ -560,7 +560,7 @@ async function refreshVenueList() {
     }
     groups.forEach(g => {
       const og = document.createElement("optgroup");
-      og.label = g.category;
+      og.label = tVenueCategory(g.category);
       g.venues.forEach(v => {
         const opt = document.createElement("option");
         opt.value = v;

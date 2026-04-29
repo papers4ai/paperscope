@@ -1,3 +1,33 @@
+// Venue category translations
+const venueCategories = {
+  en: {
+    "CCF-A 人工智能": "CCF-A AI",
+    "CCF-A 计算机视觉": "CCF-A Computer Vision",
+    "CCF-A 图形学/多媒体": "CCF-A Graphics/Multimedia",
+    "CCF-A NLP": "CCF-A NLP",
+    "统计 AI": "Statistical AI",
+    "视觉 AI 顶刊": "Top Vision AI Journals",
+    "机器学习期刊": "Machine Learning Journals",
+    "图形学期刊": "Graphics Journals",
+    "机器人顶会": "Top Robotics Conferences",
+    "规划/多智能体": "Planning/Multi-Agent",
+    "T1 机器人旗舰期刊": "T1 Flagship Robotics Journals",
+    "T2 IEEE 期刊": "T2 IEEE Journals",
+    "T3 专向期刊": "T3 Specialized Journals",
+    "视觉 AI 共享期刊": "Shared Vision AI Journals",
+    "医学专属顶会": "Top Medical Conferences",
+    "医疗 ML 专属": "Medical ML Specialized",
+    "HCI": "HCI",
+    "T1 Nature/Science": "T1 Nature/Science",
+    "T2 医学权威期刊": "T2 Top Medical Journals",
+    "T3 医学影像专属": "T3 Medical Imaging",
+    "T3 医学信息学": "T3 Medical Informatics",
+    "T3 生物信息学": "T3 Bioinformatics",
+    "T4 视觉 AI 通用": "T4 General Vision AI"
+  },
+  zh: {} // Chinese uses original category names
+};
+
 const i18n = {
   en: {
     // Navigation
@@ -119,6 +149,8 @@ const i18n = {
     sort: "Sort",
     latestPublished: "Latest Published",
     mostCited: "Most Cited",
+    allYears: "All Years",
+    allMonths: "All Months",
     subdomainHint: "💡 Click on any domain tab above (🌍 World Model / 🤖 Physical AI / 🏥 Medical AI), or directly click the stats cards below to expand and view subcategories and new this week",
     subdomainSub: "Subcategories · {count} topics · Hover for details",
     showAll: "Show all {count} ↓",
@@ -456,6 +488,8 @@ const i18n = {
     language: "语言",
     english: "English",
     chinese: "中文",
+    allYears: "全部年份",
+    allMonths: "全部月份",
   }
 };
 
@@ -463,6 +497,11 @@ let currentLang = localStorage.getItem('language') || 'en';
 
 function t(key) {
   return i18n[currentLang][key] || key;
+}
+
+// Translate venue category names
+function tVenueCategory(category) {
+  return venueCategories[currentLang][category] || category;
 }
 
 function setLanguage(lang) {
