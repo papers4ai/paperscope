@@ -748,7 +748,8 @@ function formatHotUpdateTime() {
 
 function tn(task) {
   const m = taskMeta[task];
-  return m ? (m.zh || m.en || task) : task;
+  if (!m) return task;
+  return currentLang === "en" ? (m.en || m.zh || task) : (m.zh || m.en || task);
 }
 
 function renderYearControls(years) {
@@ -941,7 +942,7 @@ function renderSubdomain() {
     const m = taskMeta[task] || {};
     const articlesText = t("articles");
     const newThisWeekText = fresh ? t("newThisWeek").replace("{count}", fresh) : "";
-    const tip = `${m.zh || task}${m.en ? " · " + m.en : ""}（${total}${articlesText}${newThisWeekText}）`;
+    const tip = `${currentLang === "en" ? (m.en || m.zh || task) : (m.zh || m.en || task)}（${total}${articlesText}${newThisWeekText}）`;
     const active = state.task === task ? "active" : "";
     const badge = fresh > 0 ? `<span class="new-badge">+${fresh}</span>` : "";
     return `<div class="subdomain-item ${active} ${d}" data-task="${esc(task)}" title="${esc(tip)}">
