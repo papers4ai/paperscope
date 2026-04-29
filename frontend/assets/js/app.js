@@ -670,7 +670,12 @@ async function openDetail(id) {
   const body = panel.querySelector(".detail-body");
   $(".layout").classList.add("has-detail");
   panel.hidden = false;
-  requestAnimationFrame(() => panel.classList.add("active")); // mobile slide-in
+  requestAnimationFrame(() => {
+    panel.classList.add("active");
+    // Show mobile back button (outside panel so position:fixed works)
+    const btn = $("#detail-close");
+    if (btn && window.innerWidth <= 900) btn.style.display = "flex";
+  });
   body.innerHTML = `<div class="loading">${t('loadingDetail')}</div>`;
 
   let paper = null;
@@ -1208,9 +1213,12 @@ function closeDetail() {
   const panel = $("#detail-panel");
   panel.classList.remove("active");
   $(".layout").classList.remove("has-detail");
+  const btn = $("#detail-close");
+  if (btn) btn.style.display = "";
   setTimeout(() => { panel.hidden = true; }, 300);
 }
 $("#detail-close").addEventListener("click", closeDetail);
+$("#detail-close-desktop")?.addEventListener("click", closeDetail);
 
 // 手机端：右滑手势关闭详情面板
 (function () {
