@@ -383,8 +383,9 @@ function closeTagPicker() {
   }
 }
 
-// 可用年份（由 meta.json 决定，自动扩展；初始值兜底）
-let availableYears = [2023, 2024, 2025, 2026, 2027];
+// 可用年份（由 meta.json 决定；初始值兜底，过滤掉未来年份）
+const _currentYear = new Date().getFullYear();
+let availableYears = [2023, 2024, 2025, 2026, 2027].filter(y => y <= _currentYear);
 
 // 静态 arxiv 数据 (速览模式)
 let feedPapersCache = null;
@@ -783,7 +784,7 @@ async function loadStaticData() {
     if (tm?.tasks) taskMeta = tm.tasks;
     if (tm?.domain_tasks && Object.keys(tm.domain_tasks).length) domainTasks = tm.domain_tasks;
     if (meta?.years?.length) {
-      availableYears = meta.years;
+      availableYears = meta.years.filter(y => y <= _currentYear);
       renderYearControls(availableYears);
     }
     const footerEl = document.getElementById("footer-last-updated");
