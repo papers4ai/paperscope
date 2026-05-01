@@ -204,6 +204,11 @@ const i18n = {
     signInWithGithub: "Sign in with GitHub",
     signOut: "Sign Out",
 
+    // Footer
+    totalViews: "Total Views",
+    dataUpdated: "Data Updated:",
+    loadingDots: "Loading…",
+
     // Detail panel
     back: "Back",
 
@@ -432,6 +437,11 @@ const i18n = {
     forgotPassword: "忘记密码？",
     signInWithGithub: "用 GitHub 登录",
     signOut: "退出登录",
+
+    // Footer
+    totalViews: "累计浏览",
+    dataUpdated: "数据最新更新：",
+    loadingDots: "加载中…",
 
     // Detail panel
     back: "返回",

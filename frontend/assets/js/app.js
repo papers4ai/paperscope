@@ -466,7 +466,7 @@ function setCuratedMode(on) {
     $("#filter-tier").value = "";
     $("#filter-year").value = "";
     $("#sort-by").value = "published_at";
-    $("#filter-venue").innerHTML = '<option value="">全部</option>';
+    $("#filter-venue").innerHTML = `<option value="">${t('allVenues')}</option>`;
   }
 }
 
@@ -1620,6 +1620,11 @@ function toggleLanguage() {
   // Re-render JS-built sections so dynamic t() calls pick up the new language
   renderSubdomain();
   if (hotDomain) renderHotTopics(hotDomain);
+  renderYearControls(availableYears);
+  if (state.mode === "curated") {
+    renderVenuePicker(state.domain);
+    refreshVenueList();
+  }
   if (state.mode === "trending" && hotLastUpdated) {
     const timeEl = document.getElementById("hot-last-updated");
     if (timeEl) timeEl.textContent = formatHotUpdateTime();
