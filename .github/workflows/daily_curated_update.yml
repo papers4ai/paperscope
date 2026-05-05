@@ -31,23 +31,24 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
 
-      # ── 3. 从 3 个前端文件重建 output/papers_curated.json ───────────────────
+      # ── 3. 从前端分年份文件重建 output/papers_curated.json ─────────────────
       #    GitHub Actions 上没有本地 output 文件，用已提交的 frontend/data/ 重建
       - name: Rebuild output from frontend domain files
         run: |
           python3 - <<'EOF'
-          import json, os
+          import json, os, glob
 
-          domains = ["world_model", "physical_ai", "medical_ai"]
           seen = set()
           papers = []
 
-          for d in domains:
-              path = f"frontend/data/papers_curated_{d}.json"
-              if not os.path.exists(path):
-                  print(f"  [skip] {path} not found")
+          # 读取所有 papers_curated_{domain}_{year}.json 文件
+          paths = sorted(glob.glob("frontend/data/papers_curated_*_[0-9]*.json"))
+          for path in paths:
+              try:
+                  batch = json.load(open(path, encoding="utf-8"))
+              except Exception as e:
+                  print(f"  [skip] {path}: {e}")
                   continue
-              batch = json.load(open(path, encoding="utf-8"))
               added = 0
               for p in batch:
                   pid = p.get("id")
@@ -101,9 +102,9 @@ jobs:
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add frontend/data/papers_curated_world_model.json \
-                  frontend/data/papers_curated_physical_ai.json \
-                  frontend/data/papers_curated_medical_ai.json
+          git add frontend/data/papers_curated_world_model_*.json \
+                  frontend/data/papers_curated_physical_ai_*.json \
+                  frontend/data/papers_curated_medical_ai_*.json
 
           # 统计变化
           CHANGED=$(git diff --staged --stat | tail -1)
