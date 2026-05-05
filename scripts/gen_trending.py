@@ -158,6 +158,60 @@ def top_topics(domain_papers: list, all_texts: list, all_ng: Counter,
     return deduped
 
 
+# ── Radar scoring ─────────────────────────────────────────────────────────────
+
+# Six radar dimensions: keywords that signal papers in that dimension
+RADAR_DIMS = [
+    # 0 Generation
+    ["generat", "diffusion", "synthesis", "text-to-video", "text-to-image",
+     "generative", "image synthesis", "video generation", "image generation"],
+    # 1 Physics
+    ["physics", "simulation", "fluid", "dynamics", "pde", "navier",
+     "finite element", "rigid body", "physical", "continuum", "turbulence"],
+    # 2 Control
+    ["control", "manipulat", "planning", "policy", "reinforcement",
+     "actuator", "trajectory", "locomotion", "navigation", "dexterous"],
+    # 3 Reasoning
+    ["reasoning", "chain-of-thought", "inference", "logic", "understanding",
+     "question answer", "comprehension", "commonsense", "causal", "language model"],
+    # 4 Efficiency
+    ["efficient", "few-shot", "zero-shot", "lightweight", "compress",
+     "pruning", "quantization", "distillation", "sample efficient", "low-resource"],
+    # 5 Generalization
+    ["generali", "transfer", "domain adapt", "robustness", "out-of-distribution",
+     "ood", "cross-domain", "unseen", "distribution shift"],
+]
+
+
+def radar_scores(domain_papers: list) -> list[float]:
+    """Return 6 normalised scores [0,1] for a domain's papers."""
+    texts = [
+        (p.get("title", "") + " " + p.get("abstract", "")[:300]).lower()
+        for p in domain_papers
+    ]
+    n = max(len(texts), 1)
+    raw = []
+    for kws in RADAR_DIMS:
+        hits = sum(1 for t in texts if any(k in t for k in kws))
+        raw.append(hits / n)
+
+    # Normalise so max dimension = 0.95 (leave visual headroom)
+    mx = max(raw) if max(raw) > 0 else 1.0
+    return [round(min(v / mx * 0.95, 1.0), 3) for v in raw]
+
+
+# SVG geometry: center (240,240), outer vertex offsets at score=1
+_OUTER = [(0, -170), (150, -90), (150, 90), (0, 170), (-150, 90), (-150, -90)]
+CX, CY = 240, 240
+
+
+def scores_to_points(scores: list[float]) -> str:
+    pts = []
+    for s, (dx, dy) in zip(scores, _OUTER):
+        pts.append(f"{round(CX + s*dx)},{round(CY + s*dy)}")
+    return " ".join(pts)
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -186,16 +240,28 @@ def main():
     all_ng = ngrams(all_texts)
     total = max(len(all_texts), 1)
 
+    # Trending topics
     trends = {}
     for domain in DOMAINS:
         topics = top_topics(papers_by_domain[domain], all_texts, all_ng, total)
         trends[domain] = topics
-        print(f"  {domain}: {[t['display'] for t in topics]}")
+        print(f"  {domain} topics: {[t['display'] for t in topics]}")
+
+    # Radar scores
+    radar = {}
+    for domain in DOMAINS:
+        scores = radar_scores(papers_by_domain[domain])
+        radar[domain] = {
+            "scores": scores,
+            "points": scores_to_points(scores),
+        }
+        print(f"  {domain} radar: {scores}")
 
     result = {
         "generated": date.today().isoformat(),
         "months": MONTHS,
         "trends": trends,
+        "radar": radar,
     }
 
     with open(OUTPUT, "w", encoding="utf-8") as f:

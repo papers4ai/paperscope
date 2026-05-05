@@ -725,6 +725,7 @@ async function openDetail(id) {
 // ========== 仪表盘 (速览模式) ==========
 let dashboardLoaded = false;
 let trendingData = {};        // { world_model: [...], physical_ai: [...], medical_ai: [...] }
+let radarData = {};           // { world_model: {points, scores}, ... }
 let taskMeta = {};            // { Task: {zh, en} }
 let domainTasks = {           // fallback
   world_model: ["VidGen", "NeRF", "MBRL", "Sim2Real", "EmbodiedWM", "Predictive"],
@@ -781,6 +782,7 @@ async function loadStaticData() {
       fetch("data/meta.json").then(r => r.ok ? r.json() : null),
     ]);
     if (tr?.trends) trendingData = tr.trends;
+    if (tr?.radar)  radarData   = tr.radar;
     if (tm?.tasks) taskMeta = tm.tasks;
     if (tm?.domain_tasks && Object.keys(tm.domain_tasks).length) domainTasks = tm.domain_tasks;
     if (meta?.years?.length) {
@@ -799,6 +801,8 @@ async function loadDashboard() {
   dashboardLoaded = true;
   await loadStaticData();
   renderHotTopics(hotDomain);
+  renderRadar();
+  renderTopicCards();
   try {
     const papers = await loadFeedPapers();
     const stats = computeStaticStats(papers);
@@ -910,6 +914,69 @@ function renderHotTopics(domain) {
     ? `<button class="hot-show-all" id="hot-show-all">${hotExpanded ? t("collapse") : t("showAll").replace("{count}", items.length)}</button>`
     : "";
   $("#chart-trending").innerHTML = tabsHtml + itemsHtml + more;
+}
+
+// ── Radar chart (data-driven) ─────────────────────────────────────────────────
+function renderRadar() {
+  const domains = [
+    { id: "world_model",  sel: ".world-model-radar",  color: "#6366f1" },
+    { id: "physical_ai",  sel: ".physical-ai-radar",   color: "#10b981" },
+    { id: "medical_ai",   sel: ".medical-ai-radar",    color: "#f43f5e" },
+  ];
+  domains.forEach(({ id, sel }) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    const pts = radarData[id]?.points;
+    if (pts) el.setAttribute("points", pts);
+  });
+}
+
+// ── Topic cards (data-driven) ─────────────────────────────────────────────────
+const DOMAIN_META = {
+  world_model:  { label: "World Model",  icon: "🌍", cls: "world-model-topic",  color: "#6366f1" },
+  physical_ai:  { label: "Physical AI",  icon: "🤖", cls: "physical-ai-topic",  color: "#10b981" },
+  medical_ai:   { label: "Medical AI",   icon: "🏥", cls: "medical-ai-topic",   color: "#f43f5e" },
+};
+const TOPIC_ICONS = ["🎬","✨","🌊","🦾","💊","🩻","🔬","🧠","⚡","🛸"];
+
+function renderTopicCards() {
+  const grid = document.querySelector(".topics-grid");
+  if (!grid) return;
+  if (!Object.keys(trendingData).length) return; // not loaded yet
+
+  const maxCount = Math.max(
+    ...Object.values(trendingData).flatMap(ts => ts.map(t => t.count)), 1
+  );
+
+  const cards = [];
+  ["world_model", "physical_ai", "medical_ai"].forEach(domain => {
+    const topics = (trendingData[domain] || []).slice(0, 2);
+    const meta = DOMAIN_META[domain];
+    topics.forEach((topic, i) => {
+      const heat = Math.round(topic.count / maxCount * 100);
+      const tag = i === 0 ? t("coreHotspot") : t("emergingHotspot");
+      const icon = TOPIC_ICONS[cards.length % TOPIC_ICONS.length];
+      cards.push(`
+        <div class="topic-card ${meta.cls}">
+          <div class="topic-header">
+            <span class="topic-icon">${icon}</span>
+            <div class="topic-title-row">
+              <h3>${esc(topic.display)}</h3>
+              <span class="topic-tag">${tag}</span>
+            </div>
+          </div>
+          <div class="topic-metrics">
+            <span class="metric">🔥 <span data-i18n="heatIndex">${t("heatIndex")}</span>: ${heat}/100</span>
+            <span class="metric">📄 ${topic.count} ${t("articles")}</span>
+          </div>
+          <div class="topic-keywords">
+            ${topic.term.split(" ").map(w => `<span>${esc(w)}</span>`).join("")}
+          </div>
+        </div>`);
+    });
+  });
+
+  grid.innerHTML = cards.join("");
 }
 
 function renderSubdomain() {
@@ -1651,9 +1718,12 @@ async function refreshHotData() {
     const tr = await fetch("data/trending.json?t=" + Date.now()).then(r => r.ok ? r.json() : null);
     if (tr?.trends) {
       trendingData = tr.trends;
+      if (tr?.radar) radarData = tr.radar;
       hotLastUpdated = new Date();
       if (state.mode === "trending") {
         renderHotTopics(hotDomain);
+        renderRadar();
+        renderTopicCards();
         const timeEl = document.getElementById("hot-last-updated");
         if (timeEl) timeEl.textContent = formatHotUpdateTime();
       }
