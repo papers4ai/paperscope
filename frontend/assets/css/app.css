@@ -437,8 +437,16 @@ body.mode-curated .feed-only { display: none; }
   transition: all 0.2s ease;
 }
 .hot-refresh-btn:hover {
-  background: var(--bg-secondary);
+  background: var(--surface-bg);
   transform: rotate(180deg);
+}
+.hot-refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 .trending-overview {
   display: grid; grid-template-columns: repeat(3, 1fr);

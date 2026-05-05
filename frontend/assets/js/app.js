@@ -800,6 +800,10 @@ async function loadDashboard() {
   if (dashboardLoaded) return;
   dashboardLoaded = true;
   await loadStaticData();
+  // Mark data as freshly loaded and show time
+  hotLastUpdated = new Date();
+  const timeEl = document.getElementById("hot-last-updated");
+  if (timeEl) timeEl.textContent = formatHotUpdateTime();
   renderHotTopics(hotDomain);
   renderRadar();
   renderTopicCards();
@@ -1668,9 +1672,12 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
 // 热榜手动刷新按钮
 $("#hot-refresh-btn")?.addEventListener("click", async () => {
   const btn = $("#hot-refresh-btn");
-  btn.style.transform = "rotate(360deg)";
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.style.animation = "spin 0.8s linear infinite";
   await refreshHotData();
-  setTimeout(() => { btn.style.transform = ""; }, 500);
+  btn.style.animation = "";
+  btn.disabled = false;
 });
 
 // ========== 语言切换 ==========
