@@ -22,7 +22,9 @@ load_dotenv()
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 API_KEY = os.environ.get("PUBMED_API_KEY")
-DELAY = 0.12 if API_KEY else 0.4
+# Without API key: max 3 req/s; use 1s to stay safely under the limit.
+# With API key: max 10 req/s; 0.12s is fine.
+DELAY = 0.12 if API_KEY else 1.0
 BATCH_FETCH = 100
 
 
@@ -34,9 +36,24 @@ def _params(extra: dict) -> dict:
     return p
 
 
+def _get_with_retry(url: str, params: dict, timeout: int = 30, max_retries: int = 4) -> requests.Response:
+    """GET with exponential backoff on 429 / 5xx."""
+    for attempt in range(max_retries):
+        r = requests.get(url, params=params, timeout=timeout)
+        if r.status_code == 429 or r.status_code >= 500:
+            wait = 2 ** attempt * 2  # 2, 4, 8, 16 seconds
+            print(f"  PubMed {r.status_code} — retrying in {wait}s (attempt {attempt+1}/{max_retries})")
+            time.sleep(wait)
+            continue
+        r.raise_for_status()
+        return r
+    r.raise_for_status()
+    return r
+
+
 def esearch(term: str, days: int = 7, retmax: int = 500) -> list[str]:
     """搜 PubMed，返回 PMID 列表。"""
-    r = requests.get(
+    r = _get_with_retry(
         f"{EUTILS}/esearch.fcgi",
         params=_params({
             "db": "pubmed",
@@ -49,7 +66,6 @@ def esearch(term: str, days: int = 7, retmax: int = 500) -> list[str]:
         }),
         timeout=30,
     )
-    r.raise_for_status()
     return r.json().get("esearchresult", {}).get("idlist", [])
 
 
@@ -60,7 +76,7 @@ def efetch(pmids: list[str]) -> list[dict]:
     results: list[dict] = []
     for i in range(0, len(pmids), BATCH_FETCH):
         batch = pmids[i : i + BATCH_FETCH]
-        r = requests.get(
+        r = _get_with_retry(
             f"{EUTILS}/efetch.fcgi",
             params=_params({
                 "db": "pubmed",
