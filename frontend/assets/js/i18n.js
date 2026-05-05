@@ -204,6 +204,11 @@ const i18n = {
     signInWithGithub: "Sign in with GitHub",
     signOut: "Sign Out",
 
+    // Paper type filter
+    typeMethod: "Method",
+    typeDataset: "Dataset",
+    typeSurvey: "Survey",
+
     // Footer
     totalViews: "Total Views",
     dataUpdated: "Data Updated:",
@@ -437,6 +442,11 @@ const i18n = {
     forgotPassword: "忘记密码？",
     signInWithGithub: "用 GitHub 登录",
     signOut: "退出登录",
+
+    // Paper type filter
+    typeMethod: "方法",
+    typeDataset: "数据集",
+    typeSurvey: "综述",
 
     // Footer
     totalViews: "累计浏览",
