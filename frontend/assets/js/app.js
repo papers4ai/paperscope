@@ -783,6 +783,7 @@ async function loadStaticData() {
     ]);
     if (tr?.trends) trendingData = tr.trends;
     if (tr?.radar)  radarData   = tr.radar;
+    if (tr?.stats)  { renderStats(tr.stats); renderTrends(tr.stats.trends); }
     if (tm?.tasks) taskMeta = tm.tasks;
     if (tm?.domain_tasks && Object.keys(tm.domain_tasks).length) domainTasks = tm.domain_tasks;
     if (meta?.years?.length) {
@@ -807,15 +808,7 @@ async function loadDashboard() {
   renderHotTopics(hotDomain);
   renderRadar();
   renderTopicCards();
-  try {
-    const papers = await loadFeedPapers();
-    const stats = computeStaticStats(papers);
-    renderStats(stats);
-    renderTrends(stats.trends);
-    renderSubdomain();
-  } catch (e) {
-    console.warn("dashboard stats failed:", e);
-  }
+  renderSubdomain();
 }
 
 function computeStaticStats(papers) {

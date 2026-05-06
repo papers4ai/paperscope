@@ -187,5 +187,53 @@
       ],
       "points": "240,159 280,216 281,265 240,402 182,275 175,201"
     }
+  },
+  "stats": {
+    "total": 27015,
+    "domains": {
+      "world_model": 11857,
+      "physical_ai": 10495,
+      "medical_ai": 6626
+    },
+    "recent": {
+      "total": 379,
+      "world_model": 167,
+      "physical_ai": 87,
+      "medical_ai": 149
+    },
+    "trends": [
+      {
+        "year": 2023,
+        "counts": {
+          "world_model": 2070,
+          "physical_ai": 2328,
+          "medical_ai": 1408
+        }
+      },
+      {
+        "year": 2024,
+        "counts": {
+          "world_model": 4003,
+          "physical_ai": 3045,
+          "medical_ai": 2103
+        }
+      },
+      {
+        "year": 2025,
+        "counts": {
+          "world_model": 3354,
+          "physical_ai": 3262,
+          "medical_ai": 1976
+        }
+      },
+      {
+        "year": 2026,
+        "counts": {
+          "world_model": 2430,
+          "physical_ai": 1860,
+          "medical_ai": 1139
+        }
+      }
+    ]
   }
 }

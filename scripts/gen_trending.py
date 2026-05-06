@@ -257,11 +257,30 @@ def main():
         }
         print(f"  {domain} radar: {scores}")
 
+    # Dashboard stats (replaces loading all papers in the browser)
+    recent_cutoff = (date.today() - timedelta(days=7)).isoformat()
+    all_papers = load_papers()  # full corpus for total counts
+    years = sorted({p.get("year") for p in all_papers if p.get("year")})
+    stats = {
+        "total": len(all_papers),
+        "domains": {d: sum(1 for p in all_papers if d in p.get("_domains", [])) for d in DOMAINS},
+        "recent": {
+            "total": sum(1 for p in all_papers if p.get("published", "") >= recent_cutoff),
+            **{d: sum(1 for p in all_papers if p.get("published", "") >= recent_cutoff and d in p.get("_domains", [])) for d in DOMAINS},
+        },
+        "trends": [
+            {"year": y, "counts": {d: sum(1 for p in all_papers if p.get("year") == y and d in p.get("_domains", [])) for d in DOMAINS}}
+            for y in years
+        ],
+    }
+    print(f"  stats: total={stats['total']}, recent={stats['recent']['total']}")
+
     result = {
         "generated": date.today().isoformat(),
         "months": MONTHS,
         "trends": trends,
         "radar": radar,
+        "stats": stats,
     }
 
     with open(OUTPUT, "w", encoding="utf-8") as f:
