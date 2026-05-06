@@ -115,7 +115,7 @@ jobs:
           else
             DATE=$(date +%Y-%m-%d)
             git commit -m "data: daily curated update $DATE"
-            git pull --rebase
+            git pull --rebase --autostash
             git push
             echo "✓ Pushed updated curated data"
           fi
