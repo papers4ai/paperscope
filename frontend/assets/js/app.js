@@ -1669,13 +1669,140 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
   if ((localStorage.getItem("theme") || "system") === "system") applyTheme("system");
 });
 
+// ── Client-side trending computation (mirrors gen_trending.py) ────────────────
+
+const _T_STOP = new Set([
+  "a","an","the","and","or","of","in","on","at","to","for","with","by","from",
+  "this","that","is","are","was","were","be","been","have","has","do","does",
+  "we","our","it","its","they","which","as","such","can","also","not","but",
+  "than","based","proposed","approach","method","model","models","paper",
+  "propose","presents","present","show","shows","use","using","used","results",
+  "demonstrate","work","however","state","art","two","three","new","novel",
+  "existing","recent","learning","deep","neural","network","networks","data",
+  "task","tasks","training","trained","large","high","low","via","into","each",
+  "both","across","while","without","further","thus","extensive","experiments",
+  "outperforms","significantly","achieves","benchmark","performance","evaluation",
+  "superior","experimental","https","github","http","com","available","code",
+  "page","project","arxiv","www","pdes","pinns","pinn","odes",
+]);
+const _T_NORM = {images:"image",models:"model",networks:"network",equations:"equation",methods:"method",agents:"agent",fields:"field",operators:"operator",algorithms:"algorithm",systems:"system",problems:"problem",tasks:"task"};
+const _T_BP = /extensive experiment|state.of.the.art|code available|project page|success rate|real.world|significantly outperform|achieves state|available https|github com|page https/i;
+const _T_UP = new Set(["pinn","fno","vla","rl","nlp","mri","ct","vae","gan","llm","vlm","nerf","ai","3d","2d","ood","cnn","rnn","gnn","gpt","ehr","wsi","oct"]);
+const _T_RDIMS = [
+  ["generat","diffusion","synthesis","text-to-video","text-to-image","generative","image synthesis","video generation","image generation"],
+  ["physics","simulation","fluid","dynamics","pde","navier","finite element","rigid body","physical","continuum","turbulence"],
+  ["control","manipulat","planning","policy","reinforcement","actuator","trajectory","locomotion","navigation","dexterous"],
+  ["reasoning","chain-of-thought","inference","logic","understanding","question answer","comprehension","commonsense","causal","language model"],
+  ["efficient","few-shot","zero-shot","lightweight","compress","pruning","quantization","distillation","sample efficient","low-resource"],
+  ["generali","transfer","domain adapt","robustness","out-of-distribution","ood","cross-domain","unseen","distribution shift"],
+];
+const _T_OUTER = [[0,-170],[150,-90],[150,90],[0,170],[-150,90],[-150,-90]];
+
+function _tTok(text) {
+  return (text.toLowerCase().match(/[a-z][a-z0-9]*(?:-[a-z0-9]+)*/g) || [])
+    .filter(t => !_T_STOP.has(t) && t.length > 2);
+}
+function _tNgrams(texts) {
+  const m = new Map();
+  for (const txt of texts) {
+    const toks = _tTok(txt);
+    for (let n = 2; n <= 3; n++)
+      for (let i = 0; i <= toks.length - n; i++) {
+        const g = toks.slice(i, i+n).join(" ");
+        m.set(g, (m.get(g)||0) + 1);
+      }
+  }
+  return m;
+}
+function _tDisplay(term) {
+  return term.split(" ").map(w => _T_UP.has(w) ? w.toUpperCase() : w[0].toUpperCase()+w.slice(1)).join(" ");
+}
+function _tTokSet(term) {
+  return new Set(term.toLowerCase().split(/[\s\-]+/).map(w => _T_NORM[w]||w));
+}
+function _tTopTopics(domainPapers, allNg, total) {
+  const texts = domainPapers.map(p => `${p.title||""} ${p.title||""} ${(p.abstract||"").slice(0,400)}`);
+  const nP = Math.max(texts.length, 1);
+  const dNg = _tNgrams(texts);
+  const cands = [];
+  for (const [gram, freq] of [...dNg.entries()].sort((a,b) => b[1]-a[1])) {
+    if (freq < 3) break;
+    if (_T_BP.test(gram)) continue;
+    const sp = (freq/nP) / ((allNg.get(gram)||0)/total + 1e-6);
+    if (sp > 1.3) cands.push({term:gram, display:_tDisplay(gram), count:freq, specificity:Math.round(sp*100)/100});
+  }
+  const deduped = [];
+  for (const c of cands) {
+    const cW = _tTokSet(c.term); let skip = false; const reps = [];
+    for (let i = 0; i < deduped.length; i++) {
+      const eW = _tTokSet(deduped[i].term);
+      const cInE = [...cW].every(w=>eW.has(w)), eInC = [...eW].every(w=>cW.has(w));
+      if (cInE && eInC) { skip=true; break; }
+      else if (eInC) reps.push(i);
+      else if (cInE) { skip=true; break; }
+    }
+    if (skip) continue;
+    for (const i of reps.sort((a,b)=>b-a)) deduped.splice(i,1);
+    deduped.push(c);
+    if (deduped.length >= 8) break;
+  }
+  return deduped;
+}
+function _tRadar(domainPapers) {
+  const texts = domainPapers.map(p => ((p.title||"")+" "+(p.abstract||"").slice(0,300)).toLowerCase());
+  const n = Math.max(texts.length,1);
+  const raw = _T_RDIMS.map(kws => texts.filter(t=>kws.some(k=>t.includes(k))).length/n);
+  const mx = Math.max(...raw)||1;
+  return raw.map(v => Math.round(Math.min(v/mx*0.95,1)*1000)/1000);
+}
+function _tPoints(scores) {
+  return scores.map((s,i)=>`${Math.round(240+s*_T_OUTER[i][0])},${Math.round(240+s*_T_OUTER[i][1])}`).join(" ");
+}
+
+async function computeTrendingClientSide() {
+  const papers = feedPapersCache || await loadFeedPapers();
+  const cutoff = new Date(); cutoff.setMonth(cutoff.getMonth()-6);
+  const cutoffStr = cutoff.toISOString().slice(0,10);
+  let recent = papers.filter(p=>(p.published||"")>=cutoffStr);
+  if (recent.length < 100) recent = [...papers].sort((a,b)=>(b.published||"").localeCompare(a.published||"")).slice(0,800);
+
+  const DOMS = ["world_model","physical_ai","medical_ai"];
+  const allTexts = recent.map(p=>`${p.title||""} ${p.title||""} ${(p.abstract||"").slice(0,400)}`);
+  const allNg = _tNgrams(allTexts);
+  const total = Math.max(allTexts.length,1);
+
+  const trends = {}, radar = {};
+  for (const d of DOMS) {
+    const dp = recent.filter(p=>(p._domains||[]).includes(d));
+    trends[d] = _tTopTopics(dp, allNg, total);
+    const sc = _tRadar(dp);
+    radar[d] = {scores:sc, points:_tPoints(sc)};
+  }
+  return {trends, radar};
+}
+
 // 热榜手动刷新按钮
 $("#hot-refresh-btn")?.addEventListener("click", async () => {
   const btn = $("#hot-refresh-btn");
   if (btn.disabled) return;
   btn.disabled = true;
   btn.style.animation = "spin 0.8s linear infinite";
-  await refreshHotData();
+  try {
+    const computed = await computeTrendingClientSide();
+    trendingData = computed.trends;
+    radarData = computed.radar;
+    hotLastUpdated = new Date();
+    if (state.mode === "trending") {
+      renderHotTopics(hotDomain);
+      renderRadar();
+      renderTopicCards();
+      const timeEl = document.getElementById("hot-last-updated");
+      if (timeEl) timeEl.textContent = formatHotUpdateTime();
+    }
+  } catch(e) {
+    console.warn("Client trending failed, falling back to server", e);
+    await refreshHotData();
+  }
   btn.style.animation = "";
   btn.disabled = false;
 });
