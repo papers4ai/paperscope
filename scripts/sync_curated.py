@@ -25,7 +25,7 @@ START_YEAR = 2023
 
 def get_years() -> list:
     from datetime import date
-    return list(range(START_YEAR, date.today().year + 2))
+    return list(range(START_YEAR, date.today().year + 1))
 
 KEEP = [
     "id", "title", "authors", "published", "year", "month",
