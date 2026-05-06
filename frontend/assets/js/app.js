@@ -853,7 +853,7 @@ function renderStats(s) {
   };
   setCard("total", s.total, s.recent.total);
   ["world_model", "physical_ai", "medical_ai"].forEach(d => {
-    setCard(d, s.domains[d], s.recent.domains[d]);
+    setCard(d, s.domains[d], s.recent[d]);
   });
 }
 
