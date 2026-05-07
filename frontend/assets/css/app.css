@@ -2081,9 +2081,13 @@ body {
 
 /* ========== CCF Deadlines View ========== */
 
-/* Full-width when deadlines mode active */
+/* Full-width when deadlines mode active; hide unrelated UI */
 body.mode-deadlines .sidebar { display: none !important; }
 body.mode-deadlines .layout { grid-template-columns: 1fr !important; }
+body.mode-deadlines .domain-bar { display: none !important; }
+body.mode-deadlines #dashboard { display: none !important; }
+body.mode-deadlines #paper-list { display: none !important; }
+body.mode-deadlines #trending-view { display: none !important; }
 
 .deadlines-view { width: 100%; padding: 1.25rem 0 2rem; }
 
