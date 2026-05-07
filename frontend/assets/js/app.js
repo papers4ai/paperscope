@@ -1314,7 +1314,8 @@ function renderDeadlines() {
   const now = new Date();
   const q = ddlSearch.toLowerCase();
   const all = (deadlinesCache?.conferences || []).filter(c => {
-    if (ddlActiveRank && c.ccf !== ddlActiveRank) return false;
+    if (ddlActiveRank === "N") { if (["A","B","C"].includes(c.ccf)) return false; }
+    else if (ddlActiveRank && c.ccf !== ddlActiveRank) return false;
     if (ddlCheckedSubs.size > 0 && !ddlCheckedSubs.has(c.sub)) return false;
     if (ddlHideExpired && new Date(c.deadline) < now) return false;
     if (q && !c.title.toLowerCase().includes(q) && !c.full_name.toLowerCase().includes(q)) return false;

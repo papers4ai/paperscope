@@ -2128,6 +2128,7 @@ body.mode-deadlines #trending-view { display: none !important; }
 .ddl-rank-btn.rank-a.active { background: #ef4444; border-color: #ef4444; }
 .ddl-rank-btn.rank-b.active { background: #f59e0b; border-color: #f59e0b; }
 .ddl-rank-btn.rank-c.active { background: #6b7280; border-color: #6b7280; }
+.ddl-rank-btn.rank-none.active { background: #9ca3af; border-color: #9ca3af; }
 
 .ddl-hide-expired {
   display: flex; align-items: center; gap: .35rem;
