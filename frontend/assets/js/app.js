@@ -392,9 +392,18 @@ let availableYears = [2023, 2024, 2025, 2026, 2027].filter(y => y <= _currentYea
 let feedPapersCache = null;
 let _feedFullyLoaded = false;
 
+function _normalizeId(id) {
+  // "2406.14806v1" → "2406.14806"；其他格式（arxiv:xxx, s2:xxx 等）不变
+  return id ? String(id).replace(/v\d+$/, "") : id;
+}
+
 function _dedupeById(arr) {
   const seen = new Set();
-  return arr.filter(p => p && p.id && !seen.has(p.id) && seen.add(p.id));
+  return arr.filter(p => {
+    if (!p || !p.id) return false;
+    const key = _normalizeId(p.id);
+    return !seen.has(key) && seen.add(key);
+  });
 }
 
 async function loadFeedPapers(onBackgroundDone) {
