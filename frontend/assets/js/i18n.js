@@ -34,6 +34,7 @@ const i18n = {
     feed: "arXiv",
     curated: "Publications",
     trending: "Trending",
+    deadlines: "Deadlines",
     favorites: "Favorites",
     login: "Login",
 
@@ -46,8 +47,31 @@ const i18n = {
     feature2: "🏆 Publications from top conferences",
     feature3: "🔥 Trending research hotspots",
     feature4: "⭐ Favorites with tags and exports",
+    feature5: "📅 CCF conference deadlines tracker",
     contact: "Contact",
     email: "zhifengwang686@gmail.com",
+
+    // Acknowledgements
+    acknowledgements: "Acknowledgements",
+    ackCCF: "Conference deadline data is sourced from",
+    ackCCFLink: "ccf-deadlines",
+    ackCCFSuffix: "(MIT License). We gratefully acknowledge their contribution.",
+
+    // Deadlines view
+    ccfDeadlines: "CCF Conference Deadlines",
+    ccfDeadlinesDesc: "Upcoming submission deadlines for CCF-ranked AI conferences",
+    allRanks: "All Ranks",
+    allSubs: "All Categories",
+    hideExpired: "Hide Expired",
+    submissionDDL: "Submission",
+    abstractDDL: "Abstract",
+    confDate: "Conference",
+    daysLeft: "{n}d left",
+    daysAgo: "{n}d ago",
+    deadlineToday: "Today",
+    deadlineTomorrow: "Tomorrow",
+    noDeadlines: "No upcoming deadlines found.",
+    viewWebsite: "Website →",
 
     // Trending View
     worldModel: "World Model",
@@ -275,6 +299,7 @@ const i18n = {
     feed: "arXiv",
     curated: "出版物",
     trending: "热榜",
+    deadlines: "会议DDL",
     favorites: "收藏",
     login: "登录",
 
@@ -287,8 +312,31 @@ const i18n = {
     feature2: "🏆 出版物顶会顶刊论文",
     feature3: "🔥 热门研究热点",
     feature4: "⭐ 收藏支持标签和导出",
+    feature5: "📅 CCF 会议截止日期追踪",
     contact: "联系方式",
     email: "zhifengwang686@gmail.com",
+
+    // Acknowledgements
+    acknowledgements: "致谢",
+    ackCCF: "会议截止日期数据来源于",
+    ackCCFLink: "ccf-deadlines",
+    ackCCFSuffix: "（MIT 协议开源）。感谢该项目的贡献。",
+
+    // Deadlines view
+    ccfDeadlines: "CCF 会议截止日期",
+    ccfDeadlinesDesc: "CCF 评级 AI 相关会议投稿截止时间",
+    allRanks: "全部等级",
+    allSubs: "全部类别",
+    hideExpired: "隐藏已过期",
+    submissionDDL: "投稿截止",
+    abstractDDL: "摘要截止",
+    confDate: "会议时间",
+    daysLeft: "还剩 {n} 天",
+    daysAgo: "{n} 天前",
+    deadlineToday: "今天截止",
+    deadlineTomorrow: "明天截止",
+    noDeadlines: "暂无即将到来的截止日期。",
+    viewWebsite: "官网 →",
 
     // Trending View
     worldModel: "World Model",

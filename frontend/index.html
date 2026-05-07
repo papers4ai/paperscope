@@ -6,7 +6,7 @@
   <title>🔭 Paperscope — AI Research Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/app.css?v=20260507a">
+  <link rel="stylesheet" href="assets/css/app.css?v=20260507b">
   <script src="assets/js/i18n.js"></script>
   <script>
   window.__PAPERSCOPE_CONFIG__ = {
@@ -23,6 +23,7 @@
       <button class="mode-tab active" data-mode="feed">📡 <span data-i18n="feed">Feed</span></button>
       <button class="mode-tab" data-mode="curated">🏆 <span data-i18n="curated">Curated</span></button>
       <button class="mode-tab" data-mode="trending">🔥 <span data-i18n="trending">Trending</span></button>
+      <button class="mode-tab" data-mode="deadlines">📅 <span data-i18n="deadlines">Deadlines</span></button>
     </nav>
     <input class="search" type="search" placeholder="Search papers / authors / venues..." data-i18n-placeholder="search">
     <div class="topbar-right">
@@ -472,6 +473,34 @@
       <section class="paper-list" id="paper-list">
         <div class="loading">加载中...</div>
       </section>
+
+      <!-- ========== Deadlines View ========== -->
+      <section class="deadlines-view" id="deadlines-view" hidden>
+        <div class="deadlines-header">
+          <div>
+            <h2 data-i18n="ccfDeadlines">CCF Conference Deadlines</h2>
+            <p class="deadlines-desc" data-i18n="ccfDeadlinesDesc">Upcoming submission deadlines for CCF-ranked AI conferences</p>
+          </div>
+        </div>
+        <div class="deadlines-filters">
+          <div class="ddl-filter-group">
+            <button class="ddl-rank-btn active" data-rank="">All</button>
+            <button class="ddl-rank-btn rank-a" data-rank="A">CCF-A</button>
+            <button class="ddl-rank-btn rank-b" data-rank="B">CCF-B</button>
+            <button class="ddl-rank-btn rank-c" data-rank="C">CCF-C</button>
+          </div>
+          <select class="ddl-sub-select" id="ddl-sub-select">
+            <option value="" data-i18n="allSubs">All Categories</option>
+          </select>
+          <label class="ddl-hide-expired">
+            <input type="checkbox" id="ddl-hide-expired" checked>
+            <span data-i18n="hideExpired">Hide Expired</span>
+          </label>
+        </div>
+        <div class="deadlines-list" id="deadlines-list">
+          <div class="loading">加载中...</div>
+        </div>
+      </section>
     </div>
 
     <div class="fav-modal" id="fav-modal" hidden style="display:none">
@@ -578,8 +607,22 @@
             <h3 data-i18n="favorites">Favorites</h3>
             <p data-i18n="feature4">Save papers you like, tag and export</p>
           </div>
+          <div class="feature-card">
+            <div class="feature-icon deadline-icon">📅</div>
+            <h3 data-i18n="deadlines">Deadlines</h3>
+            <p data-i18n="feature5">CCF conference deadlines tracker</p>
+          </div>
         </div>
         
+        <div class="about-ack">
+          <h3 data-i18n="acknowledgements">Acknowledgements</h3>
+          <p>
+            <span data-i18n="ackCCF">Conference deadline data is sourced from</span>
+            <a href="https://github.com/ccfddl/ccf-deadlines" target="_blank" rel="noopener" class="ack-link" data-i18n="ackCCFLink">ccf-deadlines</a>
+            <span data-i18n="ackCCFSuffix">(MIT License). We gratefully acknowledge their contribution.</span>
+          </p>
+        </div>
+
         <div class="about-contact">
           <h3 data-i18n="contact">Contact</h3>
           <a href="mailto:zhifengwang686@gmail.com" class="contact-email">
@@ -646,6 +689,6 @@
     </div>
   </div>
 
-  <script type="module" src="assets/js/app.js?v=20260507a"></script>
+  <script type="module" src="assets/js/app.js?v=20260507b"></script>
 </body>
 </html>

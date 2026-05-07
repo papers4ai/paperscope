@@ -1085,6 +1085,7 @@ async function reload() {
       $("#trending-view").hidden = false;
       $("#paper-list").hidden = true;
       $("#dashboard").hidden = true;
+      $("#deadlines-view").hidden = true;
       // 初始化更新时间
       if (!hotLastUpdated) {
         await refreshHotData();
@@ -1092,14 +1093,21 @@ async function reload() {
         const timeEl = document.getElementById("hot-last-updated");
         if (timeEl) timeEl.textContent = formatHotUpdateTime();
       }
+    } else if (state.mode === "deadlines") {
+      $("#trending-view").hidden = true;
+      $("#paper-list").hidden = true;
+      $("#dashboard").hidden = true;
+      $("#deadlines-view").hidden = false;
+      await loadAndRenderDeadlines();
     } else {
       // 其他模式：显示论文列表，隐藏热榜视图
       $("#trending-view").hidden = true;
       $("#paper-list").hidden = false;
       $("#dashboard").hidden = state.mode !== "feed";
-      
+      $("#deadlines-view").hidden = true;
+
       $("#paper-list").innerHTML = `<div class="loading">${t('loading')}</div>`;
-      
+
       if (state.mode === "feed") {
         const all = (await loadFeedPapers()).map(normalizePaper);
         const filtered = applyFeedFilters(all);
@@ -1115,11 +1123,127 @@ async function reload() {
       }
     }
   } catch (e) {
-    if (state.mode !== "trending") {
+    if (state.mode !== "trending" && state.mode !== "deadlines") {
       $("#paper-list").innerHTML = `<div class="loading">加载失败: ${esc(e.message)}</div>`;
     }
   }
 }
+
+// ========== CCF Deadlines ==========
+
+let deadlinesCache = null;
+let ddlActiveRank = "";
+let ddlActiveSub = "";
+let ddlHideExpired = true;
+
+async function loadAndRenderDeadlines() {
+  if (!deadlinesCache) {
+    try {
+      const data = await fetch("data/deadlines.json?t=" + Date.now()).then(r => r.ok ? r.json() : null);
+      deadlinesCache = data;
+    } catch (e) {
+      $("#deadlines-list").innerHTML = `<div class="loading">加载失败</div>`;
+      return;
+    }
+  }
+  if (!deadlinesCache) {
+    $("#deadlines-list").innerHTML = `<div class="loading">${t("noDeadlines")}</div>`;
+    return;
+  }
+  // Populate sub filter options
+  const subSel = $("#ddl-sub-select");
+  if (subSel.options.length <= 1) {
+    const subs = [...new Set((deadlinesCache.conferences || []).map(c => c.sub))].filter(Boolean).sort();
+    subs.forEach(s => {
+      const o = document.createElement("option");
+      o.value = s; o.textContent = s;
+      subSel.appendChild(o);
+    });
+  }
+  renderDeadlines();
+}
+
+function renderDeadlines() {
+  const now = new Date();
+  let confs = (deadlinesCache?.conferences || []).filter(c => {
+    if (ddlActiveRank && c.ccf !== ddlActiveRank) return false;
+    if (ddlActiveSub && c.sub !== ddlActiveSub) return false;
+    if (ddlHideExpired && new Date(c.deadline) < now) return false;
+    return true;
+  });
+
+  if (!confs.length) {
+    $("#deadlines-list").innerHTML = `<div class="loading">${t("noDeadlines")}</div>`;
+    return;
+  }
+
+  $("#deadlines-list").innerHTML = confs.map(c => {
+    const dl = new Date(c.deadline);
+    const diffMs = dl - now;
+    const diffDays = Math.ceil(diffMs / 86400000);
+    let countdownHtml, countdownCls;
+    if (diffDays < 0) {
+      countdownHtml = t("daysAgo").replace("{n}", Math.abs(diffDays));
+      countdownCls = "ddl-expired";
+    } else if (diffDays === 0) {
+      countdownHtml = t("deadlineToday");
+      countdownCls = "ddl-urgent";
+    } else if (diffDays === 1) {
+      countdownHtml = t("deadlineTomorrow");
+      countdownCls = "ddl-urgent";
+    } else if (diffDays <= 7) {
+      countdownHtml = t("daysLeft").replace("{n}", diffDays);
+      countdownCls = "ddl-soon";
+    } else {
+      countdownHtml = t("daysLeft").replace("{n}", diffDays);
+      countdownCls = "ddl-ok";
+    }
+
+    const rankCls = `ccf-rank-${(c.ccf||"").toLowerCase()}`;
+    const absDl = c.abstract_deadline ? new Date(c.abstract_deadline) : null;
+    const fmtDate = (d) => d.toLocaleDateString("en-US", {month:"short", day:"numeric", year:"numeric"});
+
+    return `<div class="ddl-card ${diffDays < 0 ? "ddl-card-expired" : ""}">
+      <div class="ddl-card-left">
+        <div class="ddl-title-row">
+          <span class="ddl-name">${esc(c.title)} ${c.year}</span>
+          <span class="ddl-rank ${rankCls}">CCF-${esc(c.ccf)}</span>
+          <span class="ddl-sub-tag">${esc(c.sub)}</span>
+        </div>
+        <p class="ddl-fullname">${esc(c.full_name)}</p>
+        <div class="ddl-dates">
+          ${absDl ? `<span class="ddl-date-item"><span class="ddl-label">${t("abstractDDL")}</span> ${fmtDate(absDl)}</span>` : ""}
+          <span class="ddl-date-item"><span class="ddl-label">${t("submissionDDL")}</span> ${fmtDate(dl)} <span class="ddl-tz">(${esc(c.timezone||"")})</span></span>
+          ${c.date ? `<span class="ddl-date-item"><span class="ddl-label">${t("confDate")}</span> ${esc(c.date)}${c.place ? " · " + esc(c.place) : ""}</span>` : ""}
+        </div>
+      </div>
+      <div class="ddl-card-right">
+        <div class="ddl-countdown ${countdownCls}">${countdownHtml}</div>
+        ${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener" class="ddl-link-btn">${t("viewWebsite")}</a>` : ""}
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// Deadlines filter events
+document.querySelectorAll(".ddl-rank-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".ddl-rank-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    ddlActiveRank = btn.dataset.rank;
+    if (deadlinesCache) renderDeadlines();
+  });
+});
+
+$("#ddl-sub-select")?.addEventListener("change", e => {
+  ddlActiveSub = e.target.value;
+  if (deadlinesCache) renderDeadlines();
+});
+
+$("#ddl-hide-expired")?.addEventListener("change", e => {
+  ddlHideExpired = e.target.checked;
+  if (deadlinesCache) renderDeadlines();
+});
 
 // ========== 事件绑定 ==========
 document.querySelectorAll(".mode-tab").forEach((b) =>

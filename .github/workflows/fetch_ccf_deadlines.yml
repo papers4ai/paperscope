@@ -1,0 +1,44 @@
+name: Fetch CCF Deadlines
+
+on:
+  schedule:
+    - cron: "0 1 * * *"   # Daily UTC 01:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone ccf-deadlines repo
+        run: git clone --depth=1 https://github.com/ccfddl/ccf-deadlines.git /tmp/ccf-deadlines
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install pyyaml
+
+      - name: Generate deadlines.json
+        run: python scripts/fetch_ccf_deadlines.py /tmp/ccf-deadlines
+
+      - name: Commit and push if changed
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add frontend/data/deadlines.json
+          if git diff --staged --quiet; then
+            echo "✓ No changes to deadlines.json"
+          else
+            git commit -m "data: update CCF deadlines $(date +%Y-%m-%d)"
+            git pull --rebase --autostash
+            git push
+            echo "✓ Pushed updated deadlines"
+          fi
