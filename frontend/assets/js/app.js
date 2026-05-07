@@ -1356,6 +1356,9 @@ function renderDeadlines() {
     }
 
     const rankCls = `ccf-rank-${(c.ccf||"").toLowerCase()}`;
+    const ccfBadge = c.ccf && ["A","B","C"].includes(c.ccf)
+      ? `<span class="ddl-rank ${rankCls}">CCF ${esc(c.ccf)}</span>`
+      : `<span class="ddl-rank ccf-rank-none">Non-CCF</span>`;
     const fmtDt = d => {
       const yyyy = d.getFullYear(), mm = String(d.getMonth()+1).padStart(2,"0"), dd = String(d.getDate()).padStart(2,"0");
       const hh = String(d.getHours()).padStart(2,"0"), mi = String(d.getMinutes()).padStart(2,"0");
@@ -1370,7 +1373,7 @@ function renderDeadlines() {
           ${c.date || c.place ? `<div class="ddl-meta">${[c.date, c.place].filter(Boolean).map(esc).join(" · ")}</div>` : ""}
           <div class="ddl-fullname">${esc(c.full_name)}</div>
           <div class="ddl-badges">
-            <span class="ddl-rank ${rankCls}">CCF ${esc(c.ccf)}</span>
+            ${ccfBadge}
             <span class="ddl-sub-tag">${esc(c.sub)}</span>
             ${c.comment ? `<span class="ddl-note"><span class="ddl-note-prefix">NOTE:</span> ${esc(c.comment)}</span>` : ""}
           </div>

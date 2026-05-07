@@ -2183,6 +2183,7 @@ body.mode-deadlines #trending-view { display: none !important; }
 .ccf-rank-a { color: #3b82f6; border: 1px solid #3b82f6; }
 .ccf-rank-b { color: #3b82f6; border: 1px solid #3b82f6; }
 .ccf-rank-c { color: #6b7280; border: 1px solid #6b7280; }
+.ccf-rank-none { color: #9ca3af; border: 1px solid #9ca3af; }
 .ddl-sub-tag {
   font-size: .72rem; font-weight: 600; padding: .12rem .45rem;
   border-radius: 4px; background: transparent;

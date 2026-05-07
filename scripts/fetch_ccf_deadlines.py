@@ -20,7 +20,6 @@ ROOT = Path(__file__).parent.parent
 OUTPUT = ROOT / "frontend" / "data" / "deadlines.json"
 
 ALLCONF_URL = "https://ccfddl.github.io/conference/allconf.yml"
-INCLUDE_RANKS = {"A", "B", "C"}
 PAST_GRACE_DAYS = 180
 FUTURE_WINDOW_DAYS = 365
 
@@ -108,9 +107,7 @@ def process_docs(docs):
         sub = doc.get("sub", "")
         rank_info = doc.get("rank") or {}
         ccf = str(rank_info.get("ccf", "")).upper().strip()
-
-        if ccf not in INCLUDE_RANKS:
-            continue
+        # keep all conferences — frontend CCF A/B/C buttons handle filtering
 
         for conf in (doc.get("confs") or []):
             if not isinstance(conf, dict):
