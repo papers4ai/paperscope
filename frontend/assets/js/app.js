@@ -1260,7 +1260,6 @@ function buildSubCheckboxes() {
 }
 
 function ddlProgressBar(absDl, dl, now) {
-  // Timeline: start = abstract_deadline (or dl - 90d), end = deadline
   const start = absDl ? absDl.getTime() : dl.getTime() - 90 * 86400000;
   const end = dl.getTime();
   const span = end - start;
@@ -1270,15 +1269,25 @@ function ddlProgressBar(absDl, dl, now) {
   const pos = Math.min(100, Math.max(0, (nowMs - start) / span * 100));
   const absPos = absDl ? Math.min(100, Math.max(0, (absDl.getTime() - start) / span * 100)) : null;
 
-  const fmt = d => { const m = d.getMonth()+1; const day = d.getDate(); return `${m < 10?"0"+m:m}/${day < 10?"0"+day:day}`; };
-  const startLabel = absDl ? fmt(absDl) : fmt(new Date(start));
-  const endLabel = fmt(dl);
+  const fmtShort = d => { const m = d.getMonth()+1; const day = d.getDate(); return `${m<10?"0"+m:m}/${day<10?"0"+day:day}`; };
+  const fmtFull = d => {
+    const pad = n => String(n).padStart(2,"0");
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  };
 
-  const absDot = absPos !== null ? `<div class="ddl-pb-dot ddl-pb-abstract" style="left:${absPos}%" title="Abstract deadline"></div>` : "";
-  const nowDot = `<div class="ddl-pb-dot ddl-pb-now" style="left:${pos}%"></div>`;
+  const endLabel = fmtShort(dl);
+  const nowLabel = fmtFull(now);
 
-  const absLabelHtml = absPos !== null ? `<span class="ddl-pb-label" style="left:${absPos}%">${startLabel}</span>` : `<span class="ddl-pb-label" style="left:0%">${startLabel}</span>`;
-  const endLabelHtml = `<span class="ddl-pb-label ddl-pb-label-end" style="right:0">${endLabel}</span>`;
+  const absDot = absPos !== null
+    ? `<div class="ddl-pb-dot ddl-pb-abstract" style="left:${absPos}%" data-tip="Abstract: ${fmtFull(absDl)}"></div>`
+    : "";
+  const nowDot = `<div class="ddl-pb-dot ddl-pb-now" style="left:${pos}%" data-tip="Now: ${nowLabel}"></div>`;
+
+  const absLabelHtml = absPos !== null
+    ? `<span class="ddl-pb-label" style="left:${absPos}%">${fmtShort(absDl)}</span>`
+    : "";
+  const nowLabelHtml = `<span class="ddl-pb-now-label" style="left:${Math.min(pos,85)}%">Now: ${nowLabel}</span>`;
+  const endLabelHtml = `<span class="ddl-pb-label ddl-pb-label-end">${endLabel}</span>`;
 
   return `<div class="ddl-progress">
     <div class="ddl-pb-track">
@@ -1286,7 +1295,7 @@ function ddlProgressBar(absDl, dl, now) {
       <div class="ddl-pb-future" style="left:${pos}%;width:${100-pos}%"></div>
       ${absDot}${nowDot}
     </div>
-    <div class="ddl-pb-labels">${absLabelHtml}${endLabelHtml}</div>
+    <div class="ddl-pb-labels">${absLabelHtml}${nowLabelHtml}${endLabelHtml}</div>
   </div>`;
 }
 
