@@ -388,50 +388,70 @@ const _currentYear = new Date().getFullYear();
 let availableYears = [2023, 2024, 2025, 2026, 2027].filter(y => y <= _currentYear);
 
 // 静态 arxiv 数据 (速览模式)
+// 优先加载最近 2 年并立即返回，旧年份后台补全后回调触发重渲染
 let feedPapersCache = null;
-async function loadFeedPapers() {
-  if (feedPapersCache) return feedPapersCache;
-  const results = await Promise.all(
-    availableYears.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
+let _feedFullyLoaded = false;
+async function loadFeedPapers(onBackgroundDone) {
+  if (feedPapersCache && _feedFullyLoaded) return feedPapersCache;
+  if (feedPapersCache) return feedPapersCache; // 后台还在加载，返回已有数据
+
+  const sorted = [...availableYears].sort((a, b) => b - a); // 最新年份优先
+  const priority = sorted.slice(0, 2);   // e.g. [2026, 2025]
+  const rest     = sorted.slice(2);      // e.g. [2024, 2023]
+
+  const firstBatch = await Promise.all(
+    priority.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
   );
-  feedPapersCache = results.flat();
+  feedPapersCache = firstBatch.flat();
+
+  if (rest.length) {
+    Promise.all(
+      rest.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
+    ).then(results => {
+      feedPapersCache = [...feedPapersCache, ...results.flat()];
+      _feedFullyLoaded = true;
+      if (typeof onBackgroundDone === "function") onBackgroundDone();
+    });
+  } else {
+    _feedFullyLoaded = true;
+  }
+
   return feedPapersCache;
 }
 
 // 静态精选数据 (精选模式)
-// 数据按领域拆成 3 个文件（各 ~15-50 MB），并行加载后合并去重
-let curatedPapersCache = null;
-async function loadCuratedPapers() {
-  if (curatedPapersCache) return curatedPapersCache;
+// 按选中领域按需加载，缓存分领域存储，避免一次下载所有 ~220MB
+const CURATED_DOMAINS_ALL = ["world_model", "physical_ai", "medical_ai"];
+const _curatedCache = {};       // domain-key → paper[]
+const _curatedLoaded = {};      // domain-key → bool
 
-  // 三个领域均按年份拆分（使用 meta.json 中的可用年份）
-  const CURATED_DOMAINS = ["world_model", "physical_ai", "medical_ai"];
-  const files = CURATED_DOMAINS.flatMap(d =>
+function _mergeCurated(lists) {
+  const seen = new Set();
+  const merged = [];
+  for (const list of lists) {
+    for (const p of list) {
+      if (p.id && !seen.has(p.id)) { seen.add(p.id); merged.push(p); }
+    }
+  }
+  return merged.map(normalizeCurated);
+}
+
+async function loadCuratedPapers(domain = "all") {
+  const key = domain;
+  if (_curatedCache[key] && _curatedLoaded[key]) return _curatedCache[key];
+  if (_curatedCache[key]) return _curatedCache[key];
+
+  const domainsToLoad = domain === "all" ? CURATED_DOMAINS_ALL : [domain];
+  const files = domainsToLoad.flatMap(d =>
     availableYears.map(y => `data/papers_curated_${d}_${y}.json`)
   );
   const results = await Promise.all(
-    files.map(f =>
-      fetch(f).then(r => r.ok ? r.json() : []).catch(() => [])
-    )
+    files.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
   );
 
-  // 合并并按 id 去重（跨领域论文会在多个文件中出现）
-  const seen = new Set();
-  const merged = [];
-  for (const list of results) {
-    for (const p of list) {
-      if (p.id && !seen.has(p.id)) {
-        seen.add(p.id);
-        merged.push(p);
-      }
-    }
-  }
-
-  curatedPapersCache = merged.map(normalizeCurated);
-
-  // 更新 footer 最新数据时间（由 meta.json 负责，这里不再重复计算）
-
-  return curatedPapersCache;
+  _curatedCache[key] = _mergeCurated(results);
+  _curatedLoaded[key] = true;
+  return _curatedCache[key];
 }
 
 function normalizeCurated(p) {
@@ -1113,15 +1133,25 @@ async function reload() {
       $("#dashboard").hidden = state.mode !== "feed";
       $("#deadlines-view").hidden = true;
 
-      $("#paper-list").innerHTML = `<div class="loading">${t('loading')}</div>`;
+      const _loadingHint = state.mode === "feed"
+        ? (currentLang === "zh" ? "加载中（最新数据优先）..." : "Loading recent papers first…")
+        : (currentLang === "zh" ? "加载中..." : "Loading…");
+      $("#paper-list").innerHTML = `<div class="loading">${_loadingHint}</div>`;
 
       if (state.mode === "feed") {
-        const all = (await loadFeedPapers()).map(normalizePaper);
+        const all = (await loadFeedPapers(() => {
+          // 旧年份后台加载完成后，仅在仍处于 feed 模式时静默刷新
+          if (state.mode === "feed") {
+            const f2 = applyFeedFilters(feedPapersCache.map(normalizePaper));
+            feedTotal = f2.length;
+            render(f2.slice(0, 100));
+          }
+        })).map(normalizePaper);
         const filtered = applyFeedFilters(all);
         feedTotal = filtered.length;
         render(filtered.slice(0, 100));
       } else if (state.mode === "curated") {
-        const all = await loadCuratedPapers();
+        const all = await loadCuratedPapers(state.domain);
         const filtered = applyCuratedFilters(all);
         render(filtered.slice(0, 100));
       } else {
