@@ -1304,7 +1304,6 @@ function ddlProgressBar(absDl, dl, now) {
   const absLabelHtml = absPos !== null
     ? `<span class="ddl-pb-label" style="left:${absPos}%">${fmtShort(absDl)}</span>`
     : "";
-  const nowLabelHtml = `<span class="ddl-pb-now-label" style="left:${Math.min(pos,85)}%">Now: ${nowLabel}</span>`;
   const endLabelHtml = `<span class="ddl-pb-label ddl-pb-label-end">${endLabel}</span>`;
 
   return `<div class="ddl-progress">
@@ -1313,7 +1312,7 @@ function ddlProgressBar(absDl, dl, now) {
       <div class="ddl-pb-future" style="left:${pos}%;width:${100-pos}%"></div>
       ${absDot}${nowDot}
     </div>
-    <div class="ddl-pb-labels">${absLabelHtml}${nowLabelHtml}${endLabelHtml}</div>
+    <div class="ddl-pb-labels">${absLabelHtml}${endLabelHtml}</div>
   </div>`;
 }
 

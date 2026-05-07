@@ -2256,10 +2256,7 @@ body.mode-deadlines #trending-view { display: none !important; }
   font-size: .65rem; color: var(--text-muted); white-space: nowrap;
 }
 .ddl-pb-label-end { position: absolute; right: 0; transform: none; }
-.ddl-pb-now-label {
-  position: absolute; transform: translateX(-50%);
-  font-size: .65rem; color: #818cf8; white-space: nowrap; font-weight: 500;
-}
+
 
 /* About ack */
 .about-ack-inline { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; line-height: 1.6; }
@@ -2282,6 +2279,5 @@ body.mode-deadlines #trending-view { display: none !important; }
   .ddl-card { padding: .875rem 1rem; }
   .ddl-countdown { font-size: 1.1rem; }
   /* On mobile, now label clips — hide it, keep dots visible */
-  .ddl-pb-now-label { display: none; }
   .ddl-pb-dot[data-tip]:hover::after { font-size: .6rem; }
 }
