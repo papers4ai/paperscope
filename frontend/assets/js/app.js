@@ -1138,10 +1138,11 @@ async function reload() {
 
 let deadlinesCache = null;
 let ddlActiveRank = "";
-let ddlActiveSub = "";
+let ddlCheckedSubs = new Set(); // empty = all checked
 let ddlHideExpired = true;
 let ddlSearch = "";
 let ddlTickTimer = null;
+let ddlSubsBuiltLang = "";
 
 const DDL_SUB_NAMES = {
   AI: "Artificial Intelligence", CG: "Graphics & Multimedia",
@@ -1150,6 +1151,16 @@ const DDL_SUB_NAMES = {
   MX: "Interdisciplinary", NW: "Network Systems",
   SC: "Security", SE: "Software Engineering",
 };
+const DDL_SUB_NAMES_ZH = {
+  AI: "人工智能", CG: "计算机图形学与多媒体",
+  CT: "计算机科学理论", DB: "数据库/数据挖掘/内容检索",
+  DS: "计算机体系结构/并行与分布计算/存储系统", HI: "人机交互与普适计算",
+  MX: "交叉/综合/新兴", NW: "计算机网络",
+  SC: "网络与信息安全", SE: "软件工程/系统软件/程序设计语言",
+};
+function ddlSubName(s) {
+  return (currentLang === "zh" ? DDL_SUB_NAMES_ZH[s] : DDL_SUB_NAMES[s]) || s;
+}
 
 async function loadAndRenderDeadlines() {
   if (!deadlinesCache) {
@@ -1165,7 +1176,7 @@ async function loadAndRenderDeadlines() {
     $("#deadlines-list").innerHTML = `<div class="loading">${t("noDeadlines")}</div>`;
     return;
   }
-  buildSubPills();
+  buildSubCheckboxes();
   renderDeadlines();
   startDdlTicker();
 }
@@ -1199,30 +1210,53 @@ function tickCountdowns() {
   });
 }
 
-function buildSubPills() {
+function buildSubCheckboxes() {
+  if (ddlSubsBuiltLang === currentLang) return;
+  ddlSubsBuiltLang = currentLang;
   const container = $("#ddl-sub-filter");
-  if (container.childElementCount > 0) return;
+  container.innerHTML = "";
   const subs = [...new Set((deadlinesCache.conferences || []).map(c => c.sub))].filter(Boolean).sort();
-  const allBtn = document.createElement("button");
-  allBtn.className = "ddl-sub-pill active";
-  allBtn.dataset.sub = "";
-  allBtn.textContent = "All";
-  allBtn.addEventListener("click", () => setSubPill(""));
-  container.appendChild(allBtn);
-  subs.forEach(s => {
-    const btn = document.createElement("button");
-    btn.className = "ddl-sub-pill";
-    btn.dataset.sub = s;
-    btn.textContent = DDL_SUB_NAMES[s] || s;
-    btn.addEventListener("click", () => setSubPill(s));
-    container.appendChild(btn);
-  });
-}
+  if (ddlCheckedSubs.size === 0) subs.forEach(s => ddlCheckedSubs.add(s));
 
-function setSubPill(sub) {
-  ddlActiveSub = sub;
-  document.querySelectorAll(".ddl-sub-pill").forEach(b => b.classList.toggle("active", b.dataset.sub === sub));
-  if (deadlinesCache) renderDeadlines();
+  // Select-all row
+  const allLabel = document.createElement("label");
+  allLabel.className = "ddl-check-label ddl-check-all";
+  const allCb = document.createElement("input");
+  allCb.type = "checkbox"; allCb.id = "ddl-cb-all";
+  allCb.checked = ddlCheckedSubs.size === subs.length;
+  allCb.addEventListener("change", () => {
+    if (allCb.checked) {
+      subs.forEach(s => ddlCheckedSubs.add(s));
+    } else {
+      ddlCheckedSubs.clear();
+    }
+    container.querySelectorAll(".ddl-sub-cb").forEach(cb => { cb.checked = allCb.checked; });
+    renderDeadlines();
+  });
+  allLabel.appendChild(allCb);
+  allLabel.appendChild(document.createTextNode(" " + (currentLang === "zh" ? "全选" : "Select All")));
+  container.appendChild(allLabel);
+
+  // Grid of sub checkboxes
+  const grid = document.createElement("div");
+  grid.className = "ddl-sub-grid";
+  subs.forEach(s => {
+    const label = document.createElement("label");
+    label.className = "ddl-check-label";
+    const cb = document.createElement("input");
+    cb.type = "checkbox"; cb.className = "ddl-sub-cb"; cb.dataset.sub = s;
+    cb.checked = ddlCheckedSubs.has(s);
+    cb.addEventListener("change", () => {
+      if (cb.checked) ddlCheckedSubs.add(s); else ddlCheckedSubs.delete(s);
+      const allCheck = document.getElementById("ddl-cb-all");
+      if (allCheck) allCheck.checked = ddlCheckedSubs.size === subs.length;
+      renderDeadlines();
+    });
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(" " + ddlSubName(s)));
+    grid.appendChild(label);
+  });
+  container.appendChild(grid);
 }
 
 function ddlProgressBar(absDl, dl, now) {
@@ -1261,7 +1295,7 @@ function renderDeadlines() {
   const q = ddlSearch.toLowerCase();
   let confs = (deadlinesCache?.conferences || []).filter(c => {
     if (ddlActiveRank && c.ccf !== ddlActiveRank) return false;
-    if (ddlActiveSub && c.sub !== ddlActiveSub) return false;
+    if (ddlCheckedSubs.size > 0 && !ddlCheckedSubs.has(c.sub)) return false;
     if (ddlHideExpired && new Date(c.deadline) < now) return false;
     if (q && !c.title.toLowerCase().includes(q) && !c.full_name.toLowerCase().includes(q)) return false;
     return true;
@@ -1313,7 +1347,7 @@ function renderDeadlines() {
           <div class="ddl-fullname">${esc(c.full_name)}</div>
           <div class="ddl-badges">
             <span class="ddl-rank ${rankCls}">CCF-${esc(c.ccf)}</span>
-            <span class="ddl-sub-tag">${esc(DDL_SUB_NAMES[c.sub] || c.sub)}</span>
+            <span class="ddl-sub-tag">${esc(ddlSubName(c.sub))}</span>
             ${c.comment ? `<span class="ddl-note">NOTE: ${esc(c.comment)}</span>` : ""}
           </div>
         </div>
@@ -2054,6 +2088,11 @@ function toggleLanguage() {
   if (state.mode === "trending" && hotLastUpdated) {
     const timeEl = document.getElementById("hot-last-updated");
     if (timeEl) timeEl.textContent = formatHotUpdateTime();
+  }
+  if (state.mode === "deadlines" && deadlinesCache) {
+    ddlSubsBuiltLang = ""; // force rebuild with new language
+    buildSubCheckboxes();
+    renderDeadlines();
   }
 }
 
