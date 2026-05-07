@@ -1143,6 +1143,8 @@ let ddlActiveRank = "";
 let ddlCheckedSubs = new Set(); // empty = all checked
 let ddlHideExpired = true;
 let ddlSearch = "";
+let ddlPage = 0;
+const DDL_PAGE_SIZE = 10;
 let ddlTickTimer = null;
 let ddlRefreshTimer = null;
 let ddlSubsBuiltLang = "";
@@ -1249,7 +1251,7 @@ function buildSubCheckboxes() {
       ddlCheckedSubs.clear();
     }
     container.querySelectorAll(".ddl-sub-cb").forEach(cb => { cb.checked = allCb.checked; });
-    renderDeadlines();
+    ddlPage = 0; renderDeadlines();
   });
   allLabel.appendChild(allCb);
   allLabel.appendChild(document.createTextNode(" " + (currentLang === "zh" ? "全选" : "Select All")));
@@ -1268,7 +1270,7 @@ function buildSubCheckboxes() {
       if (cb.checked) ddlCheckedSubs.add(s); else ddlCheckedSubs.delete(s);
       const allCheck = document.getElementById("ddl-cb-all");
       if (allCheck) allCheck.checked = ddlCheckedSubs.size === subs.length;
-      renderDeadlines();
+      ddlPage = 0; renderDeadlines();
     });
     label.appendChild(cb);
     label.appendChild(document.createTextNode(" " + ddlSubName(s)));
@@ -1311,7 +1313,7 @@ function ddlProgressBar(absDl, dl, now) {
 function renderDeadlines() {
   const now = new Date();
   const q = ddlSearch.toLowerCase();
-  let confs = (deadlinesCache?.conferences || []).filter(c => {
+  const confs = (deadlinesCache?.conferences || []).filter(c => {
     if (ddlActiveRank && c.ccf !== ddlActiveRank) return false;
     if (ddlCheckedSubs.size > 0 && !ddlCheckedSubs.has(c.sub)) return false;
     if (ddlHideExpired && new Date(c.deadline) < now) return false;
@@ -1320,22 +1322,27 @@ function renderDeadlines() {
   });
 
   const list = $("#deadlines-list");
+  const pagination = $("#ddl-pagination");
+
   if (!confs.length) {
     list.innerHTML = `<div class="loading">${t("noDeadlines")}</div>`;
+    pagination.innerHTML = "";
     return;
   }
 
-  list.innerHTML = confs.map(c => {
+  const totalPages = Math.ceil(confs.length / DDL_PAGE_SIZE);
+  ddlPage = Math.min(ddlPage, totalPages - 1);
+  const page = confs.slice(ddlPage * DDL_PAGE_SIZE, (ddlPage + 1) * DDL_PAGE_SIZE);
+
+  list.innerHTML = page.map(c => {
     const dl = new Date(c.deadline);
     const diffMs = dl - now;
     const diffDays = Math.floor(diffMs / 86400000);
     const absDl = c.abstract_deadline ? new Date(c.abstract_deadline) : null;
     const expired = diffMs < 0;
 
-    // Countdown class
     let cdCls = expired ? "ddl-expired" : diffDays <= 7 ? "ddl-urgent" : diffDays <= 30 ? "ddl-soon" : "ddl-ok";
 
-    // Initial countdown text (will be overwritten by ticker)
     let cdText;
     if (expired) {
       cdText = `${Math.abs(diffDays)}d ago`;
@@ -1354,7 +1361,6 @@ function renderDeadlines() {
       const hh = String(d.getHours()).padStart(2,"0"), mi = String(d.getMinutes()).padStart(2,"0");
       return `${yyyy}-${mm}-${dd} ${hh}:${mi}`;
     };
-
     const liveAttr = !expired ? ` data-deadline="${c.deadline}"` : "";
 
     return `<div class="ddl-card${expired ? " ddl-card-expired" : ""}">
@@ -1381,7 +1387,17 @@ function renderDeadlines() {
     </div>`;
   }).join("");
 
-  // Kick ticker immediately for fresh text
+  // Pagination bar
+  const start = ddlPage * DDL_PAGE_SIZE + 1;
+  const end = Math.min((ddlPage + 1) * DDL_PAGE_SIZE, confs.length);
+  pagination.innerHTML = `
+    <button class="ddl-pg-btn" id="ddl-pg-prev" ${ddlPage === 0 ? "disabled" : ""}>&#8592; Prev</button>
+    <span class="ddl-pg-info">${start}–${end} / ${confs.length}</span>
+    <button class="ddl-pg-btn" id="ddl-pg-next" ${ddlPage >= totalPages - 1 ? "disabled" : ""}>Next &#8594;</button>
+  `;
+  $("#ddl-pg-prev")?.addEventListener("click", () => { ddlPage--; renderDeadlines(); $("#deadlines-view").scrollIntoView({behavior:"smooth", block:"start"}); });
+  $("#ddl-pg-next")?.addEventListener("click", () => { ddlPage++; renderDeadlines(); $("#deadlines-view").scrollIntoView({behavior:"smooth", block:"start"}); });
+
   tickCountdowns();
 }
 
@@ -1391,17 +1407,20 @@ document.querySelectorAll(".ddl-rank-btn").forEach(btn => {
     document.querySelectorAll(".ddl-rank-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
     ddlActiveRank = btn.dataset.rank;
+    ddlPage = 0;
     if (deadlinesCache) renderDeadlines();
   });
 });
 
 $("#ddl-hide-expired")?.addEventListener("change", e => {
   ddlHideExpired = e.target.checked;
+  ddlPage = 0;
   if (deadlinesCache) renderDeadlines();
 });
 
 $("#ddl-search")?.addEventListener("input", e => {
   ddlSearch = e.target.value.trim();
+  ddlPage = 0;
   if (deadlinesCache) renderDeadlines();
 });
 

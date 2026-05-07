@@ -2259,6 +2259,20 @@ body.mode-deadlines #trending-view { display: none !important; }
 }
 
 
+/* Deadlines pagination */
+.ddl-pagination {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; padding: 1.25rem 0 .5rem;
+}
+.ddl-pg-btn {
+  padding: .4rem 1rem; border-radius: 6px; font-size: .85rem; font-weight: 500;
+  border: 1px solid var(--border); background: var(--card-bg); color: var(--text);
+  cursor: pointer; transition: background .15s, border-color .15s;
+}
+.ddl-pg-btn:hover:not(:disabled) { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ddl-pg-btn:disabled { opacity: .35; cursor: default; }
+.ddl-pg-info { font-size: .82rem; color: var(--text-muted); }
+
 /* About ack */
 .about-ack-inline { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; line-height: 1.6; }
 .ack-link { color: var(--accent); text-decoration: none; }
