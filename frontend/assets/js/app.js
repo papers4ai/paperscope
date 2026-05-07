@@ -1295,10 +1295,12 @@ function ddlProgressBar(absDl, dl, now) {
     return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
   };
 
+  const tipAlign = pct => pct < 20 ? " tip-left" : pct > 80 ? " tip-right" : "";
+
   const absDot = absPos !== null
-    ? `<div class="ddl-pb-dot ddl-pb-abstract" style="left:${absPos}%" data-tip="Abstract: ${fmtFull(absDl)}"></div>`
+    ? `<div class="ddl-pb-dot ddl-pb-abstract${tipAlign(absPos)}" style="left:${absPos}%" data-tip="Abstract: ${fmtFull(absDl)}"></div>`
     : "";
-  const nowDot = `<div class="ddl-pb-dot ddl-pb-now" style="left:${pos}%" data-tip="${fmtFull(now)}"></div>`;
+  const nowDot = `<div class="ddl-pb-dot ddl-pb-now${tipAlign(pos)}" style="left:${pos}%" data-tip="${fmtFull(now)}"></div>`;
   const endDot = `<div class="ddl-pb-dot ddl-pb-end" style="left:100%" data-tip="Deadline: ${fmtFull(dl)}"><span class="ddl-pb-end-label">${fmtShort(dl)}</span></div>`;
 
   return `<div class="ddl-progress">

@@ -2313,6 +2313,12 @@ body.mode-deadlines #trending-view { display: none !important; }
 .ddl-pb-dot[data-tip].tip-active::after,
 .ddl-pb-dot[data-tip].tip-active::before { opacity: 1; }
 
+/* Tooltip alignment helpers — prevent overflow at left/right edges */
+.ddl-pb-dot.tip-left[data-tip]::after  { left: 0; transform: none; }
+.ddl-pb-dot.tip-left[data-tip]::before { left: 4px; transform: none; }
+.ddl-pb-dot.tip-right[data-tip]::after  { left: auto; right: 0; transform: none; }
+.ddl-pb-dot.tip-right[data-tip]::before { left: auto; right: 4px; transform: none; }
+
 /* End dot tooltip: anchor to the right so it stays inside the viewport */
 .ddl-pb-end[data-tip]::after { left: auto; right: 0; transform: none; }
 .ddl-pb-end[data-tip]::before { left: auto; right: 4px; transform: none; }
