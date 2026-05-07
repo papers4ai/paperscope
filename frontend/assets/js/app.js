@@ -1316,7 +1316,7 @@ function renderDeadlines() {
   const confs = (deadlinesCache?.conferences || []).filter(c => {
     if (ddlActiveRank && c.ccf !== ddlActiveRank) return false;
     if (ddlCheckedSubs.size > 0 && !ddlCheckedSubs.has(c.sub)) return false;
-    if (ddlHideExpired && new Date(c.deadline) < now - 30 * 86400000) return false;
+    if (ddlHideExpired && new Date(c.deadline) < now) return false;
     if (q && !c.title.toLowerCase().includes(q) && !c.full_name.toLowerCase().includes(q)) return false;
     return true;
   });
