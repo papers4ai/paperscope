@@ -1599,14 +1599,20 @@ body.mode-curated .feed-only { display: none; }
   .mode-tabs {
     order: 3;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     padding-top: 8px;
     border-top: 1px solid var(--border);
     margin-top: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
   }
+  .mode-tabs::-webkit-scrollbar { display: none; }
   .mode-tab {
     padding: 8px 16px;
     font-size: 13px;
+    flex-shrink: 0;
   }
   .search {
     max-width: none;
@@ -1733,10 +1739,17 @@ body.mode-curated .feed-only { display: none; }
   }
   .mode-tabs {
     gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
   }
+  .mode-tabs::-webkit-scrollbar { display: none; }
   .mode-tab {
-    padding: 7px 14px;
+    padding: 7px 12px;
     font-size: 12px;
+    flex-shrink: 0;
   }
   .search {
     padding: 7px 10px 7px 32px;
@@ -2067,40 +2080,28 @@ body {
 .btn-auth.logged-in .btn-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
 /* ========== CCF Deadlines View ========== */
-.deadlines-view {
-  padding: 1.5rem 0;
-  max-width: 900px;
-}
+.deadlines-view { width: 100%; padding: 1.5rem 0; }
 
-.deadlines-header {
-  margin-bottom: 1.25rem;
-}
-.deadlines-header h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0 0 .25rem;
-}
-.deadlines-desc {
-  font-size: .85rem;
-  color: var(--text-secondary);
-  margin: 0;
-}
+.deadlines-header { margin-bottom: 1.25rem; }
+.deadlines-header h2 { font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 .25rem; }
+.deadlines-desc { font-size: .85rem; color: var(--text-secondary); margin: 0; }
 
+/* Filters — single scrollable row on mobile */
 .deadlines-filters {
   display: flex;
   align-items: center;
-  gap: .75rem;
-  flex-wrap: wrap;
+  gap: .6rem;
   margin-bottom: 1.25rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
 }
+.deadlines-filters::-webkit-scrollbar { display: none; }
 
-.ddl-filter-group {
-  display: flex;
-  gap: .35rem;
-}
+.ddl-filter-group { display: flex; gap: .35rem; flex-shrink: 0; }
 .ddl-rank-btn {
-  padding: .3rem .7rem;
+  padding: .3rem .65rem;
   border-radius: 6px;
   border: 1px solid var(--border);
   background: transparent;
@@ -2108,6 +2109,8 @@ body {
   font-size: .8rem;
   cursor: pointer;
   transition: all .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .ddl-rank-btn:hover { border-color: var(--border-hover); color: var(--text); }
 .ddl-rank-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -2123,6 +2126,7 @@ body {
   color: var(--text);
   font-size: .8rem;
   cursor: pointer;
+  flex-shrink: 0;
 }
 .ddl-sub-select:focus { outline: none; border-color: var(--accent); }
 
@@ -2134,15 +2138,13 @@ body {
   color: var(--text-secondary);
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .ddl-hide-expired input { cursor: pointer; accent-color: var(--accent); }
 
 /* Cards */
-.deadlines-list {
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-}
+.deadlines-list { display: flex; flex-direction: column; gap: .75rem; }
 
 .ddl-card {
   display: flex;
@@ -2155,132 +2157,57 @@ body {
   padding: 1rem 1.25rem;
   transition: border-color .15s, box-shadow .15s;
 }
-.ddl-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-card);
-}
+.ddl-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-card); }
 .ddl-card-expired { opacity: .5; }
 
 .ddl-card-left { flex: 1; min-width: 0; }
-.ddl-card-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: .6rem;
-  flex-shrink: 0;
-}
+.ddl-card-right { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; flex-shrink: 0; }
 
-.ddl-title-row {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  flex-wrap: wrap;
-  margin-bottom: .3rem;
-}
-.ddl-name {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-}
-.ddl-rank {
-  font-size: .7rem;
-  font-weight: 700;
-  padding: .15rem .4rem;
-  border-radius: 4px;
-  letter-spacing: .03em;
-}
+.ddl-title-row { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: .3rem; }
+.ddl-name { font-size: 1rem; font-weight: 700; color: var(--text); }
+.ddl-rank { font-size: .7rem; font-weight: 700; padding: .15rem .4rem; border-radius: 4px; letter-spacing: .03em; }
 .ccf-rank-a { background: rgba(239,68,68,.2); color: #f87171; border: 1px solid rgba(239,68,68,.3); }
 .ccf-rank-b { background: rgba(245,158,11,.2); color: #fbbf24; border: 1px solid rgba(245,158,11,.3); }
 .ccf-rank-c { background: rgba(107,114,128,.2); color: #9ca3af; border: 1px solid rgba(107,114,128,.3); }
 
 .ddl-sub-tag {
-  font-size: .7rem;
-  padding: .15rem .4rem;
-  border-radius: 4px;
-  background: var(--surface-bg);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
+  font-size: .7rem; padding: .15rem .4rem; border-radius: 4px;
+  background: var(--surface-bg); border: 1px solid var(--border); color: var(--text-secondary);
 }
 .ddl-fullname {
-  font-size: .8rem;
-  color: var(--text-secondary);
-  margin: 0 0 .5rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: .8rem; color: var(--text-secondary); margin: 0 0 .5rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.ddl-dates {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .4rem .75rem;
-}
-.ddl-date-item {
-  font-size: .78rem;
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  gap: .3rem;
-}
-.ddl-label {
-  color: var(--text-muted);
-  font-size: .72rem;
-}
+.ddl-dates { display: flex; flex-wrap: wrap; gap: .4rem .75rem; }
+.ddl-date-item { font-size: .78rem; color: var(--text-secondary); display: flex; align-items: center; gap: .3rem; }
+.ddl-label { color: var(--text-muted); font-size: .72rem; }
 .ddl-tz { color: var(--text-muted); font-size: .7rem; }
 
-/* Countdown */
-.ddl-countdown {
-  font-size: .85rem;
-  font-weight: 700;
-  padding: .3rem .65rem;
-  border-radius: 8px;
-  white-space: nowrap;
-}
+.ddl-countdown { font-size: .85rem; font-weight: 700; padding: .3rem .65rem; border-radius: 8px; white-space: nowrap; }
 .ddl-ok      { background: rgba(99,102,241,.15); color: #818cf8; }
 .ddl-soon    { background: rgba(245,158,11,.15); color: #fbbf24; }
 .ddl-urgent  { background: rgba(239,68,68,.15);  color: #f87171; }
 .ddl-expired { background: var(--surface-bg);    color: var(--text-muted); }
 
 .ddl-link-btn {
-  font-size: .78rem;
-  padding: .25rem .6rem;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  color: var(--accent);
-  text-decoration: none;
-  transition: border-color .15s, background .15s;
+  font-size: .78rem; padding: .25rem .6rem; border-radius: 6px;
+  border: 1px solid var(--border); color: var(--accent); text-decoration: none;
+  transition: border-color .15s, background .15s; white-space: nowrap;
 }
-.ddl-link-btn:hover {
-  background: rgba(129,140,248,.1);
-  border-color: var(--accent);
-}
+.ddl-link-btn:hover { background: rgba(129,140,248,.1); border-color: var(--accent); }
 
-/* About ack */
-.about-ack {
-  padding: 1rem 1.25rem;
-  border-radius: 10px;
-  background: var(--surface-bg);
-  border: 1px solid var(--border);
-  margin-bottom: 1rem;
-}
-.about-ack h3 {
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin: 0 0 .4rem;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-.about-ack p { font-size: .85rem; color: var(--text-secondary); margin: 0; line-height: 1.6; }
-.ack-link { color: var(--accent); text-decoration: none; margin: 0 .25rem; }
+/* About ack — inline paragraph in contact section */
+.about-ack-inline { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; line-height: 1.6; }
+.ack-link { color: var(--accent); text-decoration: none; }
 .ack-link:hover { text-decoration: underline; }
 
-/* Deadline icon color in about grid */
+/* Deadline icon in about grid */
 .deadline-icon { color: #818cf8; }
 
-/* Mobile */
+/* Deadlines mobile */
 @media (max-width: 640px) {
-  .ddl-card { flex-direction: column; gap: .75rem; }
+  .ddl-card { flex-direction: column; gap: .75rem; padding: .875rem 1rem; }
   .ddl-card-right { flex-direction: row; align-items: center; width: 100%; justify-content: space-between; }
-  .deadlines-filters { gap: .5rem; }
   .ddl-fullname { white-space: normal; }
+  .ddl-name { font-size: .95rem; }
 }
