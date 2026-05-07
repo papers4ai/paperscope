@@ -2159,13 +2159,58 @@ body.mode-deadlines #trending-view { display: none !important; }
 .deadlines-list { display: flex; flex-direction: column; gap: .75rem; }
 
 .ddl-card {
+  position: relative;
   background: var(--card-bg); border: 1px solid var(--border);
   border-radius: 14px; padding: 1.1rem 1.3rem;
   box-sizing: border-box; width: 100%; min-width: 0;
-  transition: border-color .15s, box-shadow .15s;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  transition: transform .25s cubic-bezier(.4,0,.2,1),
+              box-shadow .25s cubic-bezier(.4,0,.2,1),
+              border-color .25s ease;
+  overflow: hidden;
 }
-.ddl-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-card); }
-.ddl-card-expired { opacity: .45; }
+.ddl-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--accent); opacity: 0;
+  transition: opacity .25s ease;
+}
+.ddl-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 28px -8px rgba(99, 102, 241, .25),
+              0 4px 10px -2px rgba(0, 0, 0, .08);
+}
+.ddl-card:hover::before { opacity: 1; }
+.ddl-card:hover .ddl-name { color: var(--accent); }
+.ddl-name { transition: color .2s ease; }
+
+/* Urgency accent stripe */
+.ddl-card.is-urgent::before { background: #f87171; opacity: .9; }
+.ddl-card.is-soon::before   { background: #fbbf24; opacity: .9; }
+.ddl-card.is-ok::before     { background: var(--accent); }
+
+.ddl-card-expired { opacity: .55; filter: grayscale(.3); }
+.ddl-card-expired::before { background: var(--text-muted) !important; }
+.ddl-card-expired:hover { transform: translateY(-1px); border-color: var(--border-hover); }
+
+.deadlines-grid { display: flex; flex-direction: column; gap: .85rem; }
+.deadlines-grid > .ddl-card {
+  animation: ddl-fade-in .35s cubic-bezier(.4,0,.2,1) backwards;
+}
+.deadlines-grid > .ddl-card:nth-child(1)  { animation-delay: 0ms; }
+.deadlines-grid > .ddl-card:nth-child(2)  { animation-delay: 40ms; }
+.deadlines-grid > .ddl-card:nth-child(3)  { animation-delay: 80ms; }
+.deadlines-grid > .ddl-card:nth-child(4)  { animation-delay: 120ms; }
+.deadlines-grid > .ddl-card:nth-child(5)  { animation-delay: 160ms; }
+.deadlines-grid > .ddl-card:nth-child(6)  { animation-delay: 200ms; }
+.deadlines-grid > .ddl-card:nth-child(7)  { animation-delay: 240ms; }
+.deadlines-grid > .ddl-card:nth-child(8)  { animation-delay: 280ms; }
+.deadlines-grid > .ddl-card:nth-child(9)  { animation-delay: 320ms; }
+.deadlines-grid > .ddl-card:nth-child(10) { animation-delay: 360ms; }
+@keyframes ddl-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* Main row: info left + timing right */
 .ddl-card-main {
@@ -2178,19 +2223,23 @@ body.mode-deadlines #trending-view { display: none !important; }
 .ddl-fullname { font-size: .82rem; color: var(--text-secondary); margin-bottom: .45rem; }
 .ddl-badges { display: flex; gap: .35rem; flex-wrap: wrap; align-items: center; margin-bottom: .3rem; }
 .ddl-rank {
-  font-size: .72rem; font-weight: 600; padding: .12rem .45rem;
-  border-radius: 4px; letter-spacing: .02em;
+  font-size: .72rem; font-weight: 600; padding: .14rem .5rem;
+  border-radius: 5px; letter-spacing: .02em;
   background: transparent;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
-.ccf-rank-a { color: #3b82f6; border: 1px solid #3b82f6; }
-.ccf-rank-b { color: #3b82f6; border: 1px solid #3b82f6; }
-.ccf-rank-c { color: #6b7280; border: 1px solid #6b7280; }
-.ccf-rank-none { color: #9ca3af; border: 1px solid #9ca3af; }
+.ddl-rank:hover { transform: translateY(-1px); }
+.ccf-rank-a { color: #ef4444; border: 1px solid #ef4444; background: rgba(239, 68, 68, .06); }
+.ccf-rank-b { color: #3b82f6; border: 1px solid #3b82f6; background: rgba(59, 130, 246, .06); }
+.ccf-rank-c { color: #6b7280; border: 1px solid #6b7280; background: rgba(107, 114, 128, .06); }
+.ccf-rank-none { color: #9ca3af; border: 1px solid #d1d5db; }
 .ddl-sub-tag {
-  font-size: .72rem; font-weight: 600; padding: .12rem .45rem;
-  border-radius: 4px; background: transparent;
+  font-size: .72rem; font-weight: 600; padding: .14rem .5rem;
+  border-radius: 5px; background: transparent;
   border: 1px solid var(--border); color: var(--text-muted);
+  transition: transform .15s ease;
 }
+.ddl-sub-tag:hover { transform: translateY(-1px); }
 .ddl-sub-plain { font-size: .78rem; color: var(--text-secondary); margin-top: .25rem; }
 .ddl-note { font-size: .76rem; color: var(--text-secondary); }
 .ddl-note-prefix { color: #3b82f6; font-weight: 700; }
@@ -2198,8 +2247,14 @@ body.mode-deadlines #trending-view { display: none !important; }
 /* Timing panel */
 .ddl-card-timing { flex-shrink: 0; text-align: right; min-width: 200px; }
 .ddl-countdown {
-  font-size: 1.3rem; font-weight: 800; letter-spacing: .02em;
+  font-size: 1.35rem; font-weight: 800; letter-spacing: .03em;
   margin-bottom: .4rem; font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.ddl-card.is-urgent .ddl-countdown { animation: ddl-pulse 1.6s ease-in-out infinite; }
+@keyframes ddl-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .65; }
 }
 .ddl-ok     { color: #818cf8; }
 .ddl-soon   { color: #fbbf24; }
@@ -2228,9 +2283,13 @@ body.mode-deadlines #trending-view { display: none !important; }
   position: absolute; top: 50%; transform: translate(-50%, -50%);
   width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--card-bg);
   cursor: pointer;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.04);
+  transition: transform .15s ease, box-shadow .15s ease;
 }
+.ddl-pb-dot:hover { transform: translate(-50%, -50%) scale(1.4); box-shadow: 0 0 0 3px rgba(99,102,241,.2); }
 .ddl-pb-abstract { background: #f59e0b; }
-.ddl-pb-now { background: #818cf8; }
+.ddl-pb-now { background: #818cf8; box-shadow: 0 0 0 4px rgba(129, 140, 248, .25); }
+.ddl-pb-end { background: var(--accent) !important; }
 
 /* CSS tooltip via data-tip */
 .ddl-pb-dot[data-tip] { position: absolute; }
@@ -2252,8 +2311,7 @@ body.mode-deadlines #trending-view { display: none !important; }
 .ddl-pb-dot[data-tip]:hover::after,
 .ddl-pb-dot[data-tip]:hover::before { opacity: 1; }
 
-/* End dot + label */
-.ddl-pb-end { background: var(--accent) !important; }
+/* End dot label */
 .ddl-pb-end-label {
   position: absolute; left: 50%; transform: translateX(-50%);
   top: calc(100% + 5px);

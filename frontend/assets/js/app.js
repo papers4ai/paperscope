@@ -1347,6 +1347,7 @@ function renderDeadlines() {
     const expired = diffMs < 0;
 
     let cdCls = expired ? "ddl-expired" : diffDays <= 7 ? "ddl-urgent" : diffDays <= 30 ? "ddl-soon" : "ddl-ok";
+    const urgencyCls = expired ? "" : diffDays <= 7 ? " is-urgent" : diffDays <= 30 ? " is-soon" : " is-ok";
 
     let cdText;
     if (expired) {
@@ -1371,7 +1372,7 @@ function renderDeadlines() {
     };
     const liveAttr = !expired ? ` data-deadline="${c.deadline}"` : "";
 
-    return `<div class="ddl-card${expired ? " ddl-card-expired" : ""}">
+    return `<div class="ddl-card${expired ? " ddl-card-expired" : urgencyCls}">
       <div class="ddl-card-main">
         <div class="ddl-card-info">
           <div class="ddl-name">${esc(c.title)} <span class="ddl-year">${c.year}</span></div>
