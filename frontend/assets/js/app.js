@@ -391,6 +391,12 @@ let availableYears = [2023, 2024, 2025, 2026, 2027].filter(y => y <= _currentYea
 // 优先加载最近 2 年并立即返回，旧年份后台补全后回调触发重渲染
 let feedPapersCache = null;
 let _feedFullyLoaded = false;
+
+function _dedupeById(arr) {
+  const seen = new Set();
+  return arr.filter(p => p && p.id && !seen.has(p.id) && seen.add(p.id));
+}
+
 async function loadFeedPapers(onBackgroundDone) {
   if (feedPapersCache && _feedFullyLoaded) return feedPapersCache;
   if (feedPapersCache) return feedPapersCache; // 后台还在加载，返回已有数据
@@ -402,13 +408,13 @@ async function loadFeedPapers(onBackgroundDone) {
   const firstBatch = await Promise.all(
     priority.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
   );
-  feedPapersCache = firstBatch.flat();
+  feedPapersCache = _dedupeById(firstBatch.flat());
 
   if (rest.length) {
     Promise.all(
       rest.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
     ).then(results => {
-      feedPapersCache = [...feedPapersCache, ...results.flat()];
+      feedPapersCache = _dedupeById([...feedPapersCache, ...results.flat()]);
       _feedFullyLoaded = true;
       if (typeof onBackgroundDone === "function") onBackgroundDone();
     });
@@ -598,11 +604,12 @@ async function refreshVenueList() {
 // ========== 渲染论文列表 ==========
 function render(papers) {
   const list = $("#paper-list");
-  if (!papers.length) {
+  const unique = _dedupeById(papers);
+  if (!unique.length) {
     list.innerHTML = `<div class="loading">${t('noPapers')}</div>`;
     return;
   }
-  list.innerHTML = papers.map(paperCard).join("");
+  list.innerHTML = unique.map(paperCard).join("");
   list.querySelectorAll(".paper-card").forEach((el) => {
     el.addEventListener("click", (e) => {
       if (e.target.closest(".fav-btn")) return;
