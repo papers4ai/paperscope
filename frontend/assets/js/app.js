@@ -1417,7 +1417,9 @@ function renderDeadlines() {
     prev = p;
   }
   pgHtml += `<button class="ddl-pg-btn" ${ddlPage>=totalPages-1?"disabled":""} data-p="${ddlPage+1}">&#8594;</button>`;
-  pgHtml += `<span class="ddl-pg-total">共 ${confs.length} 条</span>`;
+  pgHtml += currentLang === "en"
+    ? `<span class="ddl-pg-total">${confs.length} total</span>`
+    : `<span class="ddl-pg-total">共 ${confs.length} 条</span>`;
   pagination.innerHTML = pgHtml;
   pagination.querySelectorAll(".ddl-pg-btn[data-p]").forEach(btn => {
     if (!btn.disabled) btn.addEventListener("click", () => goTo(+btn.dataset.p));
