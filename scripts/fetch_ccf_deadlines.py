@@ -21,7 +21,7 @@ OUTPUT = ROOT / "frontend" / "data" / "deadlines.json"
 
 ALLCONF_URL = "https://ccfddl.github.io/conference/allconf.yml"
 INCLUDE_RANKS = {"A", "B", "C"}
-PAST_GRACE_DAYS = 14
+PAST_GRACE_DAYS = 180
 FUTURE_WINDOW_DAYS = 365
 
 SUB_NAMES = {
