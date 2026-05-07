@@ -1346,10 +1346,11 @@ function renderDeadlines() {
           ${c.date || c.place ? `<div class="ddl-meta">${[c.date, c.place].filter(Boolean).map(esc).join(" · ")}</div>` : ""}
           <div class="ddl-fullname">${esc(c.full_name)}</div>
           <div class="ddl-badges">
-            <span class="ddl-rank ${rankCls}">CCF-${esc(c.ccf)}</span>
-            <span class="ddl-sub-tag">${esc(ddlSubName(c.sub))}</span>
-            ${c.comment ? `<span class="ddl-note">NOTE: ${esc(c.comment)}</span>` : ""}
+            <span class="ddl-rank ${rankCls}">CCF ${esc(c.ccf)}</span>
+            <span class="ddl-sub-tag">${esc(c.sub)}</span>
+            ${c.comment ? `<span class="ddl-note"><span class="ddl-note-prefix">NOTE:</span> ${esc(c.comment)}</span>` : ""}
           </div>
+          <div class="ddl-sub-plain">${esc(ddlSubName(c.sub))}</div>
         </div>
         <div class="ddl-card-timing">
           <div class="ddl-countdown ${cdCls}"><span class="ddl-cd-live"${liveAttr}>${cdText}</span></div>
