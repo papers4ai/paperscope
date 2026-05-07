@@ -383,9 +383,10 @@ function closeTagPicker() {
   }
 }
 
-// 可用年份（由 meta.json 决定；初始值兜底，过滤掉未来年份）
+// 可用年份（由 meta.json 决定；初始值从 2023 动态生成到当前年份）
 const _currentYear = new Date().getFullYear();
-let availableYears = [2023, 2024, 2025, 2026, 2027].filter(y => y <= _currentYear);
+const _START_YEAR = 2023;
+let availableYears = Array.from({ length: _currentYear - _START_YEAR + 1 }, (_, i) => _START_YEAR + i);
 
 // 静态 arxiv 数据 (速览模式)
 // 优先加载最近 2 年并立即返回，旧年份后台补全后回调触发重渲染
@@ -428,8 +429,8 @@ async function loadFeedPapers(onBackgroundDone) {
   if (feedPapersCache) return feedPapersCache; // 后台还在加载，返回已有数据
 
   const sorted = [...availableYears].sort((a, b) => b - a); // 最新年份优先
-  const priority = sorted.slice(0, 2);   // e.g. [2026, 2025]
-  const rest     = sorted.slice(2);      // e.g. [2024, 2023]
+  const priority = sorted.slice(0, 2);   // 最新两年（随当前年份自动变化）
+  const rest     = sorted.slice(2);      // 其余旧年份
 
   const firstBatch = await Promise.all(
     priority.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
