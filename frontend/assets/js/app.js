@@ -649,6 +649,18 @@ async function refreshVenueList() {
 }
 
 // ========== 渲染论文列表 ==========
+function showLoadingMoreBanner() {
+  removeLoadingMoreBanner();
+  const el = document.createElement("div");
+  el.id = "loading-more-banner";
+  el.className = "loading-more-banner";
+  el.textContent = currentLang === "zh" ? "⏳ 正在加载更多年份数据..." : "⏳ Loading older papers…";
+  $("#paper-list").after(el);
+}
+function removeLoadingMoreBanner() {
+  document.getElementById("loading-more-banner")?.remove();
+}
+
 function render(papers) {
   const list = $("#paper-list");
   const unique = _dedupeById(papers);
@@ -1194,26 +1206,29 @@ async function reload() {
 
       if (state.mode === "feed") {
         const all = (await loadFeedPapers(() => {
-          // 旧年份后台加载完成后，仅在仍处于 feed 模式时静默刷新
           if (state.mode === "feed") {
             const f2 = applyFeedFilters(feedPapersCache.map(normalizePaper));
             feedTotal = f2.length;
             render(f2.slice(0, 100));
+            removeLoadingMoreBanner();
           }
         })).map(normalizePaper);
         const filtered = applyFeedFilters(all);
         feedTotal = filtered.length;
         render(filtered.slice(0, 100));
+        if (!_feedFullyLoaded) showLoadingMoreBanner();
       } else if (state.mode === "curated") {
         const _curDomain = state.domain;
         const all = await loadCuratedPapers(_curDomain, () => {
           if (state.mode === "curated" && state.domain === _curDomain) {
             const f2 = applyCuratedFilters(_curatedCache[_curDomain]);
             render(f2.slice(0, 100));
+            removeLoadingMoreBanner();
           }
         });
         const filtered = applyCuratedFilters(all);
         render(filtered.slice(0, 100));
+        if (!_curatedLoaded[state.domain]) showLoadingMoreBanner();
       } else {
         const papers = await listPapers(state);
         render(papers);

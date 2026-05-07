@@ -747,6 +747,17 @@ body.mode-curated .feed-only { display: none; }
   grid-column: 1 / -1;
 }
 
+.loading-more-banner {
+  text-align: center; padding: .55rem 1rem;
+  font-size: .82rem; color: var(--text-muted);
+  border: 1px dashed var(--border); border-radius: 8px;
+  margin: .75rem 0; animation: pulse-opacity 1.4s ease-in-out infinite;
+}
+@keyframes pulse-opacity {
+  0%, 100% { opacity: .55; }
+  50%       { opacity: 1; }
+}
+
 @keyframes cardIn {
   from { opacity: 0; transform: translateY(12px) scale(.98); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
