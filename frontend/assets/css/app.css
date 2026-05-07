@@ -2167,11 +2167,11 @@ body.mode-deadlines #trending-view { display: none !important; }
   transition: transform .25s cubic-bezier(.4,0,.2,1),
               box-shadow .25s cubic-bezier(.4,0,.2,1),
               border-color .25s ease;
-  overflow: hidden;
 }
 .ddl-card::before {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0;
   width: 3px; background: var(--accent); opacity: 0;
+  border-radius: 14px 0 0 14px;
   transition: opacity .25s ease;
 }
 .ddl-card:hover {
@@ -2311,6 +2311,10 @@ body.mode-deadlines #trending-view { display: none !important; }
 .ddl-pb-dot[data-tip]:hover::after,
 .ddl-pb-dot[data-tip]:hover::before { opacity: 1; }
 
+/* End dot tooltip: anchor to the right so it stays inside the viewport */
+.ddl-pb-end[data-tip]::after { left: auto; right: 0; transform: none; }
+.ddl-pb-end[data-tip]::before { left: auto; right: 4px; transform: none; }
+
 /* End dot label */
 .ddl-pb-end-label {
   position: absolute; left: 50%; transform: translateX(-50%);
@@ -2361,7 +2365,6 @@ body.mode-deadlines #trending-view { display: none !important; }
   .ddl-countdown { font-size: 1.05rem; }
   .ddl-timing-row { font-size: .74rem; flex-wrap: wrap; word-break: break-all; }
   .ddl-site-link { word-break: break-all; }
-  .ddl-progress { overflow: hidden; }
   .ddl-pb-track { overflow: visible; }
   .ddl-pb-dot[data-tip]:hover::after { font-size: .6rem; }
   .ddl-pagination { gap: .4rem; flex-wrap: wrap; }
