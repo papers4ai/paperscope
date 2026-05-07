@@ -415,13 +415,15 @@ function _dedupeById(arr) {
     if (!cur || _versionOf(p.id) > _versionOf(cur.id)) best.set(key, p);
   }
   // 第二遍：按原始顺序输出，每个 key 只取 best 中选中的那条
+  // 注意：必须先判断是否是 best，再加入 seen，否则低版本条目会先占位导致高版本被跳过
   const seen = new Set();
   return arr.filter(p => {
     if (!p || !p.id) return false;
     const key = _normalizeId(p.id);
     if (seen.has(key)) return false;
+    if (best.get(key) !== p) return false; // 不是最佳版本，跳过但不占 seen
     seen.add(key);
-    return best.get(key) === p;
+    return true;
   });
 }
 
