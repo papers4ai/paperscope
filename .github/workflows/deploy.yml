@@ -4,6 +4,16 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - "Sync CCF Deadlines"
+      - "Sync Papers Daily"
+      - "Update Trending"
+      - "Daily Curated Update"
+      - "Fetch arXiv Daily"
+      - "Sync Curated Weekly"
+      - "Generate Weekly Picks"
+    types: [completed]
 
 permissions:
   contents: read
