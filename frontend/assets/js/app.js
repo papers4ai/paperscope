@@ -392,6 +392,7 @@ let availableYears = Array.from({ length: _currentYear - _START_YEAR + 1 }, (_, 
 // 优先加载最近 2 年并立即返回，旧年份后台补全后回调触发重渲染
 let feedPapersCache = null;
 let _feedFullyLoaded = false;
+let _feedBgCallback = null;   // 最新一次 reload 注册的后台完成回调，覆盖式更新
 
 function _normalizeId(id) {
   // "2406.14806v1" → "2406.14806"；其他格式（arxiv:xxx, s2:xxx 等）不变
@@ -425,10 +426,13 @@ function _dedupeById(arr) {
 }
 
 async function loadFeedPapers(onBackgroundDone) {
+  // 每次调用都更新回调，确保后台完成时执行最新 reload 的逻辑
+  if (typeof onBackgroundDone === "function") _feedBgCallback = onBackgroundDone;
+
   if (feedPapersCache && _feedFullyLoaded) return feedPapersCache;
   if (feedPapersCache) return feedPapersCache; // 后台还在加载，返回已有数据
 
-  const sorted = [...availableYears].sort((a, b) => b - a); // 最新年份优先
+  const sorted = [...availableYears].sort((a, b) => b - a);
   const priority = sorted.slice(0, 2);   // 最新两年（随当前年份自动变化）
   const rest     = sorted.slice(2);      // 其余旧年份
 
@@ -443,7 +447,7 @@ async function loadFeedPapers(onBackgroundDone) {
     ).then(results => {
       feedPapersCache = _dedupeById([...feedPapersCache, ...results.flat()]);
       _feedFullyLoaded = true;
-      if (typeof onBackgroundDone === "function") onBackgroundDone();
+      if (typeof _feedBgCallback === "function") { _feedBgCallback(); _feedBgCallback = null; }
     });
   } else {
     _feedFullyLoaded = true;
@@ -455,8 +459,9 @@ async function loadFeedPapers(onBackgroundDone) {
 // 静态精选数据 (精选模式)
 // 按选中领域按需加载，缓存分领域存储，避免一次下载所有 ~220MB
 const CURATED_DOMAINS_ALL = ["world_model", "physical_ai", "medical_ai"];
-const _curatedCache = {};       // domain-key → paper[]
-const _curatedLoaded = {};      // domain-key → bool
+const _curatedCache = {};         // domain-key → paper[]
+const _curatedLoaded = {};        // domain-key → bool
+const _curatedBgCallback = {};    // domain-key → 最新后台完成回调
 
 function _mergeCurated(lists) {
   return _dedupeById(lists.flat().map(normalizeCurated));
@@ -464,15 +469,17 @@ function _mergeCurated(lists) {
 
 async function loadCuratedPapers(domain = "all", onBackgroundDone) {
   const key = domain;
+  // 每次调用都更新回调
+  if (typeof onBackgroundDone === "function") _curatedBgCallback[key] = onBackgroundDone;
+
   if (_curatedCache[key] && _curatedLoaded[key]) return _curatedCache[key];
   if (_curatedCache[key]) return _curatedCache[key]; // 后台还在加载
 
   const domainsToLoad = domain === "all" ? CURATED_DOMAINS_ALL : [domain];
   const sorted = [...availableYears].sort((a, b) => b - a);
-  const priority = sorted.slice(0, 2);  // e.g. [2026, 2025]
-  const rest     = sorted.slice(2);     // e.g. [2024, 2023]
+  const priority = sorted.slice(0, 2);   // 最新两年（随当前年份自动变化）
+  const rest     = sorted.slice(2);      // 其余旧年份
 
-  // 先加载最新 2 年，立即返回
   const firstFiles = domainsToLoad.flatMap(d =>
     priority.map(y => `data/papers_curated_${d}_${y}.json`)
   );
@@ -481,7 +488,6 @@ async function loadCuratedPapers(domain = "all", onBackgroundDone) {
   );
   _curatedCache[key] = _mergeCurated(firstResults);
 
-  // 旧年份后台加载后合并
   if (rest.length) {
     const restFiles = domainsToLoad.flatMap(d =>
       rest.map(y => `data/papers_curated_${d}_${y}.json`)
@@ -491,7 +497,8 @@ async function loadCuratedPapers(domain = "all", onBackgroundDone) {
     ).then(restResults => {
       _curatedCache[key] = _mergeCurated([..._curatedCache[key], ...restResults.flat()]);
       _curatedLoaded[key] = true;
-      if (typeof onBackgroundDone === "function") onBackgroundDone();
+      const cb = _curatedBgCallback[key];
+      if (typeof cb === "function") { cb(); delete _curatedBgCallback[key]; }
     });
   } else {
     _curatedLoaded[key] = true;
