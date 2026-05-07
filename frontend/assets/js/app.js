@@ -1415,10 +1415,27 @@ function renderDeadlines() {
     prev = p;
   }
   pgHtml += `<button class="ddl-pg-btn" ${ddlPage>=totalPages-1?"disabled":""} data-p="${ddlPage+1}">&#8594;</button>`;
+  pgHtml += `<span class="ddl-pg-total">共 ${confs.length} 条</span>`;
   pagination.innerHTML = pgHtml;
   pagination.querySelectorAll(".ddl-pg-btn[data-p]").forEach(btn => {
     if (!btn.disabled) btn.addEventListener("click", () => goTo(+btn.dataset.p));
   });
+
+  // Mobile: tap dot to toggle tooltip; tap elsewhere to dismiss
+  pagination.closest("#deadlines-view").querySelectorAll(".ddl-pb-dot[data-tip]").forEach(dot => {
+    dot.addEventListener("click", e => {
+      e.stopPropagation();
+      const active = dot.classList.contains("tip-active");
+      document.querySelectorAll(".ddl-pb-dot.tip-active").forEach(d => d.classList.remove("tip-active"));
+      if (!active) dot.classList.add("tip-active");
+    });
+  });
+  if (!window._ddlDotDismiss) {
+    window._ddlDotDismiss = true;
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".ddl-pb-dot.tip-active").forEach(d => d.classList.remove("tip-active"));
+    });
+  }
 
   tickCountdowns();
 }

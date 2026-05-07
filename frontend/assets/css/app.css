@@ -2309,7 +2309,9 @@ body.mode-deadlines #trending-view { display: none !important; }
   pointer-events: none; opacity: 0; transition: opacity .15s;
 }
 .ddl-pb-dot[data-tip]:hover::after,
-.ddl-pb-dot[data-tip]:hover::before { opacity: 1; }
+.ddl-pb-dot[data-tip]:hover::before,
+.ddl-pb-dot[data-tip].tip-active::after,
+.ddl-pb-dot[data-tip].tip-active::before { opacity: 1; }
 
 /* End dot tooltip: anchor to the right so it stays inside the viewport */
 .ddl-pb-end[data-tip]::after { left: auto; right: 0; transform: none; }
@@ -2338,6 +2340,7 @@ body.mode-deadlines #trending-view { display: none !important; }
 .ddl-pg-btn:disabled { opacity: .35; cursor: default; }
 .ddl-pg-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 .ddl-pg-ellipsis { font-size: .85rem; color: var(--text-muted); padding: 0 .2rem; line-height: 2; }
+.ddl-pg-total { font-size: .8rem; color: var(--text-muted); margin-left: .5rem; line-height: 2; white-space: nowrap; align-self: center; }
 
 /* About ack */
 .about-ack-inline { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; line-height: 1.6; }
