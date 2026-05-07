@@ -1083,6 +1083,7 @@ async function reload() {
     if (state.mode === "trending") {
       document.body.classList.remove("mode-deadlines");
       stopDdlTicker();
+      stopDdlRefresh();
       // 热榜模式：显示热榜视图，隐藏论文列表
       $("#trending-view").hidden = false;
       $("#paper-list").hidden = true;
@@ -1105,6 +1106,7 @@ async function reload() {
     } else {
       document.body.classList.remove("mode-deadlines");
       stopDdlTicker();
+      stopDdlRefresh();
       // 其他模式：显示论文列表，隐藏热榜视图
       $("#trending-view").hidden = true;
       $("#paper-list").hidden = false;
@@ -1142,7 +1144,9 @@ let ddlCheckedSubs = new Set(); // empty = all checked
 let ddlHideExpired = true;
 let ddlSearch = "";
 let ddlTickTimer = null;
+let ddlRefreshTimer = null;
 let ddlSubsBuiltLang = "";
+const DDL_REFRESH_INTERVAL = 30 * 60 * 1000; // 30 minutes
 
 const DDL_SUB_NAMES = {
   AI: "Artificial Intelligence", CG: "Graphics & Multimedia",
@@ -1179,6 +1183,7 @@ async function loadAndRenderDeadlines() {
   buildSubCheckboxes();
   renderDeadlines();
   startDdlTicker();
+  startDdlRefresh();
 }
 
 function startDdlTicker() {
@@ -1188,6 +1193,19 @@ function startDdlTicker() {
 
 function stopDdlTicker() {
   if (ddlTickTimer) { clearInterval(ddlTickTimer); ddlTickTimer = null; }
+}
+
+function startDdlRefresh() {
+  if (ddlRefreshTimer) return;
+  ddlRefreshTimer = setInterval(async () => {
+    deadlinesCache = null;
+    ddlSubsBuiltLang = "";
+    await loadAndRenderDeadlines();
+  }, DDL_REFRESH_INTERVAL);
+}
+
+function stopDdlRefresh() {
+  if (ddlRefreshTimer) { clearInterval(ddlRefreshTimer); ddlRefreshTimer = null; }
 }
 
 function tickCountdowns() {
