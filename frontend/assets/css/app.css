@@ -2272,7 +2272,8 @@ body.mode-deadlines #trending-view { display: none !important; }
 }
 .ddl-pg-btn:hover:not(:disabled) { background: var(--accent); color: #fff; border-color: var(--accent); }
 .ddl-pg-btn:disabled { opacity: .35; cursor: default; }
-.ddl-pg-info { font-size: .82rem; color: var(--text-muted); }
+.ddl-pg-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ddl-pg-ellipsis { font-size: .85rem; color: var(--text-muted); padding: 0 .2rem; line-height: 2; }
 
 /* About ack */
 .about-ack-inline { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; line-height: 1.6; }

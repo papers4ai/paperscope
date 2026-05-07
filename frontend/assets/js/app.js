@@ -1313,13 +1313,17 @@ function ddlProgressBar(absDl, dl, now) {
 function renderDeadlines() {
   const now = new Date();
   const q = ddlSearch.toLowerCase();
-  const confs = (deadlinesCache?.conferences || []).filter(c => {
+  const all = (deadlinesCache?.conferences || []).filter(c => {
     if (ddlActiveRank && c.ccf !== ddlActiveRank) return false;
     if (ddlCheckedSubs.size > 0 && !ddlCheckedSubs.has(c.sub)) return false;
     if (ddlHideExpired && new Date(c.deadline) < now) return false;
     if (q && !c.title.toLowerCase().includes(q) && !c.full_name.toLowerCase().includes(q)) return false;
     return true;
   });
+  // upcoming (soonest first) then expired (most recent first)
+  const upcoming = all.filter(c => new Date(c.deadline) >= now);
+  const expired  = all.filter(c => new Date(c.deadline) < now).reverse();
+  const confs = [...upcoming, ...expired];
 
   const list = $("#deadlines-list");
   const pagination = $("#ddl-pagination");
@@ -1390,16 +1394,29 @@ function renderDeadlines() {
     </div>`;
   }).join("");
 
-  // Pagination bar
-  const start = ddlPage * DDL_PAGE_SIZE + 1;
-  const end = Math.min((ddlPage + 1) * DDL_PAGE_SIZE, confs.length);
-  pagination.innerHTML = `
-    <button class="ddl-pg-btn" id="ddl-pg-prev" ${ddlPage === 0 ? "disabled" : ""}>&#8592; Prev</button>
-    <span class="ddl-pg-info">${start}–${end} / ${confs.length}</span>
-    <button class="ddl-pg-btn" id="ddl-pg-next" ${ddlPage >= totalPages - 1 ? "disabled" : ""}>Next &#8594;</button>
-  `;
-  $("#ddl-pg-prev")?.addEventListener("click", () => { ddlPage--; renderDeadlines(); $("#deadlines-view").scrollIntoView({behavior:"smooth", block:"start"}); });
-  $("#ddl-pg-next")?.addEventListener("click", () => { ddlPage++; renderDeadlines(); $("#deadlines-view").scrollIntoView({behavior:"smooth", block:"start"}); });
+  // Pagination bar with page number buttons
+  const goTo = p => { ddlPage = p; renderDeadlines(); $("#deadlines-view").scrollIntoView({behavior:"smooth", block:"start"}); };
+  const MAX_BTNS = 7;
+  let pages = [];
+  if (totalPages <= MAX_BTNS) {
+    pages = Array.from({length: totalPages}, (_, i) => i);
+  } else {
+    // always show first, last, current ±1, with ellipsis
+    const set = new Set([0, totalPages-1, ddlPage, ddlPage-1, ddlPage+1].filter(p => p >= 0 && p < totalPages));
+    pages = [...set].sort((a,b) => a-b);
+  }
+  let pgHtml = `<button class="ddl-pg-btn" ${ddlPage===0?"disabled":""} data-p="${ddlPage-1}">&#8592;</button>`;
+  let prev = -1;
+  for (const p of pages) {
+    if (prev !== -1 && p > prev + 1) pgHtml += `<span class="ddl-pg-ellipsis">…</span>`;
+    pgHtml += `<button class="ddl-pg-btn${p===ddlPage?" active":""}" data-p="${p}">${p+1}</button>`;
+    prev = p;
+  }
+  pgHtml += `<button class="ddl-pg-btn" ${ddlPage>=totalPages-1?"disabled":""} data-p="${ddlPage+1}">&#8594;</button>`;
+  pagination.innerHTML = pgHtml;
+  pagination.querySelectorAll(".ddl-pg-btn[data-p]").forEach(btn => {
+    if (!btn.disabled) btn.addEventListener("click", () => goTo(+btn.dataset.p));
+  });
 
   tickCountdowns();
 }
