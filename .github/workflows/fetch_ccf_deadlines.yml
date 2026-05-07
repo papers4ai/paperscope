@@ -1,23 +1,21 @@
-name: Fetch CCF Deadlines
+name: Sync CCF Deadlines
 
 on:
   schedule:
-    - cron: "0 1 * * *"   # Daily UTC 01:00
+    # Every 4 hours — picks up ccfddl updates quickly after PRs merge
+    - cron: "0 */4 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  fetch:
+  sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Clone ccf-deadlines repo
-        run: git clone --depth=1 https://github.com/ccfddl/ccf-deadlines.git /tmp/ccf-deadlines
 
       - uses: actions/setup-python@v5
         with:
@@ -26,8 +24,10 @@ jobs:
 
       - run: pip install pyyaml
 
-      - name: Generate deadlines.json
-        run: python scripts/fetch_ccf_deadlines.py /tmp/ccf-deadlines
+      - name: Fetch latest data from ccfddl
+        # Default (no args) fetches directly from ccfddl's deployed allconf.yml
+        # This reflects the latest merged PRs without cloning the full repo
+        run: python scripts/fetch_ccf_deadlines.py --online
 
       - name: Commit and push if changed
         run: |
@@ -37,7 +37,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "✓ No changes to deadlines.json"
           else
-            git commit -m "data: update CCF deadlines $(date +%Y-%m-%d)"
+            git commit -m "data: sync CCF deadlines $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git pull --rebase --autostash
             git push
             echo "✓ Pushed updated deadlines"
