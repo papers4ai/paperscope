@@ -2249,13 +2249,14 @@ body.mode-deadlines #trending-view { display: none !important; }
 .ddl-pb-dot[data-tip]:hover::after,
 .ddl-pb-dot[data-tip]:hover::before { opacity: 1; }
 
-/* Labels row */
-.ddl-pb-labels { position: relative; height: 18px; }
-.ddl-pb-label {
-  position: absolute; transform: translateX(-50%);
+/* End dot + label */
+.ddl-pb-end { background: var(--accent) !important; }
+.ddl-pb-end-label {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  top: calc(100% + 5px);
   font-size: .65rem; color: var(--text-muted); white-space: nowrap;
+  pointer-events: none;
 }
-.ddl-pb-label-end { position: absolute; right: 0; transform: none; }
 
 
 /* About ack */
