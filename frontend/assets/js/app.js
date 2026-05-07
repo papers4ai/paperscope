@@ -397,12 +397,29 @@ function _normalizeId(id) {
   return id ? String(id).replace(/v\d+$/, "") : id;
 }
 
+function _versionOf(id) {
+  // 无版本后缀（canonical）= Infinity（最新）；"v4" → 4；"v1" → 1
+  const m = String(id).match(/v(\d+)$/);
+  return m ? parseInt(m[1], 10) : Infinity;
+}
+
 function _dedupeById(arr) {
+  // 第一遍：每个归一化 id 只保留版本号最高的那条
+  const best = new Map();
+  for (const p of arr) {
+    if (!p || !p.id) continue;
+    const key = _normalizeId(p.id);
+    const cur = best.get(key);
+    if (!cur || _versionOf(p.id) > _versionOf(cur.id)) best.set(key, p);
+  }
+  // 第二遍：按原始顺序输出，每个 key 只取 best 中选中的那条
   const seen = new Set();
   return arr.filter(p => {
     if (!p || !p.id) return false;
     const key = _normalizeId(p.id);
-    return !seen.has(key) && seen.add(key);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return best.get(key) === p;
   });
 }
 
