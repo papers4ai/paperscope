@@ -458,31 +458,44 @@ const _curatedCache = {};       // domain-key → paper[]
 const _curatedLoaded = {};      // domain-key → bool
 
 function _mergeCurated(lists) {
-  const seen = new Set();
-  const merged = [];
-  for (const list of lists) {
-    for (const p of list) {
-      if (p.id && !seen.has(p.id)) { seen.add(p.id); merged.push(p); }
-    }
-  }
-  return merged.map(normalizeCurated);
+  return _dedupeById(lists.flat().map(normalizeCurated));
 }
 
-async function loadCuratedPapers(domain = "all") {
+async function loadCuratedPapers(domain = "all", onBackgroundDone) {
   const key = domain;
   if (_curatedCache[key] && _curatedLoaded[key]) return _curatedCache[key];
-  if (_curatedCache[key]) return _curatedCache[key];
+  if (_curatedCache[key]) return _curatedCache[key]; // 后台还在加载
 
   const domainsToLoad = domain === "all" ? CURATED_DOMAINS_ALL : [domain];
-  const files = domainsToLoad.flatMap(d =>
-    availableYears.map(y => `data/papers_curated_${d}_${y}.json`)
-  );
-  const results = await Promise.all(
-    files.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
-  );
+  const sorted = [...availableYears].sort((a, b) => b - a);
+  const priority = sorted.slice(0, 2);  // e.g. [2026, 2025]
+  const rest     = sorted.slice(2);     // e.g. [2024, 2023]
 
-  _curatedCache[key] = _mergeCurated(results);
-  _curatedLoaded[key] = true;
+  // 先加载最新 2 年，立即返回
+  const firstFiles = domainsToLoad.flatMap(d =>
+    priority.map(y => `data/papers_curated_${d}_${y}.json`)
+  );
+  const firstResults = await Promise.all(
+    firstFiles.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
+  );
+  _curatedCache[key] = _mergeCurated(firstResults);
+
+  // 旧年份后台加载后合并
+  if (rest.length) {
+    const restFiles = domainsToLoad.flatMap(d =>
+      rest.map(y => `data/papers_curated_${d}_${y}.json`)
+    );
+    Promise.all(
+      restFiles.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
+    ).then(restResults => {
+      _curatedCache[key] = _mergeCurated([..._curatedCache[key], ...restResults.flat()]);
+      _curatedLoaded[key] = true;
+      if (typeof onBackgroundDone === "function") onBackgroundDone();
+    });
+  } else {
+    _curatedLoaded[key] = true;
+  }
+
   return _curatedCache[key];
 }
 
@@ -1166,7 +1179,7 @@ async function reload() {
       $("#dashboard").hidden = state.mode !== "feed";
       $("#deadlines-view").hidden = true;
 
-      const _loadingHint = state.mode === "feed"
+      const _loadingHint = (state.mode === "feed" || state.mode === "curated")
         ? (currentLang === "zh" ? "加载中（最新数据优先）..." : "Loading recent papers first…")
         : (currentLang === "zh" ? "加载中..." : "Loading…");
       $("#paper-list").innerHTML = `<div class="loading">${_loadingHint}</div>`;
@@ -1184,7 +1197,13 @@ async function reload() {
         feedTotal = filtered.length;
         render(filtered.slice(0, 100));
       } else if (state.mode === "curated") {
-        const all = await loadCuratedPapers(state.domain);
+        const _curDomain = state.domain;
+        const all = await loadCuratedPapers(_curDomain, () => {
+          if (state.mode === "curated" && state.domain === _curDomain) {
+            const f2 = applyCuratedFilters(_curatedCache[_curDomain]);
+            render(f2.slice(0, 100));
+          }
+        });
         const filtered = applyCuratedFilters(all);
         render(filtered.slice(0, 100));
       } else {
