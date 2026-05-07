@@ -1081,6 +1081,7 @@ let feedTotal = 0;
 async function reload() {
   try {
     if (state.mode === "trending") {
+      document.body.classList.remove("mode-deadlines");
       // 热榜模式：显示热榜视图，隐藏论文列表
       $("#trending-view").hidden = false;
       $("#paper-list").hidden = true;
@@ -1094,12 +1095,14 @@ async function reload() {
         if (timeEl) timeEl.textContent = formatHotUpdateTime();
       }
     } else if (state.mode === "deadlines") {
+      document.body.classList.add("mode-deadlines");
       $("#trending-view").hidden = true;
       $("#paper-list").hidden = true;
       $("#dashboard").hidden = true;
       $("#deadlines-view").hidden = false;
       await loadAndRenderDeadlines();
     } else {
+      document.body.classList.remove("mode-deadlines");
       // 其他模式：显示论文列表，隐藏热榜视图
       $("#trending-view").hidden = true;
       $("#paper-list").hidden = false;
@@ -1136,13 +1139,21 @@ let ddlActiveRank = "";
 let ddlActiveSub = "";
 let ddlHideExpired = true;
 
+const DDL_SUB_NAMES = {
+  AI: "Artificial Intelligence", CG: "Graphics & Multimedia",
+  CT: "Computing Theory", DB: "Database / Data Mining",
+  DS: "Computer Architecture", HI: "Human-Computer Interaction",
+  MX: "Interdisciplinary", NW: "Network Systems",
+  SC: "Security", SE: "Software Engineering",
+};
+
 async function loadAndRenderDeadlines() {
   if (!deadlinesCache) {
     try {
-      const data = await fetch("data/deadlines.json?t=" + Date.now()).then(r => r.ok ? r.json() : null);
+      const data = await fetch("data/deadlines.json?v=" + Date.now()).then(r => r.ok ? r.json() : null);
       deadlinesCache = data;
     } catch (e) {
-      $("#deadlines-list").innerHTML = `<div class="loading">加载失败</div>`;
+      $("#deadlines-list").innerHTML = `<div class="loading">Failed to load</div>`;
       return;
     }
   }
@@ -1150,17 +1161,34 @@ async function loadAndRenderDeadlines() {
     $("#deadlines-list").innerHTML = `<div class="loading">${t("noDeadlines")}</div>`;
     return;
   }
-  // Populate sub filter options
-  const subSel = $("#ddl-sub-select");
-  if (subSel.options.length <= 1) {
-    const subs = [...new Set((deadlinesCache.conferences || []).map(c => c.sub))].filter(Boolean).sort();
-    subs.forEach(s => {
-      const o = document.createElement("option");
-      o.value = s; o.textContent = s;
-      subSel.appendChild(o);
-    });
-  }
+  buildSubPills();
   renderDeadlines();
+}
+
+function buildSubPills() {
+  const container = $("#ddl-sub-filter");
+  if (container.childElementCount > 0) return;
+  const subs = [...new Set((deadlinesCache.conferences || []).map(c => c.sub))].filter(Boolean).sort();
+  const allBtn = document.createElement("button");
+  allBtn.className = "ddl-sub-pill active";
+  allBtn.dataset.sub = "";
+  allBtn.textContent = "All";
+  allBtn.addEventListener("click", () => setSubPill(""));
+  container.appendChild(allBtn);
+  subs.forEach(s => {
+    const btn = document.createElement("button");
+    btn.className = "ddl-sub-pill";
+    btn.dataset.sub = s;
+    btn.textContent = DDL_SUB_NAMES[s] || s;
+    btn.addEventListener("click", () => setSubPill(s));
+    container.appendChild(btn);
+  });
+}
+
+function setSubPill(sub) {
+  ddlActiveSub = sub;
+  document.querySelectorAll(".ddl-sub-pill").forEach(b => b.classList.toggle("active", b.dataset.sub === sub));
+  if (deadlinesCache) renderDeadlines();
 }
 
 function renderDeadlines() {
@@ -1172,55 +1200,55 @@ function renderDeadlines() {
     return true;
   });
 
+  const list = $("#deadlines-list");
   if (!confs.length) {
-    $("#deadlines-list").innerHTML = `<div class="loading">${t("noDeadlines")}</div>`;
+    list.innerHTML = `<div class="loading">${t("noDeadlines")}</div>`;
     return;
   }
 
-  $("#deadlines-list").innerHTML = confs.map(c => {
+  list.innerHTML = confs.map(c => {
     const dl = new Date(c.deadline);
     const diffMs = dl - now;
     const diffDays = Math.ceil(diffMs / 86400000);
-    let countdownHtml, countdownCls;
+    let cdNum, cdLabel, countdownCls;
     if (diffDays < 0) {
-      countdownHtml = t("daysAgo").replace("{n}", Math.abs(diffDays));
-      countdownCls = "ddl-expired";
+      cdNum = Math.abs(diffDays); cdLabel = "days ago"; countdownCls = "ddl-expired";
     } else if (diffDays === 0) {
-      countdownHtml = t("deadlineToday");
-      countdownCls = "ddl-urgent";
-    } else if (diffDays === 1) {
-      countdownHtml = t("deadlineTomorrow");
-      countdownCls = "ddl-urgent";
+      cdNum = ""; cdLabel = "Today!"; countdownCls = "ddl-urgent";
     } else if (diffDays <= 7) {
-      countdownHtml = t("daysLeft").replace("{n}", diffDays);
-      countdownCls = "ddl-soon";
+      cdNum = diffDays; cdLabel = diffDays === 1 ? "day left" : "days left"; countdownCls = "ddl-urgent";
+    } else if (diffDays <= 30) {
+      cdNum = diffDays; cdLabel = "days left"; countdownCls = "ddl-soon";
     } else {
-      countdownHtml = t("daysLeft").replace("{n}", diffDays);
-      countdownCls = "ddl-ok";
+      cdNum = diffDays; cdLabel = "days left"; countdownCls = "ddl-ok";
     }
 
     const rankCls = `ccf-rank-${(c.ccf||"").toLowerCase()}`;
     const absDl = c.abstract_deadline ? new Date(c.abstract_deadline) : null;
-    const fmtDate = (d) => d.toLocaleDateString("en-US", {month:"short", day:"numeric", year:"numeric"});
+    const fmtDate = d => d.toLocaleDateString("en-US", {month:"short", day:"numeric", year:"numeric"});
+    const expired = diffDays < 0;
 
-    return `<div class="ddl-card ${diffDays < 0 ? "ddl-card-expired" : ""}">
-      <div class="ddl-card-left">
-        <div class="ddl-title-row">
-          <span class="ddl-name">${esc(c.title)} ${c.year}</span>
+    return `<div class="ddl-card${expired ? " ddl-card-expired" : ""}">
+      <div class="ddl-card-top">
+        <div class="ddl-badges">
           <span class="ddl-rank ${rankCls}">CCF-${esc(c.ccf)}</span>
-          <span class="ddl-sub-tag">${esc(c.sub)}</span>
+          <span class="ddl-sub-tag">${esc(DDL_SUB_NAMES[c.sub] || c.sub)}</span>
         </div>
-        <p class="ddl-fullname">${esc(c.full_name)}</p>
+        <div class="ddl-countdown ${countdownCls}">
+          ${cdNum !== "" ? `<span class="ddl-cd-num">${cdNum}</span>` : ""}
+          <span class="ddl-cd-label">${cdLabel}</span>
+        </div>
+      </div>
+      <div class="ddl-card-body">
+        <div class="ddl-name">${esc(c.title)} <span class="ddl-year">${c.year}</span></div>
+        <div class="ddl-fullname">${esc(c.full_name)}</div>
         <div class="ddl-dates">
-          ${absDl ? `<span class="ddl-date-item"><span class="ddl-label">${t("abstractDDL")}</span> ${fmtDate(absDl)}</span>` : ""}
-          <span class="ddl-date-item"><span class="ddl-label">${t("submissionDDL")}</span> ${fmtDate(dl)} <span class="ddl-tz">(${esc(c.timezone||"")})</span></span>
-          ${c.date ? `<span class="ddl-date-item"><span class="ddl-label">${t("confDate")}</span> ${esc(c.date)}${c.place ? " · " + esc(c.place) : ""}</span>` : ""}
+          ${absDl ? `<div class="ddl-date-row"><span class="ddl-label">Abstract</span><span>${fmtDate(absDl)}</span></div>` : ""}
+          <div class="ddl-date-row"><span class="ddl-label">Deadline</span><span>${fmtDate(dl)}<span class="ddl-tz"> ${esc(c.timezone||"")}</span></span></div>
+          ${c.date ? `<div class="ddl-date-row"><span class="ddl-label">Conference</span><span>${esc(c.date)}${c.place ? " · "+esc(c.place) : ""}</span></div>` : ""}
         </div>
       </div>
-      <div class="ddl-card-right">
-        <div class="ddl-countdown ${countdownCls}">${countdownHtml}</div>
-        ${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener" class="ddl-link-btn">${t("viewWebsite")}</a>` : ""}
-      </div>
+      ${c.link ? `<a href="${esc(c.link)}" target="_blank" rel="noopener" class="ddl-link-btn">Website →</a>` : ""}
     </div>`;
   }).join("");
 }
@@ -1233,11 +1261,6 @@ document.querySelectorAll(".ddl-rank-btn").forEach(btn => {
     ddlActiveRank = btn.dataset.rank;
     if (deadlinesCache) renderDeadlines();
   });
-});
-
-$("#ddl-sub-select")?.addEventListener("change", e => {
-  ddlActiveSub = e.target.value;
-  if (deadlinesCache) renderDeadlines();
 });
 
 $("#ddl-hide-expired")?.addEventListener("change", e => {

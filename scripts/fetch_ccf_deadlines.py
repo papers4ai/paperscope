@@ -15,29 +15,35 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 OUTPUT = ROOT / "frontend" / "data" / "deadlines.json"
 
-# Only include these CCF ranks; set to None to include all
-INCLUDE_RANKS = {"A", "B"}
+INCLUDE_RANKS = {"A", "B", "C"}
 
-# Subcategories to include (match ccfddl's "sub" field)
-INCLUDE_SUBS = {"AI", "CV", "CG", "HCI", "DM", "DB", "IR", "NLP", "SC", "SE", "HPC", "MX"}
-
-# Keep conferences with deadline within this many days in the past (grace window)
-PAST_GRACE_DAYS = 30
-# Keep conferences with deadline this many days in the future
+PAST_GRACE_DAYS = 14
 FUTURE_WINDOW_DAYS = 365
 
+SUB_NAMES = {
+    "AI": "Artificial Intelligence",
+    "CG": "Graphics & Multimedia",
+    "CT": "Computing Theory",
+    "DB": "Database / Data Mining",
+    "DS": "Computer Architecture",
+    "HI": "Human-Computer Interaction",
+    "MX": "Interdisciplinary",
+    "NW": "Network Systems",
+    "SC": "Security",
+    "SE": "Software Engineering",
+}
 
-def parse_deadline(dt_str: str | None, tz_str: str | None) -> datetime | None:
+
+def parse_deadline(dt_str, tz_str):
     if not dt_str:
         return None
     try:
         dt = datetime.fromisoformat(str(dt_str).replace("Z", "+00:00"))
         if dt.tzinfo is None:
-            # Apply timezone offset
             offset_hours = 0
             if tz_str:
                 tz_str = str(tz_str).strip()
-                if tz_str.startswith("UTC") or tz_str.startswith("GMT"):
+                if tz_str.upper().startswith(("UTC", "GMT")):
                     sign_str = tz_str[3:].strip()
                     if sign_str:
                         try:
@@ -50,7 +56,7 @@ def parse_deadline(dt_str: str | None, tz_str: str | None) -> datetime | None:
         return None
 
 
-def main(repo_path: str):
+def main(repo_path):
     repo = Path(repo_path)
     conf_dir = repo / "conference"
     if not conf_dir.exists():
@@ -64,6 +70,8 @@ def main(repo_path: str):
     entries = []
 
     for yaml_file in sorted(conf_dir.rglob("*.yml")):
+        if yaml_file.name == "types.yml":
+            continue
         try:
             with open(yaml_file, encoding="utf-8") as f:
                 docs = yaml.safe_load(f)
@@ -81,35 +89,24 @@ def main(repo_path: str):
             title = doc.get("title", "")
             full_name = doc.get("description", title)
             sub = doc.get("sub", "")
-            rank_info = doc.get("rank", {}) or {}
+            rank_info = doc.get("rank") or {}
             ccf = str(rank_info.get("ccf", "")).upper().strip()
-            core = str(rank_info.get("core", "")).strip()
 
             if INCLUDE_RANKS and ccf not in INCLUDE_RANKS:
                 continue
-            if sub not in INCLUDE_SUBS:
-                continue
 
-            confs = doc.get("confs", []) or []
-            for conf in confs:
-                if not isinstance(conf, conf_type := dict):
+            for conf in (doc.get("confs") or []):
+                if not isinstance(conf, dict):
                     continue
                 year = conf.get("year")
-                conf_id = conf.get("id", f"{title}{year}")
-                link = conf.get("link", "")
-                date_str = conf.get("date", "")
-                place = conf.get("place", "")
-                timezone_str = conf.get("timezone", "UTC-12")
-
-                timeline = conf.get("timeline", []) or []
+                timeline = conf.get("timeline") or []
                 if not timeline:
                     continue
 
-                # Use first (main) timeline entry
                 tl = timeline[0] if isinstance(timeline[0], dict) else {}
-                deadline_dt = parse_deadline(tl.get("deadline"), timezone_str)
-                abstract_dt = parse_deadline(tl.get("abstract_deadline"), timezone_str)
-                comment = tl.get("comment", "")
+                tz_str = conf.get("timezone", "UTC-12")
+                deadline_dt = parse_deadline(tl.get("deadline"), tz_str)
+                abstract_dt = parse_deadline(tl.get("abstract_deadline"), tz_str)
 
                 if deadline_dt is None:
                     continue
@@ -117,23 +114,22 @@ def main(repo_path: str):
                     continue
 
                 entries.append({
-                    "id": conf_id,
+                    "id": conf.get("id", f"{title}{year}"),
                     "title": title,
                     "full_name": full_name,
                     "sub": sub,
+                    "sub_name": SUB_NAMES.get(sub, sub),
                     "ccf": ccf,
-                    "core": core,
                     "year": year,
                     "deadline": deadline_dt.strftime("%Y-%m-%dT%H:%M:%S%z"),
                     "abstract_deadline": abstract_dt.strftime("%Y-%m-%dT%H:%M:%S%z") if abstract_dt else None,
-                    "timezone": timezone_str,
-                    "date": date_str,
-                    "place": place,
-                    "link": link,
-                    "comment": comment,
+                    "timezone": tz_str,
+                    "date": conf.get("date", ""),
+                    "place": conf.get("place", ""),
+                    "link": conf.get("link", ""),
+                    "comment": tl.get("comment", ""),
                 })
 
-    # Sort by deadline ascending
     entries.sort(key=lambda x: x["deadline"])
 
     result = {
