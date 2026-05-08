@@ -1,12 +1,12 @@
 {
-  "generated": "2026-05-07",
+  "generated": "2026-05-08",
   "months": 6,
   "trends": {
     "world_model": [
       {
         "term": "video generation",
         "display": "Video Generation",
-        "count": 1352,
+        "count": 1350,
         "specificity": 2.01
       },
       {
@@ -19,7 +19,7 @@
         "term": "predictive control",
         "display": "Predictive Control",
         "count": 434,
-        "specificity": 2.01
+        "specificity": 2.0
       },
       {
         "term": "gaussian splatting dgs",
@@ -63,7 +63,7 @@
         "term": "partial differential equations",
         "display": "Partial Differential Equations",
         "count": 191,
-        "specificity": 2.62
+        "specificity": 2.63
       },
       {
         "term": "fluid dynamics",
@@ -87,7 +87,7 @@
         "term": "robot manipulation",
         "display": "Robot Manipulation",
         "count": 116,
-        "specificity": 2.28
+        "specificity": 2.29
       },
       {
         "term": "robot control",
@@ -99,14 +99,14 @@
         "term": "motion planning",
         "display": "Motion Planning",
         "count": 109,
-        "specificity": 2.61
+        "specificity": 2.62
       }
     ],
     "medical_ai": [
       {
         "term": "medical image segmentation",
         "display": "Medical Image Segmentation",
-        "count": 443,
+        "count": 437,
         "specificity": 4.46
       },
       {
@@ -167,25 +167,25 @@
     },
     "physical_ai": {
       "scores": [
-        0.341,
+        0.342,
         0.95,
-        0.809,
+        0.81,
         0.276,
-        0.229,
-        0.273
+        0.228,
+        0.274
       ],
-      "points": "240,182 382,154 361,313 240,287 206,261 199,215"
+      "points": "240,182 382,154 362,313 240,287 206,261 199,215"
     },
     "medical_ai": {
       "scores": [
-        0.473,
-        0.279,
-        0.275,
+        0.472,
+        0.28,
+        0.276,
         0.95,
-        0.382,
-        0.431
+        0.383,
+        0.43
       ],
-      "points": "240,160 282,215 281,265 240,402 183,274 175,201"
+      "points": "240,160 282,215 281,265 240,402 183,274 176,201"
     }
   },
   "stats": {
@@ -196,10 +196,10 @@
       "medical_ai": 6649
     },
     "recent": {
-      "total": 392,
-      "world_model": 169,
-      "physical_ai": 92,
-      "medical_ai": 150
+      "total": 318,
+      "world_model": 129,
+      "physical_ai": 75,
+      "medical_ai": 128
     },
     "trends": [
       {
