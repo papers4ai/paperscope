@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-07T21:04:36Z",
+  "generated": "2026-05-08T02:50:18Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 281,
+  "total": 287,
   "conferences": [
-    {
-      "id": "pacificvis26_20251108",
-      "title": "PacificVis",
-      "full_name": "IEEE Pacific Visualization Symposium",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2025-11-08T23:59:00+0000",
-      "abstract_deadline": "2025-11-01T23:59:00+0000",
-      "timezone": "AoE",
-      "date": "April 20 - 23, 2026",
-      "place": "Sydney, Australia",
-      "link": "https://pacificvis2026.github.io/",
-      "comment": "Conference track"
-    },
     {
       "id": "isca26_20251110",
       "title": "ISCA",
@@ -664,6 +647,23 @@
       "date": "August 17-21, 2026",
       "place": "Lyon, France",
       "link": "https://icpr2026.org/",
+      "comment": ""
+    },
+    {
+      "id": "ccgrid26_20251221",
+      "title": "CCGRID",
+      "full_name": "IEEE International Symposium on Cluster, Cloud and Internet Computing",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2025-12-21T23:59:59+0000",
+      "abstract_deadline": "2025-12-21T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "May 18-21, 2026",
+      "place": "Sydney, Australia",
+      "link": "https://www.ccgrid2026.org/",
       "comment": ""
     },
     {
@@ -3308,7 +3308,7 @@
       "sub": "DS",
       "sub_name": "Computer Architecture",
       "ccf": "B",
-      "core": "B",
+      "core": "C",
       "year": 2026,
       "deadline": "2026-05-07T23:59:59+0000",
       "abstract_deadline": "2026-04-30T23:59:59+0000",
@@ -3591,6 +3591,23 @@
       "comment": ""
     },
     {
+      "id": "cikm26_20260523",
+      "title": "CIKM",
+      "full_name": "ACM International Conference on Information and Knowledge Management",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2026,
+      "deadline": "2026-05-23T23:59:59+0000",
+      "abstract_deadline": "2026-05-16T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "November 7-11, 2026",
+      "place": "Rome, Italy",
+      "link": "https://cikm2026.diag.uniroma1.it/",
+      "comment": ""
+    },
+    {
       "id": "icics26_20260523",
       "title": "ICICS",
       "full_name": "International Conference on Information and Communications Security",
@@ -3606,23 +3623,6 @@
       "place": "Fukui, Japan",
       "link": "https://sulab-sever.u-aizu.ac.jp/icics2026/cfp.html",
       "comment": "Second round"
-    },
-    {
-      "id": "cikm26_20260525",
-      "title": "CIKM",
-      "full_name": "ACM International Conference on Information and Knowledge Management",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-05-25T23:59:59+0000",
-      "abstract_deadline": "2026-05-18T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "November 7-11, 2026",
-      "place": "Rome, Italy",
-      "link": "https://cikm2026.diag.uniroma1.it/",
-      "comment": ""
     },
     {
       "id": "emnlp26_20260525",
@@ -3776,6 +3776,23 @@
       "place": "Harbin, China",
       "link": "https://www.prcv.cn/web/#/home",
       "comment": ""
+    },
+    {
+      "id": "pets27_20260531",
+      "title": "PETS",
+      "full_name": "Privacy Enhancing Technologies Symposium",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-05-31T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "TBA (Europe)",
+      "link": "https://petsymposium.org/cfp27.php",
+      "comment": "Issue 1 Paper Submission Deadline"
     },
     {
       "id": "vldb27_20260601",
@@ -4081,6 +4098,23 @@
       "date": "December 13-16, 2026",
       "place": "Palermo, Sicily, Italy",
       "link": "https://attend.ieee.org/slt-2026/",
+      "comment": ""
+    },
+    {
+      "id": "isc26_20260622",
+      "title": "ISC",
+      "full_name": "Information Security Conference",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-22T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "October 28-30, 2026",
+      "place": "Rennes, France",
+      "link": "https://isc2026.github.io/",
       "comment": ""
     },
     {
@@ -4441,6 +4475,23 @@
       "comment": "Cycle 1 Deadline"
     },
     {
+      "id": "pets27_20260831",
+      "title": "PETS",
+      "full_name": "Privacy Enhancing Technologies Symposium",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-08-31T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "TBA (Europe)",
+      "link": "https://petsymposium.org/cfp27.php",
+      "comment": "Issue 2 Paper Submission Deadline"
+    },
+    {
       "id": "vldb27_20260901",
       "title": "VLDB",
       "full_name": "International Conference on Very Large Data Bases",
@@ -4594,6 +4645,23 @@
       "comment": ""
     },
     {
+      "id": "fse27_20261002",
+      "title": "FSE",
+      "full_name": "ACM International Conference on the Foundations of Software Engineering",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-10-02T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 12-16, 2027",
+      "place": "Shenzhen, China",
+      "link": "https://conf.researchr.org/home/fse-2027",
+      "comment": ""
+    },
+    {
       "id": "sigmod27_20261017",
       "title": "SIGMOD",
       "full_name": "ACM Conference on Management of Data",
@@ -4696,6 +4764,23 @@
       "comment": "Second Paper submission deadline"
     },
     {
+      "id": "pets27_20261130",
+      "title": "PETS",
+      "full_name": "Privacy Enhancing Technologies Symposium",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-11-30T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "TBA (Europe)",
+      "link": "https://petsymposium.org/cfp27.php",
+      "comment": "Issue 3 Paper Submission Deadline"
+    },
+    {
       "id": "vldb27_20261201",
       "title": "VLDB",
       "full_name": "International Conference on Very Large Data Bases",
@@ -4762,6 +4847,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "pets27_20270228",
+      "title": "PETS",
+      "full_name": "Privacy Enhancing Technologies Symposium",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-02-28T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "TBA (Europe)",
+      "link": "https://petsymposium.org/cfp27.php",
+      "comment": "Issue 4 Paper Submission Deadline"
     },
     {
       "id": "vldb27_20270301",
