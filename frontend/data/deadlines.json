@@ -1,7 +1,7 @@
 {
-  "generated": "2026-05-09T06:15:07Z",
+  "generated": "2026-05-09T09:19:31Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 287,
+  "total": 289,
   "conferences": [
     {
       "id": "isca26_20251110",
@@ -3387,23 +3387,6 @@
       "comment": ""
     },
     {
-      "id": "iconip2026_20260510",
-      "title": "ICONIP",
-      "full_name": "International Conference on Neural Information Processing",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-05-10T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "November 23-27, 2026",
-      "place": "Melbourne, Australia",
-      "link": "https://www.iconip2026.org/",
-      "comment": ""
-    },
-    {
       "id": "siggrapha26_20260512",
       "title": "ACM SIGGRAPH ASIA",
       "full_name": "ACM SIGGRAPH Annual Conference in Asia",
@@ -3793,6 +3776,23 @@
       "place": "TBA (Europe)",
       "link": "https://petsymposium.org/cfp27.php",
       "comment": "Issue 1 Paper Submission Deadline"
+    },
+    {
+      "id": "iconip2026_20260531",
+      "title": "ICONIP",
+      "full_name": "International Conference on Neural Information Processing",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-05-31T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "November 23-27, 2026",
+      "place": "Melbourne, Australia",
+      "link": "https://www.iconip2026.org/",
+      "comment": ""
     },
     {
       "id": "vldb27_20260601",
@@ -4458,6 +4458,23 @@
       "comment": ""
     },
     {
+      "id": "asiaccs27_20260821",
+      "title": "AsiaCCS",
+      "full_name": "Asia Conference on Computer and Communications Security",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-08-21T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 12-16, 2027",
+      "place": "Macau, China",
+      "link": "https://asiaccs2027.cityu.edu.mo/index.html",
+      "comment": "1st round Deadline"
+    },
+    {
       "id": "uss27_20260825",
       "title": "USENIX Security",
       "full_name": "USENIX Security Symposium",
@@ -4796,6 +4813,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "asiaccs27_20261211",
+      "title": "AsiaCCS",
+      "full_name": "Asia Conference on Computer and Communications Security",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-12-11T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 12-16, 2027",
+      "place": "Macau, China",
+      "link": "https://asiaccs2027.cityu.edu.mo/index.html",
+      "comment": "2nd round Deadline"
     },
     {
       "id": "vldb27_20270101",
