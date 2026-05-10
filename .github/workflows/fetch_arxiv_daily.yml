@@ -28,6 +28,7 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - name: Fetch arXiv → Supabase
+        continue-on-error: true   # arXiv 偶发超时/429，不阻断后续导出和部署
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

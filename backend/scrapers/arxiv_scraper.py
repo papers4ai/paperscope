@@ -17,7 +17,8 @@ from backend.config import DOMAINS
 ARXIV_API = "https://export.arxiv.org/api/query"
 DEFAULT_DELAY = 3.0
 MAX_RESULTS_PER_PAGE = 100
-MAX_RETRIES = 3
+MAX_RETRIES = 5
+REQUEST_TIMEOUT = 120   # arXiv 有时响应慢，60s 不够
 
 
 def _build_query(keywords: list[str], days: int) -> str:
@@ -39,22 +40,23 @@ def _fetch_page(query: str, start: int, page_size: int) -> list[dict]:
     url = f"{ARXIV_API}?" + "&".join(f"{k}={quote_plus(str(v))}" for k, v in params.items())
     for attempt in range(MAX_RETRIES):
         try:
-            r = requests.get(url, timeout=60)
+            r = requests.get(url, timeout=REQUEST_TIMEOUT)
             if r.status_code == 429:
-                wait = 30 * (attempt + 1)
+                wait = 60 * (attempt + 1)   # 退避更保守：60s/120s/180s...
                 print(f"  [arxiv] 429 rate limit, retry {attempt + 1}/{MAX_RETRIES} in {wait}s...")
                 time.sleep(wait)
                 continue
             r.raise_for_status()
             feed = feedparser.parse(r.text)
             return [_parse_entry(e) for e in feed.entries]
-        except requests.exceptions.Timeout:
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
             if attempt < MAX_RETRIES - 1:
-                wait = 15 * (attempt + 1)
-                print(f"  [arxiv] timeout, retry {attempt + 1}/{MAX_RETRIES} in {wait}s...")
+                wait = 30 * (attempt + 1)   # 30s/60s/90s/120s
+                print(f"  [arxiv] {type(e).__name__}, retry {attempt + 1}/{MAX_RETRIES} in {wait}s...")
                 time.sleep(wait)
             else:
-                raise
+                print(f"  [arxiv] giving up after {MAX_RETRIES} attempts: {e}")
+                return []   # 超时/连接失败不崩溃，返回空页
     return []
 
 
