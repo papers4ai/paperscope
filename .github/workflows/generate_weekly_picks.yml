@@ -31,4 +31,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add frontend/weekly/
           git commit -m "chore: weekly picks $(date -u +%Y-%m-%d)" || echo "Nothing to commit"
+          git pull --rebase --autostash
           git push
