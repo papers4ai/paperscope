@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-09T20:42:25Z",
+  "generated": "2026-05-10T02:50:57Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 289,
+  "total": 288,
   "conferences": [
-    {
-      "id": "isca26_20251110",
-      "title": "ISCA",
-      "full_name": "International Symposium on Computer Architecture",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2025-11-10T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 27-July 1, 2026",
-      "place": "Raleigh, USA",
-      "link": "https://iscaconf.org/isca2026/",
-      "comment": "abstract deadline"
-    },
     {
       "id": "rtas2026_20251113",
       "title": "RTAS",
