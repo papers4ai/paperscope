@@ -1,7 +1,7 @@
 {
-  "generated": "2026-05-12T14:23:35Z",
+  "generated": "2026-05-12T17:59:35Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 287,
+  "total": 298,
   "conferences": [
     {
       "id": "sensys26_20251113",
@@ -1398,6 +1398,23 @@
       "comment": ""
     },
     {
+      "id": "edbt27_20260204",
+      "title": "EDBT",
+      "full_name": "International Conference on Extending Database Technology",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-02-04T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 6-9, 2027",
+      "place": "Lille, France",
+      "link": "https://edbticdt2027.github.io/",
+      "comment": ""
+    },
+    {
       "id": "hpdc2026_20260205",
       "title": "HPDC",
       "full_name": "ACM Symposium on High-Performance Parallel and Distributed Computing",
@@ -2075,6 +2092,23 @@
       "date": "July 20 - July 23, 2026",
       "place": "Lisbon, Portugal",
       "link": "https://satisfiability.org/SAT26/",
+      "comment": ""
+    },
+    {
+      "id": "icdt27_20260310",
+      "title": "ICDT",
+      "full_name": "International Conference on Database Theory",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-03-10T23:59:59+0000",
+      "abstract_deadline": "2026-03-03T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "April 6-9, 2027",
+      "place": "Lille, France",
+      "link": "https://edbticdt2027.github.io/",
       "comment": ""
     },
     {
@@ -3358,7 +3392,7 @@
       "full_name": "ACM SIGGRAPH Annual Conference in Asia",
       "sub": "CG",
       "sub_name": "Graphics & Multimedia",
-      "ccf": "A",
+      "ccf": "N",
       "core": "N",
       "year": 2026,
       "deadline": "2026-05-12T23:59:00-1200",
@@ -3829,6 +3863,23 @@
       "comment": ""
     },
     {
+      "id": "iccd26_20260605",
+      "title": "ICCD",
+      "full_name": "International Conference on Computer Design",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-05T23:59:00+0000",
+      "abstract_deadline": "2026-05-29T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "November 16-18, 2026",
+      "place": "Hong Kong SAR, China",
+      "link": "https://www.iccd-conf.com/2026/home.html",
+      "comment": "abstract and full paper deadline"
+    },
+    {
       "id": "sensys27_20260605",
       "title": "SenSys",
       "full_name": "ACM Conference on Embedded Networked Sensor Systems",
@@ -3928,6 +3979,23 @@
       "date": "October 6-9, 2026",
       "place": "Singapore Management University, Singapore",
       "link": "https://pacificgraphics2026.github.io/",
+      "comment": ""
+    },
+    {
+      "id": "edbt27_20260610",
+      "title": "EDBT",
+      "full_name": "International Conference on Extending Database Technology",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-06-10T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 6-9, 2027",
+      "place": "Lille, France",
+      "link": "https://edbticdt2027.github.io/",
       "comment": ""
     },
     {
@@ -4082,6 +4150,23 @@
       "place": "Rennes, France",
       "link": "https://isc2026.github.io/",
       "comment": ""
+    },
+    {
+      "id": "wacv27_20260625",
+      "title": "WACV",
+      "full_name": "IEEE/CVF Winter Conference on Applications of Computer Vision",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-06-25T23:59:59+0000",
+      "abstract_deadline": "2026-06-18T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "Jan 5 - 9, 2027",
+      "place": "Disney Springs, Buena Vista, FL, USA",
+      "link": "https://wacv.thecvf.com/",
+      "comment": "First round"
     },
     {
       "id": "ictai26_20260630",
@@ -4254,6 +4339,23 @@
       "comment": "Second round"
     },
     {
+      "id": "hotnets26_20260716",
+      "title": "HotNets",
+      "full_name": "ACM Workshop on Hot Topics in Networks",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-07-16T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "November 16-17, 2026",
+      "place": "Salt Lake City, Utah, USA",
+      "link": "https://conferences.sigcomm.org/hotnets/2026/",
+      "comment": ""
+    },
+    {
       "id": "sigmod27_20260717",
       "title": "SIGMOD",
       "full_name": "ACM Conference on Management of Data",
@@ -4407,6 +4509,23 @@
       "comment": "Fall"
     },
     {
+      "id": "msn26_20260820",
+      "title": "MSN",
+      "full_name": "International Conference on Mobility, Sensing and Networking",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-08-20T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "December 18-20, 2026",
+      "place": "Ningbo, China",
+      "link": "https://ieee-msn.org/2026",
+      "comment": ""
+    },
+    {
       "id": "bigdata26_20260821",
       "title": "BigData",
       "full_name": "IEEE International Conference on Big Data",
@@ -4456,6 +4575,23 @@
       "place": "Denver, CO, USA",
       "link": "https://www.usenix.org/conference/usenixsecurity27",
       "comment": "Cycle 1 Deadline"
+    },
+    {
+      "id": "wacv27_20260827",
+      "title": "WACV",
+      "full_name": "IEEE/CVF Winter Conference on Applications of Computer Vision",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-08-27T23:59:59+0000",
+      "abstract_deadline": "2026-08-20T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "Jan 5 - 9, 2027",
+      "place": "Disney Springs, Buena Vista, FL, USA",
+      "link": "https://wacv.thecvf.com/",
+      "comment": "Second round"
     },
     {
       "id": "pets27_20260831",
@@ -4509,6 +4645,23 @@
       "comment": "September Cycle Submission Deadline"
     },
     {
+      "id": "icdt27_20260910",
+      "title": "ICDT",
+      "full_name": "International Conference on Database Theory",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-09-10T23:59:59+0000",
+      "abstract_deadline": "2026-09-03T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "April 6-9, 2027",
+      "place": "Lille, France",
+      "link": "https://edbticdt2027.github.io/",
+      "comment": ""
+    },
+    {
       "id": "cgo2027_20260910",
       "title": "IEEE/ACM CGO",
       "full_name": "The International Symposium on Code Generation and Optimization",
@@ -4524,6 +4677,23 @@
       "place": "Salt Lake City, Utah, USA",
       "link": "https://conf.researchr.org/home/cgo-2027",
       "comment": "Second Submission"
+    },
+    {
+      "id": "chi27_20260910",
+      "title": "CHI",
+      "full_name": "ACM Conference on Human Factors in Computing Systems",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-09-10T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "May 10 - 14, 2027",
+      "place": "David L. Lawrence Convention Center, Pittsburgh, USA",
+      "link": "https://chi2027.acm.org/",
+      "comment": ""
     },
     {
       "id": "fast27_20260915",
@@ -4642,6 +4812,23 @@
       "date": "July 12-16, 2027",
       "place": "Shenzhen, China",
       "link": "https://conf.researchr.org/home/fse-2027",
+      "comment": ""
+    },
+    {
+      "id": "edbt27_20261007",
+      "title": "EDBT",
+      "full_name": "International Conference on Extending Database Technology",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-10-07T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 6-9, 2027",
+      "place": "Lille, France",
+      "link": "https://edbticdt2027.github.io/",
       "comment": ""
     },
     {
