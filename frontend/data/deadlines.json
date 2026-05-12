@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-12T10:31:44Z",
+  "generated": "2026-05-12T14:23:35Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 288,
+  "total": 287,
   "conferences": [
-    {
-      "id": "rtas2026_20251113",
-      "title": "RTAS",
-      "full_name": "IEEE Real-Time and Embedded Technology and Applications Symposium",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-11-13T11:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "May 12-14, 2026",
-      "place": "Saint Malo, France",
-      "link": "https://2026.rtas.org/",
-      "comment": ""
-    },
     {
       "id": "sensys26_20251113",
       "title": "SenSys",
