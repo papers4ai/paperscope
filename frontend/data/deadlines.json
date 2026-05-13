@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-12T21:19:33Z",
+  "generated": "2026-05-13T02:56:49Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 298,
+  "total": 295,
   "conferences": [
-    {
-      "id": "sensys26_20251113",
-      "title": "SenSys",
-      "full_name": "ACM Conference on Embedded Networked Sensor Systems",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "B",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2025-11-13T23:59:00+0000",
-      "abstract_deadline": "2025-11-06T23:59:00+0000",
-      "timezone": "AoE",
-      "date": "May 11-14, 2026",
-      "place": "Saint-Malo, France",
-      "link": "https://sensys.acm.org/2026/",
-      "comment": "2nd deadline"
-    },
     {
       "id": "cvpr26_20251113",
       "title": "CVPR",
@@ -35,40 +18,6 @@
       "date": "June 3-7, 2026",
       "place": "Denver, Colorado, United States",
       "link": "https://cvpr.thecvf.com/Conferences/2026",
-      "comment": ""
-    },
-    {
-      "id": "hscc26_20251113",
-      "title": "HSCC",
-      "full_name": "International Conference on Hybrid Systems: Computation and Control",
-      "sub": "CT",
-      "sub_name": "Computing Theory",
-      "ccf": "B",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2025-11-13T23:59:59+0000",
-      "abstract_deadline": "2025-11-06T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "May 11-14, 2026",
-      "place": "Saint Malo, France",
-      "link": "https://www.isis.vanderbilt.edu/events/hscciccps-2026",
-      "comment": ""
-    },
-    {
-      "id": "pldi26_20251113",
-      "title": "PLDI",
-      "full_name": "ACM SIGPLAN Conference on Programming Language Design & Implementation",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2025-11-13T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 15-19, 2026",
-      "place": "Boulder, Colorado, United States",
-      "link": "https://pldi26.sigplan.org/",
       "comment": ""
     },
     {
