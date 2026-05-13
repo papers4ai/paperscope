@@ -1,7 +1,7 @@
 {
-  "generated": "2026-05-13T02:56:49Z",
+  "generated": "2026-05-13T06:47:48Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 295,
+  "total": 297,
   "conferences": [
     {
       "id": "cvpr26_20251113",
@@ -3404,23 +3404,6 @@
       "comment": "Spring Submission Deadline"
     },
     {
-      "id": "rulemlrr2026_20260515",
-      "title": "RuleML+RR",
-      "full_name": "International Joint Conference on Rules and Reasoning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-05-15T23:59:59+0000",
-      "abstract_deadline": "2026-05-08T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "August 24-26, 2026",
-      "place": "Vilnius, Lithuania",
-      "link": "https://2026.declarativeai.net/events/ruleml-rr",
-      "comment": ""
-    },
-    {
       "id": "esem26_20260518",
       "title": "ESEM",
       "full_name": "International Symposium on Empirical Software Engineering and Measurement",
@@ -3503,6 +3486,23 @@
       "date": "December 7-11, 2026",
       "place": "Hong Kong, China",
       "link": "https://asiacrypt.iacr.org/2026/",
+      "comment": ""
+    },
+    {
+      "id": "rulemlrr2026_20260522",
+      "title": "RuleML+RR",
+      "full_name": "International Joint Conference on Rules and Reasoning",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-05-22T23:59:59+0000",
+      "abstract_deadline": "2026-05-15T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "August 24-26, 2026",
+      "place": "Vilnius, Lithuania",
+      "link": "https://2026.declarativeai.net/events/ruleml-rr",
       "comment": ""
     },
     {
@@ -3846,6 +3846,23 @@
       "comment": "1st deadline"
     },
     {
+      "id": "fpt2026_20260605",
+      "title": "FPT",
+      "full_name": "International Conference on Field Programmable Technology",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-05T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 07 - December 10, 2026",
+      "place": "Honolulu, Hawaii, USA",
+      "link": "https://fpt2026.uark.edu",
+      "comment": "Title and Abstract Due (Conference Track)"
+    },
+    {
       "id": "hotstorage2026_20260605",
       "title": "HotStorage",
       "full_name": "ACM Workshop on Hot Topics in Storage and File Systems",
@@ -4031,6 +4048,23 @@
       "place": "MONTREAL, CANADA",
       "link": "https://sp2027.ieee-security.org/index.html",
       "comment": "First Paper submission deadline"
+    },
+    {
+      "id": "fpt2026_20260612",
+      "title": "FPT",
+      "full_name": "International Conference on Field Programmable Technology",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-12T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 07 - December 10, 2026",
+      "place": "Honolulu, Hawaii, USA",
+      "link": "https://fpt2026.uark.edu",
+      "comment": "Submission Due (Conference Track)"
     },
     {
       "id": "pricai2026_20260613",
