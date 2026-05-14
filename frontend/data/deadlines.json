@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-13T21:26:35Z",
+  "generated": "2026-05-14T02:59:33Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 295,
+  "total": 294,
   "conferences": [
-    {
-      "id": "recomb26_20251114",
-      "title": "RECOMB",
-      "full_name": "International Conference on Research inComputational Molecular Biology",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "B",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2025-11-14T23:59:59+0000",
-      "abstract_deadline": "2025-11-07T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "May 26 - 29, 2026",
-      "place": "Thessaloniki, Greece",
-      "link": "https://recomb.org/recomb2026/",
-      "comment": ""
-    },
     {
       "id": "pakdd26_20251115",
       "title": "PAKDD",
