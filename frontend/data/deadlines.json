@@ -1,7 +1,7 @@
 {
-  "generated": "2026-05-14T10:14:32Z",
+  "generated": "2026-05-14T14:09:31Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 294,
+  "total": 296,
   "conferences": [
     {
       "id": "pakdd26_20251115",
@@ -4101,6 +4101,23 @@
       "comment": "First round"
     },
     {
+      "id": "isaac26_20260626",
+      "title": "ISAAC",
+      "full_name": "International Symposium on Algorithms and Computation",
+      "sub": "CT",
+      "sub_name": "Computing Theory",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-06-26T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 6-9, 2026",
+      "place": "Hangzhou, China",
+      "link": "https://www.algo-door.com/isaac2026/index.html",
+      "comment": ""
+    },
+    {
       "id": "ictai26_20260630",
       "title": "ICTAI",
       "full_name": "International Conference on Tools with Artificial Intellignce",
@@ -4183,6 +4200,23 @@
       "date": "Dec 1-4, 2026",
       "place": "Dallas, USA",
       "link": "https://ieeebibm.org/BIBM2026/",
+      "comment": ""
+    },
+    {
+      "id": "ncmmsc26_20260705",
+      "title": "NCMMSC",
+      "full_name": "National Conference on Man-Machine Speech Communication",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-07-05T23:59:59+0800",
+      "abstract_deadline": null,
+      "timezone": "UTC+8",
+      "date": "Nov 5-8, 2026",
+      "place": "Hengqin, China",
+      "link": "https://www.ncmmsc.org.cn/",
       "comment": ""
     },
     {
