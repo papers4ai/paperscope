@@ -1,0 +1,13 @@
+{
+  "_note": "手动维护的子领域配置。格式：{domain: {SubdomainLabel: [keywords]}}。关键词会合并进 arXiv 查询和论文分类，子领域名会生成独立的 task 标签。",
+  "world_model": {
+    "Robot World Model": [
+      "world model for robot",
+      "robot world model",
+      "embodied world model",
+      "world model for embodied"
+    ]
+  },
+  "physical_ai": {},
+  "medical_ai": {}
+}

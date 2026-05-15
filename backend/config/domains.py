@@ -19,8 +19,6 @@ DOMAINS = {
             "scene reconstruction", "neural radiance field", "NeRF",
             "model-based reinforcement learning", "sim-to-real",
             "foundation model", "action model", "predictive model",
-            "world model for robot", "robot world model",
-            "embodied world model", "world model for embodied",
         ],
     },
     "physical_ai": {
@@ -51,16 +49,32 @@ DOMAINS = {
 
 DOMAIN_IDS = list(DOMAINS.keys())
 
-_AUTO_KW_PATH = Path(__file__).parent / "keywords_auto.json"
+_AUTO_KW_PATH   = Path(__file__).parent / "keywords_auto.json"
+_MANUAL_KW_PATH = Path(__file__).parent / "keywords_manual.json"
+
+
+def _load_json(path: Path) -> dict:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def get_manual_subdomains(domain: str) -> dict[str, list[str]]:
+    """Return {SubdomainLabel: [keywords]} for a domain from keywords_manual.json."""
+    data = _load_json(_MANUAL_KW_PATH)
+    return {k: v for k, v in data.get(domain, {}).items() if not k.startswith("_")}
 
 
 def get_keywords(domain: str) -> list[str]:
-    """Return core keywords + LLM-discovered auto keywords for a domain, deduplicated."""
+    """Return core + manual subdomain + LLM-auto keywords for a domain, deduplicated."""
     core = DOMAINS[domain]["keywords"]
-    try:
-        auto = json.loads(_AUTO_KW_PATH.read_text(encoding="utf-8")).get(domain, [])
-    except Exception:
-        auto = []
-    seen = {k.lower() for k in core}
-    extra = [k for k in auto if k.lower() not in seen]
-    return core + extra
+    manual = [kw for kws in get_manual_subdomains(domain).values() for kw in kws]
+    auto   = _load_json(_AUTO_KW_PATH).get(domain, [])
+    seen: set[str] = set()
+    result: list[str] = []
+    for kw in core + manual + auto:
+        if kw.lower() not in seen:
+            seen.add(kw.lower())
+            result.append(kw)
+    return result

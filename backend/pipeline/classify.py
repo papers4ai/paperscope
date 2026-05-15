@@ -11,7 +11,7 @@ from __future__ import annotations
 import re
 
 from backend.config import DOMAINS
-from backend.config.domains import get_keywords
+from backend.config.domains import get_keywords, get_manual_subdomains
 
 # ---------- 论文类型 ----------
 _TYPE_PATTERNS = {
@@ -53,7 +53,6 @@ def extract_code_links(title: str, abstract: str) -> list[str]:
 TASK_PATTERNS: dict[str, re.Pattern] = {
     # World Model
     "WorldModel":    re.compile(r"\bworld model(s|ing)?\b", re.I),
-    "RobotWM":       re.compile(r"\bworld model(s|ing)? for robot(ics?|s?)?\b|\brobot(ic)? world model(s|ing)?\b|\bembodied world model(s|ing)?\b", re.I),
     "VidGen":        re.compile(r"\bvideo (generation|diffusion|synthesis)\b", re.I),
     "NeRF":          re.compile(r"\b(nerf|neural radiance field|gaussian splatting|3dgs)\b", re.I),
     "MBRL":          re.compile(r"\bmodel[- ]based (rl|reinforcement learning)\b", re.I),
@@ -79,10 +78,29 @@ TASK_PATTERNS: dict[str, re.Pattern] = {
 
 def tag_tasks(title: str, abstract: str) -> list[str]:
     text = f"{title} {abstract}"
-    return [name for name, pat in TASK_PATTERNS.items() if pat.search(text)]
+    tags = [name for name, pat in TASK_PATTERNS.items() if pat.search(text)]
+    tags += [name for name, pat in _MANUAL_TASK_PATTERNS.items()
+             if pat.search(text) and name not in tags]
+    return tags
 
 
 # ---------- 领域回填 ----------
+def _build_manual_task_patterns() -> dict[str, re.Pattern]:
+    """keywords_manual.json の子领域名 → task 正则，供 tag_tasks() 使用。"""
+    patterns: dict[str, re.Pattern] = {}
+    for domain in DOMAINS:
+        for label, keywords in get_manual_subdomains(domain).items():
+            if not keywords:
+                continue
+            # tag key: 去掉非字母数字，CamelCase，如 "Robot World Model" → "RobotWorldModel"
+            tag = re.sub(r'[^a-zA-Z0-9]', '', label.title().replace(' ', ''))
+            expr = "|".join(rf"\b{re.escape(k)}\b" for k in keywords)
+            patterns[tag] = re.compile(expr, re.I)
+    return patterns
+
+_MANUAL_TASK_PATTERNS: dict[str, re.Pattern] = _build_manual_task_patterns()
+
+
 def _build_domain_regex() -> dict:
     return {
         d: re.compile("|".join(rf"\b{re.escape(k)}\b" for k in get_keywords(d)), re.I)
