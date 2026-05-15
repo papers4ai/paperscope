@@ -147,8 +147,8 @@ def main() -> int:
     args = ap.parse_args()
 
     if not os.environ.get("LLM_API_KEY"):
-        print("[error] LLM_API_KEY not set", file=sys.stderr)
-        sys.exit(1)
+        print("[skip] LLM_API_KEY not set — set it in GitHub Secrets to enable auto keyword discovery")
+        return 0
 
     # 读取现有文件（保留 _note 等元数据）
     existing: dict = {}
