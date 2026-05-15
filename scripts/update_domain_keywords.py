@@ -105,9 +105,9 @@ def call_llm(prompt: str) -> str:
 
     client = openai.OpenAI(
         api_key=os.environ["LLM_API_KEY"],
-        base_url=os.environ.get("LLM_BASE_URL", DEFAULT_BASE_URL),
+        base_url=os.environ.get("LLM_BASE_URL") or DEFAULT_BASE_URL,
     )
-    model = os.environ.get("LLM_MODEL", DEFAULT_MODEL)
+    model = os.environ.get("LLM_MODEL") or DEFAULT_MODEL
     resp = client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": prompt}],
