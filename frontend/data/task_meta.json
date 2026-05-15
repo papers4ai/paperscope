@@ -119,6 +119,10 @@
     "AngiographySynthesis": {
       "zh": "血管合成",
       "en": "Angiography Synthesis"
+    },
+    "AutonomousDrivingWorldModel": {
+      "zh": "自动驾驶世界模型",
+      "en": "Autonomous Driving World Model"
     }
   },
   "domain_tasks": {
@@ -135,7 +139,8 @@
       "DiffusionWM",
       "RobotWorldModel",
       "WorldModelForRobot",
-      "WorldActionModel"
+      "WorldActionModel",
+      "AutonomousDrivingWorldModel"
     ],
     "physical_ai": [
       "PINN",
