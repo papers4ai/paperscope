@@ -111,6 +111,10 @@
     "WorldModelForRobot": {
       "zh": "机器人世界模型",
       "en": "world model for robot"
+    },
+    "WorldActionModel": {
+      "zh": "世界行为模型",
+      "en": "world action model"
     }
   },
   "domain_tasks": {
@@ -126,7 +130,8 @@
       "Predictive",
       "DiffusionWM",
       "RobotWorldModel",
-      "WorldModelForRobot"
+      "WorldModelForRobot",
+      "WorldActionModel"
     ],
     "physical_ai": [
       "PINN",
