@@ -4,6 +4,10 @@
 子任务标签在 pipeline/classify.py 中使用。
 """
 
+from __future__ import annotations
+import json
+from pathlib import Path
+
 DOMAINS = {
     "world_model": {
         "label_zh": "World Model",
@@ -46,3 +50,17 @@ DOMAINS = {
 }
 
 DOMAIN_IDS = list(DOMAINS.keys())
+
+_AUTO_KW_PATH = Path(__file__).parent / "keywords_auto.json"
+
+
+def get_keywords(domain: str) -> list[str]:
+    """Return core keywords + LLM-discovered auto keywords for a domain, deduplicated."""
+    core = DOMAINS[domain]["keywords"]
+    try:
+        auto = json.loads(_AUTO_KW_PATH.read_text(encoding="utf-8")).get(domain, [])
+    except Exception:
+        auto = []
+    seen = {k.lower() for k in core}
+    extra = [k for k in auto if k.lower() not in seen]
+    return core + extra

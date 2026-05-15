@@ -12,7 +12,7 @@ from urllib.parse import quote_plus
 import feedparser
 import requests
 
-from backend.config import DOMAINS
+from backend.config.domains import get_keywords
 
 ARXIV_API = "https://export.arxiv.org/api/query"
 DEFAULT_DELAY = 3.0
@@ -93,7 +93,7 @@ def fetch_domain(domain: str, days: int = 3, max_results: int = 2000,
                  delay: float = DEFAULT_DELAY,
                  date_from: str | None = None, date_to: str | None = None) -> list[dict]:
     """抓取某个领域最近 N 天（或指定日期段）的 arXiv 新论文。"""
-    keywords = DOMAINS[domain]["keywords"]
+    keywords = get_keywords(domain)
     query = _build_query(keywords, days, date_from=date_from, date_to=date_to)
     results: list[dict] = []
     start = 0

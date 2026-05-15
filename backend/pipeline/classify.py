@@ -11,6 +11,7 @@ from __future__ import annotations
 import re
 
 from backend.config import DOMAINS
+from backend.config.domains import get_keywords
 
 # ---------- 论文类型 ----------
 _TYPE_PATTERNS = {
@@ -82,10 +83,13 @@ def tag_tasks(title: str, abstract: str) -> list[str]:
 
 
 # ---------- 领域回填 ----------
-_DOMAIN_REGEX = {
-    d: re.compile("|".join(rf"\b{re.escape(k)}\b" for k in cfg["keywords"]), re.I)
-    for d, cfg in DOMAINS.items()
-}
+def _build_domain_regex() -> dict:
+    return {
+        d: re.compile("|".join(rf"\b{re.escape(k)}\b" for k in get_keywords(d)), re.I)
+        for d in DOMAINS
+    }
+
+_DOMAIN_REGEX = _build_domain_regex()
 
 
 def infer_domains(title: str, abstract: str, existing: list[str] | None = None) -> list[str]:
