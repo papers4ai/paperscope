@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-15T06:55:41Z",
+  "generated": "2026-05-15T10:22:44Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 296,
+  "total": 295,
   "conferences": [
-    {
-      "id": "pakdd26_20251115",
-      "title": "PAKDD",
-      "full_name": "Pacific-Asia Conference on Knowledge Discovery and Data Mining",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2025-11-15T23:59:59-0800",
-      "abstract_deadline": null,
-      "timezone": "UTC-8",
-      "date": "June 9-12, 2026",
-      "place": "Hong Kong, China",
-      "link": "https://www.pakdd2026.org/",
-      "comment": ""
-    },
     {
       "id": "isca26_20251117",
       "title": "ISCA",
