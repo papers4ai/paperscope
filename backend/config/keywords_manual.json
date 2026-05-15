@@ -10,6 +10,15 @@
         "embodied world model",
         "world model for embodied"
       ]
+    },
+    {
+      "en": "world model for robot",
+      "keywords": [
+        "autonomous driving world model",
+        "occupancy prediction",
+        "driving simulation。video generate"
+      ],
+      "zh": "机器人世界模型"
     }
   ],
   "physical_ai": [],

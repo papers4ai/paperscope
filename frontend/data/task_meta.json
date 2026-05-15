@@ -107,6 +107,10 @@
     "RobotWorldModel": {
       "zh": "机器人世界模型",
       "en": "Robot World Model"
+    },
+    "WorldModelForRobot": {
+      "zh": "机器人世界模型",
+      "en": "world model for robot"
     }
   },
   "domain_tasks": {
@@ -121,7 +125,8 @@
       "EmbodiedWM",
       "Predictive",
       "DiffusionWM",
-      "RobotWorldModel"
+      "RobotWorldModel",
+      "WorldModelForRobot"
     ],
     "physical_ai": [
       "PINN",
