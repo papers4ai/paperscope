@@ -2106,35 +2106,33 @@ $("#auth-signout").addEventListener("click", async () => {
   showLoginView();
 });
 
-// ========== 主题切换（黑夜 / 白天 / 跟随系统，循环切换） ==========
+// ========== 主题切换（白天 / 黑夜 二态，首次访问跟随系统） ==========
 const themeBtn = $("#theme-toggle");
-const THEME_CYCLE = ["dark", "light", "system"];
-const THEME_ICON  = { dark: "🌙", light: "☀️", system: "💻" };
-const THEME_LABEL = { dark: "深色", light: "浅色", system: "跟随系统" };
 
-function applyTheme(theme) {
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const effectiveLight = theme === "light" || (theme === "system" && !prefersDark);
-  if (effectiveLight) {
+function applyTheme(theme, animate = false) {
+  // theme: "dark" | "light"
+  if (animate) {
+    document.documentElement.classList.add("theme-switching");
+    setTimeout(() => document.documentElement.classList.remove("theme-switching"), 400);
+  }
+  if (theme === "light") {
     document.documentElement.setAttribute("data-theme", "light");
   } else {
     document.documentElement.removeAttribute("data-theme");
   }
-  themeBtn.textContent = THEME_ICON[theme];
-  themeBtn.title = THEME_LABEL[theme];
+  themeBtn.title = theme === "light" ? "Switch to dark mode" : "Switch to light mode";
   localStorage.setItem("theme", theme);
 }
 
-// 点击循环：深色 → 浅色 → 跟随系统 → 深色
 themeBtn.addEventListener("click", () => {
-  const cur = localStorage.getItem("theme") || "system";
-  const next = THEME_CYCLE[(THEME_CYCLE.indexOf(cur) + 1) % THEME_CYCLE.length];
-  applyTheme(next);
+  const isLight = document.documentElement.getAttribute("data-theme") === "light";
+  applyTheme(isLight ? "dark" : "light", true);
 });
 
-// OS 主题变化时，若当前是"跟随系统"模式则自动更新
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-  if ((localStorage.getItem("theme") || "system") === "system") applyTheme("system");
+// 跟随系统主题变化（仅当用户尚未做过明确选择时）
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  const saved = localStorage.getItem("theme");
+  if (saved !== "dark" && saved !== "light") applyTheme(e.matches ? "dark" : "light", true);
 });
 
 // ── Client-side trending computation (mirrors gen_trending.py) ────────────────
@@ -2349,8 +2347,15 @@ function startHotUpdateInterval() {
   }, 86400000); // 每24小时更新一次
 }
 
-// 初始化主题
-applyTheme(localStorage.getItem("theme") || "system");
+// 初始化主题：saved choice 优先；未保存则跟随系统偏好
+{
+  const saved = localStorage.getItem("theme");
+  if (saved === "light" || saved === "dark") {
+    applyTheme(saved);
+  } else {
+    applyTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  }
+}
 
 // ========== 初始化 ==========
 updateFavCount();

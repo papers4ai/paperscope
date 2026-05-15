@@ -191,6 +191,26 @@ body::before {
   font-weight: 500;
 }
 
+/* SVG sun/moon icon toggle */
+.theme-toggle-icon {
+  position: relative; overflow: hidden;
+  width: 38px; height: 36px; padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.theme-toggle-icon:hover { background: var(--card-bg); transform: translateY(-1px); }
+.theme-toggle-icon .theme-icon {
+  position: absolute;
+  transition: transform .55s cubic-bezier(.4,.0,.25,1.4), opacity .25s;
+}
+/* dark mode: moon visible, sun hidden upward */
+.theme-toggle-icon .icon-sun  { transform: translateY(-28px) rotate(-120deg); opacity: 0; }
+.theme-toggle-icon .icon-moon { transform: translateY(0)     rotate(0);       opacity: 1; }
+/* light mode: sun visible, moon hidden downward */
+:root[data-theme="light"] .theme-toggle-icon .icon-sun  { transform: translateY(0)    rotate(0);     opacity: 1; }
+:root[data-theme="light"] .theme-toggle-icon .icon-moon { transform: translateY(28px) rotate(120deg); opacity: 0; }
+.theme-toggle-icon .icon-sun  { color: #fbbf24; }
+.theme-toggle-icon .icon-moon { color: #a5b4fc; }
+
 /* ========== 三栏布局 ========== */
 .layout {
   display: grid; grid-template-columns: 240px 1fr 0; gap: 20px;
@@ -2410,3 +2430,41 @@ body.mode-deadlines #trending-view { display: none !important; }
   .ddl-pagination { gap: .4rem; flex-wrap: wrap; }
   .ddl-pg-btn { padding: .35rem .6rem; font-size: .78rem; min-width: 32px; }
 }
+
+/* ========== Global theme transition + scrollbar polish ========== */
+/* 切换昼夜时，颜色相关的属性平滑过渡，避免硬切闪烁 */
+html.theme-switching,
+html.theme-switching * {
+  transition: background-color .35s ease, color .35s ease,
+              border-color .35s ease, box-shadow .35s ease,
+              fill .35s ease, stroke .35s ease !important;
+}
+
+/* 自定义滚动条 — 与玻璃风格统一 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background .2s;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); background-clip: content-box; }
+:root[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); background-clip: content-box; }
+:root[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,.22); background-clip: content-box; }
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.12) transparent; }
+:root[data-theme="light"] * { scrollbar-color: rgba(0,0,0,0.18) transparent; }
+
+/* search 框 focus 高亮升级 */
+.search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+}
+
+/* stat-card 数字微动效（数字加载时柔和上浮） */
+@keyframes statValueIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.stat-value { animation: statValueIn .5s cubic-bezier(.4,0,.2,1) both; }
