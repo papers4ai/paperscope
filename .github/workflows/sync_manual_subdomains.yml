@@ -6,9 +6,27 @@ on:
       - "backend/config/keywords_manual.json"
   workflow_dispatch:
     inputs:
+      domain:
+        description: "领域"
+        required: true
+        default: "world_model"
+        type: choice
+        options:
+          - world_model
+          - physical_ai
+          - medical_ai
+      label:
+        description: "子领域名称（中文或英文均可，如：机器人世界模型 或 Robot World Model）"
+        required: true
+        default: ""
+      keywords:
+        description: "arXiv 关键词，英文逗号分隔（如：world model for robot, robot world model）"
+        required: true
+        default: ""
       dry_run:
-        description: "只预览不写文件 (true/false)"
-        default: "false"
+        description: "只预览不写文件"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -23,8 +41,56 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install openai (for translation)
+      - name: Install openai
         run: pip install openai
+
+      - name: Inject new subdomain into keywords_manual.json
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.label != '' }}
+        env:
+          DOMAIN:   ${{ github.event.inputs.domain }}
+          LABEL:    ${{ github.event.inputs.label }}
+          KEYWORDS: ${{ github.event.inputs.keywords }}
+        run: |
+          python3 - <<'EOF'
+          import json, os
+          from pathlib import Path
+
+          path = Path("backend/config/keywords_manual.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+
+          domain   = os.environ["DOMAIN"]
+          label    = os.environ["LABEL"].strip()
+          keywords = [k.strip() for k in os.environ["KEYWORDS"].split(",") if k.strip()]
+
+          if not label or not keywords:
+              print("Label or keywords empty — skipping injection")
+              raise SystemExit(0)
+
+          import re
+          is_zh = bool(re.search(r'[一-鿿]', label))
+          entry = {
+              ("zh" if is_zh else "en"): label,
+              "keywords": keywords,
+          }
+
+          entries = data.setdefault(domain, [])
+          if not isinstance(entries, list):
+              entries = []
+              data[domain] = entries
+
+          # 如果同名已存在则更新 keywords，否则追加
+          for e in entries:
+              if e.get("zh") == label or e.get("en") == label:
+                  e["keywords"] = keywords
+                  print(f"Updated existing entry: {label}")
+                  break
+          else:
+              entries.append(entry)
+              print(f"Added new entry: {entry}")
+
+          path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+          print("keywords_manual.json written")
+          EOF
 
       - name: Sync subdomains → task_meta.json
         env:
@@ -37,6 +103,7 @@ jobs:
           python scripts/sync_manual_subdomains.py $FLAGS
 
       - name: Commit & push if changed
+        if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -44,7 +111,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nothing changed."
           else
-            git commit -m "chore: sync manual subdomains → task_meta.json"
+            git commit -m "chore: add subdomain '${{ github.event.inputs.label }}' to ${{ github.event.inputs.domain }}"
             git pull --rebase --autostash
             git push
           fi
