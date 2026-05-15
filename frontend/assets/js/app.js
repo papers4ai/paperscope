@@ -946,20 +946,24 @@ function renderStats(s) {
 }
 
 function renderTrends(trends) {
-  const max = Math.max(1, ...trends.map(t => Object.values(t.counts).reduce((a, b) => a + b, 0)));
+  const DOMAIN_LIST = ["world_model", "physical_ai", "medical_ai"];
+  const max = Math.max(1, ...trends.map(tr => Object.values(tr.counts).reduce((a, b) => a + b, 0)));
   const legend = `<div class="trend-legend">
-    ${["world_model", "physical_ai", "medical_ai"].map(d =>
+    ${DOMAIN_LIST.map(d =>
       `<span class="trend-legend-item"><span class="trend-legend-dot ${d}"></span>${DOMAINS[d]?.icon || ""} ${DOMAINS[d]?.label || d}</span>`
     ).join("")}
   </div>`;
-  const rowsHtml = trends.map(t => {
-    const total = Object.values(t.counts).reduce((a, b) => a + b, 0);
-    const bars = ["world_model", "physical_ai", "medical_ai"].map(d => {
-      const w = max > 0 ? (t.counts[d] / max * 100) : 0;
-      return w > 0 ? `<div class="trend-bar ${d}" style="width:${w}%" title="${DOMAINS[d]?.label || d}: ${t.counts[d]} 篇"></div>` : "";
+  const rowsHtml = trends.map((tr, ri) => {
+    const total = Object.values(tr.counts).reduce((a, b) => a + b, 0);
+    const bars = DOMAIN_LIST.map((d, di) => {
+      const w = max > 0 ? (tr.counts[d] / max * 100) : 0;
+      if (w <= 0) return "";
+      const tip = `${DOMAINS[d]?.label || d}: ${tr.counts[d]}${t('articles')}`;
+      const delay = (ri * DOMAIN_LIST.length + di) * 55;
+      return `<div class="trend-bar ${d}" style="width:${w}%;animation-delay:${delay}ms" data-tip="${tip}"></div>`;
     }).join("");
     return `<div class="trend-row">
-      <span class="trend-year-label">${t.year}</span>
+      <span class="trend-year-label">${tr.year}</span>
       <div class="trend-bars">${bars}</div>
       <span class="trend-count">${total.toLocaleString("en-US")}</span>
     </div>`;
@@ -2338,3 +2342,23 @@ updateUI();
 reload();
 loadDashboard();
 startHotUpdateInterval();
+
+// ── 趋势条悬浮 tooltip（替换原生 title 气泡）──────────────────────────────
+(function () {
+  const tip = document.createElement("div");
+  tip.className = "trend-bar-tip";
+  document.body.appendChild(tip);
+
+  document.addEventListener("mousemove", (e) => {
+    const bar = e.target.closest(".trend-bar[data-tip]");
+    if (!bar) { tip.classList.remove("visible"); return; }
+    tip.textContent = bar.dataset.tip;
+    tip.classList.add("visible");
+    const x = e.clientX + 14;
+    const y = e.clientY - 42;
+    tip.style.left = Math.min(x, window.innerWidth - tip.offsetWidth - 8) + "px";
+    tip.style.top = Math.max(y, 8) + "px";
+  });
+
+  document.addEventListener("mouseleave", () => tip.classList.remove("visible"));
+})();

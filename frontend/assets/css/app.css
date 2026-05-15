@@ -334,15 +334,35 @@ body.mode-curated .feed-only { display: none; }
 .trend-row:last-child { margin-bottom: 0; }
 .trend-year-label { width: 38px; font-size: .72rem; font-weight: 700; color: var(--text-secondary); }
 .trend-bars {
-  flex: 1; display: flex; height: 20px; border-radius: 6px; overflow: hidden;
+  flex: 1; display: flex; height: 24px; border-radius: 8px; overflow: hidden;
   background: rgba(255,255,255,.03);
 }
 :root[data-theme="light"] .trend-bars { background: rgba(0,0,0,.04); }
-.trend-bar { height: 100%; transition: all .4s cubic-bezier(.4,0,.2,1); min-width: 2px; }
-.trend-bar:hover { filter: brightness(1.25); }
+@keyframes barGrow {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+.trend-bar {
+  height: 100%; min-width: 2px;
+  transform-origin: left center;
+  animation: barGrow .55s cubic-bezier(.4,0,.2,1) both;
+  transition: filter .18s ease;
+}
+.trend-bar:hover { filter: brightness(1.3) saturate(1.1); }
 .trend-bar.world_model { background: linear-gradient(90deg, #6366f1, #818cf8, #a78bfa); }
 .trend-bar.physical_ai { background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7); }
 .trend-bar.medical_ai  { background: linear-gradient(90deg, #f43f5e, #fb7185, #fda4af); }
+.trend-bar-tip {
+  position: fixed; z-index: 999; pointer-events: none;
+  background: var(--card-bg); border: 1px solid var(--border-hover);
+  color: var(--text); font-size: .75rem; font-weight: 600;
+  padding: .3rem .65rem; border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4), 0 1px 4px rgba(0,0,0,.2);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  opacity: 0; transition: opacity .1s;
+  white-space: nowrap;
+}
+.trend-bar-tip.visible { opacity: 1; }
 .trend-count { width: 50px; text-align: right; font-size: .7rem; font-weight: 700; color: var(--text-secondary); }
 
 /* subdomain section */
