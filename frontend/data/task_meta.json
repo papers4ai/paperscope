@@ -103,6 +103,10 @@
     "HealthMon": {
       "zh": "健康监测",
       "en": "Health Monitoring"
+    },
+    "RobotWorldModel": {
+      "zh": "机器人世界模型",
+      "en": "Robot World Model"
     }
   },
   "domain_tasks": {
@@ -116,7 +120,8 @@
       "Sim2Real",
       "EmbodiedWM",
       "Predictive",
-      "DiffusionWM"
+      "DiffusionWM",
+      "RobotWorldModel"
     ],
     "physical_ai": [
       "PINN",
