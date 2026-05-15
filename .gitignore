@@ -8,5 +8,7 @@ __pycache__/
 node_modules/
 output/
 cache/
+# 原始合并文件（88MB），仅用于本地脚本，不提交/部署
+frontend/data/papers_curated.json
 *.log
 .claude/

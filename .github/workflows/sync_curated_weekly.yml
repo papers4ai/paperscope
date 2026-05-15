@@ -1,9 +1,10 @@
 name: Sync curated papers from upstream (weekly)
 
+# 已禁用：上游 Jefferyzhifeng/Paperscope-hub 的 output/papers_curated.json 返回 404。
+# 该功能已由 daily_curated_update.yml 完全覆盖（每日从本地重建并推送）。
+# 若将来需要恢复从外部上游同步，取消 on: 下方的注释并修正 REMOTE URL。
 on:
-  schedule:
-    - cron: "0 3 * * 1"   # 每周一 03:00 UTC ≈ 北京 11:00
-  workflow_dispatch:
+  workflow_dispatch:   # 仅保留手动触发入口，供调试用
 
 jobs:
   sync:
@@ -12,17 +13,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Run curated sync
-        run: python scripts/sync_curated.py
-      - name: Commit & push if changed
+      - name: Run curated sync (local rebuild only)
         run: |
-          if git diff --quiet frontend/data/papers_curated.json; then
-            echo "No changes."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add frontend/data/papers_curated.json
-          git commit -m "chore: weekly sync papers_curated.json from upstream"
-          git pull --rebase --autostash
-          git push
+          echo "⚠️  Remote upstream sync is disabled (upstream URL returns 404)."
+          echo "    Curated data is maintained by daily_curated_update.yml."
+          echo "    To sync manually from a local file: python scripts/sync_curated.py --local <path>"
