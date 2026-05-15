@@ -12,6 +12,7 @@ from urllib.parse import quote_plus
 import feedparser
 import requests
 
+from backend.config import DOMAINS
 from backend.config.domains import get_keywords
 
 ARXIV_API = "https://export.arxiv.org/api/query"
