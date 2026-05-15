@@ -80,7 +80,7 @@ def _parse_entry(entry) -> dict:
     }
 
 
-def fetch_domain(domain: str, days: int = 3, max_results: int = 500,
+def fetch_domain(domain: str, days: int = 3, max_results: int = 2000,
                  delay: float = DEFAULT_DELAY) -> list[dict]:
     """抓取某个领域最近 N 天的 arXiv 新论文。"""
     keywords = DOMAINS[domain]["keywords"]
