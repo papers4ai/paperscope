@@ -29,5 +29,14 @@
     }
   ],
   "physical_ai": [],
-  "medical_ai": []
+  "medical_ai": [
+    {
+      "en": "Angiography Synthesis",
+      "keywords": [
+        "Angiography Synthesis",
+        "vessel synthesis"
+      ],
+      "zh": "血管合成"
+    }
+  ]
 }

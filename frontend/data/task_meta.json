@@ -115,6 +115,10 @@
     "WorldActionModel": {
       "zh": "世界行为模型",
       "en": "world action model"
+    },
+    "AngiographySynthesis": {
+      "zh": "血管合成",
+      "en": "Angiography Synthesis"
     }
   },
   "domain_tasks": {
@@ -151,7 +155,8 @@
       "Protein",
       "Clinical",
       "Surgery",
-      "HealthMon"
+      "HealthMon",
+      "AngiographySynthesis"
     ]
   }
 }
