@@ -12,13 +12,14 @@
       ]
     },
     {
-      "en": "world model for robot",
+      "en": "Autonomous Driving World Model",
+      "zh": "自动驾驶世界模型",
       "keywords": [
         "autonomous driving world model",
         "occupancy prediction",
-        "driving simulation。video generate"
-      ],
-      "zh": "机器人世界模型"
+        "driving simulation",
+        "video generation for driving"
+      ]
     },
     {
       "en": "world action model",
