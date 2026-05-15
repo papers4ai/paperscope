@@ -21,12 +21,21 @@ MAX_RETRIES = 5
 REQUEST_TIMEOUT = 120   # arXiv 有时响应慢，60s 不够
 
 
-def _build_query(keywords: list[str], days: int) -> str:
-    """构造 arXiv 查询字符串，关键词 OR，时间窗口 AND。"""
-    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
-    date_str = cutoff.strftime("%Y%m%d%H%M")
+def _build_query(keywords: list[str], days: int = 3,
+                 date_from: str | None = None, date_to: str | None = None) -> str:
+    """构造 arXiv 查询字符串，关键词 OR，时间窗口 AND。
+
+    优先使用 date_from/date_to（YYYY-MM-DD），否则按 days 回溯。
+    """
+    if date_from:
+        from_str = date_from.replace("-", "") + "0000"
+        to_str   = (date_to.replace("-", "") + "2359") if date_to else "999912312359"
+    else:
+        cutoff   = datetime.now(timezone.utc) - timedelta(days=days)
+        from_str = cutoff.strftime("%Y%m%d%H%M")
+        to_str   = "999912312359"
     kw_expr = " OR ".join(f'all:"{k}"' for k in keywords)
-    return f"({kw_expr}) AND submittedDate:[{date_str} TO 999912312359]"
+    return f"({kw_expr}) AND submittedDate:[{from_str} TO {to_str}]"
 
 
 def _fetch_page(query: str, start: int, page_size: int) -> list[dict]:
@@ -81,10 +90,11 @@ def _parse_entry(entry) -> dict:
 
 
 def fetch_domain(domain: str, days: int = 3, max_results: int = 2000,
-                 delay: float = DEFAULT_DELAY) -> list[dict]:
-    """抓取某个领域最近 N 天的 arXiv 新论文。"""
+                 delay: float = DEFAULT_DELAY,
+                 date_from: str | None = None, date_to: str | None = None) -> list[dict]:
+    """抓取某个领域最近 N 天（或指定日期段）的 arXiv 新论文。"""
     keywords = DOMAINS[domain]["keywords"]
-    query = _build_query(keywords, days)
+    query = _build_query(keywords, days, date_from=date_from, date_to=date_to)
     results: list[dict] = []
     start = 0
     while start < max_results:
@@ -99,12 +109,14 @@ def fetch_domain(domain: str, days: int = 3, max_results: int = 2000,
     return results
 
 
-def fetch_all_domains(days: int = 3) -> list[dict]:
+def fetch_all_domains(days: int = 3,
+                      date_from: str | None = None,
+                      date_to: str | None = None) -> list[dict]:
     """抓取三个领域，按 id 去重（同一篇可能跨域）。"""
     merged: dict[str, dict] = {}
     domain_list = list(DOMAINS.keys())
     for i, domain in enumerate(domain_list):
-        for paper in fetch_domain(domain, days=days):
+        for paper in fetch_domain(domain, days=days, date_from=date_from, date_to=date_to):
             if paper["id"] in merged:
                 existing = merged[paper["id"]]
                 existing["domains"] = list(set(existing["domains"] + [domain]))

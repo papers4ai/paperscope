@@ -16,10 +16,15 @@ from backend.db import upsert_papers, snapshot_stats, get_client
 from backend.pipeline.classify import enrich_many
 
 
-def cmd_arxiv_daily(days: int = 2) -> None:
+def cmd_arxiv_daily(days: int = 3,
+                    date_from: str | None = None,
+                    date_to: str | None = None) -> None:
     from backend.scrapers.arxiv_scraper import fetch_all_domains
-    print(f"[arxiv] fetching last {days} days...")
-    papers = fetch_all_domains(days=days)
+    if date_from:
+        print(f"[arxiv] fetching {date_from} → {date_to or 'today'}...")
+    else:
+        print(f"[arxiv] fetching last {days} days...")
+    papers = fetch_all_domains(days=days, date_from=date_from, date_to=date_to)
     print(f"[arxiv] got {len(papers)} papers")
     papers = enrich_many(papers)
     n = upsert_papers(papers)
@@ -85,7 +90,9 @@ def main() -> None:
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     p1 = sub.add_parser("arxiv-daily")
-    p1.add_argument("--days", type=int, default=2)
+    p1.add_argument("--days", type=int, default=3)
+    p1.add_argument("--date-from", default=None, help="开始日期 YYYY-MM-DD，填此项时忽略 --days")
+    p1.add_argument("--date-to",   default=None, help="结束日期 YYYY-MM-DD（默认今天）")
 
     p2 = sub.add_parser("journals-weekly")
     p2.add_argument("--year-from", type=int, default=None)
@@ -98,7 +105,7 @@ def main() -> None:
 
     args = ap.parse_args()
     if args.cmd == "arxiv-daily":
-        cmd_arxiv_daily(days=args.days)
+        cmd_arxiv_daily(days=args.days, date_from=args.date_from, date_to=args.date_to)
     elif args.cmd == "journals-weekly":
         cmd_journals_weekly(year_from=args.year_from, limit_per_venue=args.limit_per_venue)
     elif args.cmd == "pubmed-weekly":

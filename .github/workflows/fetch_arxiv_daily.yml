@@ -5,8 +5,14 @@ on:
     - cron: "0 2 * * *"    # UTC 02:00 = 北京 10:00
   workflow_dispatch:
     inputs:
+      date_from:
+        description: "开始日期 YYYY-MM-DD（填此项则忽略 days）"
+        default: ""
+      date_to:
+        description: "结束日期 YYYY-MM-DD（默认今天）"
+        default: ""
       days:
-        description: "回溯天数（留空 = 自动；补录历史可填 30）"
+        description: "回溯天数（date_from/date_to 均为空时生效，留空走自动逻辑）"
         default: ""
 
 permissions:
@@ -26,32 +32,43 @@ jobs:
       - name: Determine fetch window
         id: window
         run: |
-          if [ -n "${{ github.event.inputs.days }}" ]; then
-            # 手动触发时优先使用输入值
-            DAYS="${{ github.event.inputs.days }}"
-            echo "▶ Manual trigger: --days $DAYS"
+          DATE_FROM="${{ github.event.inputs.date_from }}"
+          DATE_TO="${{ github.event.inputs.date_to }}"
+          DAYS_INPUT="${{ github.event.inputs.days }}"
+
+          if [ -n "$DATE_FROM" ]; then
+            # 手动指定日期段
+            EXTRA="--date-from $DATE_FROM"
+            [ -n "$DATE_TO" ] && EXTRA="$EXTRA --date-to $DATE_TO"
+            DESC="${DATE_FROM} → ${DATE_TO:-today}"
+          elif [ -n "$DAYS_INPUT" ]; then
+            # 手动指定天数
+            EXTRA="--days $DAYS_INPUT"
+            DESC="--days $DAYS_INPUT"
           else
-            # 每逢日期能被 3 整除，做一次 7 天深度回溯
+            # 自动逻辑：每逢日期能被 3 整除，做一次 7 天深度回溯
             DAY=$(date -u +%-d)
             if [ $((DAY % 3)) -eq 0 ]; then
-              DAYS=7
-              echo "▶ Deep-fetch day (day $DAY of month): --days 7"
+              EXTRA="--days 7"
+              DESC="--days 7 (deep-fetch day $DAY)"
             else
-              DAYS=3
-              echo "▶ Normal day (day $DAY of month): --days 3"
+              EXTRA="--days 3"
+              DESC="--days 3 (normal)"
             fi
           fi
-          echo "days=$DAYS" >> "$GITHUB_OUTPUT"
+
+          echo "extra=$EXTRA" >> "$GITHUB_OUTPUT"
+          echo "desc=$DESC"   >> "$GITHUB_OUTPUT"
+          echo "▶ Fetch window: $DESC"
 
       - name: Fetch arXiv → Supabase
-        continue-on-error: true   # arXiv 偶发超时/429，不阻断后续导出和部署
+        continue-on-error: true   # arXiv 偶发超时/429，不阻断后续
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: |
-          DAYS="${{ steps.window.outputs.days }}"
-          echo "▶ python -m backend.main arxiv-daily --days $DAYS"
-          python -m backend.main arxiv-daily --days "$DAYS"
+          echo "▶ python -m backend.main arxiv-daily ${{ steps.window.outputs.extra }}"
+          python -m backend.main arxiv-daily ${{ steps.window.outputs.extra }}
 
       - name: Export Supabase → papers.json
         env:
@@ -68,7 +85,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add frontend/data/papers_*.json frontend/data/meta.json
-            git commit -m "chore: daily arxiv sync $(date -u +%Y-%m-%d) [--days ${{ steps.window.outputs.days }}]"
+            git commit -m "chore: arxiv sync $(date -u +%Y-%m-%d) [${{ steps.window.outputs.desc }}]"
             git pull --rebase
             git push
           fi
