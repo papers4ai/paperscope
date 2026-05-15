@@ -15,6 +15,8 @@ DOMAINS = {
             "scene reconstruction", "neural radiance field", "NeRF",
             "model-based reinforcement learning", "sim-to-real",
             "foundation model", "action model", "predictive model",
+            "world model for robot", "robot world model",
+            "embodied world model", "world model for embodied",
         ],
     },
     "physical_ai": {

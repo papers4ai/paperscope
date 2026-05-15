@@ -52,6 +52,7 @@ def extract_code_links(title: str, abstract: str) -> list[str]:
 TASK_PATTERNS: dict[str, re.Pattern] = {
     # World Model
     "WorldModel":    re.compile(r"\bworld model(s|ing)?\b", re.I),
+    "RobotWM":       re.compile(r"\bworld model(s|ing)? for robot(ics?|s?)?\b|\brobot(ic)? world model(s|ing)?\b|\bembodied world model(s|ing)?\b", re.I),
     "VidGen":        re.compile(r"\bvideo (generation|diffusion|synthesis)\b", re.I),
     "NeRF":          re.compile(r"\b(nerf|neural radiance field|gaussian splatting|3dgs)\b", re.I),
     "MBRL":          re.compile(r"\bmodel[- ]based (rl|reinforcement learning)\b", re.I),
