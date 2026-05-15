@@ -444,13 +444,17 @@ async function loadFeedPapers(onBackgroundDone) {
   feedPapersCache = _dedupeById(firstBatch.flat());
 
   if (rest.length) {
-    Promise.all(
-      rest.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
-    ).then(results => {
-      feedPapersCache = _dedupeById([...feedPapersCache, ...results.flat()]);
+    // 逐年串行加载：每年到位后立即触发回调重渲染，用户看到数据逐步增多
+    (async () => {
+      for (const y of rest) {
+        updateLoadingMoreBanner(y);
+        const batch = await fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []);
+        feedPapersCache = _dedupeById([...feedPapersCache, ...batch]);
+        if (typeof _feedBgCallback === "function") _feedBgCallback();
+      }
       _feedFullyLoaded = true;
       if (typeof _feedBgCallback === "function") { _feedBgCallback(); _feedBgCallback = null; }
-    });
+    })();
   } else {
     _feedFullyLoaded = true;
   }
@@ -491,17 +495,22 @@ async function loadCuratedPapers(domain = "all", onBackgroundDone) {
   _curatedCache[key] = _mergeCurated(firstResults);
 
   if (rest.length) {
-    const restFiles = domainsToLoad.flatMap(d =>
-      rest.map(y => `data/papers_curated_${d}_${y}.json`)
-    );
-    Promise.all(
-      restFiles.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
-    ).then(restResults => {
-      _curatedCache[key] = _mergeCurated([..._curatedCache[key], ...restResults.flat()]);
+    // 逐年串行，同一年内各域并行，每年到位后立即触发回调重渲染
+    (async () => {
+      for (const y of rest) {
+        updateLoadingMoreBanner(y);
+        const yearFiles = domainsToLoad.map(d => `data/papers_curated_${d}_${y}.json`);
+        const yearResults = await Promise.all(
+          yearFiles.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
+        );
+        _curatedCache[key] = _mergeCurated([..._curatedCache[key], ...yearResults.flat()]);
+        const cb = _curatedBgCallback[key];
+        if (typeof cb === "function") cb();
+      }
       _curatedLoaded[key] = true;
       const cb = _curatedBgCallback[key];
       if (typeof cb === "function") { cb(); delete _curatedBgCallback[key]; }
-    });
+    })();
   } else {
     _curatedLoaded[key] = true;
   }
@@ -651,13 +660,22 @@ async function refreshVenueList() {
 }
 
 // ========== 渲染论文列表 ==========
-function showLoadingMoreBanner() {
+function showLoadingMoreBanner(year) {
   removeLoadingMoreBanner();
   const el = document.createElement("div");
   el.id = "loading-more-banner";
   el.className = "loading-more-banner";
-  el.textContent = currentLang === "zh" ? "⏳ 正在加载更多年份数据..." : "⏳ Loading older papers…";
+  el.textContent = _loadingBannerText(year);
   $("#paper-list").after(el);
+}
+function updateLoadingMoreBanner(year) {
+  const el = document.getElementById("loading-more-banner");
+  if (el) el.textContent = _loadingBannerText(year);
+}
+function _loadingBannerText(year) {
+  return year
+    ? (currentLang === "zh" ? `⏳ 正在加载 ${year} 年数据…` : `⏳ Loading ${year} papers…`)
+    : (currentLang === "zh" ? "⏳ 正在加载更多年份数据…" : "⏳ Loading older papers…");
 }
 function removeLoadingMoreBanner() {
   document.getElementById("loading-more-banner")?.remove();
@@ -1216,7 +1234,7 @@ async function reload() {
             const f2 = applyFeedFilters(feedPapersCache.map(normalizePaper));
             feedTotal = f2.length;
             render(f2.slice(0, 100));
-            removeLoadingMoreBanner();
+            if (_feedFullyLoaded) removeLoadingMoreBanner();
           }
         })).map(normalizePaper);
         const filtered = applyFeedFilters(all);
@@ -1229,7 +1247,7 @@ async function reload() {
           if (state.mode === "curated" && state.domain === _curDomain) {
             const f2 = applyCuratedFilters(_curatedCache[_curDomain]);
             render(f2.slice(0, 100));
-            removeLoadingMoreBanner();
+            if (_curatedLoaded[_curDomain]) removeLoadingMoreBanner();
           }
         });
         const filtered = applyCuratedFilters(all);
