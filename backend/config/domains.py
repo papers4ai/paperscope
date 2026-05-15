@@ -61,9 +61,25 @@ def _load_json(path: Path) -> dict:
 
 
 def get_manual_subdomains(domain: str) -> dict[str, list[str]]:
-    """Return {SubdomainLabel: [keywords]} for a domain from keywords_manual.json."""
+    """Return {EnglishLabel: [keywords]} for a domain from keywords_manual.json.
+
+    Supports both the new list format [{zh, en, keywords}]
+    and the legacy dict format {label: [keywords]}.
+    """
     data = _load_json(_MANUAL_KW_PATH)
-    return {k: v for k, v in data.get(domain, {}).items() if not k.startswith("_")}
+    entries = data.get(domain, [])
+    result: dict[str, list[str]] = {}
+    if isinstance(entries, list):
+        for item in entries:
+            if not isinstance(item, dict):
+                continue
+            label = item.get("en") or item.get("zh") or ""
+            kws   = item.get("keywords") or []
+            if label and kws:
+                result[label] = kws
+    elif isinstance(entries, dict):
+        result = {k: v for k, v in entries.items() if not k.startswith("_")}
+    return result
 
 
 def get_keywords(domain: str) -> list[str]:
