@@ -119,6 +119,10 @@
     "AutonomousDrivingWorldModel": {
       "zh": "自动驾驶世界模型",
       "en": "Autonomous Driving World Model"
+    },
+    "WorldModelForRobot": {
+      "zh": "机器人世界模型",
+      "en": "world model for robot"
     }
   },
   "domain_tasks": {
@@ -135,7 +139,8 @@
       "DiffusionWM",
       "RobotWorldModel",
       "WorldActionModel",
-      "AutonomousDrivingWorldModel"
+      "AutonomousDrivingWorldModel",
+      "WorldModelForRobot"
     ],
     "physical_ai": [
       "PINN",

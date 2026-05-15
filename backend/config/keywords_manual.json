@@ -27,6 +27,13 @@
         "world action model"
       ],
       "zh": "世界行为模型"
+    },
+    {
+      "en": "world model for robot",
+      "keywords": [
+        "world model for robot"
+      ],
+      "zh": "机器人世界模型"
     }
   ],
   "physical_ai": [],
