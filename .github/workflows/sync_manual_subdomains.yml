@@ -102,12 +102,18 @@ jobs:
           [ "${{ github.event.inputs.dry_run }}" = "true" ] && FLAGS="--dry-run"
           python scripts/sync_manual_subdomains.py $FLAGS
 
+      - name: Retag existing papers with new subdomain tags
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: python scripts/retag_manual_subdomains.py
+
       - name: Commit & push if changed
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add backend/config/keywords_manual.json frontend/data/task_meta.json
+          git add backend/config/keywords_manual.json \
+                  frontend/data/task_meta.json \
+                  frontend/data/papers*.json
           if git diff --cached --quiet; then
             echo "Nothing changed."
           else
