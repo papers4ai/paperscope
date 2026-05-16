@@ -8,7 +8,8 @@
         "world model for robot",
         "robot world model",
         "embodied world model",
-        "world model for embodied"
+        "world model for embodied",
+        "World Model for Robot Learning"
       ]
     },
     {
@@ -27,13 +28,6 @@
         "world action model"
       ],
       "zh": "世界行为模型"
-    },
-    {
-      "en": "world model for robot",
-      "keywords": [
-        "World Model for Robot Learning"
-      ],
-      "zh": "机器人世界模型"
     }
   ],
   "physical_ai": [],
