@@ -1,0 +1,76 @@
+name: Delete Manual Subdomain
+
+on:
+  workflow_dispatch:
+    inputs:
+      domain:
+        description: "领域"
+        required: true
+        default: "world_model"
+        type: choice
+        options:
+          - world_model
+          - physical_ai
+          - medical_ai
+      label:
+        description: "要删除的子领域 label（中文或英文，需精确匹配 keywords_manual.json 里的 zh/en 字段，例如：world model for robot 或 机器人世界模型）"
+        required: false
+        default: ""
+      tag:
+        description: "或直接填 tag key（如 WorldModelForRobot），label 留空时使用此项"
+        required: false
+        default: ""
+      dry_run:
+        description: "只预览不写文件"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate inputs
+        run: |
+          if [ -z "${{ github.event.inputs.label }}" ] && [ -z "${{ github.event.inputs.tag }}" ]; then
+            echo "::error::必须提供 label 或 tag 中的至少一个"
+            exit 1
+          fi
+
+      - name: Delete subdomain (manual + task_meta + papers)
+        run: |
+          FLAGS="--domain ${{ github.event.inputs.domain }}"
+          if [ -n "${{ github.event.inputs.label }}" ]; then
+            FLAGS="$FLAGS --label '${{ github.event.inputs.label }}'"
+          else
+            FLAGS="$FLAGS --tag '${{ github.event.inputs.tag }}'"
+          fi
+          [ "${{ github.event.inputs.dry_run }}" = "true" ] && FLAGS="$FLAGS --dry-run"
+          echo "▶ python scripts/delete_manual_subdomain.py $FLAGS"
+          eval "python scripts/delete_manual_subdomain.py $FLAGS"
+
+      - name: Commit & push if changed
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backend/config/keywords_manual.json \
+                  frontend/data/task_meta.json \
+                  frontend/data/papers*.json
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+          else
+            TARGET="${{ github.event.inputs.label }}"
+            [ -z "$TARGET" ] && TARGET="${{ github.event.inputs.tag }}"
+            git commit -m "chore: delete subdomain '$TARGET' from ${{ github.event.inputs.domain }}"
+            git pull --rebase --autostash
+            git push
+          fi
