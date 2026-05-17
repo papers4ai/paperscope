@@ -113,6 +113,20 @@ jobs:
 
           python fetch_curated_fast.py $DATE_FLAG $FLAG
 
+      # ── 4.5. 论文 AI 中文解读（顶引用 + 近 90 天的新论文）─────────────────
+      #     paper 自带 summary_zh 时自动跳过（无重复 LLM 浪费），
+      #     首次 CI 会处理积压的老 cite>=50 论文，之后每天只跑当日新增几百篇
+      - name: Generate AI summaries (cite>=50 OR last 90d)
+        if: env.LLM_API_KEY != '' || env.LLM_API_KEYS != ''
+        env:
+          LLM_API_KEYS: ${{ secrets.LLM_API_KEYS }}
+          LLM_API_KEY:  ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL:    ${{ secrets.LLM_MODEL }}
+          LLM_CONCURRENCY: "15"
+          LLM_BATCH_SIZE_SUM: "8"
+        run: python scripts/backfill_summaries.py --min-citations 50 --days 90
+
       # ── 5. 同步到前端（按领域拆分，去掉 abstract） ───────────────────────────
       - name: Sync to frontend data
         run: python scripts/sync_curated.py --local output/papers_curated.json
