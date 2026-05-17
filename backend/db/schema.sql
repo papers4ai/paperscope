@@ -20,6 +20,8 @@ create table if not exists papers (
   tasks           text[] default array[]::text[], -- 正则匹配的任务子标签（固定枚举）
   topics          text[] default array[]::text[], -- LLM 自由文本子主题（2-4 个）
   paper_type      text,                           -- Method / Dataset / Survey
+  summary_zh      text,                           -- LLM 生成的 3 句中文摘要
+  insights        text[] default array[]::text[], -- LLM 生成的 3 条 key insights
   open_access_pdf text,
   arxiv_url       text,
   doi             text,

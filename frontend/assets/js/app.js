@@ -827,12 +827,33 @@ async function openDetail(id) {
     } catch {}
   }
 
+  // AI 中文解读 section
+  const summaryZh = (paper.summary_zh || "").trim();
+  const insights = Array.isArray(paper.insights) ? paper.insights.filter(x => (x || "").trim()) : [];
+  let aiBlock = "";
+  if (summaryZh || insights.length) {
+    aiBlock = `
+      <div class="ai-explain">
+        <h4>🤖 AI 中文解读</h4>
+        ${summaryZh ? `<p class="ai-summary">${esc(summaryZh)}</p>` : ""}
+        ${insights.length ? `<ul class="ai-insights">${insights.map(s => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
+      </div>`;
+  } else {
+    // 占位 + 实时解读按钮（Phase 3 接 edge function 后启用）
+    aiBlock = `
+      <div class="ai-explain ai-empty">
+        <h4>🤖 AI 中文解读</h4>
+        <p class="ai-placeholder">暂无预生成解读。<button class="ai-ondemand-btn" data-id="${paper.id}" disabled>实时生成（即将上线）</button></p>
+      </div>`;
+  }
+
   body.innerHTML = `
     <h2>${esc(paper.title)}</h2>
     <p><strong>${esc(paper.venue || "")}</strong> · ${paper.year || ""} ${paper.citation_count ? `· 📊 ${paper.citation_count} citations` : ""}</p>
     ${n.pdfUrl ? `<p><a href="${n.pdfUrl}" target="_blank">${t('openPDF')}</a></p>` : ""}
     ${n.arxivUrl ? `<p><a href="${n.arxivUrl}" target="_blank">${t('arxivSource')}</a></p>` : ""}
     ${n.codeUrl ? `<p><a href="${n.codeUrl}" target="_blank">💻 Code</a></p>` : ""}
+    ${aiBlock}
     <h4>${t('abstract')}</h4>
     <p>${esc(fullAbstract)}</p>
     <h4>${t('authors')}</h4>
