@@ -22,6 +22,7 @@ from typing import Dict, List
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from cleaning.llm_classify import classify_papers_with_llm_async
+from cleaning.llm_summarize import summarize_papers_async
 from backend.db import get_client, upsert_papers
 
 
@@ -36,7 +37,7 @@ def fetch_all_papers(source: str) -> List[Dict]:
     while True:
         rows = (
             client.table("papers")
-            .select("id,title,abstract_excerpt,domains,tasks,topics,paper_type,source")
+            .select("id,title,abstract_excerpt,domains,tasks,topics,paper_type,source,summary_zh,insights")
             .eq("source", source)
             .order("published_at", desc=True)
             .range(offset, offset + PAGE_SIZE - 1)
@@ -57,6 +58,10 @@ async def main() -> None:
     ap.add_argument("--source", default="arxiv", help="论文来源：arxiv / s2 / pubmed")
     ap.add_argument("--limit", type=int, help="只跑前 N 篇（测试用）")
     ap.add_argument("--dry-run", action="store_true", help="不写回 Supabase")
+    ap.add_argument("--skip-classify", action="store_true",
+                    help="只跑 summary，不跑 classify（适合已有 topics 的论文补 summary）")
+    ap.add_argument("--skip-summary", action="store_true",
+                    help="只跑 classify，不跑 summary")
     args = ap.parse_args()
 
     if not os.environ.get("LLM_API_KEY"):
@@ -70,61 +75,80 @@ async def main() -> None:
     rows = fetch_all_papers(args.source)
     print(f"  Got {len(rows):,} rows")
 
-    # 准备 LLM 输入：跳过 topics 已非空 + 无 abstract
-    llm_input = []
-    for r in rows:
-        if r.get("topics"):     # 已分类
-            continue
-        abstract = (r.get("abstract_excerpt") or "").strip()
-        if not abstract:
-            continue
-        llm_input.append({
-            "id":       r["id"],
-            "title":    r.get("title", ""),
-            "abstract": abstract,
-        })
+    updates_by_id: Dict[str, Dict] = {}   # id -> 更新字段
 
-    if args.limit:
-        llm_input = llm_input[:args.limit]
+    # ── 阶段 1: classify (domains/topics/paper_type) ─────────────────
+    if not args.skip_classify:
+        classify_input = []
+        for r in rows:
+            if r.get("topics"):
+                continue
+            abs_ = (r.get("abstract_excerpt") or "").strip()
+            if not abs_:
+                continue
+            classify_input.append({"id": r["id"], "title": r.get("title", ""), "abstract": abs_})
+        if args.limit:
+            classify_input = classify_input[:args.limit]
+        print(f"\n[classify] {len(classify_input):,} papers (skipped {len(rows) - len(classify_input)} cached/no-abs)")
 
-    print(f"Sending {len(llm_input):,} papers to LLM (skipped {len(rows) - len(llm_input)} with topics or no abstract)")
+        if classify_input:
+            t0 = time.time()
+            await classify_papers_with_llm_async(classify_input)
+            print(f"[classify] done in {time.time() - t0:.0f}s")
+            row_by_id = {r["id"]: r for r in rows}
+            for p in classify_input:
+                if not p.get("_topics"):
+                    continue
+                r = row_by_id[p["id"]]
+                regex_domains = set(r.get("domains") or [])
+                llm_domains = set(p.get("_domains") or [])
+                merged = sorted(regex_domains | llm_domains)
+                upd = updates_by_id.setdefault(p["id"], {"id": p["id"]})
+                upd["topics"] = p["_topics"]
+                upd["domains"] = merged if merged else r.get("domains")
+                upd["paper_type"] = p.get("type") or r.get("paper_type")
+    else:
+        print("[classify] skipped")
 
-    if not llm_input:
-        print("Nothing to do.")
-        return
+    # ── 阶段 2: summarize (summary_zh + insights) ─────────────────────
+    if not args.skip_summary:
+        summary_input = []
+        for r in rows:
+            if r.get("summary_zh"):
+                continue
+            abs_ = (r.get("abstract_excerpt") or "").strip()
+            if not abs_:
+                continue
+            summary_input.append({"id": r["id"], "title": r.get("title", ""), "abstract": abs_})
+        if args.limit:
+            summary_input = summary_input[:args.limit]
+        print(f"\n[summary] {len(summary_input):,} papers (skipped {len(rows) - len(summary_input)} cached/no-abs)")
 
-    t0 = time.time()
-    await classify_papers_with_llm_async(llm_input)
-    print(f"LLM phase done in {time.time() - t0:.1f}s")
+        if summary_input:
+            t0 = time.time()
+            await summarize_papers_async(summary_input)
+            print(f"[summary] done in {time.time() - t0:.0f}s")
+            for p in summary_input:
+                if not p.get("summary_zh"):
+                    continue
+                upd = updates_by_id.setdefault(p["id"], {"id": p["id"]})
+                upd["summary_zh"] = p["summary_zh"]
+                upd["insights"] = p.get("insights") or []
+    else:
+        print("[summary] skipped")
 
-    # 合并到原 rows，准备 upsert
-    llm_by_id = {p["id"]: p for p in llm_input if p.get("_topics")}
-    print(f"Got LLM results for {len(llm_by_id):,} papers")
-
-    updates: List[Dict] = []
-    for r in rows:
-        llm_p = llm_by_id.get(r["id"])
-        if not llm_p:
-            continue
-        regex_domains = set(r.get("domains") or [])
-        llm_domains = set(llm_p.get("_domains") or [])
-        merged_domains = sorted(regex_domains | llm_domains)
-        update = {
-            "id":         r["id"],
-            "topics":     llm_p["_topics"],
-            "domains":    merged_domains if merged_domains else r.get("domains"),
-            "paper_type": llm_p.get("type") or r.get("paper_type"),
-        }
-        updates.append(update)
-
-    print(f"Prepared {len(updates):,} updates")
+    updates = list(updates_by_id.values())
+    print(f"\nPrepared {len(updates):,} updates")
 
     if args.dry_run:
         print("[dry-run] not writing")
         return
+    if not updates:
+        print("Nothing to upsert.")
+        return
 
     n = upsert_papers(updates)
-    print(f"Upserted {n:,} papers")
+    print(f"Upserted {n:,} papers to Supabase")
 
 
 if __name__ == "__main__":
