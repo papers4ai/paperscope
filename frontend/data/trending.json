@@ -75,7 +75,7 @@
         "term": "vision-language-action vla",
         "display": "Vision-language-action VLA",
         "count": 160,
-        "specificity": 2.1
+        "specificity": 2.11
       },
       {
         "term": "dexterous manipulation",
@@ -189,15 +189,15 @@
     }
   },
   "stats": {
-    "total": 28229,
+    "total": 28230,
     "domains": {
-      "world_model": 12620,
+      "world_model": 12621,
       "physical_ai": 10679,
       "medical_ai": 6945
     },
     "recent": {
-      "total": 908,
-      "world_model": 624,
+      "total": 909,
+      "world_model": 625,
       "physical_ai": 118,
       "medical_ai": 200
     },
@@ -229,7 +229,7 @@
       {
         "year": 2026,
         "counts": {
-          "world_model": 3193,
+          "world_model": 3194,
           "physical_ai": 2044,
           "medical_ai": 1458
         }
