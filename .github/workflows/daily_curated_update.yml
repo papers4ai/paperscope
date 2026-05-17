@@ -73,9 +73,15 @@ jobs:
           # 可选：Semantic Scholar API Key（免费限额已够用，有 key 可提速 10×）
           S2_API_KEY: ${{ secrets.S2_API_KEY }}
           # LLM 语义分类（智谱 GLM-4-Flash 免费）。secrets 未设置时自动跳过 LLM
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          # 多 key 加速：在 GitHub Secrets 里存 LLM_API_KEYS=key1,key2,key3（逗号分隔）
+          # 代码会 round-robin 用每个 key，每 key 独立限流配额，速度线性扩展
+          LLM_API_KEYS: ${{ secrets.LLM_API_KEYS }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}    # 单 key 兼容
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          # 调大默认并发：单 key 用 15/20，多 key 时自动 × N
+          LLM_CONCURRENCY: "15"
+          LLM_BATCH_SIZE: "20"
         run: |
           # 抓取范围：from_date 优先 → year_from 次之 → 默认近 7 天（覆盖 CI 偶尔失败）
           FROM_DATE="${{ github.event.inputs.from_date }}"

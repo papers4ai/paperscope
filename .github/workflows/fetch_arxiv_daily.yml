@@ -68,9 +68,13 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           # LLM 语义分类（智谱 GLM-4-Flash 免费），未设置时自动跳过
+          # 多 key 加速：在 GitHub Secrets 里存 LLM_API_KEYS=key1,key2,key3（逗号分隔）
+          LLM_API_KEYS: ${{ secrets.LLM_API_KEYS }}
           LLM_API_KEY:  ${{ secrets.LLM_API_KEY }}
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_MODEL:    ${{ secrets.LLM_MODEL }}
+          LLM_CONCURRENCY: "15"
+          LLM_BATCH_SIZE: "20"
         run: |
           echo "▶ python -m backend.main arxiv-daily ${{ steps.window.outputs.extra }}"
           python -m backend.main arxiv-daily ${{ steps.window.outputs.extra }}

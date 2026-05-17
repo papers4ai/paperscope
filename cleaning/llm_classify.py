@@ -173,16 +173,25 @@ async def classify_papers_with_llm_async(papers: List[Dict]) -> List[Dict]:
         logger.warning("openai package not installed — skipping LLM classification")
         return papers
 
-    api_key = os.environ.get("LLM_API_KEY") or os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        logger.warning("LLM_API_KEY not set — skipping LLM classification")
+    # 支持多 key 轮换：LLM_API_KEYS=key1,key2,key3 优先于 LLM_API_KEY
+    # 多 key 时 round-robin 分配 batch，每 key 独立维持限流配额 → 速度线性扩展
+    api_keys_raw = (
+        os.environ.get("LLM_API_KEYS")
+        or os.environ.get("LLM_API_KEY")
+        or os.environ.get("ANTHROPIC_API_KEY")
+        or ""
+    )
+    api_keys = [k.strip() for k in api_keys_raw.split(",") if k.strip()]
+    if not api_keys:
+        logger.warning("LLM_API_KEY(S) not set — skipping LLM classification")
         return papers
 
     base_url = os.environ.get("LLM_BASE_URL") or DEFAULT_BASE_URL
     model = os.environ.get("LLM_MODEL") or DEFAULT_MODEL
-    logger.info(f"LLM provider: base_url={base_url}, model={model}")
+    logger.info(f"LLM provider: base_url={base_url}, model={model}, keys={len(api_keys)}")
 
-    client = AsyncOpenAI(api_key=api_key, base_url=base_url)
+    # 每个 key 一个 AsyncOpenAI client
+    clients = [AsyncOpenAI(api_key=k, base_url=base_url) for k in api_keys]
     cache = _load_cache()
 
     def _already_done(p: Dict) -> bool:
@@ -203,7 +212,8 @@ async def classify_papers_with_llm_async(papers: List[Dict]) -> List[Dict]:
         uncached[i:i + BATCH_SIZE] for i in range(0, len(uncached), BATCH_SIZE)
     ]
     total_batches = len(batches)
-    sem = asyncio.Semaphore(CONCURRENCY)
+    # 总并发 = CONCURRENCY × key 数（每 key 独立限流，可以同时跑 CONCURRENCY 个 batch）
+    sem = asyncio.Semaphore(CONCURRENCY * len(clients))
     done_count = 0
     lock = asyncio.Lock()  # protect cache + papers writes
 
@@ -228,6 +238,8 @@ async def classify_papers_with_llm_async(papers: List[Dict]) -> List[Dict]:
         nonlocal done_count
         indices = [x[0] for x in batch]
         batch_papers = [x[1] for x in batch]
+        # round-robin 选 client：每 key 独立限流，避免单 key 撞配额
+        client = clients[batch_num % len(clients)]
 
         async with sem:
             try:
