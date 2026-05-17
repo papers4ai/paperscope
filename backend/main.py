@@ -10,6 +10,7 @@ Usage:
 from __future__ import annotations
 import argparse
 import asyncio
+import os
 import sys
 from datetime import date
 
@@ -42,6 +43,25 @@ async def cmd_arxiv_daily(days: int = 3,
     kept = [p for p in papers if p.get("domains")]
     dropped = len(papers) - len(kept)
     print(f"[arxiv] after LLM filter: {len(kept)} kept, {dropped} dropped (not relevant)")
+
+    # AI 中文解读（summary_zh + insights）—— 复用 cleaning/llm_summarize
+    if (os.environ.get("LLM_API_KEY") or os.environ.get("LLM_API_KEYS")) and kept:
+        from cleaning.llm_summarize import summarize_papers_async
+        llm_input = [
+            {"id": p["id"], "title": p.get("title", ""),
+             "abstract": p.get("abstract_excerpt") or ""}
+            for p in kept if (p.get("abstract_excerpt") or "").strip()
+        ]
+        if llm_input:
+            print(f"[arxiv] generating AI summaries for {len(llm_input)} papers...")
+            await summarize_papers_async(llm_input)
+            id_to_sum = {p["id"]: p for p in llm_input if p.get("summary_zh")}
+            for p in kept:
+                hit = id_to_sum.get(p["id"])
+                if hit:
+                    p["summary_zh"] = hit["summary_zh"]
+                    p["insights"] = hit.get("insights", [])
+            print(f"[arxiv] summaries generated for {len(id_to_sum)} papers")
 
     n = upsert_papers(kept)
     print(f"[arxiv] upserted {n}")
