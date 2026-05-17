@@ -463,43 +463,57 @@ async function loadFeedPapers(onBackgroundDone) {
 }
 
 // 静态精选数据 (精选模式)
-// 按选中领域按需加载，缓存分领域存储，避免一次下载所有 ~220MB
+// 按 domain × year × month 加载，缓存分领域存储，避免一次下载所有 ~220MB
 const CURATED_DOMAINS_ALL = ["world_model", "physical_ai", "medical_ai"];
 const _curatedCache = {};         // domain-key → paper[]
 const _curatedLoaded = {};        // domain-key → bool
 const _curatedBgCallback = {};    // domain-key → 最新后台完成回调
+let _curatedManifest = null;      // {domain: {year: [month, ...]}}
 
 function _mergeCurated(lists) {
   return _dedupeById(lists.flat().map(normalizeCurated));
 }
 
+async function _loadCuratedManifest() {
+  if (_curatedManifest) return _curatedManifest;
+  try {
+    _curatedManifest = await fetch("data/papers_curated_manifest.json").then(r => r.ok ? r.json() : {});
+  } catch {
+    _curatedManifest = {};
+  }
+  return _curatedManifest;
+}
+
+function _monthFiles(domain, year, manifest) {
+  const months = (manifest[domain] && manifest[domain][String(year)]) || [];
+  return months.map(m => `data/papers_curated_${domain}_${year}_${String(m).padStart(2, "0")}.json`);
+}
+
 async function loadCuratedPapers(domain = "all", onBackgroundDone) {
   const key = domain;
-  // 每次调用都更新回调
   if (typeof onBackgroundDone === "function") _curatedBgCallback[key] = onBackgroundDone;
 
   if (_curatedCache[key] && _curatedLoaded[key]) return _curatedCache[key];
   if (_curatedCache[key]) return _curatedCache[key]; // 后台还在加载
 
+  const manifest = await _loadCuratedManifest();
   const domainsToLoad = domain === "all" ? CURATED_DOMAINS_ALL : [domain];
   const sorted = [...availableYears].sort((a, b) => b - a);
-  const priority = sorted.slice(0, 2);   // 最新两年（随当前年份自动变化）
-  const rest     = sorted.slice(2);      // 其余旧年份
+  const priority = sorted.slice(0, 2);   // 最新两年（按月并行加载）
+  const rest     = sorted.slice(2);
 
-  const firstFiles = domainsToLoad.flatMap(d =>
-    priority.map(y => `data/papers_curated_${d}_${y}.json`)
-  );
+  const firstFiles = domainsToLoad.flatMap(d => priority.flatMap(y => _monthFiles(d, y, manifest)));
   const firstResults = await Promise.all(
     firstFiles.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
   );
   _curatedCache[key] = _mergeCurated(firstResults);
 
   if (rest.length) {
-    // 逐年串行，同一年内各域并行，每年到位后立即触发回调重渲染
+    // 旧年份逐年加载，同年内所有 domain × month 并行
     (async () => {
       for (const y of rest) {
         updateLoadingMoreBanner(y);
-        const yearFiles = domainsToLoad.map(d => `data/papers_curated_${d}_${y}.json`);
+        const yearFiles = domainsToLoad.flatMap(d => _monthFiles(d, y, manifest));
         const yearResults = await Promise.all(
           yearFiles.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
         );

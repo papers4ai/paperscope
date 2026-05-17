@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
-"""把 output/papers_curated.json 按领域（+ world_model 按年份）拆分到 frontend/data/
+"""把 output/papers_curated.json 按 domain + year + month 拆分到 frontend/data/
 
 输出文件：
-  papers_curated_world_model_2023.json   (~28 MB)
-  papers_curated_world_model_2024.json   (~39 MB)
-  papers_curated_world_model_2025.json   (~35 MB)
-  papers_curated_world_model_2026.json   (~15 MB)
-  papers_curated_physical_ai.json        (~37 MB)
-  papers_curated_medical_ai.json         (~67 MB)
+  papers_curated_{domain}_{year}_{month:02d}.json   (每个 ~1-3 MB)
+  papers_curated_manifest.json                       (前端按此索引加载)
 
 用法：
     python scripts/sync_curated.py
@@ -30,7 +26,7 @@ def get_years() -> list:
 KEEP = [
     "id", "title", "authors", "published", "year", "month",
     "pdf_url", "arxiv_url", "code", "has_code", "type",
-    "_domains", "_tasks", "venue", "venue_tier", "citation_count",
+    "_domains", "_tasks", "_topics", "venue", "venue_tier", "citation_count",
 ]
 
 
@@ -42,18 +38,20 @@ def slim(p: dict) -> dict:
     return out
 
 
-def write_file(path: str, plist: list, dry_run: bool):
+def write_file(path: str, plist: list, dry_run: bool, verbose: bool = False) -> int:
+    """写文件，返回字节数。verbose=True 时打印明细。"""
     plist.sort(key=lambda x: x.get("citation_count", 0), reverse=True)
     raw = json.dumps(plist, ensure_ascii=False, separators=(",", ":"))
-    size_mb = len(raw.encode()) / 1024 / 1024
-    top_venues = Counter(p.get("venue") for p in plist).most_common(3)
-    label = os.path.basename(path)
-    print(f"  {label}: {len(plist)} 篇  {size_mb:.1f} MB  top={top_venues}")
+    size_bytes = len(raw.encode())
+    if verbose:
+        top_venues = Counter(p.get("venue") for p in plist).most_common(3)
+        print(f"  {os.path.basename(path)}: {len(plist)} 篇  {size_bytes/1024/1024:.1f} MB  top={top_venues}")
     if not dry_run:
         tmp = path + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
             f.write(raw)
         os.replace(tmp, path)
+    return size_bytes
 
 
 def main():
@@ -73,24 +71,47 @@ def main():
     papers = [p for p in papers if (p.get("year") or 0) >= 2023 and p.get("venue")]
     print(f"Total after filter (2023+, has venue): {len(papers)}\n")
 
-    # ── 三个领域全部按年份拆分 ────────────────────────────────────────────────
     YEARS = get_years()
+    # manifest[domain][year] = [month, month, ...]，前端据此 fetch
+    manifest: dict = {d: {} for d in DOMAINS}
+
+    # ── 按 domain × year × month 拆分 ─────────────────────────────────────────
     for domain in DOMAINS:
-        by_year: dict = {y: [] for y in YEARS}
+        by_ym: dict = {}
         for p in papers:
             if domain not in (p.get("_domains") or []):
                 continue
             year = p.get("year")
-            if year in by_year:
-                by_year[year].append(slim(p))
-        for year in YEARS:
-            path = os.path.join(DATA_DIR, f"papers_curated_{domain}_{year}.json")
-            write_file(path, by_year[year], args.dry_run)
+            if year not in YEARS:
+                continue
+            month = p.get("month") or 0
+            if not (1 <= month <= 12):
+                month = 1   # 缺月份的归到 1 月
+            by_ym.setdefault((year, month), []).append(slim(p))
 
+        total_papers = sum(len(v) for v in by_ym.values())
+        total_bytes = 0
+        for (year, month), plist in sorted(by_ym.items()):
+            path = os.path.join(DATA_DIR, f"papers_curated_{domain}_{year}_{month:02d}.json")
+            total_bytes += write_file(path, plist, args.dry_run)
+            manifest[domain].setdefault(str(year), []).append(month)
+        print(f"  {domain}: {len(by_ym)} 月文件, 共 {total_papers:,} 篇, {total_bytes/1024/1024:.1f} MB")
+
+    # 排序 manifest 的月份列表
+    for d in manifest:
+        for y in manifest[d]:
+            manifest[d][y] = sorted(set(manifest[d][y]))
+
+    # 写 manifest
+    manifest_path = os.path.join(DATA_DIR, "papers_curated_manifest.json")
     if args.dry_run:
-        print("\n[dry-run] 未写文件")
+        print(f"\n[dry-run] would write manifest to {manifest_path}")
     else:
-        print(f"\n✓ 写出文件到 {DATA_DIR}")
+        with open(manifest_path, "w", encoding="utf-8") as f:
+            json.dump(manifest, f, ensure_ascii=False, indent=2)
+        total_files = sum(len(months) for d in manifest.values() for months in d.values())
+        print(f"\n✓ manifest: {total_files} 个月文件 → {manifest_path}")
+        print(f"✓ 写出 {DATA_DIR}")
 
 
 if __name__ == "__main__":

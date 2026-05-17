@@ -5,8 +5,11 @@ on:
     - cron: "0 2 * * *"   # 每天 UTC 02:00（北京时间 10:00）
   workflow_dispatch:        # 支持手动触发
     inputs:
+      from_date:
+        description: "起始日期 YYYY-MM-DD（默认 7 天前，覆盖 year_from）"
+        default: ""
       year_from:
-        description: "从哪年开始抓（默认当年）"
+        description: "起始年份（仅当 from_date 留空时使用）"
         default: ""
       mode:
         description: "抓取模式: all / oa-only / s2-only"
@@ -69,21 +72,32 @@ jobs:
         env:
           # 可选：Semantic Scholar API Key（免费限额已够用，有 key 可提速 10×）
           S2_API_KEY: ${{ secrets.S2_API_KEY }}
+          # LLM 语义分类（智谱 GLM-4-Flash 免费）。secrets 未设置时自动跳过 LLM
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
         run: |
-          # 确定抓取年份：手动输入优先，否则抓「去年+今年」
-          if [ -n "${{ github.event.inputs.year_from }}" ]; then
-            YEAR="${{ github.event.inputs.year_from }}"
+          # 抓取范围：from_date 优先 → year_from 次之 → 默认近 7 天（覆盖 CI 偶尔失败）
+          FROM_DATE="${{ github.event.inputs.from_date }}"
+          YEAR="${{ github.event.inputs.year_from }}"
+          DATE_FLAG=""
+          if [ -n "$FROM_DATE" ]; then
+            DATE_FLAG="--from-date $FROM_DATE"
+            echo "▶ Fetching from explicit date: $FROM_DATE → today"
+          elif [ -n "$YEAR" ]; then
+            DATE_FLAG="--year-from $YEAR"
+            echo "▶ Fetching from year: $YEAR → today"
           else
-            YEAR=$(python3 -c "import datetime; print(datetime.date.today().year - 1)")
+            FROM_DATE=$(date -u -d "7 days ago" +%Y-%m-%d)
+            DATE_FLAG="--from-date $FROM_DATE"
+            echo "▶ Default: fetching last 7 days (from $FROM_DATE → today)"
           fi
 
-          # 确定抓取模式
+          # 抓取模式
           MODE="${{ github.event.inputs.mode }}"
           FLAG=""
           if [ "$MODE" = "oa-only" ]; then FLAG="--oa-only"; fi
           if [ "$MODE" = "s2-only" ]; then FLAG="--s2-only"; fi
-
-          echo "▶ Fetching from year=$YEAR, mode=${MODE:-all}"
 
           # 如果有 S2 API Key，注入到环境（脚本会读取）
           if [ -n "$S2_API_KEY" ]; then
@@ -91,7 +105,7 @@ jobs:
             export S2_API_KEY
           fi
 
-          python fetch_curated_fast.py --year-from "$YEAR" $FLAG
+          python fetch_curated_fast.py $DATE_FLAG $FLAG
 
       # ── 5. 同步到前端（按领域拆分，去掉 abstract） ───────────────────────────
       - name: Sync to frontend data
@@ -104,7 +118,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git add frontend/data/papers_curated_world_model_*.json \
                   frontend/data/papers_curated_physical_ai_*.json \
-                  frontend/data/papers_curated_medical_ai_*.json
+                  frontend/data/papers_curated_medical_ai_*.json \
+                  frontend/data/papers_curated_manifest.json
 
           # 统计变化
           CHANGED=$(git diff --staged --stat | tail -1)

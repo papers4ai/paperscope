@@ -556,11 +556,14 @@ async def fetch_s2_venue(
     venue_name: str,
     venue_cfg: dict,
     year_from: int,
+    from_date: Optional[str] = None,
 ) -> List[dict]:
     """通过 Semantic Scholar paper/search/bulk 抓取单个顶会的论文。
 
     使用 token 游标翻页（类似 OpenAlex cursor），无最大 10000 条限制。
     每次请求最多返回 S2_PER_PAGE 条，翻页间隔 S2_REQUEST_GAP 秒。
+
+    from_date (YYYY-MM-DD) 指定时改用 publicationDateOrYear 精确到天过滤。
     """
     s2_name = venue_cfg["s2_name"]
     papers: List[dict] = []
@@ -571,10 +574,13 @@ async def fetch_s2_venue(
     while True:
         params: dict = {
             "venue":  s2_name,
-            "year":   f"{year_from}-{current_year}",
             "fields": S2_FIELDS,
             "limit":  S2_PER_PAGE,
         }
+        if from_date:
+            params["publicationDateOrYear"] = f"{from_date}:{date.today().isoformat()}"
+        else:
+            params["year"] = f"{year_from}-{current_year}"
         if token:
             params["token"] = token
 
@@ -665,11 +671,14 @@ async def fetch_venue(
     venue_cfg: dict,
     source_id: str,
     year_from: int,
+    from_date: Optional[str] = None,
 ) -> List[dict]:
-    """抓取单个 venue 从 year_from 至今的全部论文。
+    """抓取单个 venue 从 year_from（或 from_date）至今的全部论文。
 
     使用 cursor 翻页（而非 page 翻页），无最大 10000 条的限制。
     过滤条件：primary_location.source.id 精确匹配，避免关键词模糊噪声。
+
+    from_date (YYYY-MM-DD) 指定时优先用日期，否则用 year_from-01-01。
     """
     papers: List[dict] = []
     cursor = "*"
@@ -677,9 +686,10 @@ async def fetch_venue(
         "id,doi,title,abstract_inverted_index,authorships,"
         "publication_date,primary_location,open_access,cited_by_count"
     )
+    date_filter = from_date if from_date else f"{year_from}-01-01"
     filt = (
         f"primary_location.source.id:{source_id},"
-        f"from_publication_date:{year_from}-01-01"
+        f"from_publication_date:{date_filter}"
     )
 
     while True:
@@ -755,6 +765,7 @@ async def run(
     dry_run: bool,
     oa_only: bool = False,
     s2_only: bool = False,
+    from_date: Optional[str] = None,
 ) -> None:
     # ── 决定本次抓取哪些 venue ────────────────────────────────────────────────
     ALL_COMBINED = {**ALL_VENUES, **S2_VENUES}
@@ -815,7 +826,7 @@ async def run(
                 nonlocal total_new
                 async with sem_oa:
                     t0 = time.time()
-                    papers = await fetch_venue(session, name, cfg, sid, year_from)
+                    papers = await fetch_venue(session, name, cfg, sid, year_from, from_date)
                     elapsed = time.time() - t0
                     new = _merge_papers(existing, papers)
                     total_new += new
@@ -840,7 +851,7 @@ async def run(
                 nonlocal total_new
                 async with sem_s2:
                     t0 = time.time()
-                    papers = await fetch_s2_venue(session, name, cfg, year_from)
+                    papers = await fetch_s2_venue(session, name, cfg, year_from, from_date)
                     elapsed = time.time() - t0
                     new = _merge_papers(existing, papers)
                     total_new += new
@@ -851,12 +862,44 @@ async def run(
                 for name in s2_venues_
             ])
 
+    # ════════════════════════════════════════════════════════════════════════
+    # 阶段 C：LLM 语义分类（覆盖 _topics + type；与 venue 强信号合并 _domains）
+    # ════════════════════════════════════════════════════════════════════════
+    all_papers = list(existing.values())
+    if dry_run:
+        print("\n[C] 跳过 LLM 分类（dry-run）")
+    elif not os.environ.get("NO_LLM_CLASSIFY") and os.environ.get("LLM_API_KEY"):
+        try:
+            from cleaning.llm_classify import classify_papers_with_llm_async
+
+            # 记下 venue 强信号（MICCAI/ICRA/TRO 等专业 venue 的硬编码 domains）
+            venue_pinned: Dict[str, List[str]] = {}
+            for p in all_papers:
+                cfg = ALL_COMBINED.get(p.get("venue", ""), {})
+                if cfg.get("domains"):
+                    venue_pinned[p["id"]] = list(cfg["domains"])
+
+            # 只对有摘要的论文跑 LLM（无摘要 LLM 没法判）
+            llm_input = [p for p in all_papers if (p.get("abstract") or "").strip()]
+            print(f"\n[C] LLM classifying {len(llm_input)} papers (cache filters cached ones)…")
+            t0 = time.time()
+            await classify_papers_with_llm_async(llm_input)
+            print(f"    LLM 分类用时 {time.time() - t0:.1f}s")
+
+            # 合并 venue 强信号到 LLM 结果（venue 锁定 domains 一定保留）
+            for p in all_papers:
+                pinned = venue_pinned.get(p["id"])
+                if pinned:
+                    merged = sorted(set(p.get("_domains") or []) | set(pinned))
+                    p["_domains"] = merged
+        except Exception as e:
+            print(f"[warn] LLM 分类失败，保留原有标签: {e}")
+    else:
+        reason = "NO_LLM_CLASSIFY=1" if os.environ.get("NO_LLM_CLASSIFY") else "未设置 LLM_API_KEY"
+        print(f"\n[C] 跳过 LLM 分类（{reason}）")
+
     # ── 统计摘要 ─────────────────────────────────────────────────────────────
-    all_papers = sorted(
-        existing.values(),
-        key=lambda p: p.get("citation_count", 0),
-        reverse=True,
-    )
+    all_papers.sort(key=lambda p: p.get("citation_count", 0), reverse=True)
     domain_counts = Counter(d for p in all_papers for d in (p.get("_domains") or []))
     venue_counts  = Counter(p.get("venue") for p in all_papers if p.get("venue"))
 
@@ -923,7 +966,18 @@ Semantic Scholar 顶会 ({len(S2_VENUES)} 个):
         "--s2-only", action="store_true",
         help="只跑 Semantic Scholar 顶会（跳过 OpenAlex）"
     )
+    ap.add_argument(
+        "--no-llm", action="store_true",
+        help="跳过 LLM 语义分类（默认在设置了 LLM_API_KEY 时启用）"
+    )
+    ap.add_argument(
+        "--from-date", default=None,
+        help="按日期过滤起点 YYYY-MM-DD（覆盖 --year-from 的精度）。CI 日常增量推荐 7 天前"
+    )
     args = ap.parse_args()
+
+    if args.no_llm:
+        os.environ["NO_LLM_CLASSIFY"] = "1"
 
     # 处理 --oa-only / --s2-only（修改 venue_filter 实现）
     if args.oa_only and args.s2_only:
@@ -931,7 +985,10 @@ Semantic Scholar 顶会 ({len(S2_VENUES)} 个):
         sys.exit(1)
 
     print(f"Paperscope 精选抓取器 v4（OpenAlex + Semantic Scholar）")
-    print(f"  年份范围   : {args.year_from} → {date.today().year}")
+    if args.from_date:
+        print(f"  日期范围   : {args.from_date} → {date.today().isoformat()}")
+    else:
+        print(f"  年份范围   : {args.year_from} → {date.today().year}")
     print(f"  Venue 范围 : {args.venue or f'全部 ({len(all_venue_names)} 个)'}")
     print(f"  OpenAlex   : {'跳过' if args.s2_only else f'{OA_CONCURRENCY} 并发，每页 {OA_PER_PAGE} 条'}")
     print(f"  S2 顶会    : {'跳过' if args.oa_only else f'{S2_CONCURRENCY} 并发，每页 {S2_PER_PAGE} 条'}")
@@ -943,6 +1000,7 @@ Semantic Scholar 顶会 ({len(S2_VENUES)} 个):
         dry_run=args.dry_run,
         oa_only=args.oa_only,
         s2_only=args.s2_only,
+        from_date=args.from_date,
     ))
 
 

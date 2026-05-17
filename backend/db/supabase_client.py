@@ -35,6 +35,30 @@ def upsert_papers(papers: list[dict], chunk: int = 500) -> int:
     return total
 
 
+def fetch_existing_topics(ids: list[str], chunk: int = 200) -> dict[str, list]:
+    """查询 Supabase 已有 topics 的论文。返回 {id: topics} 仅含 topics 非空的。
+
+    用于 enrich_many_async 在调 LLM 前过滤已分类的论文，避免重复跑。
+    """
+    if not ids:
+        return {}
+    client = get_client()
+    out: dict[str, list] = {}
+    for i in range(0, len(ids), chunk):
+        batch_ids = ids[i : i + chunk]
+        rows = (
+            client.table("papers")
+            .select("id,topics")
+            .in_("id", batch_ids)
+            .execute()
+            .data
+        )
+        for r in rows:
+            if r.get("topics"):
+                out[r["id"]] = r["topics"]
+    return out
+
+
 def snapshot_stats(rows: list[dict]) -> int:
     """写入每周引用快照 (paper_id, snapshot_date, citation_count)。"""
     if not rows:

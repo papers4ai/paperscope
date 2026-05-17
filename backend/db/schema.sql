@@ -17,7 +17,8 @@ create table if not exists papers (
   reference_count int default 0,
   fields_of_study jsonb default '[]'::jsonb,     -- SS fieldsOfStudy
   domains         text[] default array[]::text[], -- world_model / physical_ai / medical_ai
-  tasks           text[] default array[]::text[], -- 任务子标签
+  tasks           text[] default array[]::text[], -- 正则匹配的任务子标签（固定枚举）
+  topics          text[] default array[]::text[], -- LLM 自由文本子主题（2-4 个）
   paper_type      text,                           -- Method / Dataset / Survey
   open_access_pdf text,
   arxiv_url       text,
@@ -30,6 +31,7 @@ create table if not exists papers (
 
 create index if not exists idx_papers_domains on papers using gin(domains);
 create index if not exists idx_papers_tasks on papers using gin(tasks);
+create index if not exists idx_papers_topics on papers using gin(topics);
 create index if not exists idx_papers_venue on papers(venue);
 create index if not exists idx_papers_year on papers(year desc);
 create index if not exists idx_papers_citations on papers(citation_count desc);

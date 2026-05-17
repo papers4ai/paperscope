@@ -9,29 +9,45 @@ Usage:
 
 from __future__ import annotations
 import argparse
+import asyncio
 import sys
 from datetime import date
 
 from backend.db import upsert_papers, snapshot_stats, get_client
-from backend.pipeline.classify import enrich_many
+from backend.pipeline.classify import enrich_many_async
 
 
-def cmd_arxiv_daily(days: int = 3,
-                    date_from: str | None = None,
-                    date_to: str | None = None) -> None:
-    from backend.scrapers.arxiv_scraper import fetch_all_domains
-    if date_from:
-        print(f"[arxiv] fetching {date_from} → {date_to or 'today'}...")
-    else:
-        print(f"[arxiv] fetching last {days} days...")
-    papers = fetch_all_domains(days=days, date_from=date_from, date_to=date_to)
-    print(f"[arxiv] got {len(papers)} papers")
-    papers = enrich_many(papers)
-    n = upsert_papers(papers)
+async def cmd_arxiv_daily(days: int = 3,
+                          date_from: str | None = None,
+                          date_to: str | None = None,
+                          window_days: int = 7) -> None:
+    """抓 arXiv 论文 → LLM 判定 → 只保留属于 world_model/physical_ai/medical_ai 的。
+
+    使用学科类别 (cs.AI/cs.LG/cs.CV/cs.RO/cs.NE/eess.IV/q-bio.QM) 大范围拉取候选，
+    LLM 在 enrich_many_async 内部判断 _domains，本函数过滤掉 _domains 空的论文。
+    """
+    from backend.scrapers.arxiv_scraper import fetch_by_categories
+    from datetime import datetime, timedelta, timezone
+
+    if not date_from:
+        date_from = (datetime.now(timezone.utc).date() - timedelta(days=days)).isoformat()
+    print(f"[arxiv] fetching {date_from} → {date_to or 'today'} (by category, {window_days}d windows)")
+
+    papers = fetch_by_categories(date_from=date_from, date_to=date_to, window_days=window_days)
+    print(f"[arxiv] candidate pool: {len(papers)} papers")
+
+    papers = await enrich_many_async(papers)
+
+    # LLM 判 _domains 为空 → 不属于三个领域 → 丢弃
+    kept = [p for p in papers if p.get("domains")]
+    dropped = len(papers) - len(kept)
+    print(f"[arxiv] after LLM filter: {len(kept)} kept, {dropped} dropped (not relevant)")
+
+    n = upsert_papers(kept)
     print(f"[arxiv] upserted {n}")
 
 
-def cmd_journals_weekly(year_from: int | None = None, limit_per_venue: int = 200) -> None:
+async def cmd_journals_weekly(year_from: int | None = None, limit_per_venue: int = 200) -> None:
     from backend.scrapers.semantic_scholar_scraper import search_by_venue
     from backend.config import VENUES
     year_from = year_from or (date.today().year - 1)
@@ -47,16 +63,16 @@ def cmd_journals_weekly(year_from: int | None = None, limit_per_venue: int = 200
             all_papers[p["id"]] = p
         print(f"  got {len(papers)}")
     merged = list(all_papers.values())
-    merged = enrich_many(merged)
+    merged = await enrich_many_async(merged)
     n = upsert_papers(merged)
     print(f"[s2] upserted {n}")
 
 
-def cmd_pubmed_weekly(days: int = 7) -> None:
+async def cmd_pubmed_weekly(days: int = 7) -> None:
     from backend.scrapers.pubmed_scraper import fetch_medical_journals
     papers = fetch_medical_journals(days=days, per_journal=50)
     print(f"[pubmed] got {len(papers)}")
-    papers = enrich_many(papers)
+    papers = await enrich_many_async(papers)
     n = upsert_papers(papers)
     print(f"[pubmed] upserted {n}")
 
@@ -93,6 +109,8 @@ def main() -> None:
     p1.add_argument("--days", type=int, default=3)
     p1.add_argument("--date-from", default=None, help="开始日期 YYYY-MM-DD，填此项时忽略 --days")
     p1.add_argument("--date-to",   default=None, help="结束日期 YYYY-MM-DD（默认今天）")
+    p1.add_argument("--window-days", type=int, default=7,
+                    help="切窗粒度（默认 7 天/窗）。密集月份用 3，稀疏年份用 30")
 
     p2 = sub.add_parser("journals-weekly")
     p2.add_argument("--year-from", type=int, default=None)
@@ -105,11 +123,12 @@ def main() -> None:
 
     args = ap.parse_args()
     if args.cmd == "arxiv-daily":
-        cmd_arxiv_daily(days=args.days, date_from=args.date_from, date_to=args.date_to)
+        asyncio.run(cmd_arxiv_daily(days=args.days, date_from=args.date_from,
+                                    date_to=args.date_to, window_days=args.window_days))
     elif args.cmd == "journals-weekly":
-        cmd_journals_weekly(year_from=args.year_from, limit_per_venue=args.limit_per_venue)
+        asyncio.run(cmd_journals_weekly(year_from=args.year_from, limit_per_venue=args.limit_per_venue))
     elif args.cmd == "pubmed-weekly":
-        cmd_pubmed_weekly(days=args.days)
+        asyncio.run(cmd_pubmed_weekly(days=args.days))
     elif args.cmd == "update-citations":
         cmd_update_citations()
     else:

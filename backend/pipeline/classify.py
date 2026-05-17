@@ -132,4 +132,74 @@ def enrich(paper: dict) -> dict:
 
 
 def enrich_many(papers: list[dict]) -> list[dict]:
+    """同步入口：只跑正则。需要 LLM 用 enrich_many_async()。"""
     return [enrich(p) for p in papers]
+
+
+async def enrich_many_async(papers: list[dict], skip_existing: bool = True) -> list[dict]:
+    """异步入口：先跑正则 enrich，再用 LLM 补 topics + 合并 domains + 覆盖 paper_type。
+
+    skip_existing=True 时查 Supabase 已有 topics 的论文跳过 LLM 调用（默认开启，
+    避免每次抓取重复跑 LLM 浪费配额）。LLM 失败时静默回退到正则结果，主流程不阻断。
+    """
+    enriched = [enrich(p) for p in papers]
+
+    # 查 Supabase 已有 topics 的论文，复用结果跳过 LLM
+    existing_topics: dict[str, list] = {}
+    if skip_existing:
+        try:
+            from backend.db import fetch_existing_topics
+            ids = [p["id"] for p in enriched if p.get("id")]
+            existing_topics = fetch_existing_topics(ids)
+            if existing_topics:
+                print(f"[enrich_async] skipping {len(existing_topics)} papers with existing topics")
+        except Exception as e:
+            print(f"[enrich_async] skip-existing query failed (continuing): {e}")
+
+    # 把已有 topics 写回 paper（这些会保留，不被 LLM 覆盖；也用于 _already_done 检查）
+    for p in enriched:
+        if p["id"] in existing_topics:
+            p["topics"] = existing_topics[p["id"]]
+
+    # LLM 输入：把 abstract_excerpt 映射成 cleaning/llm_classify 期望的 abstract 字段；
+    # 已有 _topics 让 LLM 内部的 _already_done() 自动跳过
+    llm_input = []
+    for p in enriched:
+        if not (p.get("abstract_excerpt") or "").strip():
+            continue
+        item = {
+            "id":       p["id"],
+            "title":    p.get("title", ""),
+            "abstract": p["abstract_excerpt"],
+        }
+        if p.get("topics"):
+            item["_topics"] = p["topics"]
+        llm_input.append(item)
+
+    if not llm_input:
+        return enriched
+
+    try:
+        from cleaning.llm_classify import classify_papers_with_llm_async
+        await classify_papers_with_llm_async(llm_input)
+    except Exception as e:
+        print(f"[enrich_async] LLM failed: {e} — keeping regex results")
+        return enriched
+
+    # 合回 LLM 结果到 Supabase schema 字段名（_already_done 跳过的 _topics 不会被改写）
+    llm_by_id = {p["id"]: p for p in llm_input}
+    for p in enriched:
+        llm_p = llm_by_id.get(p["id"])
+        if not llm_p:
+            continue
+        regex_domains = set(p.get("domains") or [])
+        llm_domains = set(llm_p.get("_domains") or [])
+        merged = sorted(regex_domains | llm_domains)
+        if merged:
+            p["domains"] = merged
+        if llm_p.get("_topics"):
+            p["topics"] = llm_p["_topics"]
+        if llm_p.get("type"):
+            p["paper_type"] = llm_p["type"]
+
+    return enriched
