@@ -675,6 +675,9 @@ async function refreshVenueList() {
 
 // ========== 渲染论文列表 ==========
 function showLoadingMoreBanner(year) {
+  // 当前不在论文 mode（Trending / Deadlines），不要插入 banner —— 防止
+  // 用户切走后老 reload 的 await 回来时还往视图里塞东西
+  if (state.mode === "trending" || state.mode === "deadlines") return;
   removeLoadingMoreBanner();
   const el = document.createElement("div");
   el.id = "loading-more-banner";
@@ -701,6 +704,9 @@ const PAPER_PAGE_SIZE = 30;
 let _paperListFull = []; // 当前已过滤的完整列表（不含切片）
 
 function render(papers) {
+  // 同 banner 的 race guard：当前不在论文 mode 时丢弃 render，避免老 reload
+  // await 回来时往隐藏的 #paper-list / #paper-pagination 里塞内容
+  if (state.mode === "trending" || state.mode === "deadlines") return;
   _paperListFull = _dedupeById(papers);
   const totalPages = Math.max(1, Math.ceil(_paperListFull.length / PAPER_PAGE_SIZE));
   if (paperPage >= totalPages) paperPage = totalPages - 1;
@@ -1337,6 +1343,9 @@ async function reload() {
       $("#paper-list").hidden = true;
       $("#dashboard").hidden = true;
       $("#deadlines-view").hidden = true;
+      // 论文专用 UI 元素一并清掉（feed/curated 切过来时残留）
+      removeLoadingMoreBanner();
+      $("#paper-pagination").innerHTML = "";
       // 初始化更新时间
       if (!hotLastUpdated) {
         await refreshHotData();
@@ -1350,6 +1359,9 @@ async function reload() {
       $("#paper-list").hidden = true;
       $("#dashboard").hidden = true;
       $("#deadlines-view").hidden = false;
+      // 论文专用 UI 元素一并清掉
+      removeLoadingMoreBanner();
+      $("#paper-pagination").innerHTML = "";
       await loadAndRenderDeadlines();
     } else {
       document.body.classList.remove("mode-deadlines");
