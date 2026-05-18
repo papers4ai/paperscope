@@ -93,8 +93,21 @@ async def main() -> None:
     print(f"Loading {scope_desc} papers from Supabase...")
     rows = fetch_all_papers(args.source, date_from=args.date_from, date_to=args.date_to)
     print(f"  Got {len(rows):,} rows")
+    row_by_id = {r["id"]: r for r in rows}
 
     updates_by_id: Dict[str, Dict] = {}   # id -> 更新字段
+
+    def _make_upd(pid: str) -> Dict:
+        """初始化 update payload: 总是带上 source + title。
+        Supabase upsert 若误走 INSERT path,这两列是 NOT NULL,必须给 —— 否则
+        整批 fail (postgrest APIError 23502)。给了之后即使走 UPDATE 也只是
+        写回相同值,无副作用。"""
+        r = row_by_id.get(pid, {})
+        return {
+            "id": pid,
+            "source": r.get("source") or args.source,
+            "title": r.get("title") or "",
+        }
 
     # ── 阶段 1: classify (domains/topics/paper_type) ─────────────────
     if not args.skip_classify:
@@ -114,7 +127,6 @@ async def main() -> None:
             t0 = time.time()
             await classify_papers_with_llm_async(classify_input)
             print(f"[classify] done in {time.time() - t0:.0f}s")
-            row_by_id = {r["id"]: r for r in rows}
             for p in classify_input:
                 if not p.get("_topics"):
                     continue
@@ -122,7 +134,7 @@ async def main() -> None:
                 regex_domains = set(r.get("domains") or [])
                 llm_domains = set(p.get("_domains") or [])
                 merged = sorted(regex_domains | llm_domains)
-                upd = updates_by_id.setdefault(p["id"], {"id": p["id"]})
+                upd = updates_by_id.setdefault(p["id"], _make_upd(p["id"]))
                 upd["topics"] = p["_topics"]
                 upd["domains"] = merged if merged else r.get("domains")
                 upd["paper_type"] = p.get("type") or r.get("paper_type")
@@ -157,7 +169,7 @@ async def main() -> None:
             for p in summary_input:
                 if not (p.get("summary_zh") or p.get("summary_en")):
                     continue
-                upd = updates_by_id.setdefault(p["id"], {"id": p["id"]})
+                upd = updates_by_id.setdefault(p["id"], _make_upd(p["id"]))
                 if p.get("summary_zh"):
                     upd["summary_zh"] = p["summary_zh"]
                 if p.get("summary_en"):
