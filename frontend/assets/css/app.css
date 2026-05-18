@@ -2408,20 +2408,30 @@ body.mode-deadlines #trending-view { display: none !important; }
 
 
 /* Deadlines pagination */
-.ddl-pagination {
+.ddl-pagination,
+.paper-pagination {
   display: flex; align-items: center; justify-content: center;
-  gap: 1rem; padding: 1.25rem 0 .5rem;
+  gap: 1rem; padding: 1.25rem 0 1.5rem;
 }
-.ddl-pg-btn {
+.paper-pagination:empty { display: none; }
+/* paper-list 隐藏时（trending / deadlines），分页也跟着隐 */
+.paper-list[hidden] + .paper-pagination { display: none; }
+.ddl-pg-btn,
+.paper-pg-btn {
   padding: .4rem 1rem; border-radius: 6px; font-size: .85rem; font-weight: 500;
   border: 1px solid var(--border); background: var(--card-bg); color: var(--text);
   cursor: pointer; transition: background .15s, border-color .15s;
 }
-.ddl-pg-btn:hover:not(:disabled) { background: var(--accent); color: #fff; border-color: var(--accent); }
-.ddl-pg-btn:disabled { opacity: .35; cursor: default; }
-.ddl-pg-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-.ddl-pg-ellipsis { font-size: .85rem; color: var(--text-muted); padding: 0 .2rem; line-height: 2; }
-.ddl-pg-total { font-size: .8rem; color: var(--text-muted); margin-left: .5rem; line-height: 2; white-space: nowrap; align-self: center; }
+.ddl-pg-btn:hover:not(:disabled),
+.paper-pg-btn:hover:not(:disabled) { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ddl-pg-btn:disabled,
+.paper-pg-btn:disabled { opacity: .35; cursor: default; }
+.ddl-pg-btn.active,
+.paper-pg-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.ddl-pg-ellipsis,
+.paper-pg-ellipsis { font-size: .85rem; color: var(--text-muted); padding: 0 .2rem; line-height: 2; }
+.ddl-pg-total,
+.paper-pg-total { font-size: .8rem; color: var(--text-muted); margin-left: .5rem; line-height: 2; white-space: nowrap; align-self: center; }
 
 /* About ack */
 .about-ack-inline { font-size: .8rem; color: var(--text-muted); margin-top: .5rem; line-height: 1.6; }
@@ -2451,8 +2461,10 @@ body.mode-deadlines #trending-view { display: none !important; }
   .ddl-site-link { word-break: break-all; }
   .ddl-pb-track { overflow: visible; }
   .ddl-pb-dot[data-tip]:hover::after { font-size: .6rem; }
-  .ddl-pagination { gap: .4rem; flex-wrap: wrap; }
-  .ddl-pg-btn { padding: .35rem .6rem; font-size: .78rem; min-width: 32px; }
+  .ddl-pagination,
+  .paper-pagination { gap: .4rem; flex-wrap: wrap; }
+  .ddl-pg-btn,
+  .paper-pg-btn { padding: .35rem .6rem; font-size: .78rem; min-width: 32px; }
 }
 
 /* ========== Global theme transition + scrollbar polish ========== */

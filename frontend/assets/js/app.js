@@ -695,14 +695,32 @@ function removeLoadingMoreBanner() {
   document.getElementById("loading-more-banner")?.remove();
 }
 
+// ====== 分页：Feed/Curated 共用，每页 PAPER_PAGE_SIZE 条 ======
+let paperPage = 0;
+const PAPER_PAGE_SIZE = 30;
+let _paperListFull = []; // 当前已过滤的完整列表（不含切片）
+
 function render(papers) {
+  _paperListFull = _dedupeById(papers);
+  const totalPages = Math.max(1, Math.ceil(_paperListFull.length / PAPER_PAGE_SIZE));
+  if (paperPage >= totalPages) paperPage = totalPages - 1;
+  if (paperPage < 0) paperPage = 0;
+  renderPaperPage();
+}
+
+function renderPaperPage() {
   const list = $("#paper-list");
-  const unique = _dedupeById(papers);
-  if (!unique.length) {
+  const pagination = $("#paper-pagination");
+  if (!_paperListFull.length) {
     list.innerHTML = `<div class="loading">${t('noPapers')}</div>`;
+    if (pagination) pagination.innerHTML = "";
     return;
   }
-  list.innerHTML = unique.map(paperCard).join("");
+  const total = _paperListFull.length;
+  const totalPages = Math.ceil(total / PAPER_PAGE_SIZE);
+  const slice = _paperListFull.slice(paperPage * PAPER_PAGE_SIZE,
+                                     (paperPage + 1) * PAPER_PAGE_SIZE);
+  list.innerHTML = slice.map(paperCard).join("");
   list.querySelectorAll(".paper-card").forEach((el) => {
     el.addEventListener("click", (e) => {
       if (e.target.closest(".fav-btn")) return;
@@ -714,19 +732,59 @@ function render(papers) {
       e.stopPropagation();
       const id = btn.dataset.fav;
       if (favorites.has(id)) {
-        // 取消收藏
         favorites.delete(id);
         btn.classList.remove("active"); btn.textContent = "☆";
         saveFavorites();
         if (state.favorites) reload();
       } else {
-        // 新增收藏 → 弹出标签选择
         addToFavWithTagPicker(id, btn, (b) => {
           b.classList.add("active"); b.textContent = "★";
           if (state.favorites) reload();
         });
       }
     });
+  });
+  renderPaperPagination(total, totalPages);
+}
+
+function renderPaperPagination(total, totalPages) {
+  const pagination = $("#paper-pagination");
+  if (!pagination) return;
+  if (totalPages <= 1) { pagination.innerHTML = ""; return; }
+
+  const goTo = p => {
+    paperPage = p;
+    renderPaperPage();
+    $("#paper-list").scrollIntoView({behavior: "smooth", block: "start"});
+  };
+
+  // 总页数小：全显示；大：首/末/当前 ±1 + 省略号
+  const MAX_BTNS = 7;
+  let pages;
+  if (totalPages <= MAX_BTNS) {
+    pages = Array.from({length: totalPages}, (_, i) => i);
+  } else {
+    const set = new Set(
+      [0, totalPages - 1, paperPage, paperPage - 1, paperPage + 1]
+        .filter(p => p >= 0 && p < totalPages)
+    );
+    pages = [...set].sort((a, b) => a - b);
+  }
+
+  let html = `<button class="paper-pg-btn" ${paperPage===0?"disabled":""} data-p="${paperPage-1}">&#8592;</button>`;
+  let prev = -1;
+  for (const p of pages) {
+    if (prev !== -1 && p > prev + 1) html += `<span class="paper-pg-ellipsis">…</span>`;
+    html += `<button class="paper-pg-btn${p===paperPage?" active":""}" data-p="${p}">${p+1}</button>`;
+    prev = p;
+  }
+  html += `<button class="paper-pg-btn" ${paperPage>=totalPages-1?"disabled":""} data-p="${paperPage+1}">&#8594;</button>`;
+  html += currentLang === "en"
+    ? `<span class="paper-pg-total">${total} total · page ${paperPage+1}/${totalPages}</span>`
+    : `<span class="paper-pg-total">共 ${total} 篇 · ${paperPage+1}/${totalPages} 页</span>`;
+  pagination.innerHTML = html;
+  pagination.querySelectorAll(".paper-pg-btn[data-p]").forEach(btn => {
+    if (!btn.disabled) btn.addEventListener("click", () => goTo(+btn.dataset.p));
   });
 }
 
@@ -1224,6 +1282,8 @@ function applyFeedFilters(papers) {
 // ========== 加载数据 ==========
 let feedTotal = 0;
 async function reload() {
+  // 任何主动 reload（切 mode / 改筛选 / 换排序 / 搜索 / 换 domain）都回到第一页
+  paperPage = 0;
   try {
     if (state.mode === "trending") {
       document.body.classList.remove("mode-deadlines");
@@ -1268,25 +1328,25 @@ async function reload() {
           if (state.mode === "feed") {
             const f2 = applyFeedFilters(feedPapersCache.map(normalizePaper));
             feedTotal = f2.length;
-            render(f2.slice(0, 100));
+            render(f2);   // 分页交给 render 内部处理
             if (_feedFullyLoaded) removeLoadingMoreBanner();
           }
         })).map(normalizePaper);
         const filtered = applyFeedFilters(all);
         feedTotal = filtered.length;
-        render(filtered.slice(0, 100));
+        render(filtered);
         if (!_feedFullyLoaded) showLoadingMoreBanner();
       } else if (state.mode === "curated") {
         const _curDomain = state.domain;
         const all = await loadCuratedPapers(_curDomain, () => {
           if (state.mode === "curated" && state.domain === _curDomain) {
             const f2 = applyCuratedFilters(_curatedCache[_curDomain]);
-            render(f2.slice(0, 100));
+            render(f2);
             if (_curatedLoaded[_curDomain]) removeLoadingMoreBanner();
           }
         });
         const filtered = applyCuratedFilters(all);
-        render(filtered.slice(0, 100));
+        render(filtered);
         if (!_curatedLoaded[state.domain]) showLoadingMoreBanner();
       } else {
         const papers = await listPapers(state);
