@@ -782,10 +782,37 @@ function renderPaperPagination(total, totalPages) {
   html += currentLang === "en"
     ? `<span class="paper-pg-total">${total} total · page ${paperPage+1}/${totalPages}</span>`
     : `<span class="paper-pg-total">共 ${total} 篇 · ${paperPage+1}/${totalPages} 页</span>`;
+
+  // 直接跳转：输入页码 + 回车 / Go
+  const jumpLabel = currentLang === "en" ? "Go to" : "跳转";
+  const goText = currentLang === "en" ? "Go" : "跳转";
+  html += `
+    <span class="paper-pg-jump">
+      <label class="paper-pg-jump-label">${jumpLabel}</label>
+      <input class="paper-pg-input" type="number" min="1" max="${totalPages}"
+             inputmode="numeric" placeholder="${paperPage+1}" aria-label="${jumpLabel}">
+      <button class="paper-pg-btn paper-pg-go">${goText}</button>
+    </span>`;
+
   pagination.innerHTML = html;
   pagination.querySelectorAll(".paper-pg-btn[data-p]").forEach(btn => {
     if (!btn.disabled) btn.addEventListener("click", () => goTo(+btn.dataset.p));
   });
+
+  const input = pagination.querySelector(".paper-pg-input");
+  const goBtn = pagination.querySelector(".paper-pg-go");
+  const tryJump = () => {
+    const raw = parseInt(input.value, 10);
+    if (!Number.isFinite(raw)) return;
+    // 用户输入 1-based，内部 0-based；clamp 到合法范围
+    const target = Math.min(totalPages, Math.max(1, raw)) - 1;
+    if (target === paperPage) { input.value = ""; return; }
+    goTo(target);
+  };
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); tryJump(); }
+  });
+  goBtn.addEventListener("click", tryJump);
 }
 
 function normalizePaper(p) {
