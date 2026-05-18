@@ -21,7 +21,7 @@ from backend.pipeline.classify import enrich_many_async
 async def cmd_arxiv_daily(days: int = 3,
                           date_from: str | None = None,
                           date_to: str | None = None,
-                          window_days: int = 7) -> None:
+                          window_days: int = 3) -> None:
     """抓 arXiv 论文 → LLM 判定 → 只保留属于 world_model/physical_ai/medical_ai 的。
 
     使用学科类别 (cs.AI/cs.LG/cs.CV/cs.RO/cs.NE/eess.IV/q-bio.QM) 大范围拉取候选，
@@ -134,8 +134,10 @@ def main() -> None:
     p1.add_argument("--days", type=int, default=3)
     p1.add_argument("--date-from", default=None, help="开始日期 YYYY-MM-DD，填此项时忽略 --days")
     p1.add_argument("--date-to",   default=None, help="结束日期 YYYY-MM-DD（默认今天）")
-    p1.add_argument("--window-days", type=int, default=7,
-                    help="切窗粒度（默认 7 天/窗）。密集月份用 3，稀疏年份用 30")
+    p1.add_argument("--window-days", type=int, default=3,
+                    help="切窗粒度（默认 3 天/窗）。密集月份保持 3，稀疏年份可以放大到 14/30。"
+                         "7 大类合并峰值周提交量 > 5000，窗口越大越容易触发 sortBy=submittedDate "
+                         "DESC 截尾导致 earliest 日期论文丢失。")
 
     p2 = sub.add_parser("journals-weekly")
     p2.add_argument("--year-from", type=int, default=None)

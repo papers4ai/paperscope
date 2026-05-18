@@ -45,7 +45,8 @@ async def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--date-from", required=True, help="开始日期 YYYY-MM-DD")
     ap.add_argument("--date-to", default=date.today().isoformat(), help="结束日期 YYYY-MM-DD（默认今天）")
-    ap.add_argument("--window-days", type=int, default=7, help="切窗粒度（默认 7 天）")
+    ap.add_argument("--window-days", type=int, default=3,
+                    help="切窗粒度（默认 3 天）。窗口越大越容易触发 arxiv submittedDate DESC 截尾。")
     ap.add_argument("--categories", default=None,
                     help=f"逗号分隔的 arxiv 类别。默认 {','.join(DEFAULT_CATEGORIES)}")
     ap.add_argument("--limit", type=int, default=None,

@@ -188,10 +188,16 @@ def _split_windows(date_from: str, date_to: str | None = None,
 def fetch_by_categories(date_from: str,
                         date_to: str | None = None,
                         categories: list[str] | None = None,
-                        window_days: int = 7,
-                        max_per_window: int = 5000,
+                        window_days: int = 3,
+                        max_per_window: int = 12000,
                         delay: float = DEFAULT_DELAY) -> list[dict]:
-    """按 arxiv 学科类别 + 时间窗切窗抓取，带 tqdm 进度条。"""
+    """按 arxiv 学科类别 + 时间窗切窗抓取，带 tqdm 进度条。
+
+    窗口要够小：7 大类合并在峰值周提交量 > 5000，arxiv API
+    `sortBy=submittedDate&order=desc` 会把窗口最早那一端先截掉，
+    导致月初/年初等"长尾日期"系统性丢论文（例如 2605.00080
+    submittedDate=2026-04-30 一直没抓到就是这个原因）。
+    默认改为 3 天/窗 + 12000 上限。"""
     import sys
     try:
         from tqdm import tqdm
@@ -267,7 +273,17 @@ def fetch_by_categories(date_from: str,
                 win_count += len(page)
                 start += MAX_RESULTS_PER_PAGE
                 time.sleep(delay)
-            cap_hit = " (HIT CAP)" if win_count >= max_per_window else ""
+            cap_hit = ""
+            if win_count >= max_per_window:
+                # 关键告警：撞上限意味着 arxiv 用 submittedDate DESC 截掉了窗口最早一端，
+                # 那一端的论文这一窗永远抓不到。需要把 window_days 切得更小再补一次。
+                cap_hit = " (HIT CAP)"
+                print(
+                    f"  [arxiv] WARN: window {win_from}~{win_to} hit cap "
+                    f"({win_count} >= {max_per_window}); earliest-day papers in this "
+                    f"window may be missing — re-run with smaller --window-days to backfill",
+                    flush=True,
+                )
         except Exception as e:
             # 单窗失败不影响其他窗：记录错误后继续
             cap_hit = f" (ERROR: {type(e).__name__})"
