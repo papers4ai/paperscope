@@ -6,7 +6,7 @@
       {
         "term": "video generation",
         "display": "Video Generation",
-        "count": 1406,
+        "count": 1407,
         "specificity": 1.86
       },
       {
@@ -157,7 +157,7 @@
     "world_model": {
       "scores": [
         0.95,
-        0.485,
+        0.486,
         0.863,
         0.563,
         0.362,
@@ -171,10 +171,10 @@
         0.95,
         0.814,
         0.281,
-        0.239,
+        0.238,
         0.272
       ],
-      "points": "240,180 382,154 362,313 240,288 204,262 199,216"
+      "points": "240,180 382,154 362,313 240,288 204,261 199,216"
     },
     "medical_ai": {
       "scores": [
@@ -189,10 +189,10 @@
     }
   },
   "stats": {
-    "total": 28544,
+    "total": 28545,
     "domains": {
-      "world_model": 12892,
-      "physical_ai": 10720,
+      "world_model": 12893,
+      "physical_ai": 10721,
       "medical_ai": 6963
     },
     "recent": {
@@ -229,8 +229,8 @@
       {
         "year": 2026,
         "counts": {
-          "world_model": 3465,
-          "physical_ai": 2085,
+          "world_model": 3466,
+          "physical_ai": 2086,
           "medical_ai": 1476
         }
       }
