@@ -912,23 +912,39 @@ async function openDetail(id) {
     } catch {}
   }
 
-  // AI 中文解读 section
+  // AI 解读 section — 按 UI 语言取对应字段，若该语言版本缺失则退回到另一语言
   const summaryZh = (paper.summary_zh || "").trim();
-  const insights = Array.isArray(paper.insights) ? paper.insights.filter(x => (x || "").trim()) : [];
+  const summaryEn = (paper.summary_en || "").trim();
+  const insightsZh = Array.isArray(paper.insights) ? paper.insights.filter(x => (x || "").trim()) : [];
+  const insightsEn = Array.isArray(paper.insights_en) ? paper.insights_en.filter(x => (x || "").trim()) : [];
+  const useEn = currentLang === "en";
+  const summaryPrimary = useEn ? (summaryEn || summaryZh) : (summaryZh || summaryEn);
+  const insightsPrimary = useEn
+    ? (insightsEn.length ? insightsEn : insightsZh)
+    : (insightsZh.length ? insightsZh : insightsEn);
+  // 如果用户语言没有但只有另一语言，提示一下
+  const fallbackHint = useEn
+    ? (summaryEn ? "" : (summaryZh ? " <span class='ai-fallback-hint'>(EN not yet available — showing 中文)</span>" : ""))
+    : (summaryZh ? "" : (summaryEn ? " <span class='ai-fallback-hint'>(中文暂未生成 — 显示 EN)</span>" : ""));
+  const aiTitle = useEn ? "🤖 AI Summary" : "🤖 AI 中文解读";
+  const aiPlaceholder = useEn
+    ? "No pre-generated summary yet."
+    : "暂无预生成解读。";
+  const ondemandLabel = useEn ? "Generate on-demand (soon)" : "实时生成（即将上线）";
+
   let aiBlock = "";
-  if (summaryZh || insights.length) {
+  if (summaryPrimary || insightsPrimary.length) {
     aiBlock = `
       <div class="ai-explain">
-        <h4>🤖 AI 中文解读</h4>
-        ${summaryZh ? `<p class="ai-summary">${esc(summaryZh)}</p>` : ""}
-        ${insights.length ? `<ul class="ai-insights">${insights.map(s => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
+        <h4>${aiTitle}${fallbackHint}</h4>
+        ${summaryPrimary ? `<p class="ai-summary">${esc(summaryPrimary)}</p>` : ""}
+        ${insightsPrimary.length ? `<ul class="ai-insights">${insightsPrimary.map(s => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
       </div>`;
   } else {
-    // 占位 + 实时解读按钮（Phase 3 接 edge function 后启用）
     aiBlock = `
       <div class="ai-explain ai-empty">
-        <h4>🤖 AI 中文解读</h4>
-        <p class="ai-placeholder">暂无预生成解读。<button class="ai-ondemand-btn" data-id="${paper.id}" disabled>实时生成（即将上线）</button></p>
+        <h4>${aiTitle}</h4>
+        <p class="ai-placeholder">${aiPlaceholder}<button class="ai-ondemand-btn" data-id="${paper.id}" disabled>${ondemandLabel}</button></p>
       </div>`;
   }
 

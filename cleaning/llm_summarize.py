@@ -59,32 +59,35 @@ def _save_cache(cache: Dict):
 
 
 def _build_prompt(papers: List[Dict]) -> str:
-    """生成 batch prompt 让 LLM 同时解读多篇论文。"""
+    """生成 batch prompt 让 LLM 同时解读多篇论文（中英双语）。"""
     papers_text = "\n\n".join(
         f"[{i+1}] Title: {p.get('title', '')}\nAbstract: {p.get('abstract', '')[:800]}"
         for i, p in enumerate(papers)
     )
-    return f"""你是科研论文中文助手。请为下面每篇论文用简体中文生成：
-1. summary: 3 句话概括论文的研究问题、方法、主要结果（每句 30-60 字）
-2. insights: 3 条 key insights，每条一句话（强调创新点 / 方法亮点 / 实验关键发现）
+    return f"""You are a research paper assistant. For each paper below, generate **both** Chinese and English versions:
+1. summary_zh / summary_en: 3-sentence summary covering research problem, method, and main results (each sentence 30-60 chars in zh, 60-120 chars in en)
+2. insights_zh / insights_en: 3 key insights, each one sentence (novelty / methodological highlight / experimental finding)
 
-输入论文：
+Papers:
 {papers_text}
 
-返回一个 JSON 数组，长度严格等于 {len(papers)}，按输入顺序：
+Return a JSON array of length exactly {len(papers)}, in input order:
 [
   {{
     "index": 1,
-    "summary": "本文研究...。方法上...。实验表明...。",
-    "insights": ["创新点：...", "方法亮点：...", "关键发现：..."]
+    "summary_zh": "本文研究...。方法上...。实验表明...。",
+    "summary_en": "This paper studies... The method... Experiments show...",
+    "insights_zh": ["创新点：...", "方法亮点：...", "关键发现：..."],
+    "insights_en": ["Novelty: ...", "Method highlight: ...", "Key finding: ..."]
   }}
 ]
 
-要求：
-- 全部中文，不要英文术语长翻译（专有名词如 NeRF / Transformer 可保留）
-- summary 3 句，每句独立成意，整段中性客观
-- insights 3 条，每条聚焦一个 takeaway，不要重复 summary
-- 只返回 JSON 数组，不要 markdown 代码块，不要解释。"""
+Requirements:
+- summary_zh: 简体中文 3 句，每句独立成意，中性客观（专有名词如 NeRF / Transformer 可保留英文）
+- summary_en: English, 3 sentences, parallel structure to summary_zh
+- insights_*: exactly 3 entries each, focus on one takeaway each, do not repeat summary
+- zh and en should convey the SAME content (one is not a literal translation of the other, but the meaning matches)
+- Output ONLY the JSON array, no markdown fences, no explanation."""
 
 
 def _strip_json_fence(text: str) -> str:
@@ -99,8 +102,9 @@ def _strip_json_fence(text: str) -> str:
 
 async def _summarize_batch_async(papers: List[Dict], client, model: str) -> List[Dict]:
     prompt = _build_prompt(papers)
-    # summary ~150 字 + insights 3 × 50 字 ≈ 300 tokens/篇 + JSON overhead
-    out_tokens = max(2000, len(papers) * 350 + 300)
+    # 双语: summary_zh ~150 + summary_en ~200 + 3×insights_zh ~150 + 3×insights_en ~200
+    # ≈ 700 tokens/篇 + JSON overhead
+    out_tokens = max(3000, len(papers) * 750 + 500)
 
     delay = 30.0
     for attempt in range(6):
@@ -154,8 +158,19 @@ async def summarize_papers_async(papers: List[Dict]) -> List[Dict]:
     clients = [AsyncOpenAI(api_key=k, base_url=base_url) for k in api_keys]
     cache = _load_cache()
 
+    force = bool(os.environ.get("LLM_SUMMARY_FORCE"))
+
+    def _entry_is_complete(entry: Dict) -> bool:
+        return bool(entry.get("summary_zh")) and bool(entry.get("summary_en"))
+
     def _already_done(p: Dict) -> bool:
-        return p.get("id") in cache or bool(p.get("summary_zh"))
+        if force:
+            return False
+        cached = cache.get(p.get("id"))
+        if cached and _entry_is_complete(cached):
+            return True
+        # paper 自身已有双语 → 跳过
+        return bool(p.get("summary_zh")) and bool(p.get("summary_en"))
 
     uncached = [(i, p) for i, p in enumerate(papers) if not _already_done(p)]
     logger.info(
@@ -212,14 +227,26 @@ async def summarize_papers_async(papers: List[Dict]) -> List[Dict]:
                     continue
                 paper_idx = indices[idx_in_batch]
                 paper_id = batch_papers[idx_in_batch].get("id", "")
-                summary = (result.get("summary") or "").strip()
-                insights = [s.strip() for s in (result.get("insights") or []) if s.strip()][:3]
-                if not summary:
+                # 双语字段（兼容旧字段名 summary / insights → 当作 _zh）
+                summary_zh = (result.get("summary_zh") or result.get("summary") or "").strip()
+                summary_en = (result.get("summary_en") or "").strip()
+                ins_zh_raw = result.get("insights_zh") or result.get("insights") or []
+                ins_en_raw = result.get("insights_en") or []
+                insights_zh = [s.strip() for s in ins_zh_raw if s and s.strip()][:3]
+                insights_en = [s.strip() for s in ins_en_raw if s and s.strip()][:3]
+                if not summary_zh and not summary_en:
                     continue
-                payload = {"summary_zh": summary, "insights": insights}
+                payload = {
+                    "summary_zh": summary_zh,
+                    "summary_en": summary_en,
+                    "insights": insights_zh,        # 兼容旧字段名
+                    "insights_en": insights_en,
+                }
                 cache[paper_id] = payload
-                papers[paper_idx]["summary_zh"] = summary
-                papers[paper_idx]["insights"] = insights
+                papers[paper_idx]["summary_zh"] = summary_zh
+                papers[paper_idx]["summary_en"] = summary_en
+                papers[paper_idx]["insights"] = insights_zh
+                papers[paper_idx]["insights_en"] = insights_en
 
             done_count += 1
             if pbar is not None:
@@ -242,10 +269,17 @@ async def summarize_papers_async(papers: List[Dict]) -> List[Dict]:
 def _apply_cached(papers: List[Dict], cache: Dict) -> List[Dict]:
     for p in papers:
         pid = p.get("id", "")
-        if pid in cache and not p.get("summary_zh"):
-            entry = cache[pid]
-            p["summary_zh"] = entry.get("summary_zh", "")
-            p["insights"] = entry.get("insights", [])
+        entry = cache.get(pid)
+        if not entry:
+            continue
+        if not p.get("summary_zh") and entry.get("summary_zh"):
+            p["summary_zh"] = entry["summary_zh"]
+        if not p.get("summary_en") and entry.get("summary_en"):
+            p["summary_en"] = entry["summary_en"]
+        if not p.get("insights") and entry.get("insights"):
+            p["insights"] = entry["insights"]
+        if not p.get("insights_en") and entry.get("insights_en"):
+            p["insights_en"] = entry["insights_en"]
     return papers
 
 

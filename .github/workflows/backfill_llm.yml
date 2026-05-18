@@ -1,0 +1,110 @@
+name: Backfill LLM Summaries (manual)
+
+# 仅手动触发：补跑某个日期段论文的 AI 解读 (双语 summary + insights)。
+# 用法：Actions → Backfill LLM Summaries → Run workflow，填入 date_from / date_to。
+# 跑完会调用现有 export workflow 的逻辑把更新同步到 frontend/data/papers_*.json 吗？
+# 不会自动同步，需要后续手动跑一次 Fetch arXiv Daily (workflow_dispatch, days=1) 把
+# Supabase 新数据带回 papers_*.json — 或者本 workflow 末尾跑 export_papers --since。
+
+on:
+  workflow_dispatch:
+    inputs:
+      date_from:
+        description: "开始日期 YYYY-MM-DD（按 published_at 过滤）"
+        required: true
+      date_to:
+        description: "结束日期 YYYY-MM-DD"
+        required: true
+      mode:
+        description: "跑什么"
+        type: choice
+        options:
+          - "summary-only"
+          - "classify-only"
+          - "both"
+        default: "summary-only"
+      force_summary:
+        description: "强制重跑 summary (覆盖已有 zh + en)"
+        type: boolean
+        default: false
+      limit:
+        description: "只跑前 N 篇 (留空表示不限)"
+        required: false
+      export_after:
+        description: "跑完后调 export_papers --since=date_from 同步前端 JSON"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Resolve flags
+        id: flags
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          EXTRA=""
+          if [ "$MODE" = "summary-only" ]; then
+            EXTRA="$EXTRA --skip-classify"
+          elif [ "$MODE" = "classify-only" ]; then
+            EXTRA="$EXTRA --skip-summary"
+          fi
+          if [ "${{ github.event.inputs.force_summary }}" = "true" ]; then
+            EXTRA="$EXTRA --force-summary"
+          fi
+          LIMIT="${{ github.event.inputs.limit }}"
+          [ -n "$LIMIT" ] && EXTRA="$EXTRA --limit $LIMIT"
+          echo "extra=$EXTRA" >> "$GITHUB_OUTPUT"
+          echo "▶ flags: $EXTRA"
+
+      - name: Run backfill_llm_arxiv
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          LLM_API_KEYS: ${{ secrets.LLM_API_KEYS }}
+          LLM_API_KEY:  ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL:    ${{ secrets.LLM_MODEL }}
+          LLM_CONCURRENCY: "15"
+          LLM_BATCH_SIZE_SUM: "8"
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python scripts/backfill_llm_arxiv.py \
+            --source arxiv \
+            --date-from "${{ github.event.inputs.date_from }}" \
+            --date-to   "${{ github.event.inputs.date_to }}" \
+            ${{ steps.flags.outputs.extra }}
+
+      - name: Export Supabase → papers.json
+        if: ${{ github.event.inputs.export_after == 'true' }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python scripts/export_papers.py --since "${{ github.event.inputs.date_from }}"
+
+      - name: Commit & push if changed
+        if: ${{ github.event.inputs.export_after == 'true' }}
+        run: |
+          if git diff --quiet frontend/data/; then
+            echo "No changes to data files"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add frontend/data/papers_*.json frontend/data/meta.json
+            git commit -m "data: backfill AI summaries ${{ github.event.inputs.date_from }} → ${{ github.event.inputs.date_to }} [${{ github.event.inputs.mode }}]"
+            git -c http.postBuffer=524288000 pull --rebase
+            git push
+          fi

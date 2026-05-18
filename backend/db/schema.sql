@@ -21,7 +21,9 @@ create table if not exists papers (
   topics          text[] default array[]::text[], -- LLM 自由文本子主题（2-4 个）
   paper_type      text,                           -- Method / Dataset / Survey
   summary_zh      text,                           -- LLM 生成的 3 句中文摘要
-  insights        text[] default array[]::text[], -- LLM 生成的 3 条 key insights
+  summary_en      text,                           -- LLM 生成的 3 句英文摘要
+  insights        text[] default array[]::text[], -- LLM 生成的 3 条 key insights (zh)
+  insights_en     text[] default array[]::text[], -- LLM 生成的 3 条 key insights (en)
   open_access_pdf text,
   arxiv_url       text,
   doi             text,

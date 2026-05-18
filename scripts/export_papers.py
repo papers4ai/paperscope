@@ -52,7 +52,9 @@ def to_frontend(row: dict) -> dict:
         "_tasks": row.get("tasks") or [],
         "_topics": row.get("topics") or [],
         "summary_zh": row.get("summary_zh") or "",
+        "summary_en": row.get("summary_en") or "",
         "insights": row.get("insights") or [],
+        "insights_en": row.get("insights_en") or [],
     }
 
 
@@ -92,7 +94,7 @@ def main():
     while True:
         rows = (
             client.table("papers")
-            .select("id,title,abstract_excerpt,authors,published_at,year,open_access_pdf,arxiv_url,code_links,paper_type,domains,tasks,topics,summary_zh,insights")
+            .select("id,title,abstract_excerpt,authors,published_at,year,open_access_pdf,arxiv_url,code_links,paper_type,domains,tasks,topics,summary_zh,summary_en,insights,insights_en")
             .eq("source", "arxiv")
             .gte("published_at", since)
             .order("published_at", desc=True)

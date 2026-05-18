@@ -29,21 +29,28 @@ from backend.db import get_client, upsert_papers
 PAGE_SIZE = 1000
 
 
-def fetch_all_papers(source: str) -> List[Dict]:
-    """从 Supabase 拉指定 source 的全部论文（分页）。"""
+def fetch_all_papers(source: str,
+                     date_from: str | None = None,
+                     date_to: str | None = None) -> List[Dict]:
+    """从 Supabase 拉指定 source 的论文（分页）。
+    可选用 date_from/date_to (YYYY-MM-DD) 过滤 published_at。
+    """
     client = get_client()
     out: List[Dict] = []
     offset = 0
     while True:
-        rows = (
+        q = (
             client.table("papers")
-            .select("id,title,abstract_excerpt,domains,tasks,topics,paper_type,source,summary_zh,insights")
+            .select("id,title,abstract_excerpt,domains,tasks,topics,paper_type,source,"
+                    "summary_zh,summary_en,insights,insights_en,published_at")
             .eq("source", source)
             .order("published_at", desc=True)
-            .range(offset, offset + PAGE_SIZE - 1)
-            .execute()
-            .data
         )
+        if date_from:
+            q = q.gte("published_at", date_from)
+        if date_to:
+            q = q.lte("published_at", date_to)
+        rows = q.range(offset, offset + PAGE_SIZE - 1).execute().data
         if not rows:
             break
         out.extend(rows)
@@ -58,11 +65,20 @@ async def main() -> None:
     ap.add_argument("--source", default="arxiv", help="论文来源：arxiv / s2 / pubmed")
     ap.add_argument("--limit", type=int, help="只跑前 N 篇（测试用）")
     ap.add_argument("--dry-run", action="store_true", help="不写回 Supabase")
+    ap.add_argument("--date-from", default=None,
+                    help="只跑 published_at >= 这个日期的论文 (YYYY-MM-DD)")
+    ap.add_argument("--date-to", default=None,
+                    help="只跑 published_at <= 这个日期的论文 (YYYY-MM-DD)")
     ap.add_argument("--skip-classify", action="store_true",
                     help="只跑 summary，不跑 classify（适合已有 topics 的论文补 summary）")
     ap.add_argument("--skip-summary", action="store_true",
                     help="只跑 classify，不跑 summary")
+    ap.add_argument("--force-summary", action="store_true",
+                    help="忽略 summary 缓存,对所有论文重新生成双语 summary "
+                         "(用于把只有 zh 的旧条目补出 en)")
     args = ap.parse_args()
+    if args.force_summary:
+        os.environ["LLM_SUMMARY_FORCE"] = "1"
 
     if not os.environ.get("LLM_API_KEY"):
         print("ERROR: LLM_API_KEY not set", file=sys.stderr)
@@ -71,8 +87,11 @@ async def main() -> None:
         print("ERROR: SUPABASE_URL / SUPABASE_SERVICE_KEY not set", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Loading source={args.source} papers from Supabase...")
-    rows = fetch_all_papers(args.source)
+    scope_desc = f"source={args.source}"
+    if args.date_from or args.date_to:
+        scope_desc += f", published_at {args.date_from or '-'} → {args.date_to or '-'}"
+    print(f"Loading {scope_desc} papers from Supabase...")
+    rows = fetch_all_papers(args.source, date_from=args.date_from, date_to=args.date_to)
     print(f"  Got {len(rows):,} rows")
 
     updates_by_id: Dict[str, Dict] = {}   # id -> 更新字段
@@ -110,30 +129,41 @@ async def main() -> None:
     else:
         print("[classify] skipped")
 
-    # ── 阶段 2: summarize (summary_zh + insights) ─────────────────────
+    # ── 阶段 2: summarize (summary_zh + summary_en + insights + insights_en) ────
     if not args.skip_summary:
         summary_input = []
         for r in rows:
-            if r.get("summary_zh"):
+            has_zh = bool(r.get("summary_zh"))
+            has_en = bool(r.get("summary_en"))
+            # force 时全部重跑；否则只要 zh 或 en 缺一就要跑
+            if not args.force_summary and has_zh and has_en:
                 continue
             abs_ = (r.get("abstract_excerpt") or "").strip()
             if not abs_:
                 continue
-            summary_input.append({"id": r["id"], "title": r.get("title", ""), "abstract": abs_})
+            paper = {"id": r["id"], "title": r.get("title", ""), "abstract": abs_}
+            # 把已有翻译塞进去，避免 _already_done 在 llm_summarize 内部判 paper 双语已齐
+            # 误判跳过 (我们 force 模式已处理；非 force 模式这里就是缺一)
+            summary_input.append(paper)
         if args.limit:
             summary_input = summary_input[:args.limit]
-        print(f"\n[summary] {len(summary_input):,} papers (skipped {len(rows) - len(summary_input)} cached/no-abs)")
+        print(f"\n[summary] {len(summary_input):,} papers (skipped {len(rows) - len(summary_input)} complete/no-abs)"
+              + (" [FORCE]" if args.force_summary else ""))
 
         if summary_input:
             t0 = time.time()
             await summarize_papers_async(summary_input)
             print(f"[summary] done in {time.time() - t0:.0f}s")
             for p in summary_input:
-                if not p.get("summary_zh"):
+                if not (p.get("summary_zh") or p.get("summary_en")):
                     continue
                 upd = updates_by_id.setdefault(p["id"], {"id": p["id"]})
-                upd["summary_zh"] = p["summary_zh"]
+                if p.get("summary_zh"):
+                    upd["summary_zh"] = p["summary_zh"]
+                if p.get("summary_en"):
+                    upd["summary_en"] = p["summary_en"]
                 upd["insights"] = p.get("insights") or []
+                upd["insights_en"] = p.get("insights_en") or []
     else:
         print("[summary] skipped")
 
