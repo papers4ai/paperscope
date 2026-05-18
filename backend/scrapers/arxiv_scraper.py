@@ -21,6 +21,11 @@ DEFAULT_DELAY = 3.0
 MAX_RESULTS_PER_PAGE = 100
 MAX_RETRIES = 5
 REQUEST_TIMEOUT = 120   # arXiv 有时响应慢，60s 不够
+# arXiv 官方鼓励带 UA 和邮箱；匿名 UA 容易在繁忙时段触发 429
+USER_AGENT = os.environ.get(
+    "ARXIV_USER_AGENT",
+    "paperscope/1.0 (+https://github.com/papers4ai/paperscope; contact: paperscope@users.noreply.github.com)",
+)
 
 
 def _build_query(keywords: list[str], days: int = 3,
@@ -49,9 +54,10 @@ def _fetch_page(query: str, start: int, page_size: int) -> list[dict]:
         "sortOrder": "descending",
     }
     url = f"{ARXIV_API}?" + "&".join(f"{k}={quote_plus(str(v))}" for k, v in params.items())
+    headers = {"User-Agent": USER_AGENT}
     for attempt in range(MAX_RETRIES):
         try:
-            r = requests.get(url, timeout=REQUEST_TIMEOUT)
+            r = requests.get(url, timeout=REQUEST_TIMEOUT, headers=headers)
             if r.status_code == 429:
                 wait = 60 * (attempt + 1)
                 print(f"  [arxiv] 429 rate limit, retry {attempt + 1}/{MAX_RETRIES} in {wait}s...", flush=True)

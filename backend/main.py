@@ -36,6 +36,11 @@ async def cmd_arxiv_daily(days: int = 3,
 
     papers = fetch_by_categories(date_from=date_from, date_to=date_to, window_days=window_days)
     print(f"[arxiv] candidate pool: {len(papers)} papers")
+    if not papers:
+        # arxiv 0 candidate 在多窗口大跨度下基本只能是 API 持续 429 / 网络故障。
+        # 不再静默；让 workflow 红着，便于发现。
+        print("[arxiv] FATAL: 0 candidates fetched — likely persistent 429 / network failure", flush=True)
+        sys.exit(2)
 
     papers = await enrich_many_async(papers)
 

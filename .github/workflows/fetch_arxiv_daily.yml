@@ -63,7 +63,8 @@ jobs:
           echo "▶ Fetch window: $DESC"
 
       - name: Fetch arXiv → Supabase
-        continue-on-error: true   # arXiv 偶发超时/429，不阻断后续
+        # 不再 continue-on-error：之前掩盖了持续 429 → 整周没新论文的故障。
+        # 失败时让 workflow 红，下次 schedule/手动重试即可。
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

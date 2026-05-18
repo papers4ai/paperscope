@@ -102,6 +102,14 @@ def main():
             break
         offset += page_size
     print(f"Supabase: {len(remote)} arxiv papers (since {since})")
+    # 按 published_at 拆开，方便排查：是 Supabase 没拿到新论文，还是 export 把它们丢了
+    from collections import Counter
+    by_date = Counter((r.get("published_at") or "")[:10] for r in remote)
+    for d in sorted(by_date, reverse=True)[:7]:
+        print(f"  {d}: {by_date[d]} papers in Supabase")
+    no_domain = sum(1 for r in remote if not (r.get("domains") or []))
+    if no_domain:
+        print(f"  ! {no_domain} Supabase rows have empty domains (will be skipped)")
 
     new_by_year: dict[int, list] = defaultdict(list)
     for r in remote:
