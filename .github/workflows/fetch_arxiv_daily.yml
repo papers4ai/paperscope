@@ -37,30 +37,44 @@ jobs:
           DATE_TO="${{ github.event.inputs.date_to }}"
           DAYS_INPUT="${{ github.event.inputs.days }}"
 
+          # EXPORT_SINCE 用来传给 scripts/export_papers.py，覆盖默认 8 天窗口。
+          # 让 export 读取的范围和 fetch 完全对齐，否则手动 backfill 的论文会留在
+          # Supabase 但永远进不到 papers_*.json。
+          EXPORT_SINCE=""
+
           if [ -n "$DATE_FROM" ]; then
             # 手动指定日期段
             EXTRA="--date-from $DATE_FROM"
             [ -n "$DATE_TO" ] && EXTRA="$EXTRA --date-to $DATE_TO"
             DESC="${DATE_FROM} → ${DATE_TO:-today}"
+            EXPORT_SINCE="$DATE_FROM"
           elif [ -n "$DAYS_INPUT" ]; then
             # 手动指定天数
             EXTRA="--days $DAYS_INPUT"
             DESC="--days $DAYS_INPUT"
+            EXPORT_SINCE=$(date -u -d "$DAYS_INPUT days ago" +%Y-%m-%d 2>/dev/null || \
+                           python3 -c "from datetime import date,timedelta; print((date.today()-timedelta(days=$DAYS_INPUT)).isoformat())")
           else
             # 自动逻辑：每逢日期能被 3 整除，做一次 7 天深度回溯
             DAY=$(date -u +%-d)
             if [ $((DAY % 3)) -eq 0 ]; then
               EXTRA="--days 7"
               DESC="--days 7 (deep-fetch day $DAY)"
+              # deep fetch 要让 export 也回看 7 天 + 缓冲，否则会漏
+              EXPORT_SINCE=$(date -u -d "8 days ago" +%Y-%m-%d 2>/dev/null || \
+                             python3 -c "from datetime import date,timedelta; print((date.today()-timedelta(days=8)).isoformat())")
             else
               EXTRA="--days 3"
               DESC="--days 3 (normal)"
+              # 普通 daily run 走 export 默认 8 天窗口即可，EXPORT_SINCE 留空
             fi
           fi
 
-          echo "extra=$EXTRA" >> "$GITHUB_OUTPUT"
-          echo "desc=$DESC"   >> "$GITHUB_OUTPUT"
+          echo "extra=$EXTRA"                 >> "$GITHUB_OUTPUT"
+          echo "desc=$DESC"                   >> "$GITHUB_OUTPUT"
+          echo "export_since=$EXPORT_SINCE"   >> "$GITHUB_OUTPUT"
           echo "▶ Fetch window: $DESC"
+          echo "▶ Export since: ${EXPORT_SINCE:-default 8d}"
 
       - name: Fetch arXiv → Supabase
         # 不再 continue-on-error：之前掩盖了持续 429 → 整周没新论文的故障。
@@ -85,7 +99,13 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           PYTHONPATH: ${{ github.workspace }}
-        run: python scripts/export_papers.py
+        run: |
+          SINCE="${{ steps.window.outputs.export_since }}"
+          if [ -n "$SINCE" ]; then
+            python scripts/export_papers.py --since "$SINCE"
+          else
+            python scripts/export_papers.py
+          fi
 
       - name: Commit & push if changed
         run: |

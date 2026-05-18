@@ -59,6 +59,11 @@ def to_frontend(row: dict) -> dict:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--since", default=None,
+                    help="只导出 published_at >= 这个日期的论文 (YYYY-MM-DD)。"
+                         "默认 today - --since-days；workflow 手动 backfill 时应传 fetch 的 date_from。")
+    ap.add_argument("--since-days", type=int, default=8,
+                    help="--since 未指定时，回看 N 天 (默认 8，覆盖 --days 7 的 deep fetch + 1 天缓冲)")
     args = ap.parse_args()
 
     from backend.db import get_client
@@ -79,8 +84,8 @@ def main():
     total_local = sum(len(v) for v in local_by_year.values())
     print(f"Local: {total_local} papers across {len(YEARS)} year files")
 
-    # 从 Supabase 拉取最近 3 天的 arxiv 论文
-    since = (date.today() - timedelta(days=3)).isoformat()
+    # 从 Supabase 拉取 since 之后的 arxiv 论文
+    since = args.since or (date.today() - timedelta(days=args.since_days)).isoformat()
     remote: list[dict] = []
     page_size = 1000
     offset = 0
