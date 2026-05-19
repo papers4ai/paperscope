@@ -1057,53 +1057,70 @@
   },
   "comparison": [
     {
-      "topic": "Video Generation",
-      "domain": "world_model",
-      "count": 1469
-    },
-    {
       "topic": "Robotic Manipulation",
       "domain": "physical_ai",
-      "count": 785
-    },
-    {
-      "topic": "Video Diffusion",
-      "domain": "world_model",
-      "count": 569
-    },
-    {
-      "topic": "Medical Image Segmentation",
-      "domain": "medical_ai",
-      "count": 486
-    },
-    {
-      "topic": "Predictive Control",
-      "domain": "world_model",
-      "count": 402
+      "count": 107,
+      "trend": "down",
+      "trend_pct": -33
     },
     {
       "topic": "Medical Imaging",
       "domain": "medical_ai",
-      "count": 348
+      "count": 85,
+      "trend": "flat",
+      "trend_pct": -16
+    },
+    {
+      "topic": "Medical Image Segmentation",
+      "domain": "medical_ai",
+      "count": 78,
+      "trend": "down",
+      "trend_pct": -40
+    },
+    {
+      "topic": "Gaussian Splatting Dgs",
+      "domain": "world_model",
+      "count": 60,
+      "trend": "flat",
+      "trend_pct": -20
+    },
+    {
+      "topic": "Autonomous Driving",
+      "domain": "world_model",
+      "count": 47,
+      "trend": "down",
+      "trend_pct": -35
+    },
+    {
+      "topic": "View Synthesis",
+      "domain": "world_model",
+      "count": 40,
+      "trend": "down",
+      "trend_pct": -38
     }
   ],
   "predictions": [
     {
-      "topic": "Video Generation",
+      "topic": "Gaussian Splatting Dgs",
       "domain": "world_model",
-      "count": 1469,
-      "share_pct": 40,
+      "count": 60,
+      "share_pct": 22,
+      "trend": "flat",
+      "trend_pct": -20,
       "icon": "🚀",
       "keywords": [
-        "video",
-        "generation"
+        "gaussian",
+        "splatting",
+        "dgs"
       ]
     },
     {
       "topic": "Robotic Manipulation",
       "domain": "physical_ai",
-      "count": 785,
-      "share_pct": 43,
+      "count": 107,
+      "share_pct": 39,
+      "trend": "down",
+      "trend_pct": -33,
       "icon": "⚡",
       "keywords": [
         "robotic",
@@ -1111,15 +1128,16 @@
       ]
     },
     {
-      "topic": "Medical Image Segmentation",
+      "topic": "Medical Imaging",
       "domain": "medical_ai",
-      "count": 486,
-      "share_pct": 31,
+      "count": 85,
+      "share_pct": 26,
+      "trend": "flat",
+      "trend_pct": -16,
       "icon": "💡",
       "keywords": [
         "medical",
-        "image",
-        "segmentation"
+        "imaging"
       ]
     }
   ]

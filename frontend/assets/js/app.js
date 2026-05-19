@@ -1242,15 +1242,17 @@ const TOPIC_ICONS = ["🎬","✨","🌊","🦾","💊","🩻","🔬","🧠","⚡
 function renderTopicCards() {
   const grid = document.querySelector(".topics-grid");
   if (!grid) return;
-  if (!Object.keys(trendingData).length) return; // not loaded yet
+  // 优先用 30 天 hot_topics,数字更"当下";没有再退回 6mo trends
+  const src = Object.keys(hotTopicsData).length ? hotTopicsData : trendingData;
+  if (!Object.keys(src).length) return;
 
   const maxCount = Math.max(
-    ...Object.values(trendingData).flatMap(ts => ts.map(t => t.count)), 1
+    ...Object.values(src).flatMap(ts => ts.map(t => t.count)), 1
   );
 
   const cards = [];
   ["world_model", "physical_ai", "medical_ai"].forEach(domain => {
-    const topics = (trendingData[domain] || []).slice(0, 2);
+    const topics = (src[domain] || []).slice(0, 2);
     const meta = DOMAIN_META[domain];
     topics.forEach((topic, i) => {
       const heat = Math.round(topic.count / maxCount * 100);
@@ -1321,11 +1323,24 @@ function renderPredictions() {
     medical_ai:  isEn ? "Medical AI"  : "医疗 AI",
   };
   const tag = isEn ? "Hot Direction" : "近期热点方向";
+  const trendChar = { up: "↑", down: "↓", flat: "→", new: "✨" };
+  const trendWord = (tr) => isEn
+    ? ({up: "rising", down: "cooling", flat: "steady", new: "new"}[tr] || "")
+    : ({up: "升温", down: "降温", flat: "平稳", new: "新晋"}[tr] || "");
+
   root.innerHTML = predictionsData.map(p => {
     const dom = DOM_LABEL[p.domain] || p.domain;
+    let trendStr = "";
+    if (p.trend) {
+      const ch = trendChar[p.trend] || "";
+      const pct = (p.trend_pct != null)
+        ? (p.trend_pct > 0 ? `+${p.trend_pct}%` : `${p.trend_pct}%`)
+        : trendWord(p.trend);
+      trendStr = ` ${ch} ${pct}`;
+    }
     const desc = isEn
-      ? `Currently ${p.count} papers in the last ${MONTHS_LABEL_EN} months — ${p.share_pct}% of ${dom}'s top topics. A direction worth tracking.`
-      : `近 ${MONTHS_LABEL_ZH} 个月共 ${p.count} 篇相关论文,占${dom}热点的 ${p.share_pct}%,是值得关注的方向。`;
+      ? `${p.count} papers in the last 30 days — ${p.share_pct}% of ${dom}'s recent hotspots${trendStr ? "," + trendStr : ""}.`
+      : `近 30 天共 ${p.count} 篇,占${dom}热点的 ${p.share_pct}%${trendStr ? "," + trendStr : ""}。`;
     return `<div class="prediction-card">
       <div class="prediction-icon">${p.icon || "🔮"}</div>
       <div class="prediction-content">
@@ -1336,8 +1351,6 @@ function renderPredictions() {
     </div>`;
   }).join("");
 }
-const MONTHS_LABEL_EN = 6;
-const MONTHS_LABEL_ZH = 6;
 
 function renderSubdomain() {
   const sec = $("#subdomain-section");

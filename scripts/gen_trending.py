@@ -329,42 +329,48 @@ def main():
     }
     print(f"  stats: total={stats['total']}, recent={stats['recent']['total']}")
 
-    # ── Domain Comparison: top topics across all domains by paper count ────
-    # 取每 domain 的 top3,合并后按 count 降序,取前 6
+    # ── Domain Comparison & Predictions 均改用 30 天窗口 ──
+    # 之前用 6mo,数字偏大 (Video Generation 1469),用户觉得太累积、不够"当下"
+    # 改用 hot_topics (30d) 之后,Video Generation 那种全年体量大的主题
+    # 数字降到 ~200 量级,更能反映"近期热点"
+
+    # Domain Comparison: top topics across all domains by 30d count
     comparison_pool = []
     for d in DOMAINS:
-        for t_ in trends[d][:3]:
+        for t_ in hot_topics[d][:3]:
             comparison_pool.append({
                 "topic": t_["display"],
                 "domain": d,
                 "count": t_["count"],
+                "trend": t_.get("trend"),
+                "trend_pct": t_.get("trend_pct"),
             })
     comparison_pool.sort(key=lambda x: -x["count"])
     comparison = comparison_pool[:6]
-    print(f"  comparison: {[(c['topic'], c['count']) for c in comparison]}")
+    print(f"  comparison (30d): {[(c['topic'], c['count']) for c in comparison]}")
 
-    # ── Trend Predictions: 每个 domain 一个代表性主题 (top1 + 量化指标) ──
-    # 之所以不用历史增长率,是因为 2026 那一波 drop 把存量打散了,prev-6mo 噪声太大
-    # 出现 +5700% 这种伪信号;改用"恰好 last 6mo 在该 domain 内的相对热度"
+    # Trend Predictions: 每个 domain 30d 内 top1,带 trend
     PRED_ICONS = {"world_model": "🚀", "physical_ai": "⚡", "medical_ai": "💡"}
     predictions = []
     for d in DOMAINS:
-        if not trends[d]:
+        if not hot_topics[d]:
             continue
-        top1 = trends[d][0]
-        # 该 domain 内的相对热度 (该 topic 占该 domain top8 总和的百分比)
-        total_top = sum(t_["count"] for t_ in trends[d][:8]) or 1
+        top1 = hot_topics[d][0]
+        # 该 domain 30d 内相对热度 (该 topic 占该 domain top8 总和的百分比)
+        total_top = sum(t_["count"] for t_ in hot_topics[d][:8]) or 1
         share = round(top1["count"] / total_top * 100)
         predictions.append({
             "topic": top1["display"],
             "domain": d,
             "count": top1["count"],
             "share_pct": share,
+            "trend": top1.get("trend"),
+            "trend_pct": top1.get("trend_pct"),
             "icon": PRED_ICONS.get(d, "🔮"),
             "keywords": [w for w in top1["term"].split() if w][:3],
         })
-    pred_log = [(p["topic"], f"{p['share_pct']}%") for p in predictions]
-    print(f"  predictions: {pred_log}")
+    pred_log = [(p["topic"], f"{p['share_pct']}%", p.get("trend")) for p in predictions]
+    print(f"  predictions (30d): {pred_log}")
 
     result = {
         "generated": date.today().isoformat(),
