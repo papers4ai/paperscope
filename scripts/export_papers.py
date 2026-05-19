@@ -31,13 +31,19 @@ def strip_prefix(raw_id: str) -> str:
 
 
 def to_frontend(row: dict) -> dict:
+    from cleaning.domain_filter import filter_domains
     published = (row.get("published_at") or "")[:10]
     month = int(published[5:7]) if len(published) >= 7 else None
     code_links = row.get("code_links") or []
     code_url = code_links[0] if isinstance(code_links, list) and code_links else ""
+    tasks = row.get("tasks") or []
+    topics = row.get("topics") or []
+    title = row.get("title", "")
+    # 启发式过滤 LLM 错贴标签：domain 必须有 task 或 keyword 锚点
+    domains = filter_domains(row.get("domains") or [], tasks, title, topics)
     return {
         "id": strip_prefix(row["id"]),
-        "title": row.get("title", ""),
+        "title": title,
         "abstract": row.get("abstract_excerpt") or "",
         "authors": row.get("authors") or [],
         "published": published,
@@ -48,9 +54,9 @@ def to_frontend(row: dict) -> dict:
         "code": code_url,
         "has_code": bool(code_url),
         "type": row.get("paper_type") or "",
-        "_domains": row.get("domains") or [],
-        "_tasks": row.get("tasks") or [],
-        "_topics": row.get("topics") or [],
+        "_domains": domains,
+        "_tasks": tasks,
+        "_topics": topics,
         "summary_zh": row.get("summary_zh") or "",
         "summary_en": row.get("summary_en") or "",
         "insights": row.get("insights") or [],

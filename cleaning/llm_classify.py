@@ -55,19 +55,35 @@ DEFAULT_MODEL = "glm-4-flash"
 
 DOMAIN_DESCRIPTIONS = {
     "world_model": (
-        "World Models: video generation/prediction, neural radiance fields (NeRF), "
-        "3D Gaussian splatting, model-based reinforcement learning, sim-to-real transfer, "
-        "embodied agents with world models, scene representation learning, latent dynamics"
+        "World Models (NARROW domain — only assign when the paper's CORE contribution "
+        "is one of these): (a) video / scene / 4D generation or prediction (video diffusion, "
+        "future-frame prediction, novel view synthesis); (b) 3D scene representations for "
+        "embodied agents (NeRF, 3D Gaussian splatting, mesh-based reconstruction); "
+        "(c) model-based reinforcement learning with explicit world/dynamics models; "
+        "(d) learned simulators / sim-to-real for embodied agents or autonomous driving. "
+        "DO NOT assign for: general LLMs, foundation models, conversational AI, RAG, "
+        "generic representation learning, OCR / scene text, chart generation, code agents, "
+        "multi-agent game theory, generic ML loss / architecture papers, neuroscience "
+        "foundation models without a world-prediction component"
     ),
     "physical_ai": (
-        "Physical AI: physics-informed neural networks (PINN), neural operators (FNO/DeepONet), "
-        "robotics/manipulation/grasping, embodied intelligence, fluid dynamics, climate modeling, "
-        "molecular dynamics, material simulation, physical reasoning"
+        "Physical AI (NARROW domain — only assign when the CORE contribution is one of): "
+        "(a) physics-informed neural networks (PINN), neural operators (FNO, DeepONet); "
+        "(b) robotics learning (manipulation, grasping, locomotion, policy learning); "
+        "(c) embodied intelligence acting in a physical world; (d) physical simulation "
+        "with learning (fluid, climate, molecular dynamics, materials). "
+        "DO NOT assign for: pure-vision robotics datasets without learning, generic "
+        "multi-agent systems, AI safety, code agents, software engineering"
     ),
     "medical_ai": (
-        "Medical AI: medical image analysis (MRI/CT/X-ray), pathology/histopathology, "
-        "cancer detection/segmentation, drug discovery/molecular design, protein structure, "
-        "clinical decision support, surgical robotics, medical VLMs/LLMs, health monitoring"
+        "Medical AI (only when CORE contribution is one of): (a) medical imaging analysis "
+        "(CT/MRI/X-ray/ultrasound/histopathology); (b) cancer/tumor detection or "
+        "segmentation; (c) drug discovery / therapeutic molecular design; (d) protein "
+        "structure prediction for medical use; (e) clinical decision support / EHR / "
+        "diagnosis; (f) surgical robotics; (g) medical VLMs / LLMs / agents for healthcare; "
+        "(h) physiological / vital health monitoring. "
+        "DO NOT assign for: generic biology, single-cell foundation models for basic "
+        "research, EEG/neuroscience without clinical application, generic biometrics"
     ),
 }
 
@@ -120,7 +136,14 @@ Return a JSON array with exactly {len(papers)} objects, one per paper in order:
 ]
 
 Rules:
-- domains: subset of [world_model, physical_ai, medical_ai]. Empty list if not relevant to any.
+- domains: subset of [world_model, physical_ai, medical_ai]. EMPTY list if the paper does NOT
+  clearly belong to any of them.
+  * BE CONSERVATIVE. Most arXiv papers are NOT in these 3 niches — empty list should be
+    your common answer.
+  * domains usually has 0 or 1 element. 2 is rare. Never assign all 3.
+  * If the abstract mentions a topic only in passing (e.g. "we evaluate on video tasks"),
+    that's NOT enough — only assign a domain if the paper's CORE contribution lives there.
+  * False positives are much worse than false negatives — when in doubt, return [].
 - topics: 2-4 specific research subtopics as lowercase strings (e.g. "3d gaussian splatting", "robotic grasping"). Be specific, not generic.
 - type: "Method", "Dataset", or "Survey" only.
 
