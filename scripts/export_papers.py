@@ -75,12 +75,18 @@ def main():
     YEARS = get_years()
     local_by_year: dict[int, list] = {}
     seen: set[str] = set()
+    # id -> (year, paper_dict) 用来 in-place 更新已存在的本地论文 (AI 解读字段)
+    local_idx: dict[str, tuple[int, dict]] = {}
     for year in YEARS:
         path = local_path(year)
         if os.path.exists(path):
             papers = json.load(open(path, encoding="utf-8"))
             local_by_year[year] = papers
-            seen.update(p["id"] for p in papers if p.get("id"))
+            for p in papers:
+                pid = p.get("id")
+                if pid:
+                    seen.add(pid)
+                    local_idx[pid] = (year, p)
         else:
             local_by_year[year] = []
     total_local = sum(len(v) for v in local_by_year.values())
@@ -118,10 +124,36 @@ def main():
     if no_domain:
         print(f"  ! {no_domain} Supabase rows have empty domains (will be skipped)")
 
+    # AI 解读字段 —— 已存在的本地论文也要更新（不动手动标签、domains 等其它字段）
+    AI_FIELDS = ("summary_zh", "summary_en", "insights", "insights_en")
+
     new_by_year: dict[int, list] = defaultdict(list)
+    updated_years: set[int] = set()
+    refreshed_count = 0
     for r in remote:
         pid = strip_prefix(r["id"])
-        if pid in seen or not (r.get("domains") or []):
+        domains = r.get("domains") or []
+        if pid in seen:
+            # 论文已在本地：补/更新 AI 解读字段
+            year, lp = local_idx[pid]
+            changed = False
+            for f in AI_FIELDS:
+                v = r.get(f)
+                if v is None:
+                    continue
+                # 空值不覆盖已有值
+                if isinstance(v, str) and not v.strip():
+                    continue
+                if isinstance(v, list) and not v:
+                    continue
+                if lp.get(f) != v:
+                    lp[f] = v
+                    changed = True
+            if changed:
+                updated_years.add(year)
+                refreshed_count += 1
+            continue
+        if not domains:
             continue
         p = to_frontend(r)
         year = p.get("year") or date.today().year
@@ -129,22 +161,23 @@ def main():
         if year not in YEARS:
             year = date.today().year
         new_by_year[year].append(p)
+        updated_years.add(year)
 
     total_new = sum(len(v) for v in new_by_year.values())
-    print(f"New: {total_new} papers to append")
+    print(f"New: {total_new} papers to append, refreshed AI fields on {refreshed_count} existing")
 
-    if not total_new:
-        print("Nothing to add.")
+    if not total_new and not refreshed_count:
+        print("Nothing to add or update.")
         return 0
 
     if args.dry_run:
-        for year, papers in sorted(new_by_year.items()):
-            print(f"  {year}: +{len(papers)} papers")
+        for year in sorted(updated_years):
+            print(f"  {year}: +{len(new_by_year[year])} new, ~{sum(1 for p in local_by_year[year] if p.get('id') in seen)} touched")
         return 0
 
     latest = ""
     for year in YEARS:
-        if not new_by_year[year]:
+        if year not in updated_years:
             continue
         merged = local_by_year[year] + new_by_year[year]
         path = local_path(year)
@@ -153,7 +186,8 @@ def main():
             json.dump(merged, f, ensure_ascii=False, separators=(",", ":"))
         os.replace(tmp, path)
         size_mb = os.path.getsize(path) / 1024 / 1024
-        print(f"  papers_{year}.json: {len(merged)} papers ({size_mb:.1f} MB)")
+        print(f"  papers_{year}.json: {len(merged)} papers ({size_mb:.1f} MB)"
+              + (f" [+{len(new_by_year[year])} new]" if new_by_year[year] else " [AI refresh only]"))
         yr_latest = max((p.get("published") or "" for p in merged if p.get("published")), default="")
         if yr_latest > latest:
             latest = yr_latest
