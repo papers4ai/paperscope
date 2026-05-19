@@ -75,6 +75,7 @@ def main():
     args = ap.parse_args()
 
     from backend.db import get_client
+    from cleaning.domain_filter import filter_domains
     client = get_client()
 
     # 加载现有本地各年份文件
@@ -83,6 +84,10 @@ def main():
     seen: set[str] = set()
     # id -> (year, paper_dict) 用来 in-place 更新已存在的本地论文 (AI 解读字段)
     local_idx: dict[str, tuple[int, dict]] = {}
+    # 每次 export 都对存量做启发式过滤,把锚点不匹配的 domain 剔除。
+    # 这样未来 prompt/锚点规则改进时,无需手动跑 filter_false_domains.py。
+    domain_swept_years: set[int] = set()
+    domain_sweep_touched = 0
     for year in YEARS:
         path = local_path(year)
         if os.path.exists(path):
@@ -93,10 +98,25 @@ def main():
                 if pid:
                     seen.add(pid)
                     local_idx[pid] = (year, p)
+                # 启发式过滤：domain 必须有 task / keyword 锚点支撑
+                orig_doms = p.get("_domains") or []
+                if orig_doms:
+                    new_doms = filter_domains(
+                        orig_doms,
+                        p.get("_tasks") or [],
+                        p.get("title") or "",
+                        p.get("_topics") or [],
+                    )
+                    if new_doms != orig_doms:
+                        p["_domains"] = new_doms
+                        domain_sweep_touched += 1
+                        domain_swept_years.add(year)
         else:
             local_by_year[year] = []
     total_local = sum(len(v) for v in local_by_year.values())
     print(f"Local: {total_local} papers across {len(YEARS)} year files")
+    if domain_sweep_touched:
+        print(f"  domain sweep: stripped stale tags on {domain_sweep_touched} existing papers")
 
     # 从 Supabase 拉取 since 之后的 arxiv 论文
     since = args.since or (date.today() - timedelta(days=args.since_days)).isoformat()
@@ -134,7 +154,7 @@ def main():
     AI_FIELDS = ("summary_zh", "summary_en", "insights", "insights_en")
 
     new_by_year: dict[int, list] = defaultdict(list)
-    updated_years: set[int] = set()
+    updated_years: set[int] = set(domain_swept_years)  # domain sweep 改过的也算需重写
     refreshed_count = 0
     for r in remote:
         pid = strip_prefix(r["id"])
@@ -172,7 +192,7 @@ def main():
     total_new = sum(len(v) for v in new_by_year.values())
     print(f"New: {total_new} papers to append, refreshed AI fields on {refreshed_count} existing")
 
-    if not total_new and not refreshed_count:
+    if not total_new and not refreshed_count and not domain_sweep_touched:
         print("Nothing to add or update.")
         return 0
 
