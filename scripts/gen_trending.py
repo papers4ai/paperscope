@@ -24,7 +24,7 @@ OUTPUT = DATA_DIR / "trending.json"
 
 DOMAINS = ["world_model", "physical_ai", "medical_ai"]
 MONTHS = 6      # 用于 radar / topic cards / predictions 的稳定窗口
-HOT_DAYS = 30   # 用于 Hot Topics 排行 — 短窗口避免大体量主题长期占榜
+HOT_DAYS = 90   # 用于 Hot Topics / 对比 / 深度分析 / 预测 — 3 个月窗口
 TOP_N = 8       # 6 个月窗口每 domain 主题数 (Topic Cards 实际只取前 2)
 HOT_TOP_N = 30  # 30 天 Hot Topics 每 domain 主题数 (前端用滚动列表呈现)
 
@@ -299,7 +299,7 @@ def main():
             t_["trend_pct"]  = pct
         hot_topics[domain] = topics
         sample = [(t_["display"], t_["count"], t_["trend"], t_.get("trend_pct")) for t_ in topics[:3]]
-        print(f"  {domain} hot (30d): {sample}")
+        print(f"  {domain} hot ({HOT_DAYS}d): {sample}")
 
     # Radar scores
     radar = {}
@@ -347,7 +347,7 @@ def main():
             })
     comparison_pool.sort(key=lambda x: -x["count"])
     comparison = comparison_pool[:6]
-    print(f"  comparison (30d): {[(c['topic'], c['count']) for c in comparison]}")
+    print(f"  comparison ({HOT_DAYS}d): {[(c['topic'], c['count']) for c in comparison]}")
 
     # Trend Predictions: 每个 domain 30d 内 top1,带 trend
     PRED_ICONS = {"world_model": "🚀", "physical_ai": "⚡", "medical_ai": "💡"}
@@ -370,7 +370,7 @@ def main():
             "keywords": [w for w in top1["term"].split() if w][:3],
         })
     pred_log = [(p["topic"], f"{p['share_pct']}%", p.get("trend")) for p in predictions]
-    print(f"  predictions (30d): {pred_log}")
+    print(f"  predictions ({HOT_DAYS}d): {pred_log}")
 
     result = {
         "generated": date.today().isoformat(),

@@ -1339,8 +1339,8 @@ function renderPredictions() {
       trendStr = ` ${ch} ${pct}`;
     }
     const desc = isEn
-      ? `${p.count} papers in the last 30 days — ${p.share_pct}% of ${dom}'s recent hotspots${trendStr ? "," + trendStr : ""}.`
-      : `近 30 天共 ${p.count} 篇,占${dom}热点的 ${p.share_pct}%${trendStr ? "," + trendStr : ""}。`;
+      ? `${p.count} papers in the last 3 months — ${p.share_pct}% of ${dom}'s recent hotspots${trendStr ? "," + trendStr : ""}.`
+      : `近 3 个月共 ${p.count} 篇,占${dom}热点的 ${p.share_pct}%${trendStr ? "," + trendStr : ""}。`;
     return `<div class="prediction-card">
       <div class="prediction-icon">${p.icon || "🔮"}</div>
       <div class="prediction-content">
