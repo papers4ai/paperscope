@@ -760,20 +760,22 @@ body.mode-curated .feed-only { display: none; }
 }
 
 /* trending topics */
-/* 30 个 topic 时容器内滚动呈现 */
+/* 30 个 topic 时容器内滚动呈现 — 用 height 固定 (max-height 在被父容器
+   高度限制时会失效),保证总能滚 */
 .hot-list-scroll {
-  max-height: 380px;
-  overflow-y: auto;
-  padding-right: 4px;       /* 给滚动条留缝 */
+  height: 420px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding-right: 8px;       /* 给滚动条留缝 */
   scrollbar-width: thin;    /* Firefox */
-  scrollbar-color: var(--border) transparent;
+  scrollbar-color: var(--accent) transparent;
 }
-.hot-list-scroll::-webkit-scrollbar { width: 6px; }
+.hot-list-scroll::-webkit-scrollbar { width: 8px; }
 .hot-list-scroll::-webkit-scrollbar-thumb {
-  background: var(--border); border-radius: 3px;
+  background: var(--border-hover); border-radius: 4px;
 }
-.hot-list-scroll::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
-.hot-list-scroll::-webkit-scrollbar-track { background: transparent; }
+.hot-list-scroll::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+.hot-list-scroll::-webkit-scrollbar-track { background: var(--surface-bg); border-radius: 4px; }
 .hot-item { display: flex; align-items: center; gap: .65rem; margin-bottom: .55rem; }
 .hot-item:last-child { margin-bottom: 0; }
 .hot-rank {
