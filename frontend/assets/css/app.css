@@ -760,14 +760,14 @@ body.mode-curated .feed-only { display: none; }
 }
 
 /* trending topics */
-/* 30 个 topic 时容器内滚动呈现 — 用 height 固定 (max-height 在被父容器
-   高度限制时会失效),保证总能滚 */
+/* 默认露出 5 条 (~32px/条),其余靠滚轮下滑。
+   下沿露出 ~10% 第 6 条作为"更多内容"的视觉提示。 */
 .hot-list-scroll {
-  height: 420px !important;
+  height: 200px !important;
   overflow-y: auto !important;
   overflow-x: hidden;
-  padding-right: 8px;       /* 给滚动条留缝 */
-  scrollbar-width: thin;    /* Firefox */
+  padding-right: 8px;
+  scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
 }
 .hot-list-scroll::-webkit-scrollbar { width: 8px; }
