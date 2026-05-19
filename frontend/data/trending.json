@@ -163,7 +163,7 @@
         "specificity": 2.18,
         "prev_count": 99,
         "trend": "up",
-        "trend_pct": 101
+        "trend_pct": 100
       },
       {
         "term": "autonomous driving",
@@ -181,7 +181,7 @@
         "specificity": 2.18,
         "prev_count": 69,
         "trend": "up",
-        "trend_pct": 141
+        "trend_pct": 100
       },
       {
         "term": "world modeling",
@@ -217,7 +217,7 @@
         "specificity": 2.18,
         "prev_count": 30,
         "trend": "up",
-        "trend_pct": 187
+        "trend_pct": 100
       },
       {
         "term": "video world",
@@ -244,7 +244,7 @@
         "specificity": 2.18,
         "prev_count": 13,
         "trend": "up",
-        "trend_pct": 462
+        "trend_pct": 100
       },
       {
         "term": "methods often",
@@ -253,7 +253,7 @@
         "specificity": 1.46,
         "prev_count": 33,
         "trend": "up",
-        "trend_pct": 109
+        "trend_pct": 100
       },
       {
         "term": "embodied agents",
@@ -271,7 +271,7 @@
         "specificity": 2.18,
         "prev_count": 28,
         "trend": "up",
-        "trend_pct": 139
+        "trend_pct": 100
       },
       {
         "term": "generative world",
@@ -280,7 +280,7 @@
         "specificity": 2.18,
         "prev_count": 20,
         "trend": "up",
-        "trend_pct": 170
+        "trend_pct": 100
       },
       {
         "term": "scene understanding",
@@ -307,7 +307,7 @@
         "specificity": 2.18,
         "prev_count": 18,
         "trend": "up",
-        "trend_pct": 133
+        "trend_pct": 100
       },
       {
         "term": "dynamic scenes",
@@ -316,7 +316,7 @@
         "specificity": 2.03,
         "prev_count": 17,
         "trend": "up",
-        "trend_pct": 141
+        "trend_pct": 100
       },
       {
         "term": "generative video",
@@ -325,7 +325,7 @@
         "specificity": 2.18,
         "prev_count": 18,
         "trend": "up",
-        "trend_pct": 122
+        "trend_pct": 100
       },
       {
         "term": "sparse attention",
@@ -334,7 +334,7 @@
         "specificity": 2.03,
         "prev_count": 11,
         "trend": "up",
-        "trend_pct": 255
+        "trend_pct": 100
       },
       {
         "term": "methods typically",
@@ -343,7 +343,7 @@
         "specificity": 1.37,
         "prev_count": 15,
         "trend": "up",
-        "trend_pct": 160
+        "trend_pct": 100
       },
       {
         "term": "video diffusion transformers",
@@ -361,7 +361,7 @@
         "specificity": 2.18,
         "prev_count": 3,
         "trend": "up",
-        "trend_pct": 1200
+        "trend_pct": null
       },
       {
         "term": "autoregressive video generation",
@@ -379,7 +379,7 @@
         "specificity": 2.18,
         "prev_count": 4,
         "trend": "up",
-        "trend_pct": 800
+        "trend_pct": null
       },
       {
         "term": "latent dynamics",
@@ -388,7 +388,7 @@
         "specificity": 2.18,
         "prev_count": 16,
         "trend": "up",
-        "trend_pct": 125
+        "trend_pct": 100
       },
       {
         "term": "scene generation",
@@ -397,7 +397,7 @@
         "specificity": 1.75,
         "prev_count": 13,
         "trend": "up",
-        "trend_pct": 177
+        "trend_pct": 100
       },
       {
         "term": "methods rely",
@@ -424,7 +424,7 @@
         "specificity": 2.18,
         "prev_count": 16,
         "trend": "up",
-        "trend_pct": 106
+        "trend_pct": 100
       }
     ],
     "physical_ai": [
@@ -489,7 +489,7 @@
         "specificity": 2.41,
         "prev_count": 20,
         "trend": "up",
-        "trend_pct": 130
+        "trend_pct": 100
       },
       {
         "term": "embodied agents",
@@ -498,7 +498,7 @@
         "specificity": 1.56,
         "prev_count": 21,
         "trend": "up",
-        "trend_pct": 105
+        "trend_pct": 100
       },
       {
         "term": "molecular dynamics",
@@ -516,7 +516,7 @@
         "specificity": 1.63,
         "prev_count": 10,
         "trend": "up",
-        "trend_pct": 300
+        "trend_pct": 100
       },
       {
         "term": "motion planning",
@@ -534,7 +534,7 @@
         "specificity": 2.04,
         "prev_count": 10,
         "trend": "up",
-        "trend_pct": 240
+        "trend_pct": 100
       },
       {
         "term": "optimal control",
@@ -543,7 +543,7 @@
         "specificity": 2.22,
         "prev_count": 11,
         "trend": "up",
-        "trend_pct": 209
+        "trend_pct": 100
       },
       {
         "term": "physics-informed operator",
@@ -552,7 +552,7 @@
         "specificity": 2.94,
         "prev_count": 9,
         "trend": "up",
-        "trend_pct": 278
+        "trend_pct": 100
       },
       {
         "term": "weather prediction",
@@ -561,7 +561,7 @@
         "specificity": 2.94,
         "prev_count": 6,
         "trend": "up",
-        "trend_pct": 450
+        "trend_pct": 100
       },
       {
         "term": "trajectory optimization",
@@ -579,7 +579,7 @@
         "specificity": 1.38,
         "prev_count": 8,
         "trend": "up",
-        "trend_pct": 300
+        "trend_pct": 100
       },
       {
         "term": "computational cost",
@@ -588,7 +588,7 @@
         "specificity": 1.82,
         "prev_count": 9,
         "trend": "up",
-        "trend_pct": 244
+        "trend_pct": 100
       },
       {
         "term": "diffusion policy",
@@ -597,7 +597,7 @@
         "specificity": 2.33,
         "prev_count": 11,
         "trend": "up",
-        "trend_pct": 182
+        "trend_pct": 100
       },
       {
         "term": "solving partial differential",
@@ -633,7 +633,7 @@
         "specificity": 2.94,
         "prev_count": 6,
         "trend": "up",
-        "trend_pct": 400
+        "trend_pct": 100
       },
       {
         "term": "dexterous grasping",
@@ -642,7 +642,7 @@
         "specificity": 2.66,
         "prev_count": 4,
         "trend": "up",
-        "trend_pct": 625
+        "trend_pct": null
       },
       {
         "term": "uncertainty quantification",
@@ -678,7 +678,7 @@
         "specificity": 2.94,
         "prev_count": 9,
         "trend": "up",
-        "trend_pct": 200
+        "trend_pct": 100
       },
       {
         "term": "bimanual manipulation",
@@ -687,7 +687,7 @@
         "specificity": 2.94,
         "prev_count": 12,
         "trend": "up",
-        "trend_pct": 125
+        "trend_pct": 100
       },
       {
         "term": "robotic systems",
@@ -734,7 +734,7 @@
         "specificity": 1.97,
         "prev_count": 26,
         "trend": "up",
-        "trend_pct": 154
+        "trend_pct": 100
       },
       {
         "term": "language llms",
@@ -743,7 +743,7 @@
         "specificity": 2.01,
         "prev_count": 23,
         "trend": "up",
-        "trend_pct": 178
+        "trend_pct": 100
       },
       {
         "term": "computational pathology",
@@ -788,7 +788,7 @@
         "specificity": 3.58,
         "prev_count": 24,
         "trend": "up",
-        "trend_pct": 129
+        "trend_pct": 100
       },
       {
         "term": "breast cancer",
@@ -797,7 +797,7 @@
         "specificity": 3.58,
         "prev_count": 16,
         "trend": "up",
-        "trend_pct": 212
+        "trend_pct": 100
       },
       {
         "term": "brain tumor",
@@ -806,7 +806,7 @@
         "specificity": 3.58,
         "prev_count": 6,
         "trend": "up",
-        "trend_pct": 667
+        "trend_pct": 100
       },
       {
         "term": "electronic health records",
@@ -815,7 +815,7 @@
         "specificity": 3.58,
         "prev_count": 1,
         "trend": "up",
-        "trend_pct": 4500
+        "trend_pct": null
       },
       {
         "term": "multiple instance",
@@ -842,7 +842,7 @@
         "specificity": 2.51,
         "prev_count": 11,
         "trend": "up",
-        "trend_pct": 282
+        "trend_pct": 100
       },
       {
         "term": "pathology foundation",
@@ -860,7 +860,7 @@
         "specificity": 3.18,
         "prev_count": 4,
         "trend": "up",
-        "trend_pct": 900
+        "trend_pct": null
       },
       {
         "term": "question answering",
@@ -878,7 +878,7 @@
         "specificity": 3.58,
         "prev_count": 5,
         "trend": "up",
-        "trend_pct": 620
+        "trend_pct": 100
       },
       {
         "term": "whole slide image",
@@ -887,7 +887,7 @@
         "specificity": 3.58,
         "prev_count": 15,
         "trend": "up",
-        "trend_pct": 133
+        "trend_pct": 100
       },
       {
         "term": "molecular generation",
@@ -905,7 +905,7 @@
         "specificity": 3.58,
         "prev_count": 16,
         "trend": "up",
-        "trend_pct": 106
+        "trend_pct": 100
       },
       {
         "term": "yet their",
@@ -914,7 +914,7 @@
         "specificity": 1.3,
         "prev_count": 8,
         "trend": "up",
-        "trend_pct": 300
+        "trend_pct": 100
       },
       {
         "term": "artificial intelligence",
@@ -932,7 +932,7 @@
         "specificity": 3.58,
         "prev_count": 5,
         "trend": "up",
-        "trend_pct": 540
+        "trend_pct": 100
       },
       {
         "term": "anomaly detection",
@@ -941,7 +941,7 @@
         "specificity": 2.27,
         "prev_count": 9,
         "trend": "up",
-        "trend_pct": 244
+        "trend_pct": 100
       },
       {
         "term": "image quality",
@@ -968,7 +968,7 @@
         "specificity": 3.58,
         "prev_count": 8,
         "trend": "up",
-        "trend_pct": 288
+        "trend_pct": 100
       }
     ]
   },
@@ -1082,7 +1082,7 @@
       "domain": "world_model",
       "count": 199,
       "trend": "up",
-      "trend_pct": 101
+      "trend_pct": 100
     },
     {
       "topic": "Autonomous Driving",
@@ -1096,7 +1096,7 @@
       "domain": "world_model",
       "count": 166,
       "trend": "up",
-      "trend_pct": 141
+      "trend_pct": 100
     }
   ],
   "predictions": [
@@ -1106,7 +1106,7 @@
       "count": 199,
       "share_pct": 19,
       "trend": "up",
-      "trend_pct": 101,
+      "trend_pct": 100,
       "icon": "🚀",
       "keywords": [
         "gaussian",

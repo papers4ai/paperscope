@@ -276,10 +276,26 @@ def main():
     }
 
     def _trend_label(count, prev):
-        # label ∈ {up, flat, down, new}; pct 可能为 None (prev=0)
+        # label ∈ {up, flat, down, new}; pct 可能为 None
+        # 兜底规则:
+        # 1. prev 过低 (< MIN_PREV_FOR_PCT) → 只给方向,不给具体百分比
+        #    (避免 prev=3 → count=18 算成 +500% 这种噪声放大)
+        # 2. 真实计算出来的百分比 clamp 到 ±100,极端值显示成 +100%/-100%
+        MIN_PREV_FOR_PCT = 5
         if prev == 0:
             return ("new", None) if count >= 3 else ("flat", None)
+        if prev < MIN_PREV_FOR_PCT:
+            if count >= prev * 1.5:
+                return ("up", None)
+            if count <= prev * 0.7:
+                return ("down", None)
+            return ("flat", None)
         delta_pct = round((count - prev) / prev * 100)
+        # clamp ±100,避免数据收集不均匀造成的 +500% 之类的虚高
+        if delta_pct > 100:
+            delta_pct = 100
+        if delta_pct < -100:
+            delta_pct = -100
         if delta_pct >= 30:
             return ("up", delta_pct)
         if delta_pct <= -30:
