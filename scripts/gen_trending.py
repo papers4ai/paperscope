@@ -23,8 +23,9 @@ DATA_DIR = ROOT / "frontend" / "data"
 OUTPUT = DATA_DIR / "trending.json"
 
 DOMAINS = ["world_model", "physical_ai", "medical_ai"]
-MONTHS = 6     # look-back window
-TOP_N = 8      # topics per domain
+MONTHS = 6      # 用于 radar / topic cards / predictions 的稳定窗口
+HOT_DAYS = 30   # 用于 Hot Topics 排行 — 短窗口避免大体量主题长期占榜
+TOP_N = 8       # topics per domain
 
 STOP = {
     "a", "an", "the", "and", "or", "of", "in", "on", "at", "to", "for",
@@ -240,12 +241,63 @@ def main():
     all_ng = ngrams(all_texts)
     total = max(len(all_texts), 1)
 
-    # Trending topics
+    # Trending topics (6 个月窗口) — 用于 Topic Cards 深度分析 + Predictions
     trends = {}
     for domain in DOMAINS:
         topics = top_topics(papers_by_domain[domain], all_texts, all_ng, total)
         trends[domain] = topics
-        print(f"  {domain} topics: {[t['display'] for t in topics]}")
+        print(f"  {domain} topics (6mo): {[t['display'] for t in topics[:3]]}")
+
+    # ── Hot Topics — 30 天窗口排行 + 与前 30 天对比的 trend 箭头 ──────
+    # 单独算一份给 "Hot Research Topics" 图表用,避免大体量主题永远占榜。
+    hot_cutoff   = (date.today() - timedelta(days=HOT_DAYS)).isoformat()
+    prev_cutoff_ = (date.today() - timedelta(days=HOT_DAYS * 2)).isoformat()
+    hot_papers   = [p for p in papers if p.get("published", "") >= hot_cutoff]
+    prev_papers_ = [p for p in papers
+                    if prev_cutoff_ <= p.get("published", "") < hot_cutoff]
+    print(f"Hot window: {len(hot_papers)} last-{HOT_DAYS}d, "
+          f"{len(prev_papers_)} prev-{HOT_DAYS}d (for trend)")
+
+    hot_papers_by_d  = {d: [p for p in hot_papers   if d in p.get("_domains", [])]
+                        for d in DOMAINS}
+    prev_papers_by_d = {d: [p for p in prev_papers_ if d in p.get("_domains", [])]
+                        for d in DOMAINS}
+
+    hot_all_texts = [f"{p.get('title','')} {p.get('title','')} {p.get('abstract','')[:400]}"
+                     for p in hot_papers]
+    hot_all_ng    = ngrams(hot_all_texts) if hot_all_texts else Counter()
+    hot_total     = max(len(hot_all_texts), 1)
+
+    prev_ng_by_d  = {
+        d: ngrams([f"{p.get('title','')} {p.get('title','')} {p.get('abstract','')[:400]}"
+                   for p in prev_papers_by_d[d]])
+        for d in DOMAINS
+    }
+
+    def _trend_label(count, prev):
+        # label ∈ {up, flat, down, new}; pct 可能为 None (prev=0)
+        if prev == 0:
+            return ("new", None) if count >= 3 else ("flat", None)
+        delta_pct = round((count - prev) / prev * 100)
+        if delta_pct >= 30:
+            return ("up", delta_pct)
+        if delta_pct <= -30:
+            return ("down", delta_pct)
+        return ("flat", delta_pct)
+
+    hot_topics = {}
+    for domain in DOMAINS:
+        topics = top_topics(hot_papers_by_d[domain], hot_all_texts, hot_all_ng, hot_total)
+        prev_ng = prev_ng_by_d[domain]
+        for t_ in topics:
+            prev_c = prev_ng.get(t_["term"], 0)
+            label, pct = _trend_label(t_["count"], prev_c)
+            t_["prev_count"] = prev_c
+            t_["trend"]      = label
+            t_["trend_pct"]  = pct
+        hot_topics[domain] = topics
+        sample = [(t_["display"], t_["count"], t_["trend"], t_.get("trend_pct")) for t_ in topics[:3]]
+        print(f"  {domain} hot (30d): {sample}")
 
     # Radar scores
     radar = {}
@@ -315,7 +367,9 @@ def main():
     result = {
         "generated": date.today().isoformat(),
         "months": MONTHS,
+        "hot_days": HOT_DAYS,
         "trends": trends,
+        "hot_topics": hot_topics,
         "radar": radar,
         "stats": stats,
         "comparison": comparison,

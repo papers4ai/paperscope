@@ -775,6 +775,15 @@ body.mode-curated .feed-only { display: none; }
 .hot-bar-wrap { width: 78px; height: 7px; background: var(--surface-bg); border-radius: 4px; overflow: hidden; }
 .hot-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), #a78bfa); transition: width .5s ease; }
 .hot-count { width: 32px; text-align: right; font-size: .72rem; font-weight: 700; color: var(--text-secondary); }
+/* 30-day trend 箭头 */
+.hot-trend {
+  min-width: 52px; text-align: right; font-size: .68rem; font-weight: 600;
+  font-variant-numeric: tabular-nums; letter-spacing: -.01em;
+}
+.hot-trend.trend-up   { color: #ef4444; }   /* 红色升 (孔雀爱用红色升温) */
+.hot-trend.trend-down { color: #10b981; }   /* 绿色降 */
+.hot-trend.trend-flat { color: var(--text-muted); }
+.hot-trend.trend-new  { color: #f59e0b; font-weight: 700; }
 
 /* ========== 论文卡片网格 ========== */
 .paper-list {

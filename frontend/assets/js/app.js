@@ -996,7 +996,8 @@ async function openDetail(id) {
 
 // ========== 仪表盘 (速览模式) ==========
 let dashboardLoaded = false;
-let trendingData = {};        // { world_model: [...], physical_ai: [...], medical_ai: [...] }
+let trendingData = {};        // 6-month topics (for topic cards / deep analysis)
+let hotTopicsData = {};       // 30-day topics with trend arrow (for "Hot Research Topics")
 let radarData = {};           // { world_model: {points, scores}, ... }
 let comparisonData = [];      // [{topic, domain, count}, ...]
 let predictionsData = [];     // [{topic, domain, count, share_pct, icon, keywords}, ...]
@@ -1058,6 +1059,7 @@ async function loadStaticData() {
       _ensureDataVersion().then(() => fetch("data/meta.json?_=" + Date.now())).then(r => r.ok ? r.json() : null),
     ]);
     if (tr?.trends) trendingData = tr.trends;
+    if (tr?.hot_topics) hotTopicsData = tr.hot_topics;
     if (tr?.radar)  radarData   = tr.radar;
     if (tr?.comparison)  comparisonData = tr.comparison;
     if (tr?.predictions) predictionsData = tr.predictions;
@@ -1165,8 +1167,16 @@ function renderTrends(trends) {
 
 function renderHotTopics(domain) {
   hotDomain = domain;
-  const items = (trendingData[domain] || []).map(t => ({
-    name: t.display || t.term, count: t.count, desc: t.description || ""
+  // 优先用 30-day hot_topics (带 trend 箭头);后兜底到 6-month trends
+  const src = (hotTopicsData[domain] && hotTopicsData[domain].length)
+    ? hotTopicsData[domain]
+    : (trendingData[domain] || []);
+  const items = src.map(t => ({
+    name: t.display || t.term,
+    count: t.count,
+    desc: t.description || "",
+    trend: t.trend || null,
+    trend_pct: t.trend_pct ?? null,
   }));
   const tabsHtml = `<div class="hot-tabs">
     ${["world_model", "physical_ai", "medical_ai"].map(d =>
@@ -1180,15 +1190,25 @@ function renderHotTopics(domain) {
   const max = Math.max(...items.map(i => i.count), 1);
   const TOP = 4;
   const visible = hotExpanded ? items : items.slice(0, TOP);
+  const trendChar = { up: "↑", down: "↓", flat: "→", new: "✨" };
   const itemsHtml = visible.map((it, i) => {
     const rank = i < 3 ? `rank-${i + 1}` : "rank-other";
     const w = (it.count / max * 100).toFixed(0);
     const tip = it.desc ? `title="${esc(it.desc)}"` : "";
+    let trendBadge = "";
+    if (it.trend) {
+      const ch = trendChar[it.trend] || "";
+      const pct = it.trend_pct != null
+        ? (it.trend_pct > 0 ? `+${it.trend_pct}%` : `${it.trend_pct}%`)
+        : t("trend" + it.trend.charAt(0).toUpperCase() + it.trend.slice(1));
+      trendBadge = `<div class="hot-trend trend-${it.trend}">${ch} ${pct}</div>`;
+    }
     return `<div class="hot-item" ${tip}>
       <div class="hot-rank ${rank}">${i + 1}</div>
       <div class="hot-name">${esc(it.name)}</div>
       <div class="hot-bar-wrap"><div class="hot-bar ${domain}" style="width:${w}%"></div></div>
       <div class="hot-count">${it.count}</div>
+      ${trendBadge}
     </div>`;
   }).join("");
   const more = items.length > TOP
@@ -2567,6 +2587,7 @@ async function refreshHotData() {
     const tr = await fetch("data/trending.json?t=" + Date.now()).then(r => r.ok ? r.json() : null);
     if (tr?.trends) {
       trendingData = tr.trends;
+      if (tr?.hot_topics) hotTopicsData = tr.hot_topics;
       if (tr?.radar) radarData = tr.radar;
       if (tr?.comparison) comparisonData = tr.comparison;
       if (tr?.predictions) predictionsData = tr.predictions;
