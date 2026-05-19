@@ -275,12 +275,51 @@ def main():
     }
     print(f"  stats: total={stats['total']}, recent={stats['recent']['total']}")
 
+    # ── Domain Comparison: top topics across all domains by paper count ────
+    # 取每 domain 的 top3,合并后按 count 降序,取前 6
+    comparison_pool = []
+    for d in DOMAINS:
+        for t_ in trends[d][:3]:
+            comparison_pool.append({
+                "topic": t_["display"],
+                "domain": d,
+                "count": t_["count"],
+            })
+    comparison_pool.sort(key=lambda x: -x["count"])
+    comparison = comparison_pool[:6]
+    print(f"  comparison: {[(c['topic'], c['count']) for c in comparison]}")
+
+    # ── Trend Predictions: 每个 domain 一个代表性主题 (top1 + 量化指标) ──
+    # 之所以不用历史增长率,是因为 2026 那一波 drop 把存量打散了,prev-6mo 噪声太大
+    # 出现 +5700% 这种伪信号;改用"恰好 last 6mo 在该 domain 内的相对热度"
+    PRED_ICONS = {"world_model": "🚀", "physical_ai": "⚡", "medical_ai": "💡"}
+    predictions = []
+    for d in DOMAINS:
+        if not trends[d]:
+            continue
+        top1 = trends[d][0]
+        # 该 domain 内的相对热度 (该 topic 占该 domain top8 总和的百分比)
+        total_top = sum(t_["count"] for t_ in trends[d][:8]) or 1
+        share = round(top1["count"] / total_top * 100)
+        predictions.append({
+            "topic": top1["display"],
+            "domain": d,
+            "count": top1["count"],
+            "share_pct": share,
+            "icon": PRED_ICONS.get(d, "🔮"),
+            "keywords": [w for w in top1["term"].split() if w][:3],
+        })
+    pred_log = [(p["topic"], f"{p['share_pct']}%") for p in predictions]
+    print(f"  predictions: {pred_log}")
+
     result = {
         "generated": date.today().isoformat(),
         "months": MONTHS,
         "trends": trends,
         "radar": radar,
         "stats": stats,
+        "comparison": comparison,
+        "predictions": predictions,
     }
 
     with open(OUTPUT, "w", encoding="utf-8") as f:

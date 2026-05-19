@@ -6,7 +6,7 @@
   <title>Paperscope — AI Research Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/app.css?v=20260520a">
+  <link rel="stylesheet" href="assets/css/app.css?v=20260520b">
   <script src="assets/js/i18n.js"></script>
   <script>
   window.__PAPERSCOPE_CONFIG__ = {
@@ -240,49 +240,8 @@
           <div class="trending-comparison">
             <div class="comparison-chart">
               <div class="chart-title" data-i18n="hotTopicHeat">Hot Topic Heat</div>
-              <div class="bar-chart-container">
-                <div class="bar-item">
-                  <span class="bar-label">Video Generation</span>
-                  <div class="bar-wrapper">
-                    <div class="bar world-model-bar" style="width: 100%"></div>
-                  </div>
-                  <span class="bar-value">143</span>
-                </div>
-                <div class="bar-item">
-                  <span class="bar-label">Robotic Manipulation</span>
-                  <div class="bar-wrapper">
-                    <div class="bar physical-ai-bar" style="width: 42.6%"></div>
-                  </div>
-                  <span class="bar-value">61</span>
-                </div>
-                <div class="bar-item">
-                  <span class="bar-label">Drug Discovery</span>
-                  <div class="bar-wrapper">
-                    <div class="bar medical-ai-bar" style="width: 7.7%"></div>
-                  </div>
-                  <span class="bar-value">11</span>
-                </div>
-                <div class="bar-item">
-                  <span class="bar-label">Video Diffusion</span>
-                  <div class="bar-wrapper">
-                    <div class="bar world-model-bar" style="width: 26.6%"></div>
-                  </div>
-                  <span class="bar-value">38</span>
-                </div>
-                <div class="bar-item">
-                  <span class="bar-label">PDEs</span>
-                  <div class="bar-wrapper">
-                    <div class="bar physical-ai-bar" style="width: 19.6%"></div>
-                  </div>
-                  <span class="bar-value">28</span>
-                </div>
-                <div class="bar-item">
-                  <span class="bar-label">Medical Imaging</span>
-                  <div class="bar-wrapper">
-                    <div class="bar medical-ai-bar" style="width: 7%"></div>
-                  </div>
-                  <span class="bar-value">10</span>
-                </div>
+              <div class="bar-chart-container" id="comparison-bars">
+                <div class="loading" data-i18n="loading">Loading...</div>
               </div>
             </div>
           </div>
@@ -452,31 +411,8 @@
             <h2>🔮 <span data-i18n="trendPredictions">Trend Predictions</span></h2>
             <p class="section-desc" data-i18n="trendPredictionsDesc">Future research direction outlook based on data analysis</p>
           </div>
-          <div class="predictions-container">
-            <div class="prediction-card">
-              <div class="prediction-icon">🚀</div>
-              <div class="prediction-content">
-                <h3 data-i18n="pred1Title">Multimodal World Models</h3>
-                <p data-i18n="pred1Desc">Unified world models integrating vision, language, and physics will become the research focus for more realistic virtual environment simulation.</p>
-                <span class="prediction-tag" data-i18n="pred1Tag">2026-2027 Key Direction</span>
-              </div>
-            </div>
-            <div class="prediction-card">
-              <div class="prediction-icon">⚡</div>
-              <div class="prediction-content">
-                <h3 data-i18n="pred2Title">Real-time Physics Simulation</h3>
-                <p data-i18n="pred2Desc">Neural network-based real-time physics simulation will be widely applied in robotics and gaming, breaking traditional numerical method limits.</p>
-                <span class="prediction-tag" data-i18n="pred2Tag">2026-2027 Key Direction</span>
-              </div>
-            </div>
-            <div class="prediction-card">
-              <div class="prediction-icon">💡</div>
-              <div class="prediction-content">
-                <h3 data-i18n="pred3Title">AI-assisted Precision Medicine</h3>
-                <p data-i18n="pred3Desc">Combining large language models with medical data to achieve personalized treatment recommendations and disease risk prediction.</p>
-                <span class="prediction-tag" data-i18n="pred3Tag">2026-2027 Key Direction</span>
-              </div>
-            </div>
+          <div class="predictions-container" id="predictions-container">
+            <div class="loading" data-i18n="loading">Loading...</div>
           </div>
         </div>
       </section>
@@ -699,6 +635,6 @@
     </div>
   </div>
 
-  <script type="module" src="assets/js/app.js?v=20260520a"></script>
+  <script type="module" src="assets/js/app.js?v=20260520b"></script>
 </body>
 </html>

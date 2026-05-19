@@ -998,6 +998,8 @@ async function openDetail(id) {
 let dashboardLoaded = false;
 let trendingData = {};        // { world_model: [...], physical_ai: [...], medical_ai: [...] }
 let radarData = {};           // { world_model: {points, scores}, ... }
+let comparisonData = [];      // [{topic, domain, count}, ...]
+let predictionsData = [];     // [{topic, domain, count, share_pct, icon, keywords}, ...]
 let taskMeta = {};            // { Task: {zh, en} }
 let domainTasks = {           // fallback
   world_model: ["VidGen", "NeRF", "MBRL", "Sim2Real", "EmbodiedWM", "Predictive"],
@@ -1057,6 +1059,8 @@ async function loadStaticData() {
     ]);
     if (tr?.trends) trendingData = tr.trends;
     if (tr?.radar)  radarData   = tr.radar;
+    if (tr?.comparison)  comparisonData = tr.comparison;
+    if (tr?.predictions) predictionsData = tr.predictions;
     if (tr?.stats)  { renderStats(tr.stats); renderTrends(tr.stats.trends); }
     if (tm?.tasks) taskMeta = tm.tasks;
     if (tm?.domain_tasks && Object.keys(tm.domain_tasks).length) domainTasks = tm.domain_tasks;
@@ -1082,6 +1086,8 @@ async function loadDashboard() {
   renderHotTopics(hotDomain);
   renderRadar();
   renderTopicCards();
+  renderComparison();
+  renderPredictions();
   renderSubdomain();
 }
 
@@ -1253,6 +1259,66 @@ function renderTopicCards() {
 
   grid.innerHTML = cards.join("");
 }
+
+// ── 领域热点对比 ──────────────────────────────────────────────────────────
+function renderComparison() {
+  const root = document.getElementById("comparison-bars");
+  if (!root) return;
+  if (!comparisonData.length) {
+    root.innerHTML = `<div class="loading">${t("noData")}</div>`;
+    return;
+  }
+  const DOM_CLS = {
+    world_model: "world-model-bar",
+    physical_ai: "physical-ai-bar",
+    medical_ai:  "medical-ai-bar",
+  };
+  const maxCount = Math.max(...comparisonData.map(c => c.count), 1);
+  root.innerHTML = comparisonData.map(c => {
+    const pct = (c.count / maxCount * 100).toFixed(1);
+    const cls = DOM_CLS[c.domain] || "world-model-bar";
+    return `<div class="bar-item">
+      <span class="bar-label">${esc(c.topic)}</span>
+      <div class="bar-wrapper">
+        <div class="bar ${cls}" style="width: ${pct}%"></div>
+      </div>
+      <span class="bar-value">${c.count}</span>
+    </div>`;
+  }).join("");
+}
+
+// ── 趋势预测 ──────────────────────────────────────────────────────────────
+function renderPredictions() {
+  const root = document.getElementById("predictions-container");
+  if (!root) return;
+  if (!predictionsData.length) {
+    root.innerHTML = `<div class="loading">${t("noData")}</div>`;
+    return;
+  }
+  const isEn = currentLang === "en";
+  const DOM_LABEL = {
+    world_model: isEn ? "World Model" : "世界模型",
+    physical_ai: isEn ? "Physical AI" : "物理 AI",
+    medical_ai:  isEn ? "Medical AI"  : "医疗 AI",
+  };
+  const tag = isEn ? "Hot Direction" : "近期热点方向";
+  root.innerHTML = predictionsData.map(p => {
+    const dom = DOM_LABEL[p.domain] || p.domain;
+    const desc = isEn
+      ? `Currently ${p.count} papers in the last ${MONTHS_LABEL_EN} months — ${p.share_pct}% of ${dom}'s top topics. A direction worth tracking.`
+      : `近 ${MONTHS_LABEL_ZH} 个月共 ${p.count} 篇相关论文,占${dom}热点的 ${p.share_pct}%,是值得关注的方向。`;
+    return `<div class="prediction-card">
+      <div class="prediction-icon">${p.icon || "🔮"}</div>
+      <div class="prediction-content">
+        <h3>${esc(p.topic)}</h3>
+        <p>${desc}</p>
+        <span class="prediction-tag">${dom} · ${tag}</span>
+      </div>
+    </div>`;
+  }).join("");
+}
+const MONTHS_LABEL_EN = 6;
+const MONTHS_LABEL_ZH = 6;
 
 function renderSubdomain() {
   const sec = $("#subdomain-section");
@@ -2438,6 +2504,8 @@ $("#hot-refresh-btn")?.addEventListener("click", async () => {
       renderHotTopics(hotDomain);
       renderRadar();
       renderTopicCards();
+      renderComparison();
+      renderPredictions();
       const timeEl = document.getElementById("hot-last-updated");
       if (timeEl) timeEl.textContent = formatHotUpdateTime();
     }
@@ -2500,11 +2568,15 @@ async function refreshHotData() {
     if (tr?.trends) {
       trendingData = tr.trends;
       if (tr?.radar) radarData = tr.radar;
+      if (tr?.comparison) comparisonData = tr.comparison;
+      if (tr?.predictions) predictionsData = tr.predictions;
       hotLastUpdated = new Date();
       if (state.mode === "trending") {
         renderHotTopics(hotDomain);
         renderRadar();
         renderTopicCards();
+        renderComparison();
+        renderPredictions();
         const timeEl = document.getElementById("hot-last-updated");
         if (timeEl) timeEl.textContent = formatHotUpdateTime();
       }
