@@ -25,7 +25,8 @@ OUTPUT = DATA_DIR / "trending.json"
 DOMAINS = ["world_model", "physical_ai", "medical_ai"]
 MONTHS = 6      # 用于 radar / topic cards / predictions 的稳定窗口
 HOT_DAYS = 30   # 用于 Hot Topics 排行 — 短窗口避免大体量主题长期占榜
-TOP_N = 8       # topics per domain
+TOP_N = 8       # 6 个月窗口每 domain 主题数 (Topic Cards 实际只取前 2)
+HOT_TOP_N = 30  # 30 天 Hot Topics 每 domain 主题数 (前端用滚动列表呈现)
 
 STOP = {
     "a", "an", "the", "and", "or", "of", "in", "on", "at", "to", "for",
@@ -107,7 +108,7 @@ def tok_set(term: str) -> set:
 
 
 def top_topics(domain_papers: list, all_texts: list, all_ng: Counter,
-               total: int) -> list:
+               total: int, top_n: int = TOP_N) -> list:
     texts = [
         f"{p.get('title', '')} {p.get('title', '')} {p.get('abstract', '')[:400]}"
         for p in domain_papers
@@ -153,7 +154,7 @@ def top_topics(domain_papers: list, all_texts: list, all_ng: Counter,
         for idx in sorted(replacements, reverse=True):
             deduped.pop(idx)
         deduped.append(c)
-        if len(deduped) >= TOP_N:
+        if len(deduped) >= top_n:
             break
 
     return deduped
@@ -287,7 +288,8 @@ def main():
 
     hot_topics = {}
     for domain in DOMAINS:
-        topics = top_topics(hot_papers_by_d[domain], hot_all_texts, hot_all_ng, hot_total)
+        topics = top_topics(hot_papers_by_d[domain], hot_all_texts, hot_all_ng,
+                            hot_total, top_n=HOT_TOP_N)
         prev_ng = prev_ng_by_d[domain]
         for t_ in topics:
             prev_c = prev_ng.get(t_["term"], 0)

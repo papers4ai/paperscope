@@ -760,6 +760,20 @@ body.mode-curated .feed-only { display: none; }
 }
 
 /* trending topics */
+/* 30 个 topic 时容器内滚动呈现 */
+.hot-list-scroll {
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;       /* 给滚动条留缝 */
+  scrollbar-width: thin;    /* Firefox */
+  scrollbar-color: var(--border) transparent;
+}
+.hot-list-scroll::-webkit-scrollbar { width: 6px; }
+.hot-list-scroll::-webkit-scrollbar-thumb {
+  background: var(--border); border-radius: 3px;
+}
+.hot-list-scroll::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+.hot-list-scroll::-webkit-scrollbar-track { background: transparent; }
 .hot-item { display: flex; align-items: center; gap: .65rem; margin-bottom: .55rem; }
 .hot-item:last-child { margin-bottom: 0; }
 .hot-rank {

@@ -1188,8 +1188,8 @@ function renderHotTopics(domain) {
     return;
   }
   const max = Math.max(...items.map(i => i.count), 1);
-  const TOP = 4;
-  const visible = hotExpanded ? items : items.slice(0, TOP);
+  // 展示全部 (最多 30),用容器内滚动呈现,不再 TOP/show-all 切换
+  const visible = items;
   const trendChar = { up: "↑", down: "↓", flat: "→", new: "✨" };
   const itemsHtml = visible.map((it, i) => {
     const rank = i < 3 ? `rank-${i + 1}` : "rank-other";
@@ -1211,10 +1211,9 @@ function renderHotTopics(domain) {
       ${trendBadge}
     </div>`;
   }).join("");
-  const more = items.length > TOP
-    ? `<button class="hot-show-all" id="hot-show-all">${hotExpanded ? t("collapse") : t("showAll").replace("{count}", items.length)}</button>`
-    : "";
-  $("#chart-trending").innerHTML = tabsHtml + itemsHtml + more;
+  // 容器内滚动,显示全部 (取消折叠按钮)
+  $("#chart-trending").innerHTML =
+    tabsHtml + `<div class="hot-list-scroll">${itemsHtml}</div>`;
 }
 
 // ── Radar chart (data-driven) ─────────────────────────────────────────────────
@@ -1885,8 +1884,7 @@ document.querySelectorAll(".domain-tab").forEach((b) =>
 // 热门话题：领域 tab 切换 + 展开
 $("#chart-trending").addEventListener("click", (e) => {
   const tab = e.target.closest(".hot-tab");
-  if (tab) { hotExpanded = false; renderHotTopics(tab.dataset.domain); return; }
-  if (e.target.id === "hot-show-all") { hotExpanded = !hotExpanded; renderHotTopics(hotDomain); }
+  if (tab) { renderHotTopics(tab.dataset.domain); }
 });
 
 // 细分方向：点击 task 筛选 (事件委托到 section，innerHTML 重建后仍生效)
