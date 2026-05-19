@@ -2,7 +2,7 @@ name: Daily Curated Update
 
 on:
   schedule:
-    - cron: "0 2 * * *"   # 每天 UTC 02:00（北京时间 10:00）
+    - cron: "0 4 * * *"   # 每天 UTC 04:00（北京时间 12:00）
   workflow_dispatch:        # 支持手动触发
     inputs:
       from_date:
