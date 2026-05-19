@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-19T07:44:33Z",
+  "generated": "2026-05-19T11:17:02Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 294,
   "conferences": [
-    {
-      "id": "esann26_20251119",
-      "title": "ESANN",
-      "full_name": "European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2025-11-19T23:59:59-0800",
-      "abstract_deadline": null,
-      "timezone": "UTC-8",
-      "date": "April 22 - 24, 2026",
-      "place": "Bruges, Belgium and Online",
-      "link": "https://www.esann.org/",
-      "comment": ""
-    },
     {
       "id": "imc26_20251120",
       "title": "IMC",
@@ -61,7 +44,7 @@
       "sub": "NW",
       "sub_name": "Network Systems",
       "ccf": "N",
-      "core": "N",
+      "core": "A",
       "year": 2026,
       "deadline": "2025-11-21T23:59:59+0000",
       "abstract_deadline": "2025-11-14T23:59:59+0000",
@@ -4643,6 +4626,23 @@
       "place": "Renton, WA, USA",
       "link": "https://www.usenix.org/conference/fast27",
       "comment": "Fall deadline"
+    },
+    {
+      "id": "mmsys27_20260917",
+      "title": "MMSys",
+      "full_name": "ACM International Conference on Multimedia Systems",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-09-17T23:59:59+0000",
+      "abstract_deadline": "2026-09-10T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "March 30 - April 2, 2027",
+      "place": "Ghent, Belgium",
+      "link": "https://2027.acmmmsys.org",
+      "comment": ""
     },
     {
       "id": "nsdi27_20260917",
