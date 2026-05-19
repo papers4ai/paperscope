@@ -85,38 +85,53 @@ def main():
     # id -> (year, paper_dict) 用来 in-place 更新已存在的本地论文 (AI 解读字段)
     local_idx: dict[str, tuple[int, dict]] = {}
     # 每次 export 都对存量做启发式过滤,把锚点不匹配的 domain 剔除。
+    # 剔除后 _domains 仍非空的保留;变空的直接从数据集中丢弃 (本来就不属于
+    # 我们关注的三大领域,留着只是噪声 + 让 dashboard 总数虚高)。
     # 这样未来 prompt/锚点规则改进时,无需手动跑 filter_false_domains.py。
     domain_swept_years: set[int] = set()
-    domain_sweep_touched = 0
+    domain_sweep_stripped = 0   # _domains 被剪短但还非空的
+    domain_sweep_dropped = 0    # _domains 变空被丢弃的
     for year in YEARS:
         path = local_path(year)
-        if os.path.exists(path):
-            papers = json.load(open(path, encoding="utf-8"))
-            local_by_year[year] = papers
-            for p in papers:
-                pid = p.get("id")
-                if pid:
-                    seen.add(pid)
-                    local_idx[pid] = (year, p)
-                # 启发式过滤：domain 必须有 task / keyword 锚点支撑
-                orig_doms = p.get("_domains") or []
-                if orig_doms:
-                    new_doms = filter_domains(
-                        orig_doms,
-                        p.get("_tasks") or [],
-                        p.get("title") or "",
-                        p.get("_topics") or [],
-                    )
-                    if new_doms != orig_doms:
-                        p["_domains"] = new_doms
-                        domain_sweep_touched += 1
-                        domain_swept_years.add(year)
-        else:
+        if not os.path.exists(path):
             local_by_year[year] = []
+            continue
+        papers = json.load(open(path, encoding="utf-8"))
+        kept: list[dict] = []
+        for p in papers:
+            pid = p.get("id")
+            orig_doms = p.get("_domains") or []
+            if orig_doms:
+                new_doms = filter_domains(
+                    orig_doms,
+                    p.get("_tasks") or [],
+                    p.get("title") or "",
+                    p.get("_topics") or [],
+                )
+                if not new_doms:
+                    # 不再属于任何关注领域 → 直接丢
+                    domain_sweep_dropped += 1
+                    domain_swept_years.add(year)
+                    continue
+                if new_doms != orig_doms:
+                    p["_domains"] = new_doms
+                    domain_sweep_stripped += 1
+                    domain_swept_years.add(year)
+            else:
+                # 历史遗留: 已经没 domain 的论文也清理掉
+                domain_sweep_dropped += 1
+                domain_swept_years.add(year)
+                continue
+            if pid:
+                seen.add(pid)
+                local_idx[pid] = (year, p)
+            kept.append(p)
+        local_by_year[year] = kept
     total_local = sum(len(v) for v in local_by_year.values())
     print(f"Local: {total_local} papers across {len(YEARS)} year files")
-    if domain_sweep_touched:
-        print(f"  domain sweep: stripped stale tags on {domain_sweep_touched} existing papers")
+    if domain_sweep_stripped or domain_sweep_dropped:
+        print(f"  domain sweep: stripped tags on {domain_sweep_stripped} papers, "
+              f"dropped {domain_sweep_dropped} papers with no surviving domain")
 
     # 从 Supabase 拉取 since 之后的 arxiv 论文
     since = args.since or (date.today() - timedelta(days=args.since_days)).isoformat()
@@ -192,7 +207,8 @@ def main():
     total_new = sum(len(v) for v in new_by_year.values())
     print(f"New: {total_new} papers to append, refreshed AI fields on {refreshed_count} existing")
 
-    if not total_new and not refreshed_count and not domain_sweep_touched:
+    if (not total_new and not refreshed_count
+            and not domain_sweep_stripped and not domain_sweep_dropped):
         print("Nothing to add or update.")
         return 0
 

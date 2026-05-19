@@ -37,19 +37,22 @@ def main() -> int:
 
     total_before = Counter()
     total_after = Counter()
-    total_papers = 0
+    total_papers_before = 0
+    total_papers_after = 0
     touched_papers = 0
-    emptied_papers = 0   # _domains 被清空 (将不再出现在 domain 视图)
+    dropped_papers = 0   # _domains 变空 → 整条丢弃
 
     for path in paths:
         with open(path, encoding="utf-8") as f:
             papers = json.load(f)
         before = Counter(d for p in papers for d in (p.get("_domains") or []))
+        kept: list[dict] = []
         file_touched = 0
-        file_emptied = 0
+        file_dropped = 0
         for p in papers:
             doms = p.get("_domains") or []
             if not doms:
+                file_dropped += 1
                 continue
             clean = filter_domains(
                 doms,
@@ -57,21 +60,25 @@ def main() -> int:
                 p.get("title") or "",
                 p.get("_topics") or [],
             )
+            if not clean:
+                file_dropped += 1
+                continue
             if clean != doms:
                 p["_domains"] = clean
                 file_touched += 1
-                if not clean:
-                    file_emptied += 1
+            kept.append(p)
+        papers = kept
         after = Counter(d for p in papers for d in (p.get("_domains") or []))
 
         total_before += before
         total_after += after
-        total_papers += len(papers)
+        total_papers_before += len(papers) + file_dropped
+        total_papers_after += len(papers)
         touched_papers += file_touched
-        emptied_papers += file_emptied
+        dropped_papers += file_dropped
 
-        print(f"  {os.path.basename(path)}: {len(papers):,} papers, "
-              f"{file_touched:,} touched, {file_emptied:,} emptied")
+        print(f"  {os.path.basename(path)}: {len(papers):,} kept "
+              f"({file_dropped:,} dropped, {file_touched:,} pruned)")
         for d in sorted(WHITELIST):
             b, a = before.get(d, 0), after.get(d, 0)
             if b != a:
@@ -85,10 +92,9 @@ def main() -> int:
 
     print()
     print(f"=== Totals across {len(paths)} files ===")
-    print(f"Papers: {total_papers:,}")
-    print(f"Touched: {touched_papers:,}  ({100*touched_papers/total_papers:.1f}%)")
-    print(f"Emptied (domain-less): {emptied_papers:,}  "
-          f"({100*emptied_papers/total_papers:.1f}%)")
+    print(f"Papers before: {total_papers_before:,}")
+    print(f"Papers after:  {total_papers_after:,}  "
+          f"(dropped {dropped_papers:,}, pruned {touched_papers:,})")
     for d in sorted(WHITELIST):
         b, a = total_before.get(d, 0), total_after.get(d, 0)
         print(f"  {d}: {b:,} → {a:,}  ({a-b:+,})")
