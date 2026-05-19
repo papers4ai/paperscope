@@ -238,6 +238,19 @@ def main():
         with open(META, "w", encoding="utf-8") as f:
             json.dump({"last_updated": latest[:10], "years": YEARS}, f)
         print(f"Updated meta.json: last_updated={latest[:10]}, years={YEARS}")
+
+    # 重新生成 trending.json 的 stats / radar / trends 块。
+    # 之前是单独的 update-trending workflow 触发,但和 export 异步,容易
+    # 出现"papers 砍了 7K 但 trending.json 还是旧快照,前端总数虚高"的事故。
+    # 直接 in-process 跑一遍,既便宜又能保证一致。
+    try:
+        import subprocess
+        script = os.path.join(os.path.dirname(__file__), "gen_trending.py")
+        print("\n→ Regenerating trending.json ...")
+        subprocess.run([sys.executable, script], check=True)
+    except Exception as e:
+        print(f"  ! trending.json regen failed (non-fatal): {e}")
+
     return 0
 
 
