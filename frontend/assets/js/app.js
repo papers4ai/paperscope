@@ -388,6 +388,30 @@ const _currentYear = new Date().getFullYear();
 const _START_YEAR = 2023;
 let availableYears = Array.from({ length: _currentYear - _START_YEAR + 1 }, (_, i) => _START_YEAR + i);
 
+// ====== 数据 JSON 缓存破坏 ======
+// 所有 data/*.json fetch 走 dataUrl(path) 拼上 ?v=<meta.last_updated>
+// meta.json 自己用 ?_=Date.now() 始终拿最新一份(只有几十字节)
+// 数据变更时 last_updated 改 → 所有年份 JSON 自动跳缓存
+let __dataVersion = null;       // 从 meta.json 解出来的版本字符串
+let __dataVersionResolved = null; // promise,只 fetch 一次
+function _ensureDataVersion() {
+  if (__dataVersion !== null) return Promise.resolve(__dataVersion);
+  if (__dataVersionResolved) return __dataVersionResolved;
+  __dataVersionResolved = fetch("data/meta.json?_=" + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(m => { __dataVersion = (m && m.last_updated) || "0"; return __dataVersion; })
+    .catch(() => { __dataVersion = "0"; return __dataVersion; });
+  return __dataVersionResolved;
+}
+async function dataUrl(path) {
+  const v = await _ensureDataVersion();
+  return `${path}?v=${encodeURIComponent(v)}`;
+}
+async function fetchData(path, opts) {
+  const u = await dataUrl(path);
+  return fetch(u, opts);
+}
+
 // 静态 arxiv 数据 (速览模式)
 // 优先加载最近 2 年并立即返回，旧年份后台补全后回调触发重渲染
 let feedPapersCache = null;
@@ -439,7 +463,7 @@ async function loadFeedPapers(onBackgroundDone) {
   const rest     = sorted.slice(2);      // 其余旧年份
 
   const firstBatch = await Promise.all(
-    priority.map(y => fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
+    priority.map(y => fetchData(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []))
   );
   feedPapersCache = _dedupeById(firstBatch.flat());
 
@@ -448,7 +472,7 @@ async function loadFeedPapers(onBackgroundDone) {
     (async () => {
       for (const y of rest) {
         updateLoadingMoreBanner(y);
-        const batch = await fetch(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []);
+        const batch = await fetchData(`data/papers_${y}.json`).then(r => r.ok ? r.json() : []).catch(() => []);
         feedPapersCache = _dedupeById([...feedPapersCache, ...batch]);
         if (typeof _feedBgCallback === "function") _feedBgCallback();
       }
@@ -477,7 +501,7 @@ function _mergeCurated(lists) {
 async function _loadCuratedManifest() {
   if (_curatedManifest) return _curatedManifest;
   try {
-    _curatedManifest = await fetch("data/papers_curated_manifest.json").then(r => r.ok ? r.json() : {});
+    _curatedManifest = await fetchData("data/papers_curated_manifest.json").then(r => r.ok ? r.json() : {});
   } catch {
     _curatedManifest = {};
   }
@@ -504,7 +528,7 @@ async function loadCuratedPapers(domain = "all", onBackgroundDone) {
 
   const firstFiles = domainsToLoad.flatMap(d => priority.flatMap(y => _monthFiles(d, y, manifest)));
   const firstResults = await Promise.all(
-    firstFiles.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
+    firstFiles.map(f => fetchData(f).then(r => r.ok ? r.json() : []).catch(() => []))
   );
   _curatedCache[key] = _mergeCurated(firstResults);
 
@@ -515,7 +539,7 @@ async function loadCuratedPapers(domain = "all", onBackgroundDone) {
         updateLoadingMoreBanner(y);
         const yearFiles = domainsToLoad.flatMap(d => _monthFiles(d, y, manifest));
         const yearResults = await Promise.all(
-          yearFiles.map(f => fetch(f).then(r => r.ok ? r.json() : []).catch(() => []))
+          yearFiles.map(f => fetchData(f).then(r => r.ok ? r.json() : []).catch(() => []))
         );
         _curatedCache[key] = _mergeCurated([..._curatedCache[key], ...yearResults.flat()]);
         const cb = _curatedBgCallback[key];
@@ -628,7 +652,7 @@ let venuesByDomainCache = null;
 async function loadVenuesByDomain() {
   if (venuesByDomainCache) return venuesByDomainCache;
   try {
-    venuesByDomainCache = await fetch("data/venues_by_domain.json").then(r => r.json());
+    venuesByDomainCache = await fetchData("data/venues_by_domain.json").then(r => r.json());
   } catch { venuesByDomainCache = {}; }
   return venuesByDomainCache;
 }
@@ -1025,9 +1049,11 @@ function renderYearControls(years) {
 async function loadStaticData() {
   try {
     const [tr, tm, meta] = await Promise.all([
-      fetch("data/trending.json").then(r => r.ok ? r.json() : null),
-      fetch("data/task_meta.json").then(r => r.ok ? r.json() : null),
-      fetch("data/meta.json").then(r => r.ok ? r.json() : null),
+      fetchData("data/trending.json").then(r => r.ok ? r.json() : null),
+      fetchData("data/task_meta.json").then(r => r.ok ? r.json() : null),
+      // meta.json 的 last_updated 用作所有数据的版本号，但 meta.json 本身要绕缓存
+      // (走 _ensureDataVersion 内部的 ?_=Date.now() 路径)
+      _ensureDataVersion().then(() => fetch("data/meta.json?_=" + Date.now())).then(r => r.ok ? r.json() : null),
     ]);
     if (tr?.trends) trendingData = tr.trends;
     if (tr?.radar)  radarData   = tr.radar;
