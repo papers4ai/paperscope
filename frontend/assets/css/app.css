@@ -760,10 +760,9 @@ body.mode-curated .feed-only { display: none; }
 }
 
 /* trending topics */
-/* 默认露出 5 条 (~32px/条),其余靠滚轮下滑。
-   下沿露出 ~10% 第 6 条作为"更多内容"的视觉提示。 */
+/* 默认露出 5 条整 (~30px/条 × 5 + 顶部少许 padding),其余靠滚轮下滑 */
 .hot-list-scroll {
-  height: 200px !important;
+  height: 170px !important;
   overflow-y: auto !important;
   overflow-x: hidden;
   padding-right: 8px;
