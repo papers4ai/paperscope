@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-19T21:19:15Z",
+  "generated": "2026-05-20T03:28:39Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 294,
+  "total": 293,
   "conferences": [
-    {
-      "id": "imc26_20251120",
-      "title": "IMC",
-      "full_name": "ACM Internet Measurement Conference",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-11-20T23:59:59+0000",
-      "abstract_deadline": "2025-11-13T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "November 03-06, 2026",
-      "place": "Karlsruhe, Germany",
-      "link": "https://conferences.sigcomm.org/imc/2026/",
-      "comment": "Cycle 1 Deadline"
-    },
     {
       "id": "eurosp26_20251120",
       "title": "EuroS&P",
