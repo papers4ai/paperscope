@@ -197,6 +197,10 @@ def main():
         if not domains:
             continue
         p = to_frontend(r)
+        # to_frontend 内部走启发式过滤,过滤后可能 _domains 变空 → 不收
+        # (这一篇本来就不属于我们关注的三大领域,留下来只会让 dashboard 总数虚高)
+        if not p.get("_domains"):
+            continue
         year = p.get("year") or date.today().year
         # 超出范围时落回当前年，不丢弃
         if year not in YEARS:
