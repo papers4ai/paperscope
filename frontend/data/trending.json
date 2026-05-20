@@ -107,20 +107,20 @@
       {
         "term": "medical image segmentation",
         "display": "Medical Image Segmentation",
-        "count": 487,
-        "specificity": 3.96
+        "count": 488,
+        "specificity": 3.95
       },
       {
         "term": "medical imaging",
         "display": "Medical Imaging",
         "count": 351,
-        "specificity": 3.96
+        "specificity": 3.95
       },
       {
         "term": "image analysis",
         "display": "Image Analysis",
         "count": 174,
-        "specificity": 3.96
+        "specificity": 3.95
       },
       {
         "term": "image classification",
@@ -132,25 +132,25 @@
         "term": "drug discovery",
         "display": "Drug Discovery",
         "count": 120,
-        "specificity": 3.96
+        "specificity": 3.95
       },
       {
         "term": "medical vision-language",
         "display": "Medical Vision-language",
         "count": 112,
-        "specificity": 3.96
+        "specificity": 3.95
       },
       {
         "term": "computational pathology",
         "display": "Computational Pathology",
         "count": 110,
-        "specificity": 3.96
+        "specificity": 3.95
       },
       {
         "term": "whole slide",
         "display": "Whole Slide",
         "count": 105,
-        "specificity": 3.96
+        "specificity": 3.95
       }
     ]
   },
@@ -160,7 +160,7 @@
         "term": "gaussian splatting dgs",
         "display": "Gaussian Splatting Dgs",
         "count": 202,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 99,
         "trend": "up",
         "trend_pct": 100
@@ -178,7 +178,7 @@
         "term": "view synthesis",
         "display": "View Synthesis",
         "count": 166,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 69,
         "trend": "up",
         "trend_pct": 100
@@ -187,7 +187,7 @@
         "term": "world modeling",
         "display": "World Modeling",
         "count": 144,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 92,
         "trend": "up",
         "trend_pct": 57
@@ -196,7 +196,7 @@
         "term": "scene reconstruction",
         "display": "Scene Reconstruction",
         "count": 107,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 54,
         "trend": "up",
         "trend_pct": 98
@@ -205,7 +205,7 @@
         "term": "feed-forward gaussian splatting",
         "display": "Feed-forward Gaussian Splatting",
         "count": 89,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 30,
         "trend": "up",
         "trend_pct": 100
@@ -214,7 +214,7 @@
         "term": "model-based reinforcement",
         "display": "Model-based Reinforcement",
         "count": 87,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 44,
         "trend": "up",
         "trend_pct": 98
@@ -223,7 +223,7 @@
         "term": "video world",
         "display": "Video World",
         "count": 80,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 54,
         "trend": "up",
         "trend_pct": 48
@@ -232,7 +232,7 @@
         "term": "radiance fields",
         "display": "Radiance Fields",
         "count": 77,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 73,
         "trend": "flat",
         "trend_pct": 5
@@ -241,7 +241,7 @@
         "term": "latent world",
         "display": "Latent World",
         "count": 73,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 13,
         "trend": "up",
         "trend_pct": 100
@@ -268,7 +268,7 @@
         "term": "predictive control mpc",
         "display": "Predictive Control Mpc",
         "count": 67,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 28,
         "trend": "up",
         "trend_pct": 100
@@ -277,7 +277,7 @@
         "term": "generative world",
         "display": "Generative World",
         "count": 56,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 20,
         "trend": "up",
         "trend_pct": 100
@@ -322,7 +322,7 @@
         "term": "long video generation",
         "display": "Long Video Generation",
         "count": 42,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 18,
         "trend": "up",
         "trend_pct": 100
@@ -349,7 +349,7 @@
         "term": "generative video",
         "display": "Generative Video",
         "count": 40,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 18,
         "trend": "up",
         "trend_pct": 100
@@ -358,7 +358,7 @@
         "term": "video diffusion transformers",
         "display": "Video Diffusion Transformers",
         "count": 39,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 23,
         "trend": "up",
         "trend_pct": 70
@@ -367,7 +367,7 @@
         "term": "joint audio-video generation",
         "display": "Joint Audio-video Generation",
         "count": 39,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 3,
         "trend": "up",
         "trend_pct": null
@@ -376,7 +376,7 @@
         "term": "latent dynamics",
         "display": "Latent Dynamics",
         "count": 38,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 16,
         "trend": "up",
         "trend_pct": 100
@@ -385,7 +385,7 @@
         "term": "autoregressive video generation",
         "display": "Autoregressive Video Generation",
         "count": 38,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 31,
         "trend": "flat",
         "trend_pct": 23
@@ -394,7 +394,7 @@
         "term": "dynamic gaussian",
         "display": "Dynamic Gaussian",
         "count": 37,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 27,
         "trend": "up",
         "trend_pct": 37
@@ -403,7 +403,7 @@
         "term": "surface reconstruction",
         "display": "Surface Reconstruction",
         "count": 36,
-        "specificity": 2.18,
+        "specificity": 2.19,
         "prev_count": 4,
         "trend": "up",
         "trend_pct": null
@@ -441,7 +441,7 @@
         "term": "partial differential equations",
         "display": "Partial Differential Equations",
         "count": 135,
-        "specificity": 2.92,
+        "specificity": 2.93,
         "prev_count": 70,
         "trend": "up",
         "trend_pct": 93
@@ -666,7 +666,7 @@
         "term": "humanoid robots",
         "display": "Humanoid Robots",
         "count": 29,
-        "specificity": 1.67,
+        "specificity": 1.68,
         "prev_count": 22,
         "trend": "up",
         "trend_pct": 32
@@ -675,7 +675,7 @@
         "term": "manipulation policies",
         "display": "Manipulation Policies",
         "count": 27,
-        "specificity": 2.94,
+        "specificity": 2.95,
         "prev_count": 9,
         "trend": "up",
         "trend_pct": 100
@@ -684,7 +684,7 @@
         "term": "bimanual manipulation",
         "display": "Bimanual Manipulation",
         "count": 27,
-        "specificity": 2.94,
+        "specificity": 2.95,
         "prev_count": 12,
         "trend": "up",
         "trend_pct": 100
@@ -703,11 +703,11 @@
       {
         "term": "medical image segmentation",
         "display": "Medical Image Segmentation",
-        "count": 293,
+        "count": 294,
         "specificity": 3.57,
         "prev_count": 194,
         "trend": "up",
-        "trend_pct": 51
+        "trend_pct": 52
       },
       {
         "term": "medical imaging",
@@ -739,8 +739,8 @@
       {
         "term": "language llms",
         "display": "Language Llms",
-        "count": 64,
-        "specificity": 2.01,
+        "count": 65,
+        "specificity": 2.02,
         "prev_count": 23,
         "trend": "up",
         "trend_pct": 100
@@ -857,7 +857,7 @@
         "term": "computed tomography",
         "display": "Computed Tomography",
         "count": 41,
-        "specificity": 3.19,
+        "specificity": 3.18,
         "prev_count": 4,
         "trend": "up",
         "trend_pct": null
@@ -901,8 +901,8 @@
       {
         "term": "yet their",
         "display": "Yet Their",
-        "count": 34,
-        "specificity": 1.32,
+        "count": 35,
+        "specificity": 1.34,
         "prev_count": 8,
         "trend": "up",
         "trend_pct": 100
@@ -947,7 +947,7 @@
         "term": "image quality",
         "display": "Image Quality",
         "count": 31,
-        "specificity": 3.26,
+        "specificity": 3.25,
         "prev_count": 0,
         "trend": "new",
         "trend_pct": null
@@ -956,7 +956,7 @@
         "term": "magnetic resonance",
         "display": "Magnetic Resonance",
         "count": 31,
-        "specificity": 3.36,
+        "specificity": 3.35,
         "prev_count": 5,
         "trend": "up",
         "trend_pct": 100
@@ -1001,24 +1001,24 @@
         0.153,
         0.258,
         0.95,
-        0.367,
-        0.407
+        0.366,
+        0.408
       ],
       "points": "240,152 263,226 279,263 240,402 185,273 179,203"
     }
   },
   "stats": {
-    "total": 28219,
+    "total": 28222,
     "domains": {
       "world_model": 12283,
       "physical_ai": 10741,
-      "medical_ai": 7124
+      "medical_ai": 7127
     },
     "recent": {
-      "total": 472,
+      "total": 475,
       "world_model": 225,
       "physical_ai": 110,
-      "medical_ai": 153
+      "medical_ai": 156
     },
     "trends": [
       {
@@ -1050,7 +1050,7 @@
         "counts": {
           "world_model": 2888,
           "physical_ai": 2215,
-          "medical_ai": 1665
+          "medical_ai": 1668
         }
       }
     ]
@@ -1066,9 +1066,9 @@
     {
       "topic": "Medical Image Segmentation",
       "domain": "medical_ai",
-      "count": 293,
+      "count": 294,
       "trend": "up",
-      "trend_pct": 51
+      "trend_pct": 52
     },
     {
       "topic": "Medical Imaging",
@@ -1130,10 +1130,10 @@
     {
       "topic": "Medical Image Segmentation",
       "domain": "medical_ai",
-      "count": 293,
+      "count": 294,
       "share_pct": 32,
       "trend": "up",
-      "trend_pct": 51,
+      "trend_pct": 52,
       "icon": "💡",
       "keywords": [
         "medical",
