@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-20T10:49:50Z",
+  "generated": "2026-05-20T15:18:14Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 293,
+  "total": 292,
   "conferences": [
-    {
-      "id": "eurosp26_20251120",
-      "title": "EuroS&P",
-      "full_name": "IEEE European Symposium on Security and Privacy",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2025-11-20T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "July 6 - 10, 2026",
-      "place": "Lisbon, Portugal",
-      "link": "https://eurosp2026.ieee-security.org/",
-      "comment": ""
-    },
     {
       "id": "mmsys26_20251121",
       "title": "MMSys",
