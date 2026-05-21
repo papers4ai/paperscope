@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-20T21:52:40Z",
+  "generated": "2026-05-21T03:35:10Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 292,
+  "total": 291,
   "conferences": [
-    {
-      "id": "mmsys26_20251121",
-      "title": "MMSys",
-      "full_name": "ACM International Conference on Multimedia Systems",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "N",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-11-21T23:59:59+0000",
-      "abstract_deadline": "2025-11-14T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "April 4 - 8, 2026",
-      "place": "Hong Kong SAR",
-      "link": "https://2026.acmmmsys.org",
-      "comment": "Round 2 deadline"
-    },
     {
       "id": "fse26_20251123",
       "title": "FSE",
