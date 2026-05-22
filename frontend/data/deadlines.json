@@ -1,7 +1,7 @@
 {
-  "generated": "2026-05-22T03:34:01Z",
+  "generated": "2026-05-22T07:44:09Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 291,
+  "total": 293,
   "conferences": [
     {
       "id": "fse26_20251123",
@@ -3268,23 +3268,6 @@
       "comment": ""
     },
     {
-      "id": "euvip26_20260521",
-      "title": "EUVIP",
-      "full_name": "European Conference on Visual Information Processing",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-21T23:59:59+0200",
-      "abstract_deadline": null,
-      "timezone": "UTC+2",
-      "date": "September 28 - October 1, 2026",
-      "place": "Luxembourg, Luxembourg",
-      "link": "https://euvip2026.github.io/",
-      "comment": ""
-    },
-    {
       "id": "asiacrypt26_20260522",
       "title": "ASIACRYPT",
       "full_name": "International Conference on the Theory and Application of Cryptology and Information Security",
@@ -3727,6 +3710,23 @@
       "comment": "June Cycle"
     },
     {
+      "id": "euvip26_20260605",
+      "title": "EUVIP",
+      "full_name": "European Conference on Visual Information Processing",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-05T23:59:59+0200",
+      "abstract_deadline": null,
+      "timezone": "UTC+2",
+      "date": "September 28 - October 1, 2026",
+      "place": "Luxembourg, Luxembourg",
+      "link": "https://euvip2026.github.io/",
+      "comment": ""
+    },
+    {
       "id": "icdm2026_20260606",
       "title": "ICDM",
       "full_name": "IEEE International Conference on Data Mining",
@@ -3792,6 +3792,23 @@
       "date": "October 6-9, 2026",
       "place": "Singapore Management University, Singapore",
       "link": "https://pacificgraphics2026.github.io/",
+      "comment": ""
+    },
+    {
+      "id": "cicai26_20260608",
+      "title": "CICAI",
+      "full_name": "CAAI International Conference on Artificial Intelligence",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-08T23:59:59+0800",
+      "abstract_deadline": null,
+      "timezone": "UTC+8",
+      "date": "October 17-19, 2026",
+      "place": "Haining, Zhejiang, China",
+      "link": "https://cicai.caai.cn/index.html",
       "comment": ""
     },
     {
@@ -4575,6 +4592,23 @@
       "place": "Renton, WA, USA",
       "link": "https://www.usenix.org/conference/fast27",
       "comment": "Fall deadline"
+    },
+    {
+      "id": "icassp27_20260916",
+      "title": "ICASSP",
+      "full_name": "IEEE International Conference on Acoustics, Speech, and Signal Processing",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-09-16T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "May 16-21, 2027",
+      "place": "Toronto, Canada",
+      "link": "https://2027.ieeeicassp.org/",
+      "comment": ""
     },
     {
       "id": "mmsys27_20260917",
