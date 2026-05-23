@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-23T09:51:50Z",
+  "generated": "2026-05-23T13:23:18Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 293,
+  "total": 292,
   "conferences": [
-    {
-      "id": "fse26_20251123",
-      "title": "FSE",
-      "full_name": "Fast Software Encryption",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "B",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2025-11-23T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "March 23-27, 2026",
-      "place": "Singapore, Singapore",
-      "link": "https://fse.iacr.org/2026/",
-      "comment": "ToSC, Volume 2026, Issue 1 Submission deadline"
-    },
     {
       "id": "acisp26_20251127",
       "title": "ACISP",
