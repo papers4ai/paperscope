@@ -100,7 +100,7 @@
         "term": "robot control",
         "display": "Robot Control",
         "count": 120,
-        "specificity": 3.15
+        "specificity": 3.16
       }
     ],
     "medical_ai": [
@@ -773,6 +773,15 @@
         "trend_pct": -3
       },
       {
+        "term": "computed tomography",
+        "display": "Computed Tomography",
+        "count": 82,
+        "specificity": 2.67,
+        "prev_count": 62,
+        "trend": "up",
+        "trend_pct": 32
+      },
+      {
         "term": "vision-language vlms",
         "display": "Vision-language Vlms",
         "count": 80,
@@ -780,15 +789,6 @@
         "prev_count": 53,
         "trend": "up",
         "trend_pct": 51
-      },
-      {
-        "term": "computed tomography",
-        "display": "Computed Tomography",
-        "count": 79,
-        "specificity": 2.66,
-        "prev_count": 62,
-        "trend": "flat",
-        "trend_pct": 27
       },
       {
         "term": "chest x-ray",
@@ -857,7 +857,7 @@
         "term": "magnetic resonance imaging",
         "display": "Magnetic Resonance Imaging",
         "count": 62,
-        "specificity": 2.94,
+        "specificity": 2.93,
         "prev_count": 56,
         "trend": "flat",
         "trend_pct": 11
@@ -955,11 +955,11 @@
       {
         "term": "remains challenging due",
         "display": "Remains Challenging Due",
-        "count": 53,
-        "specificity": 1.31,
+        "count": 54,
+        "specificity": 1.32,
         "prev_count": 38,
         "trend": "up",
-        "trend_pct": 39
+        "trend_pct": 42
       },
       {
         "term": "yet their",
@@ -1008,17 +1008,17 @@
     }
   },
   "stats": {
-    "total": 38298,
+    "total": 38300,
     "domains": {
       "world_model": 15775,
       "physical_ai": 12877,
-      "medical_ai": 11917
+      "medical_ai": 11919
     },
     "recent": {
-      "total": 357,
+      "total": 359,
       "world_model": 175,
       "physical_ai": 65,
-      "medical_ai": 129
+      "medical_ai": 131
     },
     "trends": [
       {
@@ -1050,7 +1050,7 @@
         "counts": {
           "world_model": 4275,
           "physical_ai": 3098,
-          "medical_ai": 3381
+          "medical_ai": 3383
         }
       }
     ]
