@@ -191,7 +191,7 @@ function renderFavModalBody() {
     return;
   }
   // 获取所有收藏论文（从缓存）
-  const allCached = [...(feedPapersCache || []), ...(curatedPapersCache || [])];
+  const allCached = [...(feedPapersCache || []), ...allCuratedCached()];
   const seen = new Set();
   const allFav = [...favorites].map(id => {
     const found = allCached.find(p => p.id === id);
@@ -496,6 +496,12 @@ let _curatedManifest = null;      // {domain: {year: [month, ...]}}
 
 function _mergeCurated(lists) {
   return _dedupeById(lists.flat().map(normalizeCurated));
+}
+
+// 把所有已加载的精选缓存（按 domain 分键）拍平成一个数组，
+// 供详情面板 / 收藏弹窗 / 导出按 id 查找。
+function allCuratedCached() {
+  return Object.values(_curatedCache).flat();
 }
 
 async function _loadCuratedManifest() {
@@ -920,9 +926,9 @@ async function openDetail(id) {
     paper = feedPapersCache.find(x => x.id === id) || null;
     if (paper) paper = normalizePaper(paper);
   }
-  // 精选模式：从精选缓存查找
-  if (!paper && state.mode === "curated" && curatedPapersCache) {
-    const raw = curatedPapersCache.find(x => x.id === id) || null;
+  // 精选模式：从精选缓存查找（_curatedCache 按 domain 分键，这里跨所有已加载领域找）
+  if (!paper && state.mode === "curated") {
+    const raw = allCuratedCached().find(x => x.id === id) || null;
     if (raw) paper = normalizePaper(raw);
   }
   // 兜底：尝试 Supabase（feed 模式且本地未命中）
@@ -2077,7 +2083,7 @@ $("#fav-clear").addEventListener("click", () => {
 });
 // ── 导出工具函数 ──────────────────────────────────────────────────────────
 function getFavItems() {
-  const allCached = [...(feedPapersCache || []), ...(curatedPapersCache || [])];
+  const allCached = [...(feedPapersCache || []), ...allCuratedCached()];
   const seen = new Set();
   return [...favorites]
     .map(id => allCached.find(p => p.id === id))
