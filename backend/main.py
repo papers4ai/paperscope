@@ -60,12 +60,15 @@ async def cmd_arxiv_daily(days: int = 3,
         if llm_input:
             print(f"[arxiv] generating AI summaries for {len(llm_input)} papers...")
             await summarize_papers_async(llm_input)
-            id_to_sum = {p["id"]: p for p in llm_input if p.get("summary_zh")}
+            id_to_sum = {p["id"]: p for p in llm_input
+                         if p.get("summary_zh") or p.get("summary_en")}
             for p in kept:
                 hit = id_to_sum.get(p["id"])
                 if hit:
-                    p["summary_zh"] = hit["summary_zh"]
+                    p["summary_zh"] = hit.get("summary_zh", "")
+                    p["summary_en"] = hit.get("summary_en", "")
                     p["insights"] = hit.get("insights", [])
+                    p["insights_en"] = hit.get("insights_en", [])
             print(f"[arxiv] summaries generated for {len(id_to_sum)} papers")
 
     n = upsert_papers(kept)

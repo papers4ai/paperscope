@@ -7,7 +7,7 @@ LLM-based 论文中文 AI 解读：summary_zh (3 句中文摘要) + insights (3 
 环境变量同 llm_classify：
   LLM_API_KEYS / LLM_API_KEY, LLM_BASE_URL, LLM_MODEL
   可选 LLM_CACHE_FILE （默认 output/llm_summary_cache.json）
-  可选 LLM_BATCH_SIZE_SUM (默认 8 - summary 输出 token 多，batch 小一些)
+  可选 LLM_BATCH_SIZE_SUM (默认 4 - 双语 summary 输出 token 多，batch 小避免截断)
   可选 LLM_CONCURRENCY (沿用 llm_classify 默认 10)
 """
 
@@ -27,7 +27,7 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 DEFAULT_CACHE_FILE = "output/llm_summary_cache.json"
-BATCH_SIZE = int(os.environ.get("LLM_BATCH_SIZE_SUM", "8"))
+BATCH_SIZE = int(os.environ.get("LLM_BATCH_SIZE_SUM", "4"))
 CONCURRENCY = int(os.environ.get("LLM_CONCURRENCY", "10"))
 SAVE_EVERY_N_BATCH = int(os.environ.get("LLM_SAVE_EVERY", "1"))
 
@@ -240,7 +240,6 @@ async def summarize_papers_async(papers: List[Dict]) -> List[Dict]:
         return _apply_cached(papers, cache)
 
     batches = [uncached[i:i + BATCH_SIZE] for i in range(0, len(uncached), BATCH_SIZE)]
-    total_batches = len(batches)
     sem = asyncio.Semaphore(CONCURRENCY * len(clients))
     done_count = 0
     lock = asyncio.Lock()
@@ -260,7 +259,7 @@ async def summarize_papers_async(papers: List[Dict]) -> List[Dict]:
         if tqdm is not None else None
     )
 
-    async def process_batch(batch_num: int, batch: List[tuple]) -> None:
+    async def process_batch(batch_num: int, batch: List[tuple], update_pbar: bool = True) -> None:
         nonlocal done_count
         indices = [x[0] for x in batch]
         batch_papers = [x[1] for x in batch]
@@ -273,7 +272,7 @@ async def summarize_papers_async(papers: List[Dict]) -> List[Dict]:
                 logger.error(f"summarize batch {batch_num} failed: {e}")
                 async with lock:
                     done_count += 1
-                    if pbar is not None:
+                    if pbar is not None and update_pbar:
                         pbar.update(len(batch))
                 return
 
@@ -313,13 +312,44 @@ async def summarize_papers_async(papers: List[Dict]) -> List[Dict]:
                 papers[paper_idx]["insights_en"] = insights_en
 
             done_count += 1
-            if pbar is not None:
+            if pbar is not None and update_pbar:
                 pbar.update(len(batch))
-            if done_count % SAVE_EVERY_N_BATCH == 0 or done_count == total_batches:
+            if done_count % SAVE_EVERY_N_BATCH == 0:
                 _save_cache(cache)
 
+    def _pending(entries: List[tuple]) -> List[tuple]:
+        """从 (idx, paper) 列表里挑出仍未拿到解读的——主轮被截断/短数组静默丢掉的。"""
+        out = []
+        for i, p in entries:
+            e = cache.get(p.get("id"))
+            if not (e and (e.get("summary_zh") or e.get("summary_en"))):
+                out.append((i, p))
+        return out
+
     try:
+        # 主轮
         await asyncio.gather(*[process_batch(i, b) for i, b in enumerate(batches)])
+        _save_cache(cache)
+
+        # 捞漏轮：主轮没拿到结果的论文（batch 被截断 / 短数组），用更小 batch 重跑一次。
+        # glm-4-flash 双语输出常截断，batch 越小越不易丢；进度条不再推进（已 100%）。
+        leftover = _pending(uncached)
+        if leftover:
+            retry_batch = max(1, BATCH_SIZE // 2)
+            logger.info(
+                "LLM summarize retry: %d papers had no result, retrying with batch=%d",
+                len(leftover), retry_batch,
+            )
+            rbatches = [leftover[i:i + retry_batch]
+                        for i in range(0, len(leftover), retry_batch)]
+            await asyncio.gather(*[
+                process_batch(10_000 + i, b, update_pbar=False)
+                for i, b in enumerate(rbatches)
+            ])
+            still = _pending(uncached)
+            if still:
+                logger.warning("LLM summarize: %d papers still without summary after retry",
+                               len(still))
     finally:
         if pbar is not None:
             pbar.close()
