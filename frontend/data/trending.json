@@ -70,7 +70,7 @@
         "term": "vision-language-action vla",
         "display": "Vision-language-action VLA",
         "count": 264,
-        "specificity": 2.55
+        "specificity": 2.56
       },
       {
         "term": "fluid dynamics",
@@ -486,7 +486,7 @@
         "term": "embodied agents",
         "display": "Embodied Agents",
         "count": 57,
-        "specificity": 1.89,
+        "specificity": 1.9,
         "prev_count": 26,
         "trend": "up",
         "trend_pct": 100
@@ -567,7 +567,7 @@
         "term": "dexterous grasping",
         "display": "Dexterous Grasping",
         "count": 37,
-        "specificity": 3.04,
+        "specificity": 3.05,
         "prev_count": 5,
         "trend": "up",
         "trend_pct": 100
@@ -839,7 +839,7 @@
         "term": "alzheimer disease",
         "display": "Alzheimer Disease",
         "count": 65,
-        "specificity": 2.86,
+        "specificity": 2.85,
         "prev_count": 70,
         "trend": "flat",
         "trend_pct": -7
@@ -884,7 +884,7 @@
         "term": "magnetic resonance imaging",
         "display": "Magnetic Resonance Imaging",
         "count": 61,
-        "specificity": 2.94,
+        "specificity": 2.93,
         "prev_count": 57,
         "trend": "flat",
         "trend_pct": 7
@@ -899,6 +899,15 @@
         "trend_pct": 2
       },
       {
+        "term": "question answering",
+        "display": "Question Answering",
+        "count": 58,
+        "specificity": 2.51,
+        "prev_count": 47,
+        "trend": "flat",
+        "trend_pct": 23
+      },
+      {
         "term": "brain mri",
         "display": "Brain MRI",
         "count": 58,
@@ -906,15 +915,6 @@
         "prev_count": 42,
         "trend": "up",
         "trend_pct": 38
-      },
-      {
-        "term": "question answering",
-        "display": "Question Answering",
-        "count": 57,
-        "specificity": 2.5,
-        "prev_count": 47,
-        "trend": "flat",
-        "trend_pct": 21
       },
       {
         "term": "whole slide image",
@@ -1002,23 +1002,23 @@
         0.277,
         0.95,
         0.365,
-        0.388
+        0.389
       ],
       "points": "240,149 262,227 282,265 240,402 185,273 182,205"
     }
   },
   "stats": {
-    "total": 44474,
+    "total": 44476,
     "domains": {
       "world_model": 18068,
       "physical_ai": 14096,
-      "medical_ai": 14753
+      "medical_ai": 14755
     },
     "recent": {
-      "total": 319,
+      "total": 321,
       "world_model": 156,
       "physical_ai": 57,
-      "medical_ai": 117
+      "medical_ai": 119
     },
     "trends": [
       {
@@ -1050,7 +1050,7 @@
         "counts": {
           "world_model": 4275,
           "physical_ai": 3098,
-          "medical_ai": 3383
+          "medical_ai": 3385
         }
       }
     ]
