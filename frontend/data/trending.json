@@ -1008,11 +1008,11 @@
     }
   },
   "stats": {
-    "total": 44476,
+    "total": 46098,
     "domains": {
-      "world_model": 18068,
-      "physical_ai": 14096,
-      "medical_ai": 14755
+      "world_model": 18572,
+      "physical_ai": 14350,
+      "medical_ai": 15654
     },
     "recent": {
       "total": 321,
@@ -1040,9 +1040,9 @@
       {
         "year": 2025,
         "counts": {
-          "world_model": 7734,
-          "physical_ai": 5695,
-          "medical_ai": 7876
+          "world_model": 8238,
+          "physical_ai": 5949,
+          "medical_ai": 8775
         }
       },
       {
