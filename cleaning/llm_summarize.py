@@ -15,8 +15,9 @@ import asyncio
 import json
 import logging
 import os
+import re
 import sys
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 try:
     from tqdm import tqdm
@@ -75,6 +76,7 @@ Return a JSON array of length exactly {len(papers)}, in input order:
 [
   {{
     "index": 1,
+    "title": "<copy the paper's title VERBATIM, used to align your output back to the input>",
     "summary_zh": "本文研究...。方法上...。实验表明...。",
     "summary_en": "This paper studies... The method... Experiments show...",
     "insights_zh": ["创新点：...", "方法亮点：...", "关键发现：..."],
@@ -83,6 +85,7 @@ Return a JSON array of length exactly {len(papers)}, in input order:
 ]
 
 Requirements:
+- index/title: index is the input number; title MUST be copied verbatim from the matching paper above (this is how each result is matched back — a wrong title attaches the summary to the wrong paper)
 - summary_zh: 简体中文 3 句，每句独立成意，中性客观（专有名词如 NeRF / Transformer 可保留英文）
 - summary_en: English, 3 sentences, parallel structure to summary_zh
 - insights_*: exactly 3 entries each, focus on one takeaway each, do not repeat summary
@@ -98,6 +101,60 @@ def _strip_json_fence(text: str) -> str:
             text = text[4:]
         text = text.split("```")[0].strip()
     return text
+
+
+def _norm_title(t: str) -> str:
+    """小写 + 去掉所有非字母数字，便于鲁棒比对（容忍标点/空格/大小写差异）。"""
+    return re.sub(r"[^a-z0-9]", "", (t or "").lower())
+
+
+def _title_match(a: str, b: str) -> bool:
+    """判断两个标题是否指同一篇：规范化后相等 / 一方是另一方前缀（容忍截断）/ 词集高度重叠。"""
+    na, nb = _norm_title(a), _norm_title(b)
+    if not na or not nb:
+        return False
+    if na == nb:
+        return True
+    # 容忍模型截断标题：取较短一方至少 15 字符作为前缀比对
+    shorter, longer = (na, nb) if len(na) <= len(nb) else (nb, na)
+    if len(shorter) >= 15 and longer.startswith(shorter):
+        return True
+    # 词集 Jaccard（防止轻微改写/漏词）
+    wa = set(re.findall(r"[a-z0-9]+", (a or "").lower()))
+    wb = set(re.findall(r"[a-z0-9]+", (b or "").lower()))
+    if wa and wb:
+        inter = len(wa & wb)
+        union = len(wa | wb)
+        if union and inter / union >= 0.6:
+            return True
+    return False
+
+
+def _resolve_result_pos(
+    result: Dict, result_k: int, n_results: int, batch_papers: List[Dict]
+) -> Optional[int]:
+    """把一条 LLM 返回结果对应回 batch 内的论文下标（0-based）。
+
+    优先用模型回显的 title 做内容级匹配，避免单纯信任 index 导致张冠李戴：
+      1. title 命中唯一论文 → 用它
+      2. 有 title 但 batch 里没有任何匹配 → 判为越界/幻觉结果，返回 None（宁可丢弃也不污染）
+      3. 无 title / title 歧义 → 退回 index 提示，再退回位置序 k
+    """
+    rtitle = (result.get("title") or "").strip()
+    if rtitle:
+        cands = [i for i, bp in enumerate(batch_papers)
+                 if _title_match(rtitle, bp.get("title", ""))]
+        if len(cands) == 1:
+            return cands[0]
+        if len(cands) == 0:
+            return None  # 标题对不上任何输入论文 → 不要安插到别人头上
+        # len(cands) > 1：标题歧义，落到 index/位置兜底
+    idx = result.get("index")
+    if isinstance(idx, int) and 1 <= idx <= len(batch_papers):
+        return idx - 1
+    if n_results == len(batch_papers) and 0 <= result_k < len(batch_papers):
+        return result_k
+    return None
 
 
 async def _summarize_batch_async(papers: List[Dict], client, model: str) -> List[Dict]:
@@ -221,9 +278,16 @@ async def summarize_papers_async(papers: List[Dict]) -> List[Dict]:
                 return
 
         async with lock:
-            for result in results:
-                idx_in_batch = result.get("index", 0) - 1
-                if not (0 <= idx_in_batch < len(batch_papers)):
+            for result_k, result in enumerate(results):
+                idx_in_batch = _resolve_result_pos(
+                    result, result_k, len(results), batch_papers
+                )
+                if idx_in_batch is None:
+                    logger.warning(
+                        "summarize batch %d: dropped result (index=%r, title=%r) — "
+                        "no confident match to any input paper",
+                        batch_num, result.get("index"), (result.get("title") or "")[:60],
+                    )
                     continue
                 paper_idx = indices[idx_in_batch]
                 paper_id = batch_papers[idx_in_batch].get("id", "")

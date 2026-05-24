@@ -27,7 +27,7 @@ KEEP = [
     "id", "title", "authors", "published", "year", "month",
     "pdf_url", "arxiv_url", "code", "has_code", "type",
     "_domains", "_tasks", "_topics", "venue", "venue_tier", "citation_count",
-    "summary_zh", "insights",
+    "summary_zh", "summary_en", "insights", "insights_en",
 ]
 
 

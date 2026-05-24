@@ -28,7 +28,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from cleaning.llm_summarize import summarize_papers_async
 
 
-def filter_papers(papers: List[Dict], min_citations: int, days: int, take_all: bool) -> List[Dict]:
+def filter_papers(papers: List[Dict], min_citations: int, days: int, take_all: bool,
+                  ids: List[str] | None = None) -> List[Dict]:
+    if ids:
+        want = set(ids)
+        return [p for p in papers if p.get("id") in want]
     if take_all:
         return papers
     cutoff = (date.today() - timedelta(days=days)).isoformat()
@@ -49,6 +53,8 @@ async def main() -> None:
     ap.add_argument("--days", type=int, default=90,
                     help="近 N 天发布的论文进入解读队列 (默认 90)")
     ap.add_argument("--all", action="store_true", help="全量跑（覆盖筛选规则）")
+    ap.add_argument("--ids", help="只跑指定论文 id（逗号分隔，覆盖筛选规则）。"
+                                  "重生成单篇时配合 LLM_SUMMARY_FORCE=1 可强制刷掉旧 cache。")
     ap.add_argument("--limit", type=int, help="只跑前 N 篇（测试用）")
     ap.add_argument("--dry-run", action="store_true", help="不写盘只统计")
     args = ap.parse_args()
@@ -61,13 +67,19 @@ async def main() -> None:
         all_papers = json.load(f)
     print(f"Loaded {len(all_papers):,} papers from {args.input}")
 
-    candidates = filter_papers(all_papers, args.min_citations, args.days, args.all)
+    ids = [s.strip() for s in (args.ids or "").split(",") if s.strip()] or None
+    candidates = filter_papers(all_papers, args.min_citations, args.days, args.all, ids)
+    if ids:
+        found = {p.get("id") for p in candidates}
+        missing = [i for i in ids if i not in found]
+        if missing:
+            print(f"  [warn] {len(missing)} id(s) not found in input: {', '.join(missing)}")
     # 必须有 abstract
     candidates = [p for p in candidates if (p.get("abstract") or "").strip()]
     if args.limit:
         candidates = candidates[:args.limit]
-    print(f"Candidates after filter (min_cite={args.min_citations}, days={args.days}, all={args.all}): "
-          f"{len(candidates):,}")
+    print(f"Candidates after filter (min_cite={args.min_citations}, days={args.days}, "
+          f"all={args.all}, ids={ids}): {len(candidates):,}")
 
     if not candidates:
         print("Nothing to do.")
