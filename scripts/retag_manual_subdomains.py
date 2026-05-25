@@ -40,8 +40,14 @@ def load_patterns() -> dict[str, re.Pattern]:
 
 def retag_file(path: Path, patterns: dict[str, re.Pattern], dry_run: bool) -> int:
     papers = json.loads(path.read_text(encoding="utf-8"))
+    # glob "papers*.json" 也会匹配到 papers_curated_manifest.json 这种非论文列表文件
+    # （dict 结构，遍历得到的是 str key）；这类直接跳过。
+    if not isinstance(papers, list):
+        return 0
     changed = 0
     for p in papers:
+        if not isinstance(p, dict):
+            continue
         text  = (p.get("title") or "") + " " + (p.get("abstract") or "")
         tasks = list(p.get("_tasks") or [])
         for tag, pat in patterns.items():
