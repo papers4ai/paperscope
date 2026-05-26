@@ -28,6 +28,12 @@
         "world action model"
       ],
       "zh": "世界行为模型"
+    },
+    {
+      "en": "Vision Language Action",
+      "keywords": [
+        "Vision Language Action，VLA"
+      ]
     }
   ],
   "physical_ai": [],

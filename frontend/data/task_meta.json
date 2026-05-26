@@ -119,6 +119,10 @@
     "AutonomousDrivingWorldModel": {
       "zh": "自动驾驶世界模型",
       "en": "Autonomous Driving World Model"
+    },
+    "VisionLanguageAction": {
+      "zh": "Vision Language Action",
+      "en": "Vision Language Action"
     }
   },
   "domain_tasks": {
@@ -135,7 +139,8 @@
       "DiffusionWM",
       "RobotWorldModel",
       "WorldActionModel",
-      "AutonomousDrivingWorldModel"
+      "AutonomousDrivingWorldModel",
+      "VisionLanguageAction"
     ],
     "physical_ai": [
       "PINN",
