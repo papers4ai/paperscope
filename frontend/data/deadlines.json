@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-26T21:45:01Z",
+  "generated": "2026-05-27T03:40:40Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 292,
+  "total": 291,
   "conferences": [
-    {
-      "id": "acisp26_20251127",
-      "title": "ACISP",
-      "full_name": "Australasia Conference on Information Security and Privacy",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2025-11-27T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 6-9, 2026",
-      "place": "Perth, Australia",
-      "link": "https://acisp-conference.github.io/acisp2026/index.html",
-      "comment": "1st round Deadline"
-    },
     {
       "id": "caise26_20251128",
       "title": "CAiSE",
