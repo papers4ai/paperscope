@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-27T21:54:24Z",
+  "generated": "2026-05-28T03:29:41Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 291,
+  "total": 290,
   "conferences": [
-    {
-      "id": "caise26_20251128",
-      "title": "CAiSE",
-      "full_name": "International Conference on Advanced Information Systems Engineering",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-11-28T23:59:59+0000",
-      "abstract_deadline": "2025-11-14T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "June 8-12, 2026",
-      "place": "Verona, Italy",
-      "link": "https://caise26.polimi.it/",
-      "comment": ""
-    },
     {
       "id": "pets26_20251130",
       "title": "PETS",
