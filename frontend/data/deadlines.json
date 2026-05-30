@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-29T21:51:50Z",
+  "generated": "2026-05-30T02:56:22Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 290,
+  "total": 289,
   "conferences": [
-    {
-      "id": "pets26_20251130",
-      "title": "PETS",
-      "full_name": "Privacy Enhancing Technologies Symposium",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-11-30T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 20-25, 2026",
-      "place": "Calgary, Canada",
-      "link": "https://petsymposium.org/cfp26.php",
-      "comment": "Issue 3 Paper Submission Deadline"
-    },
     {
       "id": "vldb26_20251201",
       "title": "VLDB",
