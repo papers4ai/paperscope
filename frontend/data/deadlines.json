@@ -1,25 +1,8 @@
 {
-  "generated": "2026-05-30T20:55:44Z",
+  "generated": "2026-05-31T03:42:13Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 289,
+  "total": 288,
   "conferences": [
-    {
-      "id": "vldb26_20251201",
-      "title": "VLDB",
-      "full_name": "International Conference on Very Large Data Bases",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2025-12-01T17:00:00-0700",
-      "abstract_deadline": null,
-      "timezone": "UTC-7",
-      "date": "August 31 - September 4, 2026",
-      "place": "Boston, MA, USA",
-      "link": "https://www.vldb.org/2026/",
-      "comment": ""
-    },
     {
       "id": "socg26_20251202",
       "title": "SOCG",
