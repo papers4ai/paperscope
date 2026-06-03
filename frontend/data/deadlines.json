@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-02T22:23:00Z",
+  "generated": "2026-06-03T03:58:56Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 286,
+  "total": 285,
   "conferences": [
-    {
-      "id": "dsn26_20251204",
-      "title": "DSN",
-      "full_name": "International Conference on Dependable Systems and Networks",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-12-04T23:59:59+0000",
-      "abstract_deadline": "2025-11-27T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "June 22-25, 2026",
-      "place": "Charlotte, USA",
-      "link": "https://dsn2026.github.io",
-      "comment": ""
-    },
     {
       "id": "cpal26_20251205",
       "title": "CPAL",
