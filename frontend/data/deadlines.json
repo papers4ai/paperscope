@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-05T03:39:02Z",
+  "generated": "2026-06-05T08:06:21Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 287,
+  "total": 295,
   "conferences": [
     {
       "id": "icaps26_20251208",
@@ -2968,7 +2968,7 @@
       "sub": "CG",
       "sub_name": "Graphics & Multimedia",
       "ccf": "N",
-      "core": "N",
+      "core": "A*",
       "year": 2026,
       "deadline": "2026-05-12T23:59:00-1200",
       "abstract_deadline": "2026-05-05T23:59:00-1200",
@@ -3200,23 +3200,6 @@
       "comment": "ARR Submission; AACL-IJCNLP 2026 (the 5th AACL & 15th IJCNLP)"
     },
     {
-      "id": "nlpcc2026_20260526",
-      "title": "NLPCC",
-      "full_name": "CCF International Conference on Natural Language Processing and Chinese Computing",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-26T23:59:59+0800",
-      "abstract_deadline": null,
-      "timezone": "UTC+8",
-      "date": "November 3-5, 2026",
-      "place": "Macau, China",
-      "link": "http://tcci.ccf.org.cn/conference/2026/",
-      "comment": ""
-    },
-    {
       "id": "acsac26_20260526",
       "title": "ACSAC",
       "full_name": "Annual Computer Security Applications Conference",
@@ -3444,7 +3427,7 @@
       "sub": "DS",
       "sub_name": "Computer Architecture",
       "ccf": "B",
-      "core": "N",
+      "core": "C",
       "year": 2026,
       "deadline": "2026-06-05T23:59:00+0000",
       "abstract_deadline": "2026-05-29T23:59:00+0000",
@@ -3778,6 +3761,23 @@
       "comment": ""
     },
     {
+      "id": "hicss27_20260615",
+      "title": "HICSS",
+      "full_name": "Hawaii International Conference on System Sciences",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-06-15T23:59:59-1000",
+      "abstract_deadline": null,
+      "timezone": "UTC-10",
+      "date": "January 5-8, 2027",
+      "place": "Big Island, Hawaii, USA",
+      "link": "https://hicss.hawaii.edu/",
+      "comment": "Paper Submission Deadline"
+    },
+    {
       "id": "slt26_20260617",
       "title": "SLT",
       "full_name": "IEEE Spoken Language Technology (SLT) Workshop",
@@ -3792,6 +3792,23 @@
       "date": "December 13-16, 2026",
       "place": "Palermo, Sicily, Italy",
       "link": "https://attend.ieee.org/slt-2026/",
+      "comment": ""
+    },
+    {
+      "id": "nlpcc2026_20260620",
+      "title": "NLPCC",
+      "full_name": "CCF International Conference on Natural Language Processing and Chinese Computing",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-20T23:59:59+0800",
+      "abstract_deadline": null,
+      "timezone": "UTC+8",
+      "date": "November 3-5, 2026",
+      "place": "Macau, China",
+      "link": "http://tcci.ccf.org.cn/conference/2026/",
       "comment": ""
     },
     {
@@ -3931,6 +3948,23 @@
       "comment": "2nd Round"
     },
     {
+      "id": "wine2026_20260702",
+      "title": "WINE",
+      "full_name": "Conference on Web and Internet Economics",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "B",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-07-02T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 1-4, 2026",
+      "place": "Hong Kong, China",
+      "link": "https://wine2026conf.github.io/",
+      "comment": ""
+    },
+    {
       "id": "bibm26_20260705",
       "title": "BIBM",
       "full_name": "IEEE International Conference on Bioinformatics and Biomedicine",
@@ -4039,7 +4073,7 @@
       "sub": "DS",
       "sub_name": "Computer Architecture",
       "ccf": "C",
-      "core": "C",
+      "core": "B",
       "year": 2027,
       "deadline": "2026-07-10T17:00:00+0000",
       "abstract_deadline": "2026-07-03T17:00:00+0000",
@@ -4048,6 +4082,23 @@
       "place": "Hitotsubashi Hall, Tokyo, Japan",
       "link": "https://www.aspdac.com/aspdac2027/",
       "comment": ""
+    },
+    {
+      "id": "sigmetrics27_20260710",
+      "title": "SIGMETRICS",
+      "full_name": "ACM Special Interest Group on Measurement and Evaluation",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-07-10T23:59:00+0000",
+      "abstract_deadline": "2026-07-03T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "June 7-11, 2027",
+      "place": "Atlanta, Georgia, USA",
+      "link": "https://www.sigmetrics.org/sigmetrics2027/",
+      "comment": "summer round"
     },
     {
       "id": "socc26_20260714",
@@ -4118,6 +4169,23 @@
       "comment": ""
     },
     {
+      "id": "hpca27_20260731",
+      "title": "HPCA",
+      "full_name": "IEEE International Symposium on High-Performance Computer Architecture",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-07-31T23:59:59+0000",
+      "abstract_deadline": "2026-07-24T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "Jan 30-Feb 3, 2027",
+      "place": "Salt Lake City, Utah",
+      "link": "https://conf.researchr.org/home/hpca-2027",
+      "comment": ""
+    },
+    {
       "id": "vldb27_20260801",
       "title": "VLDB",
       "full_name": "International Conference on Very Large Data Bases",
@@ -4166,6 +4234,23 @@
       "date": "December 19-21, 2026",
       "place": "Shanghai, China",
       "link": "https://www.cloud-conf.net/cscloud/2026/cscloud/",
+      "comment": ""
+    },
+    {
+      "id": "icaif2026_20260802",
+      "title": "ICAIF",
+      "full_name": "International Conference on AI in Finance",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "N",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-08-02T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 14-17, 2026",
+      "place": "Milan, Italy",
+      "link": "https://icaif2026.org/index.html",
       "comment": ""
     },
     {
@@ -4577,6 +4662,23 @@
       "comment": "Fall Submission Deadline"
     },
     {
+      "id": "saner2027_20260925",
+      "title": "SANER",
+      "full_name": "IEEE International Conference on Software Analysis, Evolution and Reengineering",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-09-25T23:59:59+0000",
+      "abstract_deadline": "2026-09-21T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "March 9-12, 2027",
+      "place": "Richmond, Virginia, United States",
+      "link": "https://conf.researchr.org/home/saner-2027",
+      "comment": "Research Track Paper submission deadline"
+    },
+    {
       "id": "vldb27_20261001",
       "title": "VLDB",
       "full_name": "International Conference on Very Large Data Bases",
@@ -4643,6 +4745,23 @@
       "place": "Lille, France",
       "link": "https://edbticdt2027.github.io/",
       "comment": ""
+    },
+    {
+      "id": "sigmetrics27_20261009",
+      "title": "SIGMETRICS",
+      "full_name": "ACM Special Interest Group on Measurement and Evaluation",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-10-09T23:59:00+0000",
+      "abstract_deadline": "2026-10-02T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "June 7-11, 2027",
+      "place": "Atlanta, Georgia, USA",
+      "link": "https://www.sigmetrics.org/sigmetrics2027/",
+      "comment": "fall round"
     },
     {
       "id": "sigmod27_20261017",
@@ -4813,6 +4932,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "sigmetrics27_20270111",
+      "title": "SIGMETRICS",
+      "full_name": "ACM Special Interest Group on Measurement and Evaluation",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-01-11T23:59:00+0000",
+      "abstract_deadline": "2027-01-04T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "June 7-11, 2027",
+      "place": "Atlanta, Georgia, USA",
+      "link": "https://www.sigmetrics.org/sigmetrics2027/",
+      "comment": "winter round"
     },
     {
       "id": "uss27_20270126",
