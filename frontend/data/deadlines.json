@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-04T21:40:59Z",
+  "generated": "2026-06-05T03:39:02Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 282,
+  "total": 287,
   "conferences": [
     {
       "id": "icaps26_20251208",
@@ -3846,6 +3846,23 @@
       "comment": ""
     },
     {
+      "id": "iceccs26_20260629",
+      "title": "ICECCS",
+      "full_name": "International Conference on Engineering of Complex Computer Systems",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-06-29T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 23-24, 2026",
+      "place": "Brisbane, Australia",
+      "link": "https://formal-analysis.com/iceccs/2026/",
+      "comment": "Abstract submission"
+    },
+    {
       "id": "ictai26_20260630",
       "title": "ICTAI",
       "full_name": "International Conference on Tools with Artificial Intellignce",
@@ -3963,6 +3980,23 @@
       "place": "Osaka, Japan",
       "link": "https://accv2026.org/",
       "comment": ""
+    },
+    {
+      "id": "iceccs26_20260706",
+      "title": "ICECCS",
+      "full_name": "International Conference on Engineering of Complex Computer Systems",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-07-06T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 23-24, 2026",
+      "place": "Brisbane, Australia",
+      "link": "https://formal-analysis.com/iceccs/2026/",
+      "comment": "Full paper submission"
     },
     {
       "id": "popl27_20260709",
@@ -4135,6 +4169,40 @@
       "comment": ""
     },
     {
+      "id": "dai2026_20260803",
+      "title": "DAI",
+      "full_name": "International Conference on Distributed Artificial Intelligence",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-08-03T23:59:59+0000",
+      "abstract_deadline": "2026-07-27T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "November 29-December 2, 2026",
+      "place": "Hong Kong, China",
+      "link": "https://www.adai.ai/dai/2026/index.html",
+      "comment": "Research / Industry Track"
+    },
+    {
+      "id": "eacl27_20260803",
+      "title": "EACL",
+      "full_name": "The Annual Conference of the European Chapter of the Association for Computational Linguistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-08-03T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "March 9-14, 2027",
+      "place": "Athens, Greece",
+      "link": "https://2027.eacl.org/",
+      "comment": ""
+    },
+    {
       "id": "cidr27_20260804",
       "title": "CIDR",
       "full_name": "International Conference on Innovative Data Systems Research",
@@ -4150,6 +4218,23 @@
       "place": "Amsterdam, The Netherlands",
       "link": "https://www.cidrdb.org/cidr2027/",
       "comment": ""
+    },
+    {
+      "id": "dai2026_20260810",
+      "title": "DAI",
+      "full_name": "International Conference on Distributed Artificial Intelligence",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-08-10T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 29-December 2, 2026",
+      "place": "Hong Kong, China",
+      "link": "https://www.adai.ai/dai/2026/index.html",
+      "comment": "AI Paper Track"
     },
     {
       "id": "mmm27_20260816",
