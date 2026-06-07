@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-07T10:28:39Z",
+  "generated": "2026-06-07T13:50:19Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 296,
+  "total": 295,
   "conferences": [
-    {
-      "id": "icaps26_20251208",
-      "title": "ICAPS",
-      "full_name": "International Conference on Automated Planning and Scheduling",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "B",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2025-12-08T23:59:59-1200",
-      "abstract_deadline": "2025-12-02T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "June 27 - July 2, 2026",
-      "place": "Dublin, Ireland",
-      "link": "https://icaps26.icaps-conference.org/",
-      "comment": ""
-    },
     {
       "id": "dimva26_20251210",
       "title": "DIMVA",
