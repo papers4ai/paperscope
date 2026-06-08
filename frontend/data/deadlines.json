@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-07T21:11:59Z",
+  "generated": "2026-06-08T03:54:56Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 295,
+  "total": 296,
   "conferences": [
     {
       "id": "dimva26_20251210",
@@ -4456,6 +4456,23 @@
       "place": "Disney Springs, Buena Vista, FL, USA",
       "link": "https://wacv.thecvf.com/",
       "comment": "Second round"
+    },
+    {
+      "id": "vr27_20260831",
+      "title": "IEEE VR",
+      "full_name": "IEEE Virtual Reality",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-08-31T23:59:59+0000",
+      "abstract_deadline": "2026-08-24T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "February 27 - March 3, 2027",
+      "place": "Melbourne, Australia",
+      "link": "https://ieeevr.org/2027/",
+      "comment": ""
     },
     {
       "id": "pets27_20260831",
