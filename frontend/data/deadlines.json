@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-09T02:58:27Z",
+  "generated": "2026-06-09T07:46:06Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 295,
+  "total": 303,
   "conferences": [
     {
       "id": "osdi2026_20251211",
@@ -1109,6 +1109,23 @@
       "comment": ""
     },
     {
+      "id": "iss26_20260212",
+      "title": "ISS",
+      "full_name": "ACM International Conference on Interactive Surfaces and Spaces",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "B",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-02-12T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 23-26, 2026",
+      "place": "Turin, Italy",
+      "link": "https://iss.acm.org/2026/",
+      "comment": "Winter round"
+    },
+    {
       "id": "soups26_20260212",
       "title": "SOUPS",
       "full_name": "Symposium On Usable Privacy and Security",
@@ -1922,6 +1939,23 @@
       "date": "Sept 14-17, 2026",
       "place": "Conference center of the School of Psychology, University of Padua, Italy",
       "link": "https://e-nns.org/icann2026/",
+      "comment": ""
+    },
+    {
+      "id": "codesisss26_20260330",
+      "title": "CODES+ISSS",
+      "full_name": "International Conference on Hardware/Software Co-design and System Synthesis",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "",
+      "year": 2026,
+      "deadline": "2026-03-30T23:59:59+0000",
+      "abstract_deadline": "2026-03-23T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "October 4-9, 2026",
+      "place": "Barcelona, Spain",
+      "link": "https://esweek.org/codes_isss_cfp/",
       "comment": ""
     },
     {
@@ -3081,6 +3115,23 @@
       "comment": ""
     },
     {
+      "id": "performance26_20260522",
+      "title": "Performance",
+      "full_name": "International Symposium on Computer Performance, Modeling, Measurements and Evaluation",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "",
+      "year": 2026,
+      "deadline": "2026-05-22T23:59:59+0000",
+      "abstract_deadline": "2026-05-15T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "November 3-5, 2026",
+      "place": "Ghent, Belgium",
+      "link": "https://performance2026.github.io/call/",
+      "comment": ""
+    },
+    {
       "id": "icnp26_20260522",
       "title": "ICNP",
       "full_name": "IEEE International Conference on Network Protocols",
@@ -3279,8 +3330,8 @@
       "deadline": "2026-05-31T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD",
-      "place": "TBA (Europe)",
+      "date": "July 19-24, 2027",
+      "place": "Delft, The Netherlands",
       "link": "https://petsymposium.org/cfp27.php",
       "comment": "Issue 1 Paper Submission Deadline"
     },
@@ -3351,6 +3402,23 @@
       "place": "Barcelona, Spain",
       "link": "https://computeranimation.org/",
       "comment": "Submission deadline (posters)"
+    },
+    {
+      "id": "hipeac27_20260601",
+      "title": "HiPEAC",
+      "full_name": "International Conference on High Performance and Embedded Architectures and Compilers",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "",
+      "year": 2027,
+      "deadline": "2026-06-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "January 18-20, 2027",
+      "place": "Glasgow, Scotland, UK",
+      "link": "https://www.hipeac.net/2027/glasgow/#/call-for-papers/",
+      "comment": ""
     },
     {
       "id": "mswim26_20260601",
@@ -3574,7 +3642,7 @@
       "comment": ""
     },
     {
-      "id": "atc2026_20260610",
+      "id": "atc2026_20260611",
       "title": "SIGOPS ATC",
       "full_name": "ACM SIGOPS Annual Technical Conference",
       "sub": "DS",
@@ -3582,7 +3650,7 @@
       "ccf": "A",
       "core": "A",
       "year": 2026,
-      "deadline": "2026-06-10T23:59:59+0000",
+      "deadline": "2026-06-11T11:59:59+0000",
       "abstract_deadline": null,
       "timezone": "UTC+0",
       "date": "November 15-18, 2026",
@@ -3843,6 +3911,23 @@
       "date": "December 6-9, 2026",
       "place": "Hangzhou, China",
       "link": "https://www.algo-door.com/isaac2026/index.html",
+      "comment": ""
+    },
+    {
+      "id": "adma26_20260626",
+      "title": "ADMA",
+      "full_name": "The International Conference on Advanced Data Mining and Applications",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-06-26T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 13 - 15, 2026",
+      "place": "Hong Kong, China",
+      "link": "https://adma2026.github.io/",
       "comment": ""
     },
     {
@@ -4135,6 +4220,23 @@
       "comment": "round 3"
     },
     {
+      "id": "iss26_20260722",
+      "title": "ISS",
+      "full_name": "ACM International Conference on Interactive Surfaces and Spaces",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "B",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-07-22T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 23-26, 2026",
+      "place": "Turin, Italy",
+      "link": "https://iss.acm.org/2026/",
+      "comment": "Summer round"
+    },
+    {
       "id": "aaai27_20260727",
       "title": "AAAI",
       "full_name": "AAAI Conference on Artificial Intelligence",
@@ -4356,6 +4458,23 @@
       "comment": "Fall"
     },
     {
+      "id": "iui27_20260820",
+      "title": "IUI",
+      "full_name": "ACM Conference on Intelligent User Interfaces",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-08-20T23:59:59+0000",
+      "abstract_deadline": "2026-08-13T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "February 8-11, 2027",
+      "place": "Helsinki, Finland",
+      "link": "https://iui.hosting.acm.org/2027/",
+      "comment": ""
+    },
+    {
       "id": "msn26_20260820",
       "title": "MSN",
       "full_name": "International Conference on Mobility, Sensing and Networking",
@@ -4469,8 +4588,8 @@
       "deadline": "2026-08-31T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD",
-      "place": "TBA (Europe)",
+      "date": "July 19-24, 2027",
+      "place": "Delft, The Netherlands",
       "link": "https://petsymposium.org/cfp27.php",
       "comment": "Issue 2 Paper Submission Deadline"
     },
@@ -4575,6 +4694,23 @@
       "place": "Renton, WA, USA",
       "link": "https://www.usenix.org/conference/fast27",
       "comment": "Fall deadline"
+    },
+    {
+      "id": "wcnc27_20260915",
+      "title": "WCNC",
+      "full_name": "Wireless Communications and Networking Conference",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-09-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 5-8, 2027",
+      "place": "Panama City, Panama",
+      "link": "https://wcnc2027.ieee-wcnc.org/",
+      "comment": ""
     },
     {
       "id": "icassp27_20260916",
@@ -4699,8 +4835,8 @@
       "id": "dcc2027_20261002",
       "title": "DCC",
       "full_name": "Data Compression Conference",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
       "ccf": "B",
       "core": "A*",
       "year": 2027,
@@ -4877,8 +5013,8 @@
       "deadline": "2026-11-30T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD",
-      "place": "TBA (Europe)",
+      "date": "July 19-24, 2027",
+      "place": "Delft, The Netherlands",
       "link": "https://petsymposium.org/cfp27.php",
       "comment": "Issue 3 Paper Submission Deadline"
     },
@@ -4996,8 +5132,8 @@
       "deadline": "2027-02-28T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD",
-      "place": "TBA (Europe)",
+      "date": "July 19-24, 2027",
+      "place": "Delft, The Netherlands",
       "link": "https://petsymposium.org/cfp27.php",
       "comment": "Issue 4 Paper Submission Deadline"
     },
