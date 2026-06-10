@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-10T08:06:53Z",
+  "generated": "2026-06-10T15:32:53Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 302,
+  "total": 303,
   "conferences": [
     {
       "id": "conext26_20251212",
@@ -4133,6 +4133,23 @@
       "place": "Hitotsubashi Hall, Tokyo, Japan",
       "link": "https://www.aspdac.com/aspdac2027/",
       "comment": ""
+    },
+    {
+      "id": "ica3pp_20260710",
+      "title": "ICA3PP",
+      "full_name": "International Conference on Algorithms and Architectures for Parallel Processing",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-07-10T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "October 26-28, 2026",
+      "place": "Exeter, UK",
+      "link": "https://hpcn.exeter.ac.uk/ica3pp2026/",
+      "comment": "Paper Submission Due"
     },
     {
       "id": "sigmetrics27_20260710",
