@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-11T08:46:46Z",
+  "generated": "2026-06-11T15:58:41Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 301,
+  "total": 302,
   "conferences": [
     {
       "id": "securecomm26_20251215",
@@ -3767,7 +3767,7 @@
       "sub": "AI",
       "sub_name": "Artificial Intelligence",
       "ccf": "C",
-      "core": "N",
+      "core": "C",
       "year": 2026,
       "deadline": "2026-06-20T23:59:59+0000",
       "abstract_deadline": null,
@@ -3835,7 +3835,7 @@
       "sub": "AI",
       "sub_name": "Artificial Intelligence",
       "ccf": "C",
-      "core": "N",
+      "core": "C",
       "year": 2026,
       "deadline": "2026-06-26T23:59:59+0000",
       "abstract_deadline": null,
@@ -3979,6 +3979,23 @@
       "date": "December 1-4, 2026",
       "place": "Hong Kong, China",
       "link": "https://wine2026conf.github.io/",
+      "comment": ""
+    },
+    {
+      "id": "sigcse27_20260703",
+      "title": "SIGCSE",
+      "full_name": "Technical Symposium on Computer Science Education Conference",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-07-03T23:59:59-1200",
+      "abstract_deadline": "2026-06-26T23:59:59-1200",
+      "timezone": "UTC-12",
+      "date": "February 17-20, 2027",
+      "place": "Sacramento, California, USA",
+      "link": "https://2027.sigcse-ts.acm.org/",
       "comment": ""
     },
     {
@@ -4804,13 +4821,13 @@
       "sub": "CG",
       "sub_name": "Graphics & Multimedia",
       "ccf": "B",
-      "core": "A*",
+      "core": "B",
       "year": 2027,
       "deadline": "2026-10-02T23:59:59+0000",
       "abstract_deadline": null,
-      "timezone": "AoE",
+      "timezone": "PT",
       "date": "March 23-26, 2027",
-      "place": "The Cliff Lodge convention center, Snowbird, Utah, U.S.",
+      "place": "Snowbird, Utah, United States",
       "link": "https://datacompressionconference.org/",
       "comment": ""
     },
