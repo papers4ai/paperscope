@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-12T21:43:19Z",
+  "generated": "2026-06-13T03:36:10Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 302,
   "conferences": [
@@ -3693,23 +3693,6 @@
       "comment": "Submission Due (Conference Track)"
     },
     {
-      "id": "pricai2026_20260613",
-      "title": "PRICAI",
-      "full_name": "Pacific Rim International Conference on Artificial Intelligence",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-06-13T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "Nov 17-20, 2026",
-      "place": "Guangzhou, China",
-      "link": "https://2026.pricai.org/",
-      "comment": ""
-    },
-    {
       "id": "apbc26_20260615",
       "title": "APBC",
       "full_name": "Asia Pacific Bioinformatics Conference",
@@ -3812,23 +3795,6 @@
       "comment": ""
     },
     {
-      "id": "wacv27_20260625",
-      "title": "WACV",
-      "full_name": "IEEE/CVF Winter Conference on Applications of Computer Vision",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-06-25T23:59:59+0000",
-      "abstract_deadline": "2026-06-18T23:59:00+0000",
-      "timezone": "AoE",
-      "date": "Jan 5 - 9, 2027",
-      "place": "Disney Springs, Buena Vista, FL, USA",
-      "link": "https://wacv.thecvf.com/",
-      "comment": "First round"
-    },
-    {
       "id": "acml26_20260626",
       "title": "ACML",
       "full_name": "Asian Conference on Machine Learning",
@@ -3844,6 +3810,23 @@
       "place": "Melbourne, Australia",
       "link": "https://www.acml-conf.org/2026/",
       "comment": "Conference Track"
+    },
+    {
+      "id": "wacv27_20260626",
+      "title": "WACV",
+      "full_name": "IEEE/CVF Winter Conference on Applications of Computer Vision",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-06-26T23:59:59+0000",
+      "abstract_deadline": "2026-06-19T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "Jan 5 - 9, 2027",
+      "place": "Disney Springs, Buena Vista, FL, USA",
+      "link": "https://wacv.thecvf.com/",
+      "comment": "First round"
     },
     {
       "id": "isaac26_20260626",
@@ -3877,6 +3860,23 @@
       "date": "November 13 - 15, 2026",
       "place": "Hong Kong, China",
       "link": "https://adma2026.github.io/",
+      "comment": ""
+    },
+    {
+      "id": "pricai2026_20260627",
+      "title": "PRICAI",
+      "full_name": "Pacific Rim International Conference on Artificial Intelligence",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-06-27T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "Nov 17-20, 2026",
+      "place": "Guangzhou, China",
+      "link": "https://2026.pricai.org/",
       "comment": ""
     },
     {
@@ -4526,7 +4526,7 @@
       "comment": "Cycle 1 Deadline"
     },
     {
-      "id": "wacv27_20260827",
+      "id": "wacv27_20260828",
       "title": "WACV",
       "full_name": "IEEE/CVF Winter Conference on Applications of Computer Vision",
       "sub": "AI",
@@ -4534,8 +4534,8 @@
       "ccf": "N",
       "core": "A",
       "year": 2027,
-      "deadline": "2026-08-27T23:59:59+0000",
-      "abstract_deadline": "2026-08-20T23:59:00+0000",
+      "deadline": "2026-08-28T23:59:59+0000",
+      "abstract_deadline": "2026-08-21T23:59:00+0000",
       "timezone": "AoE",
       "date": "Jan 5 - 9, 2027",
       "place": "Disney Springs, Buena Vista, FL, USA",
