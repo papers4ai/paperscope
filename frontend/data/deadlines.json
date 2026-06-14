@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-13T21:15:29Z",
+  "generated": "2026-06-14T03:57:20Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 302,
+  "total": 301,
   "conferences": [
-    {
-      "id": "securecomm26_20251215",
-      "title": "SecureComm",
-      "full_name": "International Conference on Security and Privacy in Communication Networks",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2025-12-15T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 21-24, 2026",
-      "place": "Lancaster, UK and hybrid",
-      "link": "https://securecomm.eai-conferences.org/2026/",
-      "comment": ""
-    },
     {
       "id": "ics26_20251216",
       "title": "ICS",
