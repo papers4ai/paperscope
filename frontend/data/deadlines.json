@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-14T03:57:20Z",
+  "generated": "2026-06-14T08:17:40Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 301,
+  "total": 305,
   "conferences": [
     {
       "id": "ics26_20251216",
@@ -305,7 +305,7 @@
       "abstract_deadline": null,
       "timezone": "AoE",
       "date": "October 11-15, 2026",
-      "place": "Türkiye",
+      "place": "Antalya, Türkiye",
       "link": "https://ches.iacr.org/2026/",
       "comment": "Schedule for TCHES Volume 2026/3"
     },
@@ -2243,7 +2243,7 @@
       "abstract_deadline": null,
       "timezone": "AoE",
       "date": "October 11-15, 2026",
-      "place": "Türkiye",
+      "place": "Antalya, Türkiye",
       "link": "https://ches.iacr.org/2026/",
       "comment": "Schedule for TCHES Volume 2026/4"
     },
@@ -4152,6 +4152,23 @@
       "comment": "Second round"
     },
     {
+      "id": "ches27_20260715",
+      "title": "CHES",
+      "full_name": "International Conference on Cryptographic Hardware and Embedded Systems",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-07-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD, 2027",
+      "place": "TBD, Americas",
+      "link": "https://ches.iacr.org/2027/",
+      "comment": "Schedule for TCHES Volume 2027/1"
+    },
+    {
       "id": "hotnets26_20260716",
       "title": "HotNets",
       "full_name": "ACM Workshop on Hot Topics in Networks",
@@ -4390,23 +4407,6 @@
       "comment": ""
     },
     {
-      "id": "wsdm27_20260818",
-      "title": "WSDM",
-      "full_name": "International Conference on Web Search and Data Mining",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "B",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-08-18T23:59:59-1200",
-      "abstract_deadline": "2026-08-11T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "February 15 - 19, 2027",
-      "place": "Cordis, Hong Kong SAR, China",
-      "link": "https://wsdm-conference.org/2027/",
-      "comment": ""
-    },
-    {
       "id": "ndss27_20260819",
       "title": "NDSS",
       "full_name": "Network and Distributed System Security (NDSS) Symposium",
@@ -4490,6 +4490,23 @@
       "place": "Macau, China",
       "link": "https://asiaccs2027.cityu.edu.mo/index.html",
       "comment": "1st round Deadline"
+    },
+    {
+      "id": "wsdm27_20260824",
+      "title": "WSDM",
+      "full_name": "International Conference on Web Search and Data Mining",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-08-24T23:59:59-1200",
+      "abstract_deadline": "2026-08-17T23:59:59-1200",
+      "timezone": "UTC-12",
+      "date": "February 15 - 19, 2027",
+      "place": "Cordis, Hong Kong SAR, China",
+      "link": "https://wsdm-conference.org/2027/",
+      "comment": ""
     },
     {
       "id": "uss27_20260825",
@@ -4866,6 +4883,23 @@
       "comment": "fall round"
     },
     {
+      "id": "ches27_20261015",
+      "title": "CHES",
+      "full_name": "International Conference on Cryptographic Hardware and Embedded Systems",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-10-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD, 2027",
+      "place": "TBD, Americas",
+      "link": "https://ches.iacr.org/2027/",
+      "comment": "Schedule for TCHES Volume 2027/2"
+    },
+    {
       "id": "sigmod27_20261017",
       "title": "SIGMOD",
       "full_name": "ACM Conference on Management of Data",
@@ -5053,6 +5087,23 @@
       "comment": "winter round"
     },
     {
+      "id": "ches27_20270115",
+      "title": "CHES",
+      "full_name": "International Conference on Cryptographic Hardware and Embedded Systems",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-01-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD, 2027",
+      "place": "TBD, Americas",
+      "link": "https://ches.iacr.org/2027/",
+      "comment": "Schedule for TCHES Volume 2027/3"
+    },
+    {
       "id": "uss27_20270126",
       "title": "USENIX Security",
       "full_name": "USENIX Security Symposium",
@@ -5119,6 +5170,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "ches27_20270415",
+      "title": "CHES",
+      "full_name": "International Conference on Cryptographic Hardware and Embedded Systems",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-04-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD, 2027",
+      "place": "TBD, Americas",
+      "link": "https://ches.iacr.org/2027/",
+      "comment": "Schedule for TCHES Volume 2027/4"
     }
   ]
 }
