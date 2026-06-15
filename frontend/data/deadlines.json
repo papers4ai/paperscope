@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-14T21:11:59Z",
+  "generated": "2026-06-15T04:10:06Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 305,
+  "total": 304,
   "conferences": [
-    {
-      "id": "ics26_20251216",
-      "title": "ICS",
-      "full_name": "ACM International Conference on Supercomputing",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-12-16T23:59:59+0000",
-      "abstract_deadline": "2025-12-09T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "July 6-9, 2026",
-      "place": "Belfast, Northern Ireland, United Kingdom",
-      "link": "https://dipsa-qub.github.io/ICS2026-webpage/",
-      "comment": "Cycle 1"
-    },
     {
       "id": "gmp26_20251218",
       "title": "GMP",
