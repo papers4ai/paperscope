@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-16T22:11:00Z",
+  "generated": "2026-06-17T04:00:35Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 304,
+  "total": 303,
   "conferences": [
-    {
-      "id": "gmp26_20251218",
-      "title": "GMP",
-      "full_name": "International Conference on Geometric Modeling and Processing",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2025-12-18T23:59:59+0000",
-      "abstract_deadline": "2025-12-16T23:59:59+0000",
-      "timezone": "UTC",
-      "date": "May 27-29, 2026",
-      "place": "Pilsen, Czech Republic",
-      "link": "https://gmp2026.kma.zcu.cz/",
-      "comment": ""
-    },
     {
       "id": "sec26_20251219",
       "title": "SEC",
