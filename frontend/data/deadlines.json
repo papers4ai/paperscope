@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-17T22:00:05Z",
+  "generated": "2026-06-18T03:51:24Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 303,
   "conferences": [
-    {
-      "id": "sec26_20251219",
-      "title": "SEC",
-      "full_name": "IFIP International Information Security Conference",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2025-12-19T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 09 - 11, 2026",
-      "place": "Perth, Australia",
-      "link": "https://ifipsec.org/index.html",
-      "comment": "Submission deadline"
-    },
     {
       "id": "icpr26_20251220",
       "title": "ICPR",
@@ -3860,6 +3843,23 @@
       "date": "November 02-04, 2026",
       "place": "Boca Raton FL, USA",
       "link": "https://ictai.computer.org/2026/",
+      "comment": ""
+    },
+    {
+      "id": "icpads26_20260630",
+      "title": "ICPADS",
+      "full_name": "IEEE International Conference on Parallel and Distributed Systems",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-06-30T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 22-26 2026",
+      "place": "Tokyo, Japan",
+      "link": "https://www.cloud-conf.net/icpads2026",
       "comment": ""
     },
     {
