@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-18T22:07:12Z",
+  "generated": "2026-06-19T04:11:12Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 304,
+  "total": 303,
   "conferences": [
-    {
-      "id": "icpr26_20251220",
-      "title": "ICPR",
-      "full_name": "International Conference on Pattern Recognition",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2025-12-20T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "August 17-21, 2026",
-      "place": "Lyon, France",
-      "link": "https://icpr2026.org/",
-      "comment": ""
-    },
     {
       "id": "ccgrid26_20251221",
       "title": "CCGRID",
