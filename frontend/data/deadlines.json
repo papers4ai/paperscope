@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-19T12:05:33Z",
+  "generated": "2026-06-19T17:56:47Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 304,
   "conferences": [
     {
       "id": "ccgrid26_20251221",
@@ -4693,6 +4693,23 @@
       "date": "March 30 - April 2, 2027",
       "place": "Ghent, Belgium",
       "link": "https://2027.acmmmsys.org",
+      "comment": ""
+    },
+    {
+      "id": "eurocrypt27_20260917",
+      "title": "EUROCRYPT",
+      "full_name": "European Cryptology Conference",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-09-17T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 11-15, 2027",
+      "place": "Eindhoven, Netherlands",
+      "link": "https://eurocrypt.iacr.org/2027/",
       "comment": ""
     },
     {
