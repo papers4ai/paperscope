@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-20T03:33:49Z",
+  "generated": "2026-06-20T07:49:54Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 304,
   "conferences": [
     {
       "id": "icst2026_20251222",
@@ -4847,6 +4847,23 @@
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "fall round"
+    },
+    {
+      "id": "iscas27_20261013",
+      "title": "ISCAS",
+      "full_name": "IEEE International Symposium on Circuits and Systems",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2026-10-13T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 6-9, 2027",
+      "place": "Bordeaux, France",
+      "link": "https://2027.ieee-iscas.org/",
+      "comment": ""
     },
     {
       "id": "ches27_20261015",
