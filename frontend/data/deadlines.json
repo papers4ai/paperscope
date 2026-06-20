@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-19T21:09:57Z",
+  "generated": "2026-06-20T03:33:49Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 304,
+  "total": 303,
   "conferences": [
-    {
-      "id": "ccgrid26_20251221",
-      "title": "CCGRID",
-      "full_name": "IEEE International Symposium on Cluster, Cloud and Internet Computing",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2025-12-21T23:59:59+0000",
-      "abstract_deadline": "2025-12-21T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "May 18-21, 2026",
-      "place": "Sydney, Australia",
-      "link": "https://www.ccgrid2026.org/",
-      "comment": ""
-    },
     {
       "id": "icst2026_20251222",
       "title": "ICST",
