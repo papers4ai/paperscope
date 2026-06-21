@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-20T21:18:07Z",
+  "generated": "2026-06-21T04:05:23Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 304,
+  "total": 303,
   "conferences": [
-    {
-      "id": "icst2026_20251222",
-      "title": "ICST",
-      "full_name": "IEEE International Conference on Software Testing, Verification and Validation",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "C",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-12-22T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "May 18-22, 2026",
-      "place": "Daejeon, South Korea",
-      "link": "https://conf.researchr.org/home/icst-2026",
-      "comment": ""
-    },
     {
       "id": "codaspy2026_20251226",
       "title": "CODASPY",
