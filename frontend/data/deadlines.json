@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-23T07:48:16Z",
+  "generated": "2026-06-23T11:15:43Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 304,
   "conferences": [
     {
       "id": "codaspy2026_20251226",
@@ -4133,6 +4133,23 @@
       "place": "Turin, Italy",
       "link": "https://iss.acm.org/2026/",
       "comment": "Summer round"
+    },
+    {
+      "id": "sigkdd27_20260726",
+      "title": "SIGKDD",
+      "full_name": "ACM Knowledge Discovery and Data Mining",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-07-26T23:59:59+0000",
+      "abstract_deadline": "2026-07-19T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "August 2027 (exact dates TBD)",
+      "place": "San Jose, California, USA",
+      "link": "https://kdd2027.kdd.org/",
+      "comment": "1st round of 2 total rounds"
     },
     {
       "id": "aaai27_20260727",
