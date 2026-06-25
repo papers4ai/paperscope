@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-25T07:41:20Z",
+  "generated": "2026-06-25T10:41:00Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 304,
   "conferences": [
@@ -3659,23 +3659,6 @@
       "comment": ""
     },
     {
-      "id": "acml26_20260626",
-      "title": "ACML",
-      "full_name": "Asian Conference on Machine Learning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-06-26T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 1-4, 2026",
-      "place": "Melbourne, Australia",
-      "link": "https://www.acml-conf.org/2026/",
-      "comment": "Conference Track"
-    },
-    {
       "id": "wacv27_20260626",
       "title": "WACV",
       "full_name": "IEEE/CVF Winter Conference on Applications of Computer Vision",
@@ -3895,6 +3878,23 @@
       "place": "Dallas, USA",
       "link": "https://ieeebibm.org/BIBM2026/",
       "comment": ""
+    },
+    {
+      "id": "acml26_20260705",
+      "title": "ACML",
+      "full_name": "Asian Conference on Machine Learning",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-07-05T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 1-4, 2026",
+      "place": "Melbourne, Australia",
+      "link": "https://www.acml-conf.org/2026/",
+      "comment": "Conference Track"
     },
     {
       "id": "ncmmsc26_20260705",
