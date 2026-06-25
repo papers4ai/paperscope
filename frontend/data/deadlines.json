@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-24T21:21:48Z",
+  "generated": "2026-06-25T03:26:57Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 304,
   "conferences": [
-    {
-      "id": "codaspy2026_20251226",
-      "title": "CODASPY",
-      "full_name": "ACM Conference on Data and Application Security and Privacy",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2025-12-26T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 23-25, 2026",
-      "place": "Frankfurt am Main, Germany",
-      "link": "https://www.codaspy.org/2026/",
-      "comment": ""
-    },
     {
       "id": "secon26_20251230",
       "title": "SECON",
@@ -5016,6 +4999,23 @@
       "date": "August 23 - August 27, 2027",
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
+      "comment": ""
+    },
+    {
+      "id": "osdi2027_20261208",
+      "title": "OSDI",
+      "full_name": "USENIX Symposium on Operating Systems Design and Implementation",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-12-08T22:59:59+0000",
+      "abstract_deadline": "2026-12-01T22:59:59+0000",
+      "timezone": "UTC",
+      "date": "July 7-9, 2027",
+      "place": "Baltimore, MD, USA",
+      "link": "https://www.usenix.org/conference/osdi27",
       "comment": ""
     },
     {
