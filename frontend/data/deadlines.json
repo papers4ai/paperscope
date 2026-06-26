@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-25T21:41:52Z",
+  "generated": "2026-06-26T03:34:54Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 304,
+  "total": 305,
   "conferences": [
     {
       "id": "secon26_20251230",
@@ -4694,6 +4694,23 @@
       "place": "Providence, RI, USA",
       "link": "https://www.usenix.org/conference/nsdi27",
       "comment": ""
+    },
+    {
+      "id": "fc27_20260917",
+      "title": "FC",
+      "full_name": "Financial Cryptography and Data Security",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-09-17T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "February 8-12, 2027",
+      "place": "Barbados (tentative)",
+      "link": "https://fc27.ifca.ai/",
+      "comment": "Submission deadline"
     },
     {
       "id": "date2027_20260920",
