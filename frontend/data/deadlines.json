@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-28T03:40:25Z",
+  "generated": "2026-06-28T07:50:30Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 305,
+  "total": 306,
   "conferences": [
     {
       "id": "secon26_20251230",
@@ -4829,6 +4829,23 @@
       "date": "April 6-9, 2027",
       "place": "Lille, France",
       "link": "https://edbticdt2027.github.io/",
+      "comment": ""
+    },
+    {
+      "id": "aamas27_20261009",
+      "title": "AAMAS",
+      "full_name": "International Conference on Autonomous Agents and Multiagent Systems",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-10-09T11:59:00+0000",
+      "abstract_deadline": "2026-10-02T11:59:00+0000",
+      "timezone": "UTC+0",
+      "date": "May 03, 2027",
+      "place": "Hanoi, Vietnam",
+      "link": "https://openreview.net/group?id=ifaamas.org/AAMAS/2027/Conference",
       "comment": ""
     },
     {
