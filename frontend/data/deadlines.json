@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-28T21:00:41Z",
+  "generated": "2026-06-29T03:45:53Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 306,
+  "total": 305,
   "conferences": [
-    {
-      "id": "secon26_20251230",
-      "title": "SECON",
-      "full_name": "IEEE International Conference on Sensing, Communication, and Networking",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "B",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2025-12-30T23:59:59+0000",
-      "abstract_deadline": "2025-12-08T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "April 27-29, 2026",
-      "place": "Abu Dhabi, UAE",
-      "link": "https://secon2026.ieee-secon.org/important-dates",
-      "comment": ""
-    },
     {
       "id": "icme26_20251231",
       "title": "ICME",
