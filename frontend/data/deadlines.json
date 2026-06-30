@@ -1,25 +1,8 @@
 {
-  "generated": "2026-06-30T10:56:13Z",
+  "generated": "2026-06-30T14:16:13Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 305,
+  "total": 304,
   "conferences": [
-    {
-      "id": "icme26_20251231",
-      "title": "ICME",
-      "full_name": "The IEEE International Conference on Multimedia & Expo",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2025-12-31T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "July 6 - July 10, 2026",
-      "place": "Bangkok, Thailand",
-      "link": "https://2026.ieeeicme.org/",
-      "comment": ""
-    },
     {
       "id": "vldb26_20260101",
       "title": "VLDB",
