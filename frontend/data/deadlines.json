@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-03T02:50:38Z",
+  "generated": "2026-07-03T07:19:17Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 304,
   "conferences": [
     {
       "id": "acl26_20260105",
@@ -4744,6 +4744,23 @@
       "date": "March 23-26, 2027",
       "place": "Snowbird, Utah, United States",
       "link": "https://datacompressionconference.org/",
+      "comment": ""
+    },
+    {
+      "id": "ecir27_20261002",
+      "title": "ECIR",
+      "full_name": "European Conference on Information Retrieval",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-10-02T23:59:59+0000",
+      "abstract_deadline": "2026-09-25T23:59:59+0000",
+      "timezone": "UTC+0",
+      "date": "March 21-25, 2027",
+      "place": "Southampton, UK",
+      "link": "https://ecir2027.co.uk/",
       "comment": ""
     },
     {
