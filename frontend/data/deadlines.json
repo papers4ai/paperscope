@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-05T10:11:14Z",
+  "generated": "2026-07-05T13:28:13Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 304,
+  "total": 303,
   "conferences": [
-    {
-      "id": "acl26_20260105",
-      "title": "ACL",
-      "full_name": "Annual Meeting of the Association for Computational Linguistics",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-01-05T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "July 2 - 7, 2026",
-      "place": "San Diego, California, United States",
-      "link": "https://2026.aclweb.org/",
-      "comment": ""
-    },
     {
       "id": "esorics26_20260109",
       "title": "ESORICS",
