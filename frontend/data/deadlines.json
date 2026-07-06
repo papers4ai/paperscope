@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-06T08:19:15Z",
+  "generated": "2026-07-06T15:29:41Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 304,
   "conferences": [
     {
       "id": "esorics26_20260109",
@@ -4217,6 +4217,23 @@
       "date": "March 9-14, 2027",
       "place": "Athens, Greece",
       "link": "https://2027.eacl.org/",
+      "comment": ""
+    },
+    {
+      "id": "ppopp27_20260803",
+      "title": "PPoPP",
+      "full_name": "ACM SIGPLAN Symposium on Principles & Practice of Parallel Programming",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "A",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-08-03T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "Mar 20-24, 2027",
+      "place": "Salt Lake City, Utah, USA",
+      "link": "https://ppopp27.sigplan.org/",
       "comment": ""
     },
     {
