@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-09T07:36:06Z",
+  "generated": "2026-07-09T10:58:31Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 303,
   "conferences": [
@@ -3642,23 +3642,6 @@
       "comment": ""
     },
     {
-      "id": "iceccs26_20260629",
-      "title": "ICECCS",
-      "full_name": "International Conference on Engineering of Complex Computer Systems",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-06-29T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "November 23-24, 2026",
-      "place": "Brisbane, Australia",
-      "link": "https://formal-analysis.com/iceccs/2026/",
-      "comment": "Abstract submission"
-    },
-    {
       "id": "ictai26_20260630",
       "title": "ICTAI",
       "full_name": "International Conference on Tools with Artificial Intellignce",
@@ -3846,23 +3829,6 @@
       "comment": ""
     },
     {
-      "id": "iceccs26_20260706",
-      "title": "ICECCS",
-      "full_name": "International Conference on Engineering of Complex Computer Systems",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-07-06T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "November 23-24, 2026",
-      "place": "Brisbane, Australia",
-      "link": "https://formal-analysis.com/iceccs/2026/",
-      "comment": "Full paper submission"
-    },
-    {
       "id": "popl27_20260709",
       "title": "POPL",
       "full_name": "ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages",
@@ -4014,6 +3980,23 @@
       "place": "Huntington Beach, CA, USA",
       "link": "https://2027.sigmod.org/",
       "comment": "round 3"
+    },
+    {
+      "id": "iceccs26_20260720",
+      "title": "ICECCS",
+      "full_name": "International Conference on Engineering of Complex Computer Systems",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-07-20T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 23-24, 2026",
+      "place": "Brisbane, Australia",
+      "link": "https://formal-analysis.com/iceccs/2026/",
+      "comment": "Abstract and full paper submission"
     },
     {
       "id": "iss26_20260722",
@@ -4201,6 +4184,23 @@
       "place": "Athens, Greece",
       "link": "https://2027.eacl.org/",
       "comment": ""
+    },
+    {
+      "id": "mmasia26_20260803",
+      "title": "MMAsia",
+      "full_name": "ACM Multimedia Asia",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-08-03T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 15-18, 2026",
+      "place": "VinUniversity, Hanoi, Vietnam",
+      "link": "https://www.mmasia2026.org/",
+      "comment": "Regular Paper / Special Session Submission"
     },
     {
       "id": "ppopp27_20260803",
