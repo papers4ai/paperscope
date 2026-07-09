@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-08T21:06:31Z",
+  "generated": "2026-07-09T02:51:57Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 304,
+  "total": 303,
   "conferences": [
-    {
-      "id": "esorics26_20260109",
-      "title": "ESORICS",
-      "full_name": "European Symposium on Research in Computer Security",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-01-09T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "September 14-18, 2026",
-      "place": "Rome, Italy",
-      "link": "https://sites.google.com/di.uniroma1.it/esorics2026/home",
-      "comment": "First Submission deadline"
-    },
     {
       "id": "ets2026_20260112",
       "title": "ETS",
