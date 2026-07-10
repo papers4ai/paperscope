@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-10T10:52:11Z",
+  "generated": "2026-07-10T14:23:12Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 304,
   "conferences": [
@@ -3880,23 +3880,6 @@
       "comment": ""
     },
     {
-      "id": "ica3pp_20260710",
-      "title": "ICA3PP",
-      "full_name": "International Conference on Algorithms and Architectures for Parallel Processing",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-07-10T23:59:00+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 26-28, 2026",
-      "place": "Exeter, UK",
-      "link": "https://hpcn.exeter.ac.uk/ica3pp2026/",
-      "comment": "Paper Submission Due"
-    },
-    {
       "id": "sigmetrics27_20260710",
       "title": "SIGMETRICS",
       "full_name": "ACM Special Interest Group on Measurement and Evaluation",
@@ -4014,6 +3997,23 @@
       "place": "Turin, Italy",
       "link": "https://iss.acm.org/2026/",
       "comment": "Summer round"
+    },
+    {
+      "id": "ica3pp_20260725",
+      "title": "ICA3PP",
+      "full_name": "International Conference on Algorithms and Architectures for Parallel Processing",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-07-25T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "October 26-28, 2026",
+      "place": "Exeter, UK",
+      "link": "https://hpcn.exeter.ac.uk/ica3pp2026/",
+      "comment": "Paper Submission Due"
     },
     {
       "id": "sigkdd27_20260726",
