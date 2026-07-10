@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-09T21:22:21Z",
+  "generated": "2026-07-10T02:54:04Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 304,
   "conferences": [
     {
       "id": "ets2026_20260112",
@@ -4864,6 +4864,23 @@
       "place": "Huntington Beach, CA, USA",
       "link": "https://2027.sigmod.org/",
       "comment": "round 4"
+    },
+    {
+      "id": "www27_20261018",
+      "title": "WWW",
+      "full_name": "International World Wide Web Conferences",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-10-18T23:59:59+0000",
+      "abstract_deadline": "2026-10-11T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "May 10 - 14, 2027",
+      "place": "Dublin, Ireland",
+      "link": "https://acmweb2027.org/",
+      "comment": ""
     },
     {
       "id": "vldb27_20261101",
