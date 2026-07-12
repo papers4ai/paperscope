@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-12T06:32:42Z",
+  "generated": "2026-07-12T09:49:53Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 304,
   "conferences": [
     {
       "id": "sigmetrics26_20260113",
@@ -5085,6 +5085,23 @@
       "place": "Denver, CO, USA",
       "link": "https://www.usenix.org/conference/usenixsecurity27",
       "comment": "Cycle 2 Deadline"
+    },
+    {
+      "id": "ijcnn2027_20270131",
+      "title": "IJCNN",
+      "full_name": "International Joint Conference on Neural Networks",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-01-31T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "June 14 - 18, 2027",
+      "place": "Cape Town, South Africa",
+      "link": "https://ijcnn.org/2027",
+      "comment": ""
     },
     {
       "id": "vldb27_20270201",
