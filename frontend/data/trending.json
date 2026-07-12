@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-11",
+  "generated": "2026-07-12",
   "months": 6,
   "hot_days": 90,
   "trends": {
@@ -7,19 +7,19 @@
       {
         "term": "video generation",
         "display": "Video Generation",
-        "count": 1622,
+        "count": 1615,
         "specificity": 2.29
       },
       {
         "term": "video diffusion",
         "display": "Video Diffusion",
-        "count": 617,
+        "count": 613,
         "specificity": 2.29
       },
       {
         "term": "autonomous driving",
         "display": "Autonomous Driving",
-        "count": 425,
+        "count": 424,
         "specificity": 2.2
       },
       {
@@ -31,7 +31,7 @@
       {
         "term": "view synthesis",
         "display": "View Synthesis",
-        "count": 361,
+        "count": 359,
         "specificity": 2.29
       },
       {
@@ -43,13 +43,13 @@
       {
         "term": "world modeling",
         "display": "World Modeling",
-        "count": 292,
+        "count": 286,
         "specificity": 2.29
       },
       {
         "term": "scene reconstruction",
         "display": "Scene Reconstruction",
-        "count": 235,
+        "count": 233,
         "specificity": 2.27
       }
     ],
@@ -58,19 +58,19 @@
         "term": "robotic manipulation",
         "display": "Robotic Manipulation",
         "count": 1112,
-        "specificity": 3.39
+        "specificity": 3.4
       },
       {
         "term": "partial differential equations",
         "display": "Partial Differential Equations",
-        "count": 280,
-        "specificity": 3.38
+        "count": 277,
+        "specificity": 3.39
       },
       {
         "term": "vision-language-action vla",
         "display": "Vision-language-action VLA",
         "count": 270,
-        "specificity": 2.52
+        "specificity": 2.53
       },
       {
         "term": "robot manipulation",
@@ -82,19 +82,19 @@
         "term": "dexterous manipulation",
         "display": "Dexterous Manipulation",
         "count": 173,
-        "specificity": 3.26
+        "specificity": 3.27
       },
       {
         "term": "fluid dynamics",
         "display": "Fluid Dynamics",
         "count": 156,
-        "specificity": 3.37
+        "specificity": 3.38
       },
       {
         "term": "molecular dynamics",
         "display": "Molecular Dynamics",
         "count": 104,
-        "specificity": 3.04
+        "specificity": 3.05
       },
       {
         "term": "robot control",
@@ -107,25 +107,25 @@
       {
         "term": "medical image segmentation",
         "display": "Medical Image Segmentation",
-        "count": 673,
+        "count": 667,
         "specificity": 3.02
       },
       {
         "term": "medical imaging",
         "display": "Medical Imaging",
-        "count": 565,
+        "count": 563,
         "specificity": 3.02
       },
       {
         "term": "image analysis",
         "display": "Image Analysis",
-        "count": 296,
+        "count": 295,
         "specificity": 3.02
       },
       {
         "term": "drug discovery",
         "display": "Drug Discovery",
-        "count": 211,
+        "count": 210,
         "specificity": 3.02
       },
       {
@@ -138,13 +138,13 @@
         "term": "language llms",
         "display": "Language Llms",
         "count": 191,
-        "specificity": 1.77
+        "specificity": 1.78
       },
       {
         "term": "image classification",
         "display": "Image Classification",
         "count": 191,
-        "specificity": 2.95
+        "specificity": 2.96
       },
       {
         "term": "computational pathology",
@@ -161,7 +161,7 @@
         "display": "Autonomous Driving",
         "count": 178,
         "specificity": 2.14,
-        "prev_count": 247,
+        "prev_count": 246,
         "trend": "flat",
         "trend_pct": -28
       },
@@ -177,20 +177,20 @@
       {
         "term": "view synthesis",
         "display": "View Synthesis",
-        "count": 139,
+        "count": 138,
         "specificity": 2.26,
-        "prev_count": 222,
+        "prev_count": 221,
         "trend": "down",
-        "trend_pct": -37
+        "trend_pct": -38
       },
       {
         "term": "world modeling",
         "display": "World Modeling",
         "count": 115,
         "specificity": 2.26,
-        "prev_count": 177,
+        "prev_count": 171,
         "trend": "down",
-        "trend_pct": -35
+        "trend_pct": -33
       },
       {
         "term": "video world",
@@ -206,15 +206,15 @@
         "display": "Scene Reconstruction",
         "count": 97,
         "specificity": 2.26,
-        "prev_count": 138,
-        "trend": "down",
-        "trend_pct": -30
+        "prev_count": 136,
+        "trend": "flat",
+        "trend_pct": -29
       },
       {
         "term": "world action",
         "display": "World Action",
         "count": 97,
-        "specificity": 2.05,
+        "specificity": 2.04,
         "prev_count": 26,
         "trend": "up",
         "trend_pct": 100
@@ -229,22 +229,22 @@
         "trend_pct": 4
       },
       {
-        "term": "scene generation",
-        "display": "Scene Generation",
-        "count": 74,
-        "specificity": 1.94,
-        "prev_count": 94,
-        "trend": "flat",
-        "trend_pct": -21
-      },
-      {
         "term": "diffusion transformers",
         "display": "Diffusion Transformers",
         "count": 72,
         "specificity": 2.26,
-        "prev_count": 104,
-        "trend": "down",
-        "trend_pct": -31
+        "prev_count": 102,
+        "trend": "flat",
+        "trend_pct": -29
+      },
+      {
+        "term": "scene generation",
+        "display": "Scene Generation",
+        "count": 70,
+        "specificity": 2.0,
+        "prev_count": 95,
+        "trend": "flat",
+        "trend_pct": -26
       },
       {
         "term": "methods often",
@@ -268,7 +268,7 @@
         "term": "sparse attention",
         "display": "Sparse Attention",
         "count": 53,
-        "specificity": 2.14,
+        "specificity": 2.13,
         "prev_count": 36,
         "trend": "up",
         "trend_pct": 47
@@ -278,7 +278,7 @@
         "display": "Radiance Fields",
         "count": 48,
         "specificity": 2.26,
-        "prev_count": 101,
+        "prev_count": 100,
         "trend": "down",
         "trend_pct": -52
       },
@@ -373,15 +373,6 @@
         "trend_pct": -15
       },
       {
-        "term": "scene understanding",
-        "display": "Scene Understanding",
-        "count": 38,
-        "specificity": 1.68,
-        "prev_count": 72,
-        "trend": "down",
-        "trend_pct": -47
-      },
-      {
         "term": "end-to-end autonomous",
         "display": "End-to-end Autonomous",
         "count": 38,
@@ -398,6 +389,15 @@
         "prev_count": 26,
         "trend": "up",
         "trend_pct": 42
+      },
+      {
+        "term": "scene understanding",
+        "display": "Scene Understanding",
+        "count": 37,
+        "specificity": 1.67,
+        "prev_count": 73,
+        "trend": "down",
+        "trend_pct": -49
       },
       {
         "term": "video synthesis",
@@ -431,35 +431,35 @@
       {
         "term": "vision-language-action vla",
         "display": "Vision-language-action VLA",
-        "count": 117,
-        "specificity": 2.84,
-        "prev_count": 153,
+        "count": 116,
+        "specificity": 2.85,
+        "prev_count": 154,
         "trend": "flat",
-        "trend_pct": -24
+        "trend_pct": -25
       },
       {
         "term": "robot manipulation",
         "display": "Robot Manipulation",
-        "count": 102,
+        "count": 100,
         "specificity": 3.06,
-        "prev_count": 90,
+        "prev_count": 92,
         "trend": "flat",
-        "trend_pct": 13
+        "trend_pct": 9
       },
       {
         "term": "partial differential equations",
         "display": "Partial Differential Equations",
         "count": 97,
-        "specificity": 3.72,
-        "prev_count": 183,
+        "specificity": 3.74,
+        "prev_count": 180,
         "trend": "down",
-        "trend_pct": -47
+        "trend_pct": -46
       },
       {
         "term": "dexterous manipulation",
         "display": "Dexterous Manipulation",
         "count": 51,
-        "specificity": 3.33,
+        "specificity": 3.35,
         "prev_count": 122,
         "trend": "down",
         "trend_pct": -58
@@ -468,7 +468,7 @@
         "term": "flow matching",
         "display": "Flow Matching",
         "count": 43,
-        "specificity": 1.9,
+        "specificity": 1.91,
         "prev_count": 45,
         "trend": "flat",
         "trend_pct": -4
@@ -477,7 +477,7 @@
         "term": "embodied intelligence",
         "display": "Embodied Intelligence",
         "count": 38,
-        "specificity": 2.4,
+        "specificity": 2.41,
         "prev_count": 51,
         "trend": "flat",
         "trend_pct": -25
@@ -486,7 +486,7 @@
         "term": "manipulation policies",
         "display": "Manipulation Policies",
         "count": 35,
-        "specificity": 3.1,
+        "specificity": 3.12,
         "prev_count": 37,
         "trend": "flat",
         "trend_pct": -5
@@ -495,16 +495,16 @@
         "term": "embodied agents",
         "display": "Embodied Agents",
         "count": 33,
-        "specificity": 2.23,
-        "prev_count": 50,
+        "specificity": 2.24,
+        "prev_count": 49,
         "trend": "down",
-        "trend_pct": -34
+        "trend_pct": -33
       },
       {
         "term": "robotic manipulation yet",
         "display": "Robotic Manipulation Yet",
         "count": 31,
-        "specificity": 3.72,
+        "specificity": 3.74,
         "prev_count": 15,
         "trend": "up",
         "trend_pct": 100
@@ -522,7 +522,7 @@
         "term": "fourier operators",
         "display": "Fourier Operators",
         "count": 28,
-        "specificity": 3.72,
+        "specificity": 3.74,
         "prev_count": 12,
         "trend": "up",
         "trend_pct": 100
@@ -531,34 +531,25 @@
         "term": "robot policies",
         "display": "Robot Policies",
         "count": 28,
-        "specificity": 2.74,
+        "specificity": 2.75,
         "prev_count": 20,
         "trend": "up",
         "trend_pct": 40
       },
       {
-        "term": "physics informed",
-        "display": "Physics Informed",
-        "count": 26,
-        "specificity": 3.72,
-        "prev_count": 57,
-        "trend": "down",
-        "trend_pct": -54
-      },
-      {
         "term": "dynamical systems",
         "display": "Dynamical Systems",
         "count": 26,
-        "specificity": 3.22,
-        "prev_count": 28,
+        "specificity": 3.24,
+        "prev_count": 26,
         "trend": "flat",
-        "trend_pct": -7
+        "trend_pct": 0
       },
       {
         "term": "manipulation requires",
         "display": "Manipulation Requires",
         "count": 24,
-        "specificity": 2.79,
+        "specificity": 2.8,
         "prev_count": 28,
         "trend": "flat",
         "trend_pct": -14
@@ -567,7 +558,7 @@
         "term": "human demonstrations",
         "display": "Human Demonstrations",
         "count": 24,
-        "specificity": 2.98,
+        "specificity": 3.45,
         "prev_count": 20,
         "trend": "flat",
         "trend_pct": 20
@@ -576,25 +567,16 @@
         "term": "action generation",
         "display": "Action Generation",
         "count": 24,
-        "specificity": 2.63,
+        "specificity": 2.64,
         "prev_count": 20,
         "trend": "flat",
         "trend_pct": 20
       },
       {
-        "term": "vla policies",
-        "display": "VLA Policies",
-        "count": 24,
-        "specificity": 2.41,
-        "prev_count": 10,
-        "trend": "up",
-        "trend_pct": 100
-      },
-      {
         "term": "uncertainty quantification",
         "display": "Uncertainty Quantification",
         "count": 23,
-        "specificity": 2.19,
+        "specificity": 2.2,
         "prev_count": 29,
         "trend": "flat",
         "trend_pct": -21
@@ -603,25 +585,7 @@
         "term": "articulated objects",
         "display": "Articulated Objects",
         "count": 23,
-        "specificity": 3.42,
-        "prev_count": 8,
-        "trend": "up",
-        "trend_pct": 100
-      },
-      {
-        "term": "human videos",
-        "display": "Human Videos",
-        "count": 23,
-        "specificity": 3.42,
-        "prev_count": 27,
-        "trend": "flat",
-        "trend_pct": -15
-      },
-      {
-        "term": "molecular dynamics simulations",
-        "display": "Molecular Dynamics Simulations",
-        "count": 23,
-        "specificity": 3.42,
+        "specificity": 3.44,
         "prev_count": 8,
         "trend": "up",
         "trend_pct": 100
@@ -630,16 +594,16 @@
         "term": "inverse problems",
         "display": "Inverse Problems",
         "count": 22,
-        "specificity": 2.15,
-        "prev_count": 40,
+        "specificity": 2.16,
+        "prev_count": 39,
         "trend": "down",
-        "trend_pct": -45
+        "trend_pct": -44
       },
       {
         "term": "computational fluid dynamics",
         "display": "Computational Fluid Dynamics",
         "count": 22,
-        "specificity": 3.72,
+        "specificity": 3.74,
         "prev_count": 37,
         "trend": "down",
         "trend_pct": -41
@@ -648,34 +612,52 @@
         "term": "diffusion policy",
         "display": "Diffusion Policy",
         "count": 22,
-        "specificity": 2.34,
+        "specificity": 2.35,
         "prev_count": 35,
         "trend": "down",
         "trend_pct": -37
       },
       {
+        "term": "vla policies",
+        "display": "VLA Policies",
+        "count": 22,
+        "specificity": 2.35,
+        "prev_count": 12,
+        "trend": "up",
+        "trend_pct": 83
+      },
+      {
+        "term": "molecular dynamics simulations",
+        "display": "Molecular Dynamics Simulations",
+        "count": 22,
+        "specificity": 3.43,
+        "prev_count": 9,
+        "trend": "up",
+        "trend_pct": 100
+      },
+      {
         "term": "diffusion policies",
         "display": "Diffusion Policies",
         "count": 21,
-        "specificity": 3.12,
+        "specificity": 3.14,
         "prev_count": 14,
         "trend": "up",
         "trend_pct": 50
       },
       {
-        "term": "contact-rich manipulation",
-        "display": "Contact-rich Manipulation",
+        "term": "human videos",
+        "display": "Human Videos",
         "count": 21,
-        "specificity": 2.6,
-        "prev_count": 45,
-        "trend": "down",
-        "trend_pct": -53
+        "specificity": 3.41,
+        "prev_count": 29,
+        "trend": "flat",
+        "trend_pct": -28
       },
       {
         "term": "challenging because",
         "display": "Challenging Because",
         "count": 20,
-        "specificity": 1.43,
+        "specificity": 1.44,
         "prev_count": 12,
         "trend": "up",
         "trend_pct": 67
@@ -684,66 +666,84 @@
         "term": "mobile manipulation",
         "display": "Mobile Manipulation",
         "count": 20,
-        "specificity": 2.98,
+        "specificity": 2.99,
         "prev_count": 36,
         "trend": "down",
         "trend_pct": -44
       },
       {
-        "term": "object manipulation",
-        "display": "Object Manipulation",
+        "term": "physics-informed framework",
+        "display": "Physics-informed Framework",
         "count": 20,
-        "specificity": 2.86,
-        "prev_count": 32,
-        "trend": "down",
-        "trend_pct": -38
+        "specificity": 3.4,
+        "prev_count": 21,
+        "trend": "flat",
+        "trend_pct": -5
+      },
+      {
+        "term": "legged robots",
+        "display": "Legged Robots",
+        "count": 20,
+        "specificity": 3.25,
+        "prev_count": 25,
+        "trend": "flat",
+        "trend_pct": -20
+      },
+      {
+        "term": "dexterous robotic",
+        "display": "Dexterous Robotic",
+        "count": 19,
+        "specificity": 3.74,
+        "prev_count": 15,
+        "trend": "flat",
+        "trend_pct": 27
       }
     ],
     "medical_ai": [
       {
         "term": "medical image segmentation",
         "display": "Medical Image Segmentation",
-        "count": 246,
+        "count": 231,
         "specificity": 2.93,
-        "prev_count": 427,
+        "prev_count": 436,
         "trend": "down",
-        "trend_pct": -42
+        "trend_pct": -47
       },
       {
         "term": "medical imaging",
         "display": "Medical Imaging",
         "count": 200,
         "specificity": 2.93,
-        "prev_count": 365,
+        "prev_count": 363,
         "trend": "down",
         "trend_pct": -45
       },
       {
         "term": "report generation",
         "display": "Report Generation",
-        "count": 94,
+        "count": 89,
         "specificity": 2.93,
-        "prev_count": 101,
+        "prev_count": 106,
         "trend": "flat",
-        "trend_pct": -7
+        "trend_pct": -16
       },
       {
         "term": "drug discovery",
         "display": "Drug Discovery",
-        "count": 87,
+        "count": 83,
         "specificity": 2.93,
-        "prev_count": 124,
+        "prev_count": 127,
         "trend": "down",
-        "trend_pct": -30
+        "trend_pct": -35
       },
       {
         "term": "language llms",
         "display": "Language Llms",
-        "count": 78,
-        "specificity": 1.82,
-        "prev_count": 113,
+        "count": 77,
+        "specificity": 1.81,
+        "prev_count": 114,
         "trend": "down",
-        "trend_pct": -31
+        "trend_pct": -32
       },
       {
         "term": "brain tumor",
@@ -840,9 +840,9 @@
         "display": "Artificial Intelligence",
         "count": 51,
         "specificity": 1.64,
-        "prev_count": 82,
+        "prev_count": 81,
         "trend": "down",
-        "trend_pct": -38
+        "trend_pct": -37
       },
       {
         "term": "magnetic resonance imaging",
@@ -937,20 +937,20 @@
       {
         "term": "medical image analysis",
         "display": "Medical Image Analysis",
-        "count": 43,
+        "count": 42,
         "specificity": 2.93,
-        "prev_count": 121,
+        "prev_count": 122,
         "trend": "down",
-        "trend_pct": -64
+        "trend_pct": -66
       },
       {
         "term": "treatment planning",
         "display": "Treatment Planning",
         "count": 41,
         "specificity": 2.86,
-        "prev_count": 48,
+        "prev_count": 46,
         "trend": "flat",
-        "trend_pct": -15
+        "trend_pct": -11
       },
       {
         "term": "clinical reasoning",
@@ -976,35 +976,35 @@
     "world_model": {
       "scores": [
         0.95,
-        0.515,
-        0.852,
-        0.484,
+        0.517,
+        0.853,
+        0.486,
         0.351,
-        0.281
+        0.282
       ],
-      "points": "240,78 317,194 368,317 240,322 187,272 198,215"
+      "points": "240,78 318,193 368,317 240,323 187,272 198,215"
     },
     "physical_ai": {
       "scores": [
         0.339,
         0.95,
-        0.936,
-        0.32,
-        0.25,
+        0.94,
+        0.321,
+        0.251,
         0.312
       ],
-      "points": "240,182 382,154 380,324 240,294 202,262 193,212"
+      "points": "240,182 382,154 381,325 240,295 202,263 193,212"
     },
     "medical_ai": {
       "scores": [
-        0.563,
-        0.145,
-        0.288,
+        0.567,
+        0.146,
+        0.287,
         0.95,
-        0.333,
-        0.39
+        0.334,
+        0.391
       ],
-      "points": "240,144 262,227 283,266 240,402 190,270 182,205"
+      "points": "240,144 262,227 283,266 240,402 190,270 181,205"
     }
   },
   "stats": {
@@ -1015,10 +1015,10 @@
       "medical_ai": 17210
     },
     "recent": {
-      "total": 284,
-      "world_model": 135,
-      "physical_ai": 67,
-      "medical_ai": 94
+      "total": 252,
+      "world_model": 120,
+      "physical_ai": 59,
+      "medical_ai": 84
     },
     "trends": [
       {
@@ -1059,9 +1059,9 @@
     {
       "topic": "Medical Image Segmentation",
       "domain": "medical_ai",
-      "count": 246,
+      "count": 231,
       "trend": "down",
-      "trend_pct": -42
+      "trend_pct": -47
     },
     {
       "topic": "Medical Imaging",
@@ -1087,16 +1087,16 @@
     {
       "topic": "View Synthesis",
       "domain": "world_model",
-      "count": 139,
+      "count": 138,
       "trend": "down",
-      "trend_pct": -37
+      "trend_pct": -38
     },
     {
       "topic": "Vision-language-action VLA",
       "domain": "physical_ai",
-      "count": 117,
+      "count": 116,
       "trend": "flat",
-      "trend_pct": -24
+      "trend_pct": -25
     }
   ],
   "predictions": [
@@ -1116,10 +1116,10 @@
     {
       "topic": "Vision-language-action VLA",
       "domain": "physical_ai",
-      "count": 117,
+      "count": 116,
       "share_pct": 23,
       "trend": "flat",
-      "trend_pct": -24,
+      "trend_pct": -25,
       "icon": "⚡",
       "keywords": [
         "vision-language-action",
@@ -1129,10 +1129,10 @@
     {
       "topic": "Medical Image Segmentation",
       "domain": "medical_ai",
-      "count": 246,
-      "share_pct": 27,
+      "count": 231,
+      "share_pct": 26,
       "trend": "down",
-      "trend_pct": -42,
+      "trend_pct": -47,
       "icon": "💡",
       "keywords": [
         "medical",
