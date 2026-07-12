@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-11T20:44:38Z",
+  "generated": "2026-07-12T02:37:06Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 304,
+  "total": 303,
   "conferences": [
-    {
-      "id": "ets2026_20260112",
-      "title": "ETS",
-      "full_name": "IEEE European Test Symposium",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-01-12T23:59:59+0000",
-      "abstract_deadline": "2025-12-15T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "May 25-29, 2026",
-      "place": "Chania, Greec",
-      "link": "https://ets2026.uniwa.gr/",
-      "comment": ""
-    },
     {
       "id": "sigmetrics26_20260113",
       "title": "SIGMETRICS",
