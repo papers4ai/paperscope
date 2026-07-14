@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-14T09:57:04Z",
+  "generated": "2026-07-14T13:40:17Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 302,
   "conferences": [
-    {
-      "id": "ccs26_20260114",
-      "title": "CCS",
-      "full_name": "ACM Conference on Computer and Communications Security",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-01-14T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "November 15-19, 2026",
-      "place": "World Forum, Hague, Netherlands",
-      "link": "https://www.sigsac.org/ccs/CCS2026/",
-      "comment": "First Review Cycle"
-    },
     {
       "id": "ksem26_20260115",
       "title": "KSEM",
