@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-14T02:23:30Z",
+  "generated": "2026-07-14T06:09:50Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 303,
   "conferences": [
@@ -3999,7 +3999,7 @@
       "comment": "1st round of 2 total rounds"
     },
     {
-      "id": "aaai27_20260727",
+      "id": "aaai27_20260728",
       "title": "AAAI",
       "full_name": "AAAI Conference on Artificial Intelligence",
       "sub": "AI",
@@ -4007,8 +4007,8 @@
       "ccf": "A",
       "core": "A*",
       "year": 2027,
-      "deadline": "2026-07-27T23:59:59-1200",
-      "abstract_deadline": "2026-07-20T23:59:59-1200",
+      "deadline": "2026-07-28T23:59:59-1200",
+      "abstract_deadline": "2026-07-21T23:59:59-1200",
       "timezone": "UTC-12",
       "date": "February 16-23, 2027",
       "place": "Montréal, Québec, Canada",
