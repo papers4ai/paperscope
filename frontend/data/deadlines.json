@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-15T06:12:55Z",
+  "generated": "2026-07-15T10:01:21Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 300,
   "conferences": [
-    {
-      "id": "fg26_20260115",
-      "title": "FG",
-      "full_name": "International Conference on Automatic Face and Gesture Recognition",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-01-15T23:59:59-0800",
-      "abstract_deadline": "2026-01-09T23:59:59-0800",
-      "timezone": "UTC-8",
-      "date": "May 25-29, 2026",
-      "place": "Kyoto, Japan",
-      "link": "https://fg2026.ieee-biometrics.org/",
-      "comment": "Round 2"
-    },
     {
       "id": "isit26_20260116",
       "title": "ISIT",
@@ -4286,6 +4269,23 @@
       "place": "Denver, CO, USA",
       "link": "https://www.usenix.org/conference/usenixsecurity27",
       "comment": "Cycle 1 Deadline"
+    },
+    {
+      "id": "3dv2027_20260828",
+      "title": "3DV",
+      "full_name": "International Conference on 3D Vision",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-08-28T11:00:00-0700",
+      "abstract_deadline": null,
+      "timezone": "UTC-7",
+      "date": "April 6-9, 2027",
+      "place": "Thessaloniki, Greece",
+      "link": "https://3dvconf.github.io/2027/",
+      "comment": "Supplementary material due Sep 2, 2026. All deadlines are 11:00 am PDT."
     },
     {
       "id": "wacv27_20260828",
