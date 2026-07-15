@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-15T10:01:21Z",
+  "generated": "2026-07-15T13:40:25Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 300,
+  "total": 301,
   "conferences": [
     {
       "id": "isit26_20260116",
@@ -4659,6 +4659,23 @@
       "date": "July 12-16, 2027",
       "place": "Shenzhen, China",
       "link": "https://conf.researchr.org/home/fse-2027",
+      "comment": ""
+    },
+    {
+      "id": "icc27_20261002",
+      "title": "ICC",
+      "full_name": "IEEE International Conference on Communications",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-10-02T23:59:59-0400",
+      "abstract_deadline": null,
+      "timezone": "UTC-4",
+      "date": "May 30 - June 3, 2027",
+      "place": "Washington, DC, USA",
+      "link": "https://icc2027.ieee-icc.org",
       "comment": ""
     },
     {
