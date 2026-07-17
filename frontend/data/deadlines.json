@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-16T20:56:04Z",
+  "generated": "2026-07-17T02:31:11Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 299,
+  "total": 298,
   "conferences": [
-    {
-      "id": "sigmod27_20260117",
-      "title": "SIGMOD",
-      "full_name": "ACM Conference on Management of Data",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2027,
-      "deadline": "2026-01-17T23:59:00+0000",
-      "abstract_deadline": "2026-01-10T23:59:00+0000",
-      "timezone": "AoE",
-      "date": "June 13-19, 2027",
-      "place": "Huntington Beach, CA, USA",
-      "link": "https://2027.sigmod.org/",
-      "comment": "round 1"
-    },
     {
       "id": "cf2026_20260119",
       "title": "CF",
