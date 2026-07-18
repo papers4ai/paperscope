@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-18T09:23:58Z",
+  "generated": "2026-07-18T13:11:31Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 298,
   "conferences": [
@@ -4022,7 +4022,7 @@
       "sub": "CG",
       "sub_name": "Graphics & Multimedia",
       "ccf": "C",
-      "core": "N",
+      "core": "C",
       "year": 2026,
       "deadline": "2026-08-03T23:59:59+0000",
       "abstract_deadline": null,
@@ -4392,11 +4392,11 @@
     {
       "id": "wcnc27_20260915",
       "title": "WCNC",
-      "full_name": "Wireless Communications and Networking Conference",
+      "full_name": "IEEE Wireless Communications and Networking Conference",
       "sub": "NW",
       "sub_name": "Network Systems",
       "ccf": "C",
-      "core": "N",
+      "core": "B",
       "year": 2027,
       "deadline": "2026-09-15T23:59:59+0000",
       "abstract_deadline": null,
