@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-19T09:50:50Z",
+  "generated": "2026-07-19T13:14:35Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 299,
+  "total": 298,
   "conferences": [
-    {
-      "id": "ijcai26_20260119",
-      "title": "IJCAI",
-      "full_name": "International Joint Conference on Artificial Intelligence",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "B",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-01-19T23:59:59-1200",
-      "abstract_deadline": "2026-01-12T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "August 15-21, 2026",
-      "place": "Bremen, Germany",
-      "link": "https://2026.ijcai.org/",
-      "comment": ""
-    },
     {
       "id": "icdf2c26_20260120",
       "title": "ICDF2C",
