@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-20T10:50:36Z",
+  "generated": "2026-07-20T14:02:19Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 303,
+  "total": 302,
   "conferences": [
-    {
-      "id": "icdf2c26_20260120",
-      "title": "ICDF2C",
-      "full_name": "International Conference on Digital Forensics & Cyber Crime",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-01-20T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "September 8-10, 2026",
-      "place": "Reykjavik, Iceland",
-      "link": "https://icdf2c.eai-conferences.org/2026/",
-      "comment": ""
-    },
     {
       "id": "icdcs26_20260121",
       "title": "ICDCS",
