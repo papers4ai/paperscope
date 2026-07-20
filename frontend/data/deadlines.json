@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-20T02:48:50Z",
+  "generated": "2026-07-20T06:44:13Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 298,
   "conferences": [
@@ -3704,8 +3704,8 @@
       "deadline": "2026-07-15T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD, 2027",
-      "place": "TBD, Americas",
+      "date": "September 6 - 9, 2027",
+      "place": "Cancún, Mexico",
       "link": "https://ches.iacr.org/2027/",
       "comment": "Schedule for TCHES Volume 2027/1"
     },
@@ -4673,8 +4673,8 @@
       "deadline": "2026-10-15T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD, 2027",
-      "place": "TBD, Americas",
+      "date": "September 6 - 9, 2027",
+      "place": "Cancún, Mexico",
       "link": "https://ches.iacr.org/2027/",
       "comment": "Schedule for TCHES Volume 2027/2"
     },
@@ -4945,8 +4945,8 @@
       "deadline": "2027-01-15T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD, 2027",
-      "place": "TBD, Americas",
+      "date": "September 6 - 9, 2027",
+      "place": "Cancún, Mexico",
       "link": "https://ches.iacr.org/2027/",
       "comment": "Schedule for TCHES Volume 2027/3"
     },
@@ -5064,8 +5064,8 @@
       "deadline": "2027-04-15T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD, 2027",
-      "place": "TBD, Americas",
+      "date": "September 6 - 9, 2027",
+      "place": "Cancún, Mexico",
       "link": "https://ches.iacr.org/2027/",
       "comment": "Schedule for TCHES Volume 2027/4"
     }
