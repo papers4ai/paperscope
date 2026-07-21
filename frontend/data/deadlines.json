@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-20T21:11:41Z",
+  "generated": "2026-07-21T02:32:18Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 302,
+  "total": 301,
   "conferences": [
-    {
-      "id": "icdcs26_20260121",
-      "title": "ICDCS",
-      "full_name": "IEEE International Conference on Distributed Computing Systems",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-01-21T23:59:59+0000",
-      "abstract_deadline": "2026-01-21T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "June 22-25, 2026",
-      "place": "Seoul, South Korea",
-      "link": "http://icdcs2026.icdcs.org/",
-      "comment": ""
-    },
     {
       "id": "siggraph26_20260122",
       "title": "ACM SIGGRAPH",
