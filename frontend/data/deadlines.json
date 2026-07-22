@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-22T10:24:01Z",
+  "generated": "2026-07-22T13:49:11Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 298,
+  "total": 299,
   "conferences": [
     {
       "id": "acns26_20260123",
@@ -2636,7 +2636,7 @@
       "date": "October 24 - 29, 2026",
       "place": "Budapest, Hungary",
       "link": "https://2026.emnlp.org/",
-      "comment": ""
+      "comment": "ARR Submission; commitment deadline: 2026-08-02"
     },
     {
       "id": "ijcnlp2026_20260525",
@@ -2651,9 +2651,9 @@
       "abstract_deadline": null,
       "timezone": "UTC-12",
       "date": "Nov 6-10, 2026",
-      "place": "Hengqin, China",
+      "place": "Hengqin, Zhuhai, China",
       "link": "https://2026.aaclnet.org/",
-      "comment": "ARR Submission; AACL-IJCNLP 2026 (the 5th AACL & 15th IJCNLP)"
+      "comment": "ARR Submission; commitment deadline: 2026-08-02; AACL-IJCNLP 2026 (the 5th AACL & 15th IJCNLP)"
     },
     {
       "id": "acsac26_20260526",
@@ -3914,23 +3914,6 @@
       "comment": "Research / Industry Track"
     },
     {
-      "id": "eacl27_20260803",
-      "title": "EACL",
-      "full_name": "The Annual Conference of the European Chapter of the Association for Computational Linguistics",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-08-03T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "March 9-14, 2027",
-      "place": "Athens, Greece",
-      "link": "https://2027.eacl.org/",
-      "comment": ""
-    },
-    {
       "id": "mmasia26_20260803",
       "title": "MMAsia",
       "full_name": "ACM Multimedia Asia",
@@ -3963,6 +3946,23 @@
       "place": "Salt Lake City, Utah, USA",
       "link": "https://ppopp27.sigplan.org/",
       "comment": ""
+    },
+    {
+      "id": "eacl27_20260803",
+      "title": "EACL",
+      "full_name": "The Annual Conference of the European Chapter of the Association for Computational Linguistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-08-03T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "March 9-14, 2027",
+      "place": "Athens, Greece",
+      "link": "https://2027.eacl.org/",
+      "comment": "ARR Submission; commitment deadline: 2026-10-11"
     },
     {
       "id": "csfw27_20260803",
@@ -4643,6 +4643,23 @@
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "fall round"
+    },
+    {
+      "id": "naacl27_20261012",
+      "title": "NAACL",
+      "full_name": "The Annual Conference of the North American Chapter of the Association for Computational Linguistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-10-12T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "June 1-5, 2027",
+      "place": "San Francisco, California, USA",
+      "link": "https://2027.naacl.org/",
+      "comment": "ARR Submission"
     },
     {
       "id": "iscas27_20261013",
