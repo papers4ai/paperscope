@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-24T10:15:10Z",
+  "generated": "2026-07-24T13:41:56Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 297,
+  "total": 298,
   "conferences": [
     {
       "id": "bis2026_20260125",
@@ -4218,6 +4218,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "mobicom27_20260902",
+      "title": "MobiCom",
+      "full_name": "ACM Annual International Conference On Mobile Computing And Networking",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-09-02T23:59:59+0000",
+      "abstract_deadline": "2026-08-26T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "Oct 18-22, 2027",
+      "place": "TBD",
+      "link": "https://www.sigmobile.org/mobicom/2027/",
+      "comment": "Summer Deadlines"
     },
     {
       "id": "asplos27_20260909",
