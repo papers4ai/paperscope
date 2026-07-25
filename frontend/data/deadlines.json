@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-24T21:02:06Z",
+  "generated": "2026-07-25T02:30:59Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 298,
+  "total": 297,
   "conferences": [
-    {
-      "id": "bis2026_20260125",
-      "title": "BIS",
-      "full_name": "International Conference on Business Information Systems",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "N",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-01-25T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 10-12, 2026",
-      "place": "Prague, Czech Republic",
-      "link": "https://bisconf.org/2026/",
-      "comment": ""
-    },
     {
       "id": "gecco26_20260126",
       "title": "GECCO",
