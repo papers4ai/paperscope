@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-25T20:51:10Z",
+  "generated": "2026-07-26T02:38:14Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 297,
+  "total": 296,
   "conferences": [
-    {
-      "id": "gecco26_20260126",
-      "title": "GECCO",
-      "full_name": "Genetic and Evolutionary Computation Conference",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-01-26T23:59:00+0000",
-      "abstract_deadline": "2026-01-19T23:59:00+0000",
-      "timezone": "AoE",
-      "date": "July 13-17, 2026",
-      "place": "San José, Costa Rica (hybrid)",
-      "link": "https://gecco-2026.sigevo.org/HomePage",
-      "comment": "Full papers (traditional category) "
-    },
     {
       "id": "cav26_20260128",
       "title": "CAV",
