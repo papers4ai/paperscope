@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-27T21:08:53Z",
+  "generated": "2026-07-28T02:25:28Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 301,
   "conferences": [
-    {
-      "id": "cav26_20260128",
-      "title": "CAV",
-      "full_name": "International Conference on Computer-Aided Verification",
-      "sub": "CT",
-      "sub_name": "Computing Theory",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-01-28T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 26-29, 2026",
-      "place": "Lisbon, Portugal",
-      "link": "https://conferences.i-cav.org/2026/",
-      "comment": ""
-    },
     {
       "id": "icml26_20260129",
       "title": "ICML",
@@ -4370,6 +4353,23 @@
       "date": "April 5-8, 2027",
       "place": "Panama City, Panama",
       "link": "https://wcnc2027.ieee-wcnc.org/",
+      "comment": ""
+    },
+    {
+      "id": "icra27_20260915",
+      "title": "ICRA",
+      "full_name": "IEEE International Conference on Robotics and Automation",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-09-15T23:59:59-0700",
+      "abstract_deadline": null,
+      "timezone": "UTC-7",
+      "date": "May 24-28, 2027",
+      "place": "Seoul, Republic of Korea",
+      "link": "https://2027.ieee-icra.org/",
       "comment": ""
     },
     {
