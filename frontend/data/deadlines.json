@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-28T10:33:03Z",
+  "generated": "2026-07-28T14:03:23Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 301,
+  "total": 300,
   "conferences": [
-    {
-      "id": "icml26_20260129",
-      "title": "ICML",
-      "full_name": "International Conference on Machine Learning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-01-29T11:59:59+0000",
-      "abstract_deadline": "2026-01-24T11:59:59+0000",
-      "timezone": "UTC+0",
-      "date": "July 6-12, 2026",
-      "place": "Seoul, Korea",
-      "link": "https://icml.cc/Conferences/2026",
-      "comment": "Paper Submissions Open on OpenReview Jan 08 2026 12:00AM UTC-0"
-    },
     {
       "id": "hpdc2026_20260129",
       "title": "HPDC",
