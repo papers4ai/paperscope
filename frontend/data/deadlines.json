@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-29T10:37:06Z",
+  "generated": "2026-07-29T14:06:52Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 299,
+  "total": 298,
   "conferences": [
-    {
-      "id": "csfw26_20260129",
-      "title": "CSFW",
-      "full_name": "IEEE Computer Security Foundations Symposium",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-01-29T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "July 26-29, 2026",
-      "place": "Lisbon, Portugal",
-      "link": "https://csf2026.ieee-security.org/",
-      "comment": "Winter"
-    },
     {
       "id": "rss26_20260130",
       "title": "RSS",
