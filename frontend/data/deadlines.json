@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-29T02:29:46Z",
+  "generated": "2026-07-29T06:29:32Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 298,
+  "total": 299,
   "conferences": [
     {
       "id": "csfw26_20260129",
@@ -4319,6 +4319,23 @@
       "date": "May 24-28, 2027",
       "place": "Seoul, Republic of Korea",
       "link": "https://2027.ieee-icra.org/",
+      "comment": ""
+    },
+    {
+      "id": "iclr27_20260916",
+      "title": "ICLR",
+      "full_name": "International Conference on Learning Representations",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-09-16T23:59:59+0000",
+      "abstract_deadline": "2026-09-11T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "April 27-30, 2027",
+      "place": "San Francisco, CA, USA",
+      "link": "https://iclr.cc/Conferences/2027",
       "comment": ""
     },
     {
