@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-29T17:13:29Z",
+  "generated": "2026-07-30T02:11:51Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 298,
+  "total": 297,
   "conferences": [
-    {
-      "id": "rss26_20260130",
-      "title": "RSS",
-      "full_name": "Robotics Science and Systems",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-01-30T23:59:00+0000",
-      "abstract_deadline": "2026-01-23T23:59:00+0000",
-      "timezone": "AoE",
-      "date": "July 13-17, 2026",
-      "place": "Sydney, Australia",
-      "link": "https://roboticsconference.org",
-      "comment": ""
-    },
     {
       "id": "compsac26_20260131",
       "title": "COMPSAC",
