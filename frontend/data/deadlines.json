@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-30T02:11:51Z",
+  "generated": "2026-07-30T06:26:44Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 297,
   "conferences": [
@@ -4288,23 +4288,6 @@
       "comment": ""
     },
     {
-      "id": "iclr27_20260916",
-      "title": "ICLR",
-      "full_name": "International Conference on Learning Representations",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2027,
-      "deadline": "2026-09-16T23:59:59+0000",
-      "abstract_deadline": "2026-09-11T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "April 27-30, 2027",
-      "place": "San Francisco, CA, USA",
-      "link": "https://iclr.cc/Conferences/2027",
-      "comment": ""
-    },
-    {
       "id": "icassp27_20260916",
       "title": "ICASSP",
       "full_name": "IEEE International Conference on Acoustics, Speech, and Signal Processing",
@@ -4422,6 +4405,23 @@
       "place": "Rabat, Morocco",
       "link": "https://2027.eurosys.org/",
       "comment": "Fall Submission Deadline"
+    },
+    {
+      "id": "iclr27_20260925",
+      "title": "ICLR",
+      "full_name": "International Conference on Learning Representations",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-09-25T23:59:59+0000",
+      "abstract_deadline": "2026-09-18T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "San Francisco, CA, USA",
+      "link": "https://iclr.cc/Conferences/2027",
+      "comment": ""
     },
     {
       "id": "saner2027_20260925",
