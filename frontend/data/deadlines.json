@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-30T21:07:46Z",
+  "generated": "2026-07-31T02:40:44Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 297,
+  "total": 296,
   "conferences": [
-    {
-      "id": "compsac26_20260131",
-      "title": "COMPSAC",
-      "full_name": "International Computer Software and Applications Conference",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-01-31T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 7-10, 2026",
-      "place": "Madrid, Spain",
-      "link": "https://ieeecompsac.computer.org/2026/",
-      "comment": ""
-    },
     {
       "id": "cec2026_20260131",
       "title": "IEEE CEC",
