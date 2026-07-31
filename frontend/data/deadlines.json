@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-31T02:40:44Z",
+  "generated": "2026-07-31T06:42:39Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 296,
+  "total": 297,
   "conferences": [
     {
       "id": "cec2026_20260131",
@@ -2363,7 +2363,7 @@
       "timezone": "AoE",
       "date": "September 17-18, 2026",
       "place": "Bangkok, Thailand",
-      "link": "https://ap-sys.org/",
+      "link": "https://apsys26.github.io/",
       "comment": ""
     },
     {
@@ -4013,7 +4013,7 @@
       "date": "February 15 - 19, 2027",
       "place": "Cordis, Hong Kong SAR, China",
       "link": "https://wsdm-conference.org/2027/",
-      "comment": ""
+      "comment": "Full Paper"
     },
     {
       "id": "uss27_20260825",
@@ -4745,6 +4745,23 @@
       "place": "Basel, Switzerland",
       "link": "https://2027.refsq.org/",
       "comment": ""
+    },
+    {
+      "id": "wsdm27_20261117",
+      "title": "WSDM",
+      "full_name": "International Conference on Web Search and Data Mining",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-11-17T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "February 15 - 19, 2027",
+      "place": "Cordis, Hong Kong SAR, China",
+      "link": "https://wsdm-conference.org/2027/",
+      "comment": "Short Paper"
     },
     {
       "id": "sp27_20261117",
