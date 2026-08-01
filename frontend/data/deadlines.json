@@ -1,25 +1,8 @@
 {
-  "generated": "2026-07-31T21:02:41Z",
+  "generated": "2026-08-01T02:39:04Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 294,
+  "total": 293,
   "conferences": [
-    {
-      "id": "ubicomp26_20260201",
-      "title": "UbiComp/ISWC",
-      "full_name": "ACM International Joint Conference on Pervasive and Ubiquitous Computing",
-      "sub": "HI",
-      "sub_name": "Human-Computer Interaction",
-      "ccf": "A",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-02-01T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 11-15, 2026",
-      "place": "Shanghai, China",
-      "link": "https://www.ubicomp.org/ubicomp-iswc-2026",
-      "comment": "first round"
-    },
     {
       "id": "cogsci26_20260202",
       "title": "CogSci",
