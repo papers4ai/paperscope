@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-01T02:39:04Z",
+  "generated": "2026-08-01T06:28:08Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 293,
+  "total": 294,
   "conferences": [
     {
       "id": "cogsci26_20260202",
@@ -3843,6 +3843,23 @@
       "date": "January 5-8, 2027",
       "place": "Siem Reap, Cambodia",
       "link": "https://www.mmm2027.net/",
+      "comment": ""
+    },
+    {
+      "id": "pkc27_20260816",
+      "title": "PKC",
+      "full_name": "International Conference on Practice and Theory of Public-Key Cryptography",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-08-16T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "March 1-4, 2027",
+      "place": "Taipei, Taiwan",
+      "link": "https://pkc.iacr.org/2027/",
       "comment": ""
     },
     {
