@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-03T02:39:21Z",
+  "generated": "2026-08-03T06:58:32Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 292,
+  "total": 294,
   "conferences": [
     {
       "id": "colt26_20260204",
@@ -3676,23 +3676,6 @@
       "comment": "Research / Industry Track"
     },
     {
-      "id": "mmasia26_20260803",
-      "title": "MMAsia",
-      "full_name": "ACM Multimedia Asia",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-08-03T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 15-18, 2026",
-      "place": "VinUniversity, Hanoi, Vietnam",
-      "link": "https://www.mmasia2026.org/",
-      "comment": "Regular Paper / Special Session Submission"
-    },
-    {
       "id": "ppopp27_20260803",
       "title": "PPoPP",
       "full_name": "ACM SIGPLAN Symposium on Principles & Practice of Parallel Programming",
@@ -3793,6 +3776,23 @@
       "place": "Hong Kong, China",
       "link": "https://www.adai.ai/dai/2026/index.html",
       "comment": "AI Paper Track"
+    },
+    {
+      "id": "mmasia26_20260814",
+      "title": "MMAsia",
+      "full_name": "ACM Multimedia Asia",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-08-14T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 15-18, 2026",
+      "place": "VinUniversity, Hanoi, Vietnam",
+      "link": "https://www.mmasia2026.org/",
+      "comment": "Regular Paper / Special Session Submission"
     },
     {
       "id": "mmm27_20260816",
@@ -4356,6 +4356,23 @@
       "comment": ""
     },
     {
+      "id": "fpga2027_20261001",
+      "title": "FPGA",
+      "full_name": "ACM/SIGDA International Symposium on Field-Programmable Gate Arrays",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-10-01T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "March 14 - March 16, 2027",
+      "place": "Monterey, California, USA",
+      "link": "https://www.isfpga.org/",
+      "comment": "Abstracts Due"
+    },
+    {
       "id": "dcc2027_20261002",
       "title": "DCC",
       "full_name": "Data Compression Conference",
@@ -4456,6 +4473,23 @@
       "place": "Seattle, USA",
       "link": "https://www.ipdps.org/",
       "comment": ""
+    },
+    {
+      "id": "fpga2027_20261008",
+      "title": "FPGA",
+      "full_name": "ACM/SIGDA International Symposium on Field-Programmable Gate Arrays",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-10-08T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "March 14 - March 16, 2027",
+      "place": "Monterey, California, USA",
+      "link": "https://www.isfpga.org/",
+      "comment": "Submissions Due"
     },
     {
       "id": "aamas27_20261009",
