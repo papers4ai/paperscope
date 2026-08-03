@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-03T14:35:11Z",
+  "generated": "2026-08-03T17:49:41Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 295,
+  "total": 294,
   "conferences": [
-    {
-      "id": "colt26_20260204",
-      "title": "COLT",
-      "full_name": "Annual Conference on Learning Theory",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "B",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-02-04T16:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 29 - July 3, 2026",
-      "place": "San Diego, California",
-      "link": "https://learningtheory.org/colt2026/",
-      "comment": ""
-    },
     {
       "id": "sgp26_20260204",
       "title": "SGP",
