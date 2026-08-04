@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-04T06:26:24Z",
+  "generated": "2026-08-04T10:37:00Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 291,
+  "total": 292,
   "conferences": [
     {
       "id": "hpdc2026_20260205",
@@ -4473,6 +4473,23 @@
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "fall round"
+    },
+    {
+      "id": "coling27_20261012",
+      "title": "COLING",
+      "full_name": "INTERNATIONNAL CONFERENCE ON COMPUTATIONAL LINGUISTICS",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-12T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "May 9-14, 2027",
+      "place": "Macau SAR, China",
+      "link": "https://2027.coling-iccl.org/",
+      "comment": "ARR Submission"
     },
     {
       "id": "naacl27_20261012",
