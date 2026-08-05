@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-04T21:13:47Z",
+  "generated": "2026-08-05T02:23:49Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 292,
+  "total": 291,
   "conferences": [
-    {
-      "id": "hpdc2026_20260205",
-      "title": "HPDC",
-      "full_name": "ACM Symposium on High-Performance Parallel and Distributed Computing",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "A",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-02-05T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 13-16, 2026",
-      "place": "Cleveland, OH, USA",
-      "link": "https://hpdc.sci.utah.edu/2026/",
-      "comment": "paper submission deadline"
-    },
     {
       "id": "uss26_20260205",
       "title": "USENIX Security",
