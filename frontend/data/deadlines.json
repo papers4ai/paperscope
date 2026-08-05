@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-05T10:32:58Z",
+  "generated": "2026-08-05T14:05:12Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 291,
+  "total": 290,
   "conferences": [
-    {
-      "id": "uss26_20260205",
-      "title": "USENIX Security",
-      "full_name": "USENIX Security Symposium",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-02-05T23:59:59-1200",
-      "abstract_deadline": "2026-01-29T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "August 12-14, 2026",
-      "place": "Baltimore, MD, USA",
-      "link": "https://www.usenix.org/conference/usenixsecurity26",
-      "comment": "Cycle 2 Deadline"
-    },
     {
       "id": "icalp26_20260206",
       "title": "ICALP",
