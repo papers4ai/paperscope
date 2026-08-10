@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-10T05:25:06Z",
+  "generated": "2026-08-10T09:18:12Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 286,
+  "total": 289,
   "conferences": [
     {
       "id": "iss26_20260212",
@@ -3999,6 +3999,23 @@
       "comment": ""
     },
     {
+      "id": "vmcai27_20260916",
+      "title": "VMCAI",
+      "full_name": "International Conference on Verification, Model Checking, and Abstract Interpretation",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-09-16T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "January 11-12, 2027",
+      "place": "Mexico City, Mexico",
+      "link": "https://conf.researchr.org/home/VMCAI-2027",
+      "comment": ""
+    },
+    {
       "id": "icassp27_20260916",
       "title": "ICASSP",
       "full_name": "IEEE International Conference on Acoustics, Speech, and Signal Processing",
@@ -4441,6 +4458,23 @@
       "comment": "Fall"
     },
     {
+      "id": "fg27_20261016",
+      "title": "FG",
+      "full_name": "International Conference on Automatic Face and Gesture Recognition",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-16T23:59:59+0000",
+      "abstract_deadline": "2026-10-09T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "April 26-30, 2027",
+      "place": "Marrakesh, Morocco",
+      "link": "https://fg2027.ieee-biometrics.org/",
+      "comment": ""
+    },
+    {
       "id": "sigmod27_20261017",
       "title": "SIGMOD",
       "full_name": "ACM Conference on Management of Data",
@@ -4795,6 +4829,23 @@
       "date": "June 14 - 18, 2027",
       "place": "Cape Town, South Africa",
       "link": "https://ijcnn.org/2027",
+      "comment": ""
+    },
+    {
+      "id": "icmr27_20270131",
+      "title": "ICMR",
+      "full_name": "ACM SIGMM International Conference on Multimedia Retrieval",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-01-31T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "June 7-10, 2027",
+      "place": "Singapore",
+      "link": "https://www.icmr2027.org/",
       "comment": ""
     },
     {
