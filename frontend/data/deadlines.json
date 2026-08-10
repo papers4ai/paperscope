@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-10T09:18:12Z",
+  "generated": "2026-08-10T13:03:44Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 289,
+  "total": 291,
   "conferences": [
     {
       "id": "iss26_20260212",
@@ -3605,7 +3605,7 @@
       "date": "December 15-18, 2026",
       "place": "VinUniversity, Hanoi, Vietnam",
       "link": "https://www.mmasia2026.org/",
-      "comment": "Regular Paper / Special Session Submission"
+      "comment": "Regular Paper"
     },
     {
       "id": "mmm27_20260816",
@@ -3691,6 +3691,23 @@
       "place": "Ningbo, China",
       "link": "https://ieee-msn.org/2026",
       "comment": ""
+    },
+    {
+      "id": "mmasia26_20260821",
+      "title": "MMAsia",
+      "full_name": "ACM Multimedia Asia",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-08-21T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 15-18, 2026",
+      "place": "VinUniversity, Hanoi, Vietnam",
+      "link": "https://www.mmasia2026.org/",
+      "comment": "Special Session Paper"
     },
     {
       "id": "bigdata26_20260821",
@@ -3844,6 +3861,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "mmasia26_20260901",
+      "title": "MMAsia",
+      "full_name": "ACM Multimedia Asia",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-09-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 15-18, 2026",
+      "place": "VinUniversity, Hanoi, Vietnam",
+      "link": "https://www.mmasia2026.org/",
+      "comment": "Demo / Industry Submission"
     },
     {
       "id": "mobicom27_20260902",
