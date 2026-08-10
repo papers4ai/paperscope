@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-10T01:40:25Z",
+  "generated": "2026-08-10T05:25:06Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 283,
+  "total": 286,
   "conferences": [
     {
       "id": "iss26_20260212",
@@ -1562,7 +1562,7 @@
       "deadline": "2026-04-29T23:59:59+0000",
       "abstract_deadline": "2026-04-22T23:59:59+0000",
       "timezone": "AoE",
-      "date": "November 03-06, 2026",
+      "date": "Oct 12-16, 2026",
       "place": "Karlsruhe, Germany",
       "link": "https://conferences.sigcomm.org/imc/2026/",
       "comment": "Cycle 2 Deadline"
@@ -2163,6 +2163,23 @@
       "comment": "Second round"
     },
     {
+      "id": "systor26_20260525",
+      "title": "SYSTOR",
+      "full_name": "The ACM International Systems and Storage Conference",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-05-25T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 8-9, 2026",
+      "place": "Virtual",
+      "link": "https://www.systor.org/2026/",
+      "comment": "Full and Short Papers Track"
+    },
+    {
       "id": "emnlp26_20260525",
       "title": "EMNLP",
       "full_name": "The annual Conference on Empirical Methods in Natural Language Processing",
@@ -2518,6 +2535,23 @@
       "place": "Utrecht, The Netherlands",
       "link": "https://conferences.sigcomm.org/co-next/2026/#!/home",
       "comment": "June Cycle"
+    },
+    {
+      "id": "middleware26_20260605",
+      "title": "Middleware",
+      "full_name": "International Middleware Conference",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "A",
+      "year": 2026,
+      "deadline": "2026-06-05T23:59:59+0000",
+      "abstract_deadline": "2026-05-29T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "December 14-18, 2026",
+      "place": "Universitat Rovira i Virgili, Tarragona, Spain",
+      "link": "https://middleware-conf.github.io/2026/",
+      "comment": "Round 2"
     },
     {
       "id": "euvip26_20260605",
@@ -4473,6 +4507,23 @@
       "place": "Shanghai, China",
       "link": "https://www.ubicomp.org/ubicomp-iswc-2026",
       "comment": "fourth round"
+    },
+    {
+      "id": "rtas2027_20261105",
+      "title": "RTAS",
+      "full_name": "IEEE Real-Time and Embedded Technology and Applications Symposium",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-11-05T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "May 17-20, 2027",
+      "place": "Boulder, Colorado",
+      "link": "https://2027.rtas.org/",
+      "comment": "Submission Deadline (Firm)"
     },
     {
       "id": "icde27_20261111",
