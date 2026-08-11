@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-11T08:53:27Z",
+  "generated": "2026-08-11T13:00:21Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 291,
+  "total": 293,
   "conferences": [
     {
       "id": "iss26_20260212",
@@ -4407,6 +4407,23 @@
       "comment": "fall round"
     },
     {
+      "id": "alt2027_20261012",
+      "title": "ALT",
+      "full_name": "International Conference on Algorithmic Learning Theory",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-12T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "March 9-12, 2027",
+      "place": "Leiden, Netherlands",
+      "link": "https://algorithmiclearningtheory.org/alt2027/",
+      "comment": ""
+    },
+    {
       "id": "coling27_20261012",
       "title": "COLING",
       "full_name": "INTERNATIONNAL CONFERENCE ON COMPUTATIONAL LINGUISTICS",
@@ -4609,6 +4626,23 @@
       "place": "Copenhagen, Denmark",
       "link": "https://icde2027.github.io/",
       "comment": "second round"
+    },
+    {
+      "id": "pldi27_20261112",
+      "title": "PLDI",
+      "full_name": "ACM SIGPLAN Conference on Programming Language Design & Implementation",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-11-12T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 5-11, 2027",
+      "place": "Atlanta, Georgia, USA",
+      "link": "https://pldi27.sigplan.org/",
+      "comment": ""
     },
     {
       "id": "refsq27_20261112",
