@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-12T09:09:34Z",
+  "generated": "2026-08-12T13:05:05Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 294,
+  "total": 293,
   "conferences": [
-    {
-      "id": "crypto26_20260212",
-      "title": "CRYPTO",
-      "full_name": "International Cryptology Conference",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-02-12T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "August 17-20, 2026",
-      "place": "Santa Barbara, USA",
-      "link": "https://crypto.iacr.org/2026/",
-      "comment": ""
-    },
     {
       "id": "eusipco26_20260213",
       "title": "EUSIPCO",
