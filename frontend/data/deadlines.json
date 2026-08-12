@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-12T05:36:44Z",
+  "generated": "2026-08-12T09:09:34Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 291,
+  "total": 294,
   "conferences": [
     {
       "id": "crypto26_20260212",
@@ -4135,6 +4135,23 @@
       "comment": "Fall Submission Deadline"
     },
     {
+      "id": "acns27_20260924",
+      "title": "ACNS",
+      "full_name": "Applied Cryptography and Network Security",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-09-24T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 28 - July 1, 2027",
+      "place": "Royal Holloway, Egham, UK",
+      "link": "https://acns2027.isg.rhul.ac.uk/",
+      "comment": "Cycle 1 Submission deadline"
+    },
+    {
       "id": "iclr27_20260925",
       "title": "ICLR",
       "full_name": "International Conference on Learning Representations",
@@ -4526,6 +4543,23 @@
       "comment": ""
     },
     {
+      "id": "ct-rsa27_20261022",
+      "title": "CT-RSA",
+      "full_name": "Cryptographer's Track at RSA Conference",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-22T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "April 5-8, 2027",
+      "place": "San Francisco, California, USA",
+      "link": "https://www.esat.kuleuven.be/cosic/events/ct-rsa-2027/",
+      "comment": "Paper submission deadline"
+    },
+    {
       "id": "vldb27_20261101",
       "title": "VLDB",
       "full_name": "International Conference on Very Large Data Bases",
@@ -4813,6 +4847,23 @@
       "place": "Cancún, Mexico",
       "link": "https://ches.iacr.org/2027/",
       "comment": "Schedule for TCHES Volume 2027/3"
+    },
+    {
+      "id": "acns27_20270121",
+      "title": "ACNS",
+      "full_name": "Applied Cryptography and Network Security",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-01-21T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 28 - July 1, 2027",
+      "place": "Royal Holloway, Egham, UK",
+      "link": "https://acns2027.isg.rhul.ac.uk/",
+      "comment": "Cycle 2 Submission deadline"
     },
     {
       "id": "uss27_20270126",
