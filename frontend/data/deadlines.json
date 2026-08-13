@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-13T01:50:01Z",
+  "generated": "2026-08-13T05:39:02Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 291,
+  "total": 292,
   "conferences": [
     {
       "id": "icccn26_20260213",
@@ -4133,6 +4133,23 @@
       "place": "Richmond, Virginia, United States",
       "link": "https://conf.researchr.org/home/saner-2027",
       "comment": "Research Track Paper submission deadline"
+    },
+    {
+      "id": "satml27_20260929",
+      "title": "SATML",
+      "full_name": "IEEE Conference on Secure and Trustworthy Machine Learning",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "N",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-09-29T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "May 2027 (exact dates TBD)",
+      "place": "Reykjavik, Iceland",
+      "link": "https://satml.org/",
+      "comment": ""
     },
     {
       "id": "vldb27_20261001",
