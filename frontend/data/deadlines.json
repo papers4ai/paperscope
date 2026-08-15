@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-14T20:28:51Z",
+  "generated": "2026-08-15T01:07:42Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 289,
+  "total": 288,
   "conferences": [
-    {
-      "id": "iscc26_20260215",
-      "title": "ISCC",
-      "full_name": "IEEE Symposium on Computers and Communications",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-02-15T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "UTC+0",
-      "date": "June 23-26, 2026",
-      "place": "Vilamoura, Algarve, Portugal",
-      "link": "https://ieee-iscc.computer.org/2026/",
-      "comment": ""
-    },
     {
       "id": "podc26_20260216",
       "title": "PODC",
