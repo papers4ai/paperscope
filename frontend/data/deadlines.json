@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-19T08:35:19Z",
+  "generated": "2026-08-19T12:42:07Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 283,
+  "total": 282,
   "conferences": [
-    {
-      "id": "conll26_20260219",
-      "title": "CoNLL",
-      "full_name": "Conference on Computational Natural Language Learning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-02-19T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "July 3 - 4, 2026",
-      "place": "San Diego, California, United States",
-      "link": "https://www.conll.org/",
-      "comment": ""
-    },
     {
       "id": "re26_20260223",
       "title": "RE",
