@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-20T04:35:31Z",
+  "generated": "2026-08-20T08:35:44Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 282,
   "conferences": [
@@ -3421,23 +3421,6 @@
       "comment": ""
     },
     {
-      "id": "msn26_20260820",
-      "title": "MSN",
-      "full_name": "International Conference on Mobility, Sensing and Networking",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-08-20T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "December 18-20, 2026",
-      "place": "Ningbo, China",
-      "link": "https://ieee-msn.org/2026",
-      "comment": ""
-    },
-    {
       "id": "mmasia26_20260821",
       "title": "MMAsia",
       "full_name": "ACM Multimedia Asia",
@@ -3555,6 +3538,23 @@
       "place": "Disney Springs, Buena Vista, FL, USA",
       "link": "https://wacv.thecvf.com/",
       "comment": "Second round"
+    },
+    {
+      "id": "msn26_20260830",
+      "title": "MSN",
+      "full_name": "International Conference on Mobility, Sensing and Networking",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-08-30T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "December 18-20, 2026",
+      "place": "Ningbo, China",
+      "link": "https://ieee-msn.org/2026",
+      "comment": ""
     },
     {
       "id": "vr27_20260831",
