@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-22T20:20:11Z",
+  "generated": "2026-08-23T01:12:54Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 282,
+  "total": 281,
   "conferences": [
-    {
-      "id": "re26_20260223",
-      "title": "RE",
-      "full_name": "IEEE International Requirements Engineering Conference",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-02-23T23:59:59+0000",
-      "abstract_deadline": "2026-02-16T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "August 17-21, 2026",
-      "place": "Montreal, Canada",
-      "link": "https://conf.researchr.org/home/RE-2026",
-      "comment": "Research Papers"
-    },
     {
       "id": "uai26_20260225",
       "title": "UAI",
