@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-25T08:39:53Z",
+  "generated": "2026-08-25T12:43:03Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 279,
   "conferences": [
@@ -2429,7 +2429,7 @@
       "deadline": "2026-06-11T23:59:59-1200",
       "abstract_deadline": "2026-06-04T23:59:59-1200",
       "timezone": "UTC-12",
-      "date": "TBD",
+      "date": "May 17-19, 2027",
       "place": "MONTREAL, CANADA",
       "link": "https://sp2027.ieee-security.org/index.html",
       "comment": "First Paper submission deadline"
@@ -4435,7 +4435,7 @@
       "deadline": "2026-11-17T23:59:59-1200",
       "abstract_deadline": "2026-11-10T23:59:59-1200",
       "timezone": "UTC-12",
-      "date": "TBD",
+      "date": "May 17-19, 2027",
       "place": "MONTREAL, CANADA",
       "link": "https://sp2027.ieee-security.org/index.html",
       "comment": "Second Paper submission deadline"
