@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-25T12:43:03Z",
+  "generated": "2026-08-25T16:35:01Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 279,
   "conferences": [
@@ -2174,7 +2174,7 @@
       "deadline": "2026-06-05T23:59:00+0000",
       "abstract_deadline": "2026-05-29T23:59:00+0000",
       "timezone": "AoE",
-      "date": "2027",
+      "date": "May 17-20, 2027",
       "place": "New York, USA",
       "link": "https://sensys.acm.org/2027/",
       "comment": "1st deadline"
@@ -3024,7 +3024,7 @@
       "deadline": "2026-07-26T23:59:59+0000",
       "abstract_deadline": "2026-07-19T23:59:59+0000",
       "timezone": "AoE",
-      "date": "August 2027 (exact dates TBD)",
+      "date": "August 1-5, 2027",
       "place": "San Jose, California, USA",
       "link": "https://kdd2027.kdd.org/",
       "comment": "1st round of 2 total rounds"
