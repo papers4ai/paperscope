@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-26T12:48:03Z",
+  "generated": "2026-08-26T16:47:01Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 277,
+  "total": 278,
   "conferences": [
     {
       "id": "icdar2026_20260227",
@@ -4541,6 +4541,23 @@
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "winter round"
+    },
+    {
+      "id": "issta27_20270111",
+      "title": "ISSTA",
+      "full_name": "ACM SIGSOFT International Symposium on Software Testing and Analysis",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "A",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-01-11T23:59:59+0000",
+      "abstract_deadline": "2027-01-08T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "September 7-10, 2027",
+      "place": "Singapore",
+      "link": "https://conf.researchr.org/home/issta-2027",
+      "comment": ""
     },
     {
       "id": "ches27_20270115",
