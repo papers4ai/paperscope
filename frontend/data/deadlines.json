@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-25T20:26:54Z",
+  "generated": "2026-08-26T01:11:37Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 279,
+  "total": 278,
   "conferences": [
     {
       "id": "miccai26_20260226",
@@ -19,23 +19,6 @@
       "place": "ADNEC Centre, Abu Dhabi, U.A.E.",
       "link": "https://conferences.miccai.org/2026/en/IMPORTANT-DATES.html",
       "comment": ""
-    },
-    {
-      "id": "acisp26_20260226",
-      "title": "ACISP",
-      "full_name": "Australasia Conference on Information Security and Privacy",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-02-26T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 6-9, 2026",
-      "place": "Perth, Australia",
-      "link": "https://acisp-conference.github.io/acisp2026/index.html",
-      "comment": "2nd round Deadline"
     },
     {
       "id": "icdar2026_20260227",
