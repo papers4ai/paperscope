@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-26T04:37:28Z",
+  "generated": "2026-08-26T08:40:39Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 278,
+  "total": 277,
   "conferences": [
-    {
-      "id": "miccai26_20260226",
-      "title": "MICCAI",
-      "full_name": "International Conference on Medical Image Computing and Computer Assisted Intervention",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-02-26T23:59:00-0800",
-      "abstract_deadline": "2026-02-12T23:59:00-0800",
-      "timezone": "UTC-8",
-      "date": "Oct 4-8, 2026",
-      "place": "ADNEC Centre, Abu Dhabi, U.A.E.",
-      "link": "https://conferences.miccai.org/2026/en/IMPORTANT-DATES.html",
-      "comment": ""
-    },
     {
       "id": "icdar2026_20260227",
       "title": "ICDAR",
