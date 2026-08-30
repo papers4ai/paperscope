@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-29T22:22:01Z",
+  "generated": "2026-08-30T03:43:22Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 276,
+  "total": 275,
   "conferences": [
-    {
-      "id": "sacmat26_20260302",
-      "title": "SACMAT",
-      "full_name": "ACM Symposium on Access Control Models and Technologies",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-03-02T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 8-10, 2026",
-      "place": "Waterloo, Canada",
-      "link": "https://www.sacmat.org/2026/index.php",
-      "comment": "Second Cycle"
-    },
     {
       "id": "iros26_20260302",
       "title": "IROS",
