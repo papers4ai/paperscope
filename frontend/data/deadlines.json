@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-30T03:43:22Z",
+  "generated": "2026-08-30T09:44:49Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 275,
+  "total": 274,
   "conferences": [
-    {
-      "id": "iros26_20260302",
-      "title": "IROS",
-      "full_name": "IEEE/RSJ International Conference on Intelligent Robots and Systems",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-03-02T23:59:59-0800",
-      "abstract_deadline": null,
-      "timezone": "UTC-8",
-      "date": "September 27 - October 1, 2026",
-      "place": "Pittsburgh, PA, USA",
-      "link": "https://2026.ieee-iros.org/",
-      "comment": ""
-    },
     {
       "id": "wisec26_20260303",
       "title": "WiSec",
