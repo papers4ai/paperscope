@@ -1,25 +1,8 @@
 {
-  "generated": "2026-08-30T22:24:24Z",
+  "generated": "2026-08-31T03:44:32Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 274,
+  "total": 273,
   "conferences": [
-    {
-      "id": "wisec26_20260303",
-      "title": "WiSec",
-      "full_name": "ACM Conference on Security and Privacy in Wireless and Mobile Networks",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-03-03T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 30 - July 3, 2026",
-      "place": "Saarbrücken, Germany",
-      "link": "https://wisec26.events.cispa.de/",
-      "comment": "Second Cycle deadline"
-    },
     {
       "id": "eccv26_20260305",
       "title": "ECCV",
