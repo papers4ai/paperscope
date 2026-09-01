@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-01T16:05:52Z",
+  "generated": "2026-09-01T22:23:07Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 273,
+  "total": 272,
   "conferences": [
-    {
-      "id": "eccv26_20260305",
-      "title": "ECCV",
-      "full_name": "European Conference on Computer Vision",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "B",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-03-05T14:00:00-0800",
-      "abstract_deadline": "2026-02-26T14:00:00-0800",
-      "timezone": "UTC-8",
-      "date": "September 8 - 13, 2026",
-      "place": "Malmö, Sweden",
-      "link": "https://eccv.ecva.net/",
-      "comment": ""
-    },
     {
       "id": "ecscw26_20260306",
       "title": "ECSCW",
