@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-03T03:00:14Z",
+  "generated": "2026-09-03T08:33:52Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 270,
+  "total": 271,
   "conferences": [
     {
       "id": "sat26_20260310",
@@ -1954,7 +1954,7 @@
       "abstract_deadline": "2026-05-29T23:59:00+0000",
       "timezone": "AoE",
       "date": "May 17-20, 2027",
-      "place": "New York, USA",
+      "place": "Boulder, CO, USA",
       "link": "https://sensys.acm.org/2027/",
       "comment": "1st deadline"
     },
@@ -4150,6 +4150,23 @@
       "place": "Shanghai, China",
       "link": "https://www.ubicomp.org/ubicomp-iswc-2026",
       "comment": "fourth round"
+    },
+    {
+      "id": "sensys27_20261105",
+      "title": "SenSys",
+      "full_name": "ACM Conference on Embedded Networked Sensor Systems",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-11-05T23:59:00+0000",
+      "abstract_deadline": "2026-10-29T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "May 17-20, 2027",
+      "place": "Boulder, CO, USA",
+      "link": "https://sensys.acm.org/2027/",
+      "comment": "2nd deadline"
     },
     {
       "id": "rtas2027_20261105",
