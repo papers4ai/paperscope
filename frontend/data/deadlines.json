@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-04T08:29:09Z",
+  "generated": "2026-09-04T15:47:09Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 272,
+  "total": 273,
   "conferences": [
     {
       "id": "sat26_20260310",
@@ -3829,6 +3829,23 @@
       "comment": ""
     },
     {
+      "id": "aistats27_20261006",
+      "title": "AISTATS",
+      "full_name": "International Conference on Artificial Intelligence and Statistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-10-06T23:59:59-1200",
+      "abstract_deadline": "2026-09-29T23:59:59-1200",
+      "timezone": "UTC-12",
+      "date": "May 3, 2027",
+      "place": "Montréal, Canada",
+      "link": "https://virtual.aistats.org/Conferences/2027",
+      "comment": ""
+    },
+    {
       "id": "edbt27_20261007",
       "title": "EDBT",
       "full_name": "International Conference on Extending Database Technology",
@@ -4050,23 +4067,6 @@
       "comment": "round 4"
     },
     {
-      "id": "www27_20261018",
-      "title": "WWW",
-      "full_name": "International World Wide Web Conferences",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2027,
-      "deadline": "2026-10-18T23:59:59+0000",
-      "abstract_deadline": "2026-10-11T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "May 10 - 14, 2027",
-      "place": "Dublin, Ireland",
-      "link": "https://acmweb2027.org/",
-      "comment": ""
-    },
-    {
       "id": "ct-rsa27_20261022",
       "title": "CT-RSA",
       "full_name": "Cryptographer's Track at RSA Conference",
@@ -4082,6 +4082,23 @@
       "place": "San Francisco, California, USA",
       "link": "https://www.esat.kuleuven.be/cosic/events/ct-rsa-2027/",
       "comment": "Paper submission deadline"
+    },
+    {
+      "id": "www27_20261025",
+      "title": "WWW",
+      "full_name": "International World Wide Web Conferences",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-10-25T23:59:59+0000",
+      "abstract_deadline": "2026-10-18T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "May 10 - 14, 2027",
+      "place": "Dublin, Ireland",
+      "link": "https://www2027.thewebconf.org/",
+      "comment": ""
     },
     {
       "id": "cvm27_20261026",
