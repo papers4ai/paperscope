@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-03T22:17:46Z",
+  "generated": "2026-09-04T02:59:11Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 271,
+  "total": 272,
   "conferences": [
     {
       "id": "sat26_20260310",
@@ -4234,6 +4234,23 @@
       "date": "April 12-15, 2027",
       "place": "Basel, Switzerland",
       "link": "https://2027.refsq.org/",
+      "comment": ""
+    },
+    {
+      "id": "cvpr27_20261116",
+      "title": "CVPR",
+      "full_name": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-11-16T23:59:00-1200",
+      "abstract_deadline": "2026-11-10T23:59:00-1200",
+      "timezone": "UTC-12",
+      "date": "June 20-24, 2027",
+      "place": "Seattle, WA, United States",
+      "link": "https://cvpr.thecvf.com/Conferences/2027",
       "comment": ""
     },
     {
