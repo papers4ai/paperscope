@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-05T03:00:48Z",
+  "generated": "2026-09-05T08:03:34Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 273,
   "conferences": [
@@ -3591,23 +3591,6 @@
       "comment": ""
     },
     {
-      "id": "fc27_20260917",
-      "title": "FC",
-      "full_name": "Financial Cryptography and Data Security",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-09-17T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "February 8-12, 2027",
-      "place": "Barbados (tentative)",
-      "link": "https://fc27.ifca.ai/",
-      "comment": "Submission deadline"
-    },
-    {
       "id": "date2027_20260920",
       "title": "DATE",
       "full_name": "Design, Automation & Test in Europe",
@@ -3657,6 +3640,23 @@
       "place": "Royal Holloway, Egham, UK",
       "link": "https://acns2027.isg.rhul.ac.uk/",
       "comment": "Cycle 1 Submission deadline"
+    },
+    {
+      "id": "fc27_20260924",
+      "title": "FC",
+      "full_name": "Financial Cryptography and Data Security",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-09-24T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "February 8-12, 2027",
+      "place": "Barbados",
+      "link": "https://fc27.ifca.ai/",
+      "comment": "Submission deadline"
     },
     {
       "id": "iclr27_20260925",
