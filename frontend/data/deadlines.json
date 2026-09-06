@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-06T03:00:19Z",
+  "generated": "2026-09-06T08:22:34Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 273,
+  "total": 275,
   "conferences": [
     {
       "id": "sat26_20260310",
@@ -4305,6 +4305,23 @@
       "comment": "Second Paper submission deadline"
     },
     {
+      "id": "acisp27_20261130",
+      "title": "ACISP",
+      "full_name": "Australasia Conference on Information Security and Privacy",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-11-30T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 7-10, 2027",
+      "place": "Melbourne, Australia",
+      "link": "https://acisp.org/",
+      "comment": "1st round Deadline"
+    },
+    {
       "id": "pets27_20261130",
       "title": "PETS",
       "full_name": "Privacy Enhancing Technologies Symposium",
@@ -4626,6 +4643,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "acisp27_20270301",
+      "title": "ACISP",
+      "full_name": "Australasia Conference on Information Security and Privacy",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2027-03-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 7-10, 2027",
+      "place": "Melbourne, Australia",
+      "link": "https://acisp.org/",
+      "comment": "2nd round Deadline"
     },
     {
       "id": "ches27_20270415",
