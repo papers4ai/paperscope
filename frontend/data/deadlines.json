@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-07T22:30:37Z",
+  "generated": "2026-09-08T03:08:17Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 273,
   "conferences": [
-    {
-      "id": "apnet26_20260311",
-      "title": "APNet",
-      "full_name": "Asia-Pacific Workshop on Networking",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-03-11T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "August 6-7, 2026",
-      "place": "Singapore",
-      "link": "https://conferences.sigcomm.org/events/apnet2026/",
-      "comment": ""
-    },
     {
       "id": "cgi26_20260312",
       "title": "CGI",
@@ -3916,7 +3899,7 @@
     {
       "id": "coling27_20261012",
       "title": "COLING",
-      "full_name": "INTERNATIONNAL CONFERENCE ON COMPUTATIONAL LINGUISTICS",
+      "full_name": "International Conference on Computational Linguistics",
       "sub": "AI",
       "sub_name": "Artificial Intelligence",
       "ccf": "B",
@@ -4456,6 +4439,23 @@
       "place": "Cancún, Mexico",
       "link": "https://ches.iacr.org/2027/",
       "comment": "Schedule for TCHES Volume 2027/3"
+    },
+    {
+      "id": "cav27_20270120",
+      "title": "CAV",
+      "full_name": "International Conference on Computer-Aided Verification",
+      "sub": "CT",
+      "sub_name": "Computing Theory",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-01-20T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 19-23, 2027",
+      "place": "KIT, Amsterdam, The Netherlands",
+      "link": "https://conferences.i-cav.org/2027/",
+      "comment": ""
     },
     {
       "id": "acns27_20270121",
