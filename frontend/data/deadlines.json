@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-09T03:10:04Z",
+  "generated": "2026-09-09T08:38:43Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 271,
+  "total": 272,
   "conferences": [
     {
       "id": "euro-par26_20260313",
@@ -4218,6 +4218,23 @@
       "place": "MONTREAL, CANADA",
       "link": "https://sp2027.ieee-security.org/index.html",
       "comment": "Second Paper submission deadline"
+    },
+    {
+      "id": "dasfaa27_20261125",
+      "title": "DASFAA",
+      "full_name": "Database Systems for Advanced Applications",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-11-25T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "May 27-30, 2027",
+      "place": "Shenyang, China",
+      "link": "https://dasfaa2027.github.io/",
+      "comment": ""
     },
     {
       "id": "acisp27_20261130",
