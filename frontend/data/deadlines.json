@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-10T22:16:06Z",
+  "generated": "2026-09-11T03:05:21Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 270,
+  "total": 269,
   "conferences": [
-    {
-      "id": "cp26_20260314",
-      "title": "CP",
-      "full_name": "International Conference on Principles and Practice of Constraint Programming",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-03-14T23:59:59+0000",
-      "abstract_deadline": "2026-03-02T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "July 20-23, 2026",
-      "place": "Lisbon, Portugal",
-      "link": "https://cp2026.a4cp.org/",
-      "comment": ""
-    },
     {
       "id": "wasa26_20260315",
       "title": "WASA",
