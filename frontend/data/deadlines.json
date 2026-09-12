@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-12T08:22:43Z",
+  "generated": "2026-09-12T15:00:32Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 269,
   "conferences": [
@@ -1137,7 +1137,7 @@
       "deadline": "2026-05-07T11:59:00+0000",
       "abstract_deadline": "2026-05-05T11:59:00+0000",
       "timezone": "UTC+0",
-      "date": "December 6, 2026",
+      "date": "December 6-12, 2026",
       "place": "Sydney, Australia",
       "link": "https://neurips.cc/Conferences/2026",
       "comment": ""
