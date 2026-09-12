@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-12T03:11:53Z",
+  "generated": "2026-09-12T08:22:43Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 268,
+  "total": 269,
   "conferences": [
     {
       "id": "glsvlsi2026_20260316",
@@ -4150,6 +4150,23 @@
       "place": "MONTREAL, CANADA",
       "link": "https://sp2027.ieee-security.org/index.html",
       "comment": "Second Paper submission deadline"
+    },
+    {
+      "id": "dac27_20261118",
+      "title": "DAC",
+      "full_name": "Design Automation Conference",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-11-18T17:00:00-0800",
+      "abstract_deadline": null,
+      "timezone": "UTC-8",
+      "date": "July 11-14, 2027",
+      "place": "San Jose, CA",
+      "link": "https://dac.com/2027/authors/call-for-contributions",
+      "comment": ""
     },
     {
       "id": "dasfaa27_20261125",
