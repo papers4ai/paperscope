@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-11T22:16:25Z",
+  "generated": "2026-09-12T03:11:53Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 269,
+  "total": 268,
   "conferences": [
-    {
-      "id": "wasa26_20260315",
-      "title": "WASA",
-      "full_name": "International Conference on Wireless Algorithms, Systems, and Applications",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-03-15T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 6-9, 2026",
-      "place": "Xi'an, China",
-      "link": "http://wasa-conference.org/WASA2026/",
-      "comment": ""
-    },
     {
       "id": "glsvlsi2026_20260316",
       "title": "GLSVLSI",
