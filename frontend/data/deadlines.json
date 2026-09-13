@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-13T03:15:10Z",
+  "generated": "2026-09-13T15:38:39Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 268,
+  "total": 267,
   "conferences": [
-    {
-      "id": "glsvlsi2026_20260316",
-      "title": "GLSVLSI",
-      "full_name": "Great Lakes Symposium on VLSI",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-03-16T23:59:00-0500",
-      "abstract_deadline": null,
-      "timezone": "UTC-5",
-      "date": "June 22-24, 2026",
-      "place": "Finger Lakes, NY, USA",
-      "link": "https://www.glsvlsi.org/",
-      "comment": ""
-    },
     {
       "id": "fast27_20260317",
       "title": "FAST",
