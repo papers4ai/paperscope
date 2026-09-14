@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-13T22:07:19Z",
+  "generated": "2026-09-14T03:27:23Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 267,
+  "total": 266,
   "conferences": [
-    {
-      "id": "fast27_20260317",
-      "title": "FAST",
-      "full_name": "USENIX Conference on File and Storage Technologies",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "A",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-03-17T23:59:00+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "FEBRUARY 23-25, 2027",
-      "place": "Renton, WA, USA",
-      "link": "https://www.usenix.org/conference/fast27",
-      "comment": "Spring deadline"
-    },
     {
       "id": "oopsla26_20260317",
       "title": "OOPSLA",
