@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-14T22:57:12Z",
+  "generated": "2026-09-15T03:28:55Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 279,
+  "total": 280,
   "conferences": [
     {
       "id": "probml2026_20260320",
@@ -4404,6 +4404,23 @@
       "date": "June 22-25, 2027",
       "place": "Berlin, Germany",
       "link": "https://dsn2027-berlin.github.io/",
+      "comment": ""
+    },
+    {
+      "id": "eurosp27_20261202",
+      "title": "EuroS&P",
+      "full_name": "IEEE European Symposium on Security and Privacy",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-12-02T23:59:59-1200",
+      "abstract_deadline": "2026-11-25T23:59:59-1200",
+      "timezone": "UTC-12",
+      "date": "July 5 - 9, 2027",
+      "place": "Madrid, Spain",
+      "link": "https://eurosp2027.ieee-security.org/",
       "comment": ""
     },
     {
