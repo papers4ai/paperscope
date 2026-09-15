@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-15T03:28:55Z",
+  "generated": "2026-09-15T09:12:25Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 280,
+  "total": 283,
   "conferences": [
     {
       "id": "probml2026_20260320",
@@ -1226,6 +1226,23 @@
       "place": "Boulder, USA",
       "link": "https://iiswc.org/iiswc2026/",
       "comment": ""
+    },
+    {
+      "id": "cog26_20260514",
+      "title": "IEEE CoG",
+      "full_name": "IEEE Conference on Games",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "N",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-05-14T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 1-4, 2026",
+      "place": "Madrid, Spain",
+      "link": "https://cog2026.org/",
+      "comment": "Auxiliary Paper"
     },
     {
       "id": "apweb26_20260514",
@@ -4713,6 +4730,23 @@
       "comment": ""
     },
     {
+      "id": "cog27_20270301",
+      "title": "IEEE CoG",
+      "full_name": "IEEE Conference on Games",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "N",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2027-03-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "August 2-5, 2027",
+      "place": "Aizuwakamatsu, Japan",
+      "link": "https://cog2027.u-aizu.ac.jp/",
+      "comment": "Full Technical Paper"
+    },
+    {
       "id": "acisp27_20270301",
       "title": "ACISP",
       "full_name": "Australasia Conference on Information Security and Privacy",
@@ -4762,6 +4796,23 @@
       "place": "Cancún, Mexico",
       "link": "https://ches.iacr.org/2027/",
       "comment": "Schedule for TCHES Volume 2027/4"
+    },
+    {
+      "id": "cog27_20270515",
+      "title": "IEEE CoG",
+      "full_name": "IEEE Conference on Games",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "N",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2027-05-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "August 2-5, 2027",
+      "place": "Aizuwakamatsu, Japan",
+      "link": "https://cog2027.u-aizu.ac.jp/",
+      "comment": "Auxiliary Paper"
     }
   ]
 }
