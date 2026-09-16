@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-15T22:43:29Z",
+  "generated": "2026-09-16T03:24:41Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 283,
   "conferences": [
@@ -4430,7 +4430,7 @@
       "sub": "SC",
       "sub_name": "Security",
       "ccf": "C",
-      "core": "N",
+      "core": "A",
       "year": 2027,
       "deadline": "2026-12-02T23:59:59-1200",
       "abstract_deadline": "2026-11-25T23:59:59-1200",
