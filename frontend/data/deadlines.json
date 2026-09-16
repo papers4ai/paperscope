@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-16T09:05:08Z",
+  "generated": "2026-09-16T16:10:18Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 290,
+  "total": 289,
   "conferences": [
-    {
-      "id": "probml2026_20260320",
-      "title": "ProbML",
-      "full_name": "Symposium on Probabilistic Machine Learning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-03-20T11:59:00+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 5, 2026",
-      "place": "Seoul, South Korea",
-      "link": "https://probml.cc",
-      "comment": ""
-    },
     {
       "id": "iccbr2026_20260320",
       "title": "ICCBR",
@@ -3370,23 +3353,6 @@
       "comment": ""
     },
     {
-      "id": "icassp27_20260916",
-      "title": "ICASSP",
-      "full_name": "IEEE International Conference on Acoustics, Speech, and Signal Processing",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "B",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-09-16T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "May 16-21, 2027",
-      "place": "Toronto, Canada",
-      "link": "https://2027.ieeeicassp.org/",
-      "comment": ""
-    },
-    {
       "id": "mmsys27_20260917",
       "title": "MMSys",
       "full_name": "ACM International Conference on Multimedia Systems",
@@ -3452,6 +3418,23 @@
       "date": "March 22-24, 2027",
       "place": "Dresden, Germany",
       "link": "https://www.date-conference.com/date-2027-call-papers",
+      "comment": ""
+    },
+    {
+      "id": "icassp27_20260923",
+      "title": "ICASSP",
+      "full_name": "IEEE International Conference on Acoustics, Speech, and Signal Processing",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-09-23T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "May 16-21, 2027",
+      "place": "Toronto, Canada",
+      "link": "https://2027.ieeeicassp.org/",
       "comment": ""
     },
     {
