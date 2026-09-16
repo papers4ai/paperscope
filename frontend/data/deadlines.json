@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-16T03:24:41Z",
+  "generated": "2026-09-16T09:05:08Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 283,
+  "total": 290,
   "conferences": [
     {
       "id": "probml2026_20260320",
@@ -3523,6 +3523,23 @@
       "comment": ""
     },
     {
+      "id": "dfrws27_20260925",
+      "title": "DFRWS",
+      "full_name": "Digital Forensic Research Workshop",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-09-25T23:59:59+0000",
+      "abstract_deadline": "2026-09-18T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "March 30 - April 2, 2027",
+      "place": "Edinburgh, Scotland",
+      "link": "https://dfrws.org/conferences/dfceurope2027/",
+      "comment": ""
+    },
+    {
       "id": "saner2027_20260925",
       "title": "SANER",
       "full_name": "IEEE International Conference on Software Analysis, Evolution and Reengineering",
@@ -3812,6 +3829,23 @@
       "comment": "fall round"
     },
     {
+      "id": "ifip119'27_20261010",
+      "title": "IFIP WG 11.9",
+      "full_name": "IFIP WG 11.9 International Conference on Digital Forensics",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-10-10T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "January 7 - 8, 2027",
+      "place": "New Delhi, India",
+      "link": "https://www.ifip119.org/Conferences/",
+      "comment": "Submission Deadline"
+    },
+    {
       "id": "alt2027_20261012",
       "title": "ALT",
       "full_name": "International Conference on Algorithmic Learning Theory",
@@ -4048,6 +4082,23 @@
       "place": "Bellevue, Washington, USA",
       "link": "https://mlsys.org/",
       "comment": ""
+    },
+    {
+      "id": "sacmat27_20261030",
+      "title": "SACMAT",
+      "full_name": "ACM Symposium on Access Control Models and Technologies",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2026-10-30T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 19-21, 2027",
+      "place": "Durham, England, United Kingdom",
+      "link": "https://www.sacmat.org/2027/",
+      "comment": "First Cycle"
     },
     {
       "id": "vldb27_20261101",
@@ -4305,6 +4356,23 @@
       "comment": ""
     },
     {
+      "id": "codaspy2027_20261123",
+      "title": "CODASPY",
+      "full_name": "ACM Conference on Data and Application Security and Privacy",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-11-23T23:59:59+0000",
+      "abstract_deadline": "2026-11-16T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "June 14-17, 2027",
+      "place": "Fort Collins, Colorado, USA",
+      "link": "https://www.codaspy.org/2027/",
+      "comment": ""
+    },
+    {
       "id": "dasfaa27_20261125",
       "title": "DASFAA",
       "full_name": "Database Systems for Advanced Applications",
@@ -4490,6 +4558,23 @@
       "place": "Macau, China",
       "link": "https://asiaccs2027.cityu.edu.mo/index.html",
       "comment": "2nd round Deadline"
+    },
+    {
+      "id": "icdf2c27_20261215",
+      "title": "ICDF2C",
+      "full_name": "International Conference on Digital Forensics & Cyber Crime",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-12-15T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "June 25-27, 2027",
+      "place": "New York, USA",
+      "link": "https://icdf2c.eai-conferences.org/2027/",
+      "comment": "Full Paper Submission deadline"
     },
     {
       "id": "vldb27_20270101",
@@ -4679,6 +4764,23 @@
       "comment": ""
     },
     {
+      "id": "sacmat27_20270212",
+      "title": "SACMAT",
+      "full_name": "ACM Symposium on Access Control Models and Technologies",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2027-02-12T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 19-21, 2027",
+      "place": "Durham, England, United Kingdom",
+      "link": "https://www.sacmat.org/2027/",
+      "comment": "Second Cycle"
+    },
+    {
       "id": "pets27_20270228",
       "title": "PETS",
       "full_name": "Privacy Enhancing Technologies Symposium",
@@ -4762,6 +4864,23 @@
       "place": "Melbourne, Australia",
       "link": "https://acisp.org/",
       "comment": "2nd round Deadline"
+    },
+    {
+      "id": "securecomm27_20270301",
+      "title": "SecureComm",
+      "full_name": "International Conference on Security and Privacy in Communication Networks",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2027-03-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "October 15-18, 2027",
+      "place": "Hefei, China",
+      "link": "https://securecomm.eai-conferences.org/2027/",
+      "comment": "Full Paper Submission deadline"
     },
     {
       "id": "oopsla27_20270407",
