@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-16T22:39:40Z",
+  "generated": "2026-09-17T03:30:13Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 289,
+  "total": 288,
   "conferences": [
-    {
-      "id": "iccbr2026_20260320",
-      "title": "ICCBR",
-      "full_name": "International Conference on Case-Based Reasoning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "B",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-03-20T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "August 13-16, 2026",
-      "place": "Bremen, Germany",
-      "link": "https://2026.iccbr.org/",
-      "comment": ""
-    },
     {
       "id": "cloud26_20260322",
       "title": "Cloud",
