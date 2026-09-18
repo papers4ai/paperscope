@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-17T22:40:47Z",
+  "generated": "2026-09-18T03:16:17Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 288,
+  "total": 289,
   "conferences": [
     {
       "id": "cloud26_20260322",
@@ -4167,6 +4167,23 @@
       "place": "Shanghai, China",
       "link": "https://www.ubicomp.org/ubicomp-iswc-2026",
       "comment": "fourth round"
+    },
+    {
+      "id": "stoc27_20261102",
+      "title": "STOC",
+      "full_name": "ACM Symposium on the Theory of Computing",
+      "sub": "CT",
+      "sub_name": "Computing Theory",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-11-02T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "June 6-11, 2027",
+      "place": "Atlanta, Georgia, USA",
+      "link": "https://acm-stoc.org/stoc2027/",
+      "comment": ""
     },
     {
       "id": "sensys27_20261105",
