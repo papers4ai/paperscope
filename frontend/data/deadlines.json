@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-18T22:18:32Z",
+  "generated": "2026-09-19T03:12:32Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 289,
+  "total": 288,
   "conferences": [
-    {
-      "id": "cloud26_20260322",
-      "title": "Cloud",
-      "full_name": "IEEE International Conference on Cloud Computing",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-03-22T23:00:00+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 13-18, 2026",
-      "place": "Sydney, Australia",
-      "link": "https://services.conferences.computer.org/2026/cloud/",
-      "comment": ""
-    },
     {
       "id": "ase26_20260326",
       "title": "ASE",
