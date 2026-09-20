@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-20T03:29:29Z",
+  "generated": "2026-09-20T09:04:55Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 288,
   "conferences": [
@@ -3268,23 +3268,6 @@
       "comment": "Fall deadline"
     },
     {
-      "id": "wcnc27_20260915",
-      "title": "WCNC",
-      "full_name": "IEEE Wireless Communications and Networking Conference",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-09-15T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "April 5-8, 2027",
-      "place": "Panama City, Panama",
-      "link": "https://wcnc2027.ieee-wcnc.org/",
-      "comment": ""
-    },
-    {
       "id": "icra27_20260915",
       "title": "ICRA",
       "full_name": "IEEE International Conference on Robotics and Automation",
@@ -3673,6 +3656,23 @@
       "date": "May 30 - June 3, 2027",
       "place": "Washington, DC, USA",
       "link": "https://icc2027.ieee-icc.org",
+      "comment": ""
+    },
+    {
+      "id": "wcnc27_20261005",
+      "title": "WCNC",
+      "full_name": "IEEE Wireless Communications and Networking Conference",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-05T23:59:59-0400",
+      "abstract_deadline": null,
+      "timezone": "UTC-4",
+      "date": "April 5-8, 2027",
+      "place": "Panama City, Panama",
+      "link": "https://wcnc2027.ieee-wcnc.org/",
       "comment": ""
     },
     {
