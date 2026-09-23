@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-22T22:44:33Z",
+  "generated": "2026-09-23T03:24:18Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 288,
+  "total": 287,
   "conferences": [
-    {
-      "id": "ase26_20260326",
-      "title": "ASE",
-      "full_name": "International Conference on Automated Software Engineering",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-03-26T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 12 - 16, 2026",
-      "place": "Munich, Germany",
-      "link": "https://conf.researchr.org/home/ase-2026",
-      "comment": ""
-    },
     {
       "id": "ppsn26_20260328",
       "title": "PPSN",
