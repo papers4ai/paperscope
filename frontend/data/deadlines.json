@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-23T22:41:27Z",
+  "generated": "2026-09-24T03:13:47Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 287,
+  "total": 290,
   "conferences": [
     {
       "id": "ppsn26_20260328",
@@ -4033,6 +4033,23 @@
       "comment": "First Cycle"
     },
     {
+      "id": "cscwd27_20261031",
+      "title": "CSCWD",
+      "full_name": "International Conference on Computer Supported Cooperative Work in Design",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "C",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2026-10-31T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "May 26-28, 2027",
+      "place": "Brisbane, Australia",
+      "link": "http://2027.cscwd.org",
+      "comment": ""
+    },
+    {
       "id": "vldb27_20261101",
       "title": "VLDB",
       "full_name": "International Conference on Very Large Data Bases",
@@ -4305,6 +4322,23 @@
       "comment": ""
     },
     {
+      "id": "pakdd27_20261120",
+      "title": "PAKDD",
+      "full_name": "Pacific-Asia Conference on Knowledge Discovery and Data Mining",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-11-20T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 29-July 2, 2027",
+      "place": "Wellington, New Zealand",
+      "link": "https://www.pakdd2027.org/",
+      "comment": ""
+    },
+    {
       "id": "codaspy2027_20261123",
       "title": "CODASPY",
       "full_name": "ACM Conference on Data and Application Security and Privacy",
@@ -4507,6 +4541,23 @@
       "place": "Macau, China",
       "link": "https://asiaccs2027.cityu.edu.mo/index.html",
       "comment": "2nd round Deadline"
+    },
+    {
+      "id": "icaps27_20261214",
+      "title": "ICAPS",
+      "full_name": "International Conference on Automated Planning and Scheduling",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-12-14T23:59:59-1200",
+      "abstract_deadline": "2026-12-07T23:59:59-1200",
+      "timezone": "UTC-12",
+      "date": "June 27 - July 2, 2027",
+      "place": "Columbia, SC, USA",
+      "link": "https://icaps27.icaps-conference.org/",
+      "comment": ""
     },
     {
       "id": "icdf2c27_20261215",
