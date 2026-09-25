@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-25T03:31:15Z",
+  "generated": "2026-09-25T09:23:35Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 356,
   "conferences": [
@@ -344,6 +344,23 @@
       "comment": ""
     },
     {
+      "id": "wasa26_20260410",
+      "title": "WASA",
+      "full_name": "International Conference on Wireless Algorithms, Systems, and Applications",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-04-10T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 26-29, 2026",
+      "place": "Xi'an, China",
+      "link": "http://wasa-conference.org/WASA2026/",
+      "comment": ""
+    },
+    {
       "id": "re26_20260413",
       "title": "RE",
       "full_name": "IEEE International Requirements Engineering Conference",
@@ -563,23 +580,6 @@
       "place": "London, UK",
       "link": "https://www.cgs-network.org/cgi26/",
       "comment": "Second Track: Call for papers with final publication in LNCS Book published by Springer or in The Visual Computer journal or Computer Animation and Virtual Worlds Journal"
-    },
-    {
-      "id": "lcn26_20260420",
-      "title": "LCN",
-      "full_name": "IEEE Conference on Local Computer Networks",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-04-20T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 7-9, 2026",
-      "place": "Coimbra, Portugal",
-      "link": "https://www.ieeelcn.org/",
-      "comment": ""
     },
     {
       "id": "mobihoc26_20260420",
@@ -939,23 +939,6 @@
       "comment": ""
     },
     {
-      "id": "sec2026_20260501",
-      "title": "SEC",
-      "full_name": "ACM/IEEE Symposium on Edge Computing",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-01T23:59:59+0000",
-      "abstract_deadline": "2026-04-24T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "Oct 13-16, 2026",
-      "place": "Santa Clara University, CA, USA",
-      "link": "https://acm-ieee-sec.org/2026/",
-      "comment": ""
-    },
-    {
       "id": "ubicomp26_20260501",
       "title": "UbiComp/ISWC",
       "full_name": "ACM International Joint Conference on Pervasive and Ubiquitous Computing",
@@ -1038,6 +1021,23 @@
       "date": "October 4-7, 2026",
       "place": "Bellevue, WA, USA",
       "link": "https://www.ieeesmc2026.org/",
+      "comment": ""
+    },
+    {
+      "id": "lcn26_20260504",
+      "title": "LCN",
+      "full_name": "IEEE Conference on Local Computer Networks",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-05-04T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "October 7-9, 2026",
+      "place": "Coimbra, Portugal",
+      "link": "https://www.ieeelcn.org/",
       "comment": ""
     },
     {
@@ -1158,6 +1158,23 @@
       "place": "Orillia, Ontario, Canada",
       "link": "https://sites.google.com/view/cccg-2026/home",
       "comment": "Submission Deadline"
+    },
+    {
+      "id": "sec2026_20260508",
+      "title": "SEC",
+      "full_name": "ACM/IEEE Symposium on Edge Computing",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-05-08T23:59:59+0000",
+      "abstract_deadline": "2026-05-08T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "Oct 13-16, 2026",
+      "place": "Santa Clara University, CA, USA",
+      "link": "https://acm-ieee-sec.org/2026/",
+      "comment": ""
     },
     {
       "id": "srds26_20260508",
@@ -1925,23 +1942,6 @@
       "comment": "1st deadline"
     },
     {
-      "id": "fpt2026_20260605",
-      "title": "FPT",
-      "full_name": "International Conference on Field Programmable Technology",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-06-05T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 07 - December 10, 2026",
-      "place": "Honolulu, Hawaii, USA",
-      "link": "https://fpt2026.uark.edu",
-      "comment": "Title and Abstract Due (Conference Track)"
-    },
-    {
       "id": "hotstorage2026_20260605",
       "title": "HotStorage",
       "full_name": "ACM Workshop on Hot Topics in Storage and File Systems",
@@ -2053,7 +2053,7 @@
       "core": "A*",
       "year": 2026,
       "deadline": "2026-06-06T23:59:59+0000",
-      "abstract_deadline": "2026-05-30T23:59:59+0000",
+      "abstract_deadline": null,
       "timezone": "AoE",
       "date": "November 12-15, 2026",
       "place": "Shenyang, China",
@@ -2154,9 +2154,9 @@
       "ccf": "A",
       "core": "A*",
       "year": 2027,
-      "deadline": "2026-06-11T17:00:00-0700",
+      "deadline": "2026-06-11T17:00:00+0000",
       "abstract_deadline": null,
-      "timezone": "UTC-7",
+      "timezone": "PT",
       "date": "May 17-21, 2027",
       "place": "Copenhagen, Denmark",
       "link": "https://icde2027.github.io/",
@@ -2214,23 +2214,6 @@
       "comment": "First Paper submission deadline"
     },
     {
-      "id": "fpt2026_20260612",
-      "title": "FPT",
-      "full_name": "International Conference on Field Programmable Technology",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-06-12T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 07 - December 10, 2026",
-      "place": "Honolulu, Hawaii, USA",
-      "link": "https://fpt2026.uark.edu",
-      "comment": "Submission Due (Conference Track)"
-    },
-    {
       "id": "apbc26_20260615",
       "title": "APBC",
       "full_name": "Asia Pacific Bioinformatics Conference",
@@ -2282,6 +2265,23 @@
       "comment": ""
     },
     {
+      "id": "fpt2026_20260619",
+      "title": "FPT",
+      "full_name": "International Conference on Field Programmable Technology",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-19T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 07 - December 10, 2026",
+      "place": "Honolulu, Hawaii, USA",
+      "link": "https://fpt2026.uark.edu",
+      "comment": "Title and Abstract Due (Conference Track)"
+    },
+    {
       "id": "acml26_20260620",
       "title": "ACML",
       "full_name": "Asian Conference on Machine Learning",
@@ -2313,23 +2313,6 @@
       "date": "November 3-5, 2026",
       "place": "Macau, China",
       "link": "http://tcci.ccf.org.cn/conference/2026/",
-      "comment": ""
-    },
-    {
-      "id": "isc26_20260622",
-      "title": "ISC",
-      "full_name": "Information Security Conference",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-06-22T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 28-30, 2026",
-      "place": "Rennes, France",
-      "link": "https://isc2026.github.io/",
       "comment": ""
     },
     {
@@ -2517,6 +2500,23 @@
       "date": "December 1-4, 2026",
       "place": "Hong Kong, China",
       "link": "https://wine2026conf.github.io/",
+      "comment": ""
+    },
+    {
+      "id": "isc26_20260702",
+      "title": "ISC",
+      "full_name": "Information Security Conference",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-07-02T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "October 28-30, 2026",
+      "place": "Rennes, France",
+      "link": "https://isc2026.github.io/",
       "comment": ""
     },
     {
@@ -3506,6 +3506,23 @@
       "comment": ""
     },
     {
+      "id": "cvc27_20260901",
+      "title": "CVC",
+      "full_name": "Computer Vision Conference",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "",
+      "year": 2027,
+      "deadline": "2026-09-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 15-16, 2027",
+      "place": "Amsterdam, Netherlands",
+      "link": "https://saiconference.com/CVC",
+      "comment": "Round 1"
+    },
+    {
       "id": "mmasia26_20260901",
       "title": "MMAsia",
       "full_name": "ACM Multimedia Asia",
@@ -3710,23 +3727,6 @@
       "comment": "2nd Full-paper Deadline"
     },
     {
-      "id": "vmcai27_20260916",
-      "title": "VMCAI",
-      "full_name": "International Conference on Verification, Model Checking, and Abstract Interpretation",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "B",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-09-16T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "January 11-12, 2027",
-      "place": "Mexico City, Mexico",
-      "link": "https://conf.researchr.org/home/VMCAI-2027",
-      "comment": ""
-    },
-    {
       "id": "icra27_20260916",
       "title": "ICRA",
       "full_name": "IEEE International Conference on Robotics and Automation",
@@ -3844,6 +3844,23 @@
       "place": "Changsha, China",
       "link": "https://www.pd-cat.org/2026/",
       "comment": "First Cycle"
+    },
+    {
+      "id": "vmcai27_20260923",
+      "title": "VMCAI",
+      "full_name": "International Conference on Verification, Model Checking, and Abstract Interpretation",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-09-23T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "January 11-12, 2027",
+      "place": "Mexico City, Mexico",
+      "link": "https://conf.researchr.org/home/VMCAI-2027",
+      "comment": "Paper Registration"
     },
     {
       "id": "icassp27_20260923",
@@ -3999,6 +4016,23 @@
       "comment": ""
     },
     {
+      "id": "vmcai27_20260930",
+      "title": "VMCAI",
+      "full_name": "International Conference on Verification, Model Checking, and Abstract Interpretation",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-09-30T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "January 11-12, 2027",
+      "place": "Mexico City, Mexico",
+      "link": "https://conf.researchr.org/home/VMCAI-2027",
+      "comment": "Paper Submission"
+    },
+    {
       "id": "vldb27_20261001",
       "title": "VLDB",
       "full_name": "International Conference on Very Large Data Bases",
@@ -4013,23 +4047,6 @@
       "date": "August 23 - August 27, 2027",
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
-      "comment": ""
-    },
-    {
-      "id": "cvc27_20261001",
-      "title": "CVC",
-      "full_name": "Computer Vision Conference",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "",
-      "year": 2027,
-      "deadline": "2026-10-01T23:59:00+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "April 15-16, 2027",
-      "place": "Amsterdam, Netherlands",
-      "link": "https://saiconference.com/CVC",
       "comment": ""
     },
     {
@@ -4048,6 +4065,23 @@
       "place": "London, United Kingdom",
       "link": "https://saiconference.com/Computing",
       "comment": ""
+    },
+    {
+      "id": "cvc27_20261001",
+      "title": "CVC",
+      "full_name": "Computer Vision Conference",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "",
+      "year": 2027,
+      "deadline": "2026-10-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 15-16, 2027",
+      "place": "Amsterdam, Netherlands",
+      "link": "https://saiconference.com/CVC",
+      "comment": "Round 2"
     },
     {
       "id": "eg27_20261001",
@@ -4149,23 +4183,6 @@
       "date": "March 21-25, 2027",
       "place": "Southampton, UK",
       "link": "https://ecir2027.co.uk/",
-      "comment": ""
-    },
-    {
-      "id": "wcnc27_20261005",
-      "title": "WCNC",
-      "full_name": "IEEE Wireless Communications and Networking Conference",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-10-05T23:59:59-0400",
-      "abstract_deadline": null,
-      "timezone": "UTC-4",
-      "date": "April 5-8, 2027",
-      "place": "Panama City, Panama",
-      "link": "https://wcnc2027.ieee-wcnc.org/",
       "comment": ""
     },
     {
@@ -4354,23 +4371,6 @@
       "place": "San Francisco, California, USA",
       "link": "https://2027.naacl.org/",
       "comment": "ARR Submission"
-    },
-    {
-      "id": "iscas27_20261013",
-      "title": "ISCAS",
-      "full_name": "IEEE International Symposium on Circuits and Systems",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "C",
-      "year": 2027,
-      "deadline": "2026-10-13T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 6-9, 2027",
-      "place": "Bordeaux, France",
-      "link": "https://2027.ieee-iscas.org/",
-      "comment": ""
     },
     {
       "id": "oopsla27_20261014",
@@ -4874,9 +4874,9 @@
       "ccf": "A",
       "core": "A*",
       "year": 2027,
-      "deadline": "2026-11-11T17:00:00-0700",
+      "deadline": "2026-11-11T17:00:00+0000",
       "abstract_deadline": null,
-      "timezone": "UTC-7",
+      "timezone": "PT",
       "date": "May 17-21, 2027",
       "place": "Copenhagen, Denmark",
       "link": "https://icde2027.github.io/",
