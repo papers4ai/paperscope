@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-25T09:23:35Z",
+  "generated": "2026-09-25T16:34:53Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 356,
+  "total": 361,
   "conferences": [
     {
       "id": "icann2026_20260330",
@@ -3982,6 +3982,23 @@
       "comment": "Research Track Paper submission deadline"
     },
     {
+      "id": "ispd27_20260928",
+      "title": "ISPD",
+      "full_name": "International Symposium on Physical Design",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "",
+      "year": 2027,
+      "deadline": "2026-09-28T23:59:59+0000",
+      "abstract_deadline": "2026-09-21T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "March 30 - April 2, 2027",
+      "place": "Taipei, Taiwan",
+      "link": "https://ispd.cc/ispd2027/",
+      "comment": ""
+    },
+    {
       "id": "satml27_20260929",
       "title": "SATML",
       "full_name": "IEEE Conference on Secure and Trustworthy Machine Learning",
@@ -4051,7 +4068,7 @@
     },
     {
       "id": "computing27_20261001",
-      "title": "SAI Computing Conference",
+      "title": "SAI",
       "full_name": "Computing Conference (SAI)",
       "sub": "MX",
       "sub_name": "Interdisciplinary",
@@ -4523,6 +4540,23 @@
       "date": "April 26-27, 2027",
       "place": "Dublin, Ireland",
       "link": "https://2027.msrconf.org/",
+      "comment": ""
+    },
+    {
+      "id": "pepm27_20261023",
+      "title": "PEPM",
+      "full_name": "ACM SIGPLAN Workshop on Partial Evaluation and Program Manipulation",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "C",
+      "core": "",
+      "year": 2027,
+      "deadline": "2026-10-23T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "January 12, 2027",
+      "place": "Mexico City, Mexico",
+      "link": "https://popl27.sigplan.org/home/pepm-2027",
       "comment": ""
     },
     {
@@ -5631,6 +5665,23 @@
       "comment": "Cycle 2"
     },
     {
+      "id": "whc27_20270129",
+      "title": "WHC",
+      "full_name": "IEEE World Haptics Conference",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "C",
+      "core": "",
+      "year": 2027,
+      "deadline": "2027-01-29T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 12-15, 2027",
+      "place": "Boston, Massachusetts, USA",
+      "link": "https://2027.worldhaptics.org/",
+      "comment": ""
+    },
+    {
       "id": "compsac27_20270131",
       "title": "COMPSAC",
       "full_name": "International Computer Software and Applications Conference",
@@ -5696,6 +5747,23 @@
       "date": "August 23 - August 27, 2027",
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
+      "comment": ""
+    },
+    {
+      "id": "interact27_20270201",
+      "title": "INTERACT",
+      "full_name": "IFIP TC13 International Conference on Human-Computer Interaction",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "C",
+      "core": "",
+      "year": 2027,
+      "deadline": "2027-02-01T23:59:59+0000",
+      "abstract_deadline": "2027-01-25T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "August 23-27, 2027",
+      "place": "Tallinn, Estonia",
+      "link": "https://interact2027.org/",
       "comment": ""
     },
     {
@@ -5782,6 +5850,23 @@
       "place": "Durham, England, United Kingdom",
       "link": "https://www.sacmat.org/2027/",
       "comment": "Second Cycle"
+    },
+    {
+      "id": "mobilehci27_20270217",
+      "title": "MobileHCI",
+      "full_name": "ACM International Conference on Mobile Human-Computer Interaction",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "B",
+      "core": "",
+      "year": 2027,
+      "deadline": "2027-02-17T23:59:59+0000",
+      "abstract_deadline": "2027-02-10T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "September 20-23, 2027",
+      "place": "Limassol, Cyprus",
+      "link": "https://mobilehci.acm.org/2027/",
+      "comment": ""
     },
     {
       "id": "icdar2027_20270220",
