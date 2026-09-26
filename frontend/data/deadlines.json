@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-26T19:00:49Z",
+  "generated": "2026-09-26T22:22:39Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 353,
   "conferences": [
@@ -225,23 +225,6 @@
       "comment": ""
     },
     {
-      "id": "asap2026_20260403",
-      "title": "ASAP",
-      "full_name": "IEEE International Conference on Application-Specific Systems, Architectures, and Processors",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-04-03T23:59:59+0000",
-      "abstract_deadline": "2026-03-27T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "September 3-4, 2026",
-      "place": "London, UK",
-      "link": "https://2026.asap-conf.org/",
-      "comment": ""
-    },
-    {
       "id": "icic26_20260404",
       "title": "ICIC",
       "full_name": "International Conference on Intelligent Computing",
@@ -342,6 +325,23 @@
       "place": "Brussels, Belgium",
       "link": "https://www.appt-conference.com/2026",
       "comment": ""
+    },
+    {
+      "id": "asap2026_20260410",
+      "title": "ASAP",
+      "full_name": "IEEE International Conference on Application-Specific Systems, Architectures, and Processors",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-04-10T23:59:59+0000",
+      "abstract_deadline": "2026-04-03T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "September 2-4, 2026",
+      "place": "London, UK",
+      "link": "https://2026.asap-conf.org/",
+      "comment": "Regular paper deadlines (extended)"
     },
     {
       "id": "wasa26_20260410",
