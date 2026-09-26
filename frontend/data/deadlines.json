@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-26T15:48:54Z",
+  "generated": "2026-09-26T19:00:49Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 361,
+  "total": 353,
   "conferences": [
     {
       "id": "icann2026_20260330",
@@ -361,23 +361,6 @@
       "comment": ""
     },
     {
-      "id": "re26_20260413",
-      "title": "RE",
-      "full_name": "IEEE International Requirements Engineering Conference",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-04-13T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "August 17-21, 2026",
-      "place": "Montreal, Canada",
-      "link": "https://conf.researchr.org/home/RE-2026",
-      "comment": "Journal Paper"
-    },
-    {
       "id": "msst2026_20260414",
       "title": "MSST",
       "full_name": "International Conference on Massive Storage Systems and Technology",
@@ -664,7 +647,7 @@
       "date": "July 22-25, 2026",
       "place": "University of Florence, Florence, Italy",
       "link": "https://qrs26.techconf.org/",
-      "comment": "Regular and Short Papers (extended)"
+      "comment": "Regular papers (extended)"
     },
     {
       "id": "esa2026_20260423",
@@ -851,7 +834,7 @@
       "date": "July 06-10, 2026",
       "place": "London, UK",
       "link": "https://www.cgs-network.org/cgi26/",
-      "comment": "Second Track: Call for papers with final publication in LNCS Book published by Springer or in The Visual Computer journal or Computer Animation and Virtual Worlds Journal"
+      "comment": "Regular conference papers (LNCS proceedings track)"
     },
     {
       "id": "ijcb2026_20260430",
@@ -1052,8 +1035,8 @@
       "deadline": "2026-05-07T11:59:00+0000",
       "abstract_deadline": "2026-05-05T11:59:00+0000",
       "timezone": "UTC+0",
-      "date": "December 6-12, 2026",
-      "place": "Sydney, Australia",
+      "date": "December 6-12 (Sydney), December 9-13 (Atlanta and Paris), 2026",
+      "place": "Sydney, Australia; Atlanta, USA; Paris, France",
       "link": "https://neurips.cc/Conferences/2026",
       "comment": ""
     },
@@ -1548,7 +1531,7 @@
       "date": "September 8-9, 2026",
       "place": "Virtual",
       "link": "https://www.systor.org/2026/",
-      "comment": "Full and Short Papers Track"
+      "comment": "Regular full papers"
     },
     {
       "id": "emnlp26_20260525",
@@ -1565,7 +1548,7 @@
       "date": "October 24 - 29, 2026",
       "place": "Budapest, Hungary",
       "link": "https://2026.emnlp.org/",
-      "comment": "ARR Submission; commitment deadline: 2026-08-02"
+      "comment": "ARR Submission"
     },
     {
       "id": "ijcnlp2026_20260525",
@@ -1647,7 +1630,7 @@
       "deadline": "2026-05-28T23:59:59+0000",
       "abstract_deadline": "2026-05-25T23:59:59+0000",
       "timezone": "AoE",
-      "date": "November 10-12, 2026",
+      "date": "November 9-12, 2026",
       "place": "Austin, Texas, USA",
       "link": "https://www.corl.org/",
       "comment": ""
@@ -1680,7 +1663,7 @@
       "year": 2026,
       "deadline": "2026-05-29T23:59:59+0000",
       "abstract_deadline": "2026-05-22T23:59:59+0000",
-      "timezone": "UTC+0",
+      "timezone": "AoE",
       "date": "November 23-26, 2026",
       "place": "Lancaster, UK",
       "link": "https://bmvc2026.bmva.org/",
@@ -1806,23 +1789,6 @@
       "comment": ""
     },
     {
-      "id": "sca26_20260601",
-      "title": "SCA",
-      "full_name": "ACM SIGGRAPH/Eurographics Symposium on Computer Animation",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "B",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-06-01T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 8-10, 2026",
-      "place": "Barcelona, Spain",
-      "link": "https://computeranimation.org/",
-      "comment": "Submission deadline (posters)"
-    },
-    {
       "id": "hipeac27_20260601",
       "title": "HiPEAC",
       "full_name": "International Conference on High Performance and Embedded Architectures and Compilers",
@@ -1889,23 +1855,6 @@
       "place": "Boulder, CO, USA",
       "link": "https://sensys.acm.org/2027/",
       "comment": "1st deadline"
-    },
-    {
-      "id": "hotstorage2026_20260605",
-      "title": "HotStorage",
-      "full_name": "ACM Workshop on Hot Topics in Storage and File Systems",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-06-05T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "September 28-29, 2026",
-      "place": "Prague, Czechia",
-      "link": "https://www.hotstorage.org/2026/",
-      "comment": ""
     },
     {
       "id": "conext26_20260605",
@@ -2144,6 +2093,23 @@
       "place": "MONTREAL, CANADA",
       "link": "https://sp2027.ieee-security.org/index.html",
       "comment": "First Paper submission deadline"
+    },
+    {
+      "id": "hotstorage2026_20260612",
+      "title": "HotStorage",
+      "full_name": "ACM Workshop on Hot Topics in Storage and File Systems",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-12T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 28-29, 2026",
+      "place": "Prague, Czechia",
+      "link": "https://www.hotstorage.org/2026/",
+      "comment": "Regular paper submission (extended)"
     },
     {
       "id": "euvip26_20260615",
@@ -2537,23 +2503,6 @@
       "comment": ""
     },
     {
-      "id": "inscrypt26_20260708",
-      "title": "INSCRYPT",
-      "full_name": "International Conference on Information Security and Cryptology",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-07-08T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "Nov 07-09, 2026",
-      "place": "Hong Kong SAR, China",
-      "link": "https://inscrypt2026.comp.polyu.edu.hk",
-      "comment": "2nd Round: invited revise-and-resubmit papers only"
-    },
-    {
       "id": "popl27_20260709",
       "title": "POPL",
       "full_name": "ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages",
@@ -2721,7 +2670,7 @@
       "date": "December 1-4, 2026",
       "place": "Lodz, Poland",
       "link": "https://icsoc2026.it.p.lodz.pl/",
-      "comment": "Regular and industrial papers"
+      "comment": "Regular papers"
     },
     {
       "id": "apsec26_20260720",
@@ -2860,23 +2809,6 @@
       "comment": ""
     },
     {
-      "id": "adma26_20260731",
-      "title": "ADMA",
-      "full_name": "The International Conference on Advanced Data Mining and Applications",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-07-31T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "November 13 - 15, 2026",
-      "place": "Hong Kong, China",
-      "link": "https://adma2026.github.io/",
-      "comment": "Industry Track"
-    },
-    {
       "id": "hpca27_20260731",
       "title": "HPCA",
       "full_name": "IEEE International Symposium on High-Performance Computer Architecture",
@@ -2928,23 +2860,6 @@
       "comment": ""
     },
     {
-      "id": "ubicomp26_20260801",
-      "title": "UbiComp/ISWC",
-      "full_name": "ACM International Joint Conference on Pervasive and Ubiquitous Computing",
-      "sub": "HI",
-      "sub_name": "Human-Computer Interaction",
-      "ccf": "A",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-08-01T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 11-15, 2026",
-      "place": "Shanghai, China",
-      "link": "https://www.ubicomp.org/ubicomp-iswc-2026",
-      "comment": "third round (only for resubmissions after major revisions)"
-    },
-    {
       "id": "cscloud2026_20260801",
       "title": "CSCloud",
       "full_name": "IEEE International Conference on Cyber Security and Cloud Computing",
@@ -2962,6 +2877,23 @@
       "comment": ""
     },
     {
+      "id": "emnlp26_20260802",
+      "title": "EMNLP",
+      "full_name": "The annual Conference on Empirical Methods in Natural Language Processing",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2026,
+      "deadline": "2026-08-02T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "October 24 - 29, 2026",
+      "place": "Budapest, Hungary",
+      "link": "https://2026.emnlp.org/",
+      "comment": "Commitment deadline for papers with ARR reviews and meta-reviews"
+    },
+    {
       "id": "dai2026_20260803",
       "title": "DAI",
       "full_name": "International Conference on Distributed Artificial Intelligence",
@@ -2976,7 +2908,7 @@
       "date": "November 29-December 2, 2026",
       "place": "Hong Kong, China",
       "link": "https://www.adai.ai/dai/2026/index.html",
-      "comment": "Research / Industry Track"
+      "comment": "Regular research papers"
     },
     {
       "id": "ppopp27_20260803",
@@ -3010,7 +2942,7 @@
       "date": "March 9-14, 2027",
       "place": "Athens, Greece",
       "link": "https://2027.eacl.org/",
-      "comment": "ARR Submission; commitment deadline: 2026-10-11"
+      "comment": "ARR Submission"
     },
     {
       "id": "csfw27_20260803",
@@ -3081,23 +3013,6 @@
       "comment": ""
     },
     {
-      "id": "adma26_20260807",
-      "title": "ADMA",
-      "full_name": "The International Conference on Advanced Data Mining and Applications",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-08-07T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "November 13 - 15, 2026",
-      "place": "Hong Kong, China",
-      "link": "https://adma2026.github.io/",
-      "comment": "Short Paper"
-    },
-    {
       "id": "icaif2026_20260809",
       "title": "ICAIF",
       "full_name": "International Conference on AI in Finance",
@@ -3113,23 +3028,6 @@
       "place": "Milan, Italy",
       "link": "https://icaif2026.org/index.html",
       "comment": ""
-    },
-    {
-      "id": "dai2026_20260810",
-      "title": "DAI",
-      "full_name": "International Conference on Distributed Artificial Intelligence",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-08-10T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "November 29-December 2, 2026",
-      "place": "Hong Kong, China",
-      "link": "https://www.adai.ai/dai/2026/index.html",
-      "comment": "AI Paper Track"
     },
     {
       "id": "mmasia26_20260814",
@@ -3198,23 +3096,6 @@
       "place": "Helsinki, Finland",
       "link": "https://iui.hosting.acm.org/2027/",
       "comment": ""
-    },
-    {
-      "id": "mmasia26_20260821",
-      "title": "MMAsia",
-      "full_name": "ACM Multimedia Asia",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-08-21T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 15-18, 2026",
-      "place": "VinUniversity, Hanoi, Vietnam",
-      "link": "https://www.mmasia2026.org/",
-      "comment": "Special Session Paper"
     },
     {
       "id": "bigdata26_20260821",
@@ -3367,7 +3248,7 @@
       "date": "April 6-9, 2027",
       "place": "Thessaloniki, Greece",
       "link": "https://3dvconf.github.io/2027/",
-      "comment": "Abstract registration and paper submission are both due Aug 28; supplementary material is due Sep 2."
+      "comment": "Regular-paper abstract registration and paper submission are both due Aug 28."
     },
     {
       "id": "mmm27_20260830",
@@ -3384,7 +3265,7 @@
       "date": "January 5-8, 2027",
       "place": "Siem Reap, Cambodia",
       "link": "https://www.mmm2027.net/",
-      "comment": "Regular and special papers; extended deadline"
+      "comment": "Regular papers; extended deadline"
     },
     {
       "id": "msn26_20260830",
@@ -3472,23 +3353,6 @@
       "comment": "Round 1"
     },
     {
-      "id": "mmasia26_20260901",
-      "title": "MMAsia",
-      "full_name": "ACM Multimedia Asia",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-09-01T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 15-18, 2026",
-      "place": "VinUniversity, Hanoi, Vietnam",
-      "link": "https://www.mmasia2026.org/",
-      "comment": "Demo / Industry Submission"
-    },
-    {
       "id": "iacr-fse27_20260901",
       "title": "FSE",
       "full_name": "Fast Software Encryption",
@@ -3521,23 +3385,6 @@
       "place": "TBD",
       "link": "https://www.sigmobile.org/mobicom/2027/",
       "comment": "Summer Deadlines"
-    },
-    {
-      "id": "pacificvis27_20260908",
-      "title": "PacificVis",
-      "full_name": "IEEE Pacific Visualization Symposium",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-09-08T23:59:59+0000",
-      "abstract_deadline": "2026-09-01T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "April 19-22, 2027",
-      "place": "Busan, South Korea",
-      "link": "https://pacificvis2027.github.io/",
-      "comment": "TVCG journal track"
     },
     {
       "id": "asplos27_20260909",
@@ -3606,23 +3453,6 @@
       "place": "David L. Lawrence Convention Center, Pittsburgh, USA",
       "link": "https://chi2027.acm.org/",
       "comment": ""
-    },
-    {
-      "id": "adma26_20260911",
-      "title": "ADMA",
-      "full_name": "The International Conference on Advanced Data Mining and Applications",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-09-11T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "November 13 - 15, 2026",
-      "place": "Hong Kong, China",
-      "link": "https://adma2026.github.io/",
-      "comment": "Poster Paper"
     },
     {
       "id": "fast27_20260915",
@@ -4305,6 +4135,23 @@
       "comment": "Submission Deadline"
     },
     {
+      "id": "eacl27_20261011",
+      "title": "EACL",
+      "full_name": "The Annual Conference of the European Chapter of the Association for Computational Linguistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-10-11T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "March 9-14, 2027",
+      "place": "Athens, Greece",
+      "link": "https://2027.eacl.org/",
+      "comment": "EACL commitment after ARR meta-reviews; reviewed papers only"
+    },
+    {
       "id": "alt2027_20261012",
       "title": "ALT",
       "full_name": "International Conference on Algorithmic Learning Theory",
@@ -4945,27 +4792,10 @@
       "deadline": "2026-11-16T23:59:00-1200",
       "abstract_deadline": "2026-11-10T23:59:00-1200",
       "timezone": "UTC-12",
-      "date": "June 20-24, 2027",
+      "date": "June 20-25, 2027",
       "place": "Seattle, WA, United States",
       "link": "https://cvpr.thecvf.com/Conferences/2027",
       "comment": ""
-    },
-    {
-      "id": "wsdm27_20261117",
-      "title": "WSDM",
-      "full_name": "International Conference on Web Search and Data Mining",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "B",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-11-17T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "February 15 - 19, 2027",
-      "place": "Cordis, Hong Kong SAR, China",
-      "link": "https://wsdm-conference.org/2027/",
-      "comment": "Short Paper"
     },
     {
       "id": "sp27_20261117",
@@ -5274,6 +5104,23 @@
       "comment": ""
     },
     {
+      "id": "rss27_20261204",
+      "title": "RSS",
+      "full_name": "Robotics Science and Systems",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-12-04T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 6-11, 2027",
+      "place": "Athens, Greece",
+      "link": "https://roboticsconference.org/",
+      "comment": "Stage 1: initial 6-page extended abstract submission"
+    },
+    {
       "id": "mobisys27_20261204",
       "title": "MobiSys",
       "full_name": "ACM International Conference on Mobile Systems, Applications, and Services",
@@ -5408,6 +5255,40 @@
       "place": "Singapore",
       "link": "https://gmp-conference-2027.github.io/gmp2027/",
       "comment": ""
+    },
+    {
+      "id": "coling27_20261223",
+      "title": "COLING",
+      "full_name": "International Conference on Computational Linguistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-12-23T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "May 9-14, 2027",
+      "place": "Macau SAR, China",
+      "link": "https://2027.coling-iccl.org/",
+      "comment": "COLING commitment after ARR meta-reviews; reviewed papers only"
+    },
+    {
+      "id": "naacl27_20261223",
+      "title": "NAACL",
+      "full_name": "The Annual Conference of the North American Chapter of the Association for Computational Linguistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-12-23T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "June 1-5, 2027",
+      "place": "San Francisco, California, USA",
+      "link": "https://2027.naacl.org/",
+      "comment": "NAACL commitment after ARR meta-reviews; reviewed papers only"
     },
     {
       "id": "vldb27_20270101",
@@ -5920,23 +5801,6 @@
       "comment": ""
     },
     {
-      "id": "cgi27_20270228",
-      "title": "CGI",
-      "full_name": "Computer Graphics International",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "C",
-      "year": 2027,
-      "deadline": "2027-02-28T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "UTC",
-      "date": "July 5-9, 2027",
-      "place": "Cairns, Australia",
-      "link": "https://cgs-network.org/cgi27/",
-      "comment": "First Track: Call for papers with final publication in The Visual Computer Journal"
-    },
-    {
       "id": "pets27_20270228",
       "title": "PETS",
       "full_name": "Privacy Enhancing Technologies Symposium",
@@ -6121,7 +5985,7 @@
       "date": "July 5-9, 2027",
       "place": "Cairns, Australia",
       "link": "https://cgs-network.org/cgi27/",
-      "comment": "Second Track: Call for papers with final publication in LNCS Book published by Springer"
+      "comment": "Regular conference papers (LNCS proceedings track)"
     },
     {
       "id": "cog27_20270515",
