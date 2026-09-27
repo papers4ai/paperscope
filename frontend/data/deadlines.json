@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-27T03:45:28Z",
+  "generated": "2026-09-27T09:49:40Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 349,
   "conferences": [
@@ -701,23 +701,6 @@
       "comment": ""
     },
     {
-      "id": "wisa2026_20260428",
-      "title": "WISA",
-      "full_name": "Web Information Systems and Applications",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-04-28T23:59:59+0800",
-      "abstract_deadline": "2026-04-21T23:59:59+0800",
-      "timezone": "UTC+8",
-      "date": "August 07-09, 2026",
-      "place": "Kunming, China",
-      "link": "https://conf.ccf.org.cn/WISA2026",
-      "comment": ""
-    },
-    {
       "id": "imc26_20260429",
       "title": "IMC",
       "full_name": "ACM Internet Measurement Conference",
@@ -1260,6 +1243,23 @@
       "place": "München, Germany",
       "link": "https://conf.researchr.org/home/eseiw-2026",
       "comment": ""
+    },
+    {
+      "id": "wisa2026_20260518",
+      "title": "WISA",
+      "full_name": "Web Information Systems and Applications",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-05-18T23:59:59+0800",
+      "abstract_deadline": "2026-05-18T23:59:59+0800",
+      "timezone": "UTC+8",
+      "date": "August 07-09, 2026",
+      "place": "Kunming, China",
+      "link": "https://conf.ccf.org.cn/WISA2026",
+      "comment": "Regular papers; final abstract and paper cutoffs from the official submission-platform API"
     },
     {
       "id": "tcc26_20260519",
