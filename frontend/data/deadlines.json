@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-28T10:35:22Z",
+  "generated": "2026-09-28T19:16:00Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 344,
+  "total": 342,
   "conferences": [
-    {
-      "id": "vldb27_20260401",
-      "title": "VLDB",
-      "full_name": "International Conference on Very Large Data Bases",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2027,
-      "deadline": "2026-04-01T17:00:00+0000",
-      "abstract_deadline": "2026-03-25T17:00:00+0000",
-      "timezone": "PT",
-      "date": "August 23 - August 27, 2027",
-      "place": "Athens, Greece",
-      "link": "https://www.vldb.org/2027/",
-      "comment": ""
-    },
     {
       "id": "focs26_20260401",
       "title": "FOCS",
@@ -3761,23 +3744,6 @@
       "comment": "Round 2"
     },
     {
-      "id": "fpga2027_20261001",
-      "title": "FPGA",
-      "full_name": "ACM/SIGDA International Symposium on Field-Programmable Gate Arrays",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "N",
-      "year": 2027,
-      "deadline": "2026-10-01T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "March 14 - March 16, 2027",
-      "place": "Monterey, California, USA",
-      "link": "https://www.isfpga.org/",
-      "comment": "Abstracts Due"
-    },
-    {
       "id": "dcc2027_20261002",
       "title": "DCC",
       "full_name": "Data Compression Conference",
@@ -3923,12 +3889,12 @@
       "core": "N",
       "year": 2027,
       "deadline": "2026-10-08T23:59:59-1200",
-      "abstract_deadline": null,
+      "abstract_deadline": "2026-10-01T23:59:59-1200",
       "timezone": "UTC-12",
       "date": "March 14 - March 16, 2027",
       "place": "Monterey, California, USA",
       "link": "https://www.isfpga.org/",
-      "comment": "Submissions Due"
+      "comment": ""
     },
     {
       "id": "sigmetrics27_20261009",
