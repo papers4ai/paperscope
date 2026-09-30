@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-30T04:03:35Z",
+  "generated": "2026-09-30T14:37:48Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 339,
+  "total": 340,
   "conferences": [
     {
       "id": "icic26_20260404",
@@ -650,6 +650,23 @@
       "comment": ""
     },
     {
+      "id": "collaboratecom26_20260501",
+      "title": "CollaborateCom",
+      "full_name": "International Conference on Collaborative Computing: Networking, Applications and Worksharing",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-05-01T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 14-15, 2026",
+      "place": "Hong Kong SAR, China",
+      "link": "https://collaboratecom.eai-conferences.org/2026/",
+      "comment": "Regular track; cutoff clock and timezone unpublished. Separate late track excluded. 23:59:00 uses the repository default where the source gives no clear cutoff clock. AoE uses the repository default because the source gives no timezone."
+    },
+    {
       "id": "icpp26_20260501",
       "title": "ICPP",
       "full_name": "International Conference on Parallel Processing",
@@ -682,23 +699,6 @@
       "place": "Shanghai, China",
       "link": "https://www.ubicomp.org/ubicomp-iswc-2026",
       "comment": "second round"
-    },
-    {
-      "id": "collaboratecom26_20260501",
-      "title": "CollaborateCom",
-      "full_name": "International Conference on Collaborative Computing: Networking, Applications and Worksharing",
-      "sub": "HI",
-      "sub_name": "Human-Computer Interaction",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-05-01T23:59:59-0800",
-      "abstract_deadline": null,
-      "timezone": "UTC-8",
-      "date": "November 14-15, 2026",
-      "place": "Hong Kong SAR, China",
-      "link": "https://collaboratecom.eai-conferences.org/2026/",
-      "comment": ""
     },
     {
       "id": "globecom26_20260503",
@@ -1007,23 +1007,6 @@
       "comment": "Submission Deadline"
     },
     {
-      "id": "cog26_20260514",
-      "title": "IEEE CoG",
-      "full_name": "IEEE Conference on Games",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "N",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-05-14T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "September 1-4, 2026",
-      "place": "Madrid, Spain",
-      "link": "https://cog2026.org/",
-      "comment": "Auxiliary Paper"
-    },
-    {
       "id": "eurosys2027_20260514",
       "title": "EuroSys",
       "full_name": "European Conference on Computer Systems",
@@ -1073,6 +1056,23 @@
       "place": "Edinburgh, Scotland",
       "link": "https://www.icwsm.org/2027/",
       "comment": "1st Full-paper Deadline"
+    },
+    {
+      "id": "cns26_20260518",
+      "title": "CNS",
+      "full_name": "IEEE Conference on Communications and Network Security",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "N",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-05-18T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 14-16, 2026",
+      "place": "Newark, Delaware, USA",
+      "link": "https://cns2026.ieee-cns.org/",
+      "comment": "Regular papers; official extended deadline. Clock 23:59:00 and timezone AoE are repository defaults because neither is published."
     },
     {
       "id": "esem26_20260518",
@@ -1585,23 +1585,6 @@
       "comment": "Second round"
     },
     {
-      "id": "mswim26_20260601",
-      "title": "MSWiM",
-      "full_name": "International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-06-01T23:59:59+0100",
-      "abstract_deadline": null,
-      "timezone": "UTC+1",
-      "date": "October 26-30, 2026",
-      "place": "Paris, France",
-      "link": "https://mswimconf.com/2026/",
-      "comment": ""
-    },
-    {
       "id": "sensys27_20260605",
       "title": "SenSys",
       "full_name": "ACM Conference on Embedded Networked Sensor Systems",
@@ -1874,6 +1857,23 @@
       "comment": "Regular paper submission (extended)"
     },
     {
+      "id": "mswim26_20260615",
+      "title": "MSWiM",
+      "full_name": "International Conference on Modeling, Analysis and Simulation of Wireless and Mobile Systems",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "A",
+      "year": 2026,
+      "deadline": "2026-06-15T23:59:00+0000",
+      "abstract_deadline": "2026-06-14T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "October 26-30, 2026",
+      "place": "Paris, France",
+      "link": "https://mswimconf.com/2026/",
+      "comment": "Regular papers; extended abstract registration and full-paper dates. Cutoff clocks and timezone unpublished. 23:59:00 uses the repository default where the source gives no clear cutoff clock. AoE uses the repository default because the source gives no timezone."
+    },
+    {
       "id": "euvip26_20260615",
       "title": "EUVIP",
       "full_name": "European Conference on Visual Information Processing",
@@ -1888,23 +1888,6 @@
       "date": "September 28 - October 1, 2026",
       "place": "Luxembourg, Luxembourg",
       "link": "https://euvip2026.github.io/",
-      "comment": ""
-    },
-    {
-      "id": "apbc26_20260615",
-      "title": "APBC",
-      "full_name": "Asia Pacific Bioinformatics Conference",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-06-15T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "UTC+0",
-      "date": "October 21-24, 2026",
-      "place": "Hsinchu, Taiwan， China",
-      "link": "https://www.apbc2026.com/home",
       "comment": ""
     },
     {
@@ -2095,23 +2078,6 @@
       "comment": "Extended submission deadline"
     },
     {
-      "id": "icpads26_20260630",
-      "title": "ICPADS",
-      "full_name": "IEEE International Conference on Parallel and Distributed Systems",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-06-30T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "November 22-26 2026",
-      "place": "Tokyo, Japan",
-      "link": "https://www.cloud-conf.net/icpads2026",
-      "comment": ""
-    },
-    {
       "id": "icse27_20260630",
       "title": "ICSE",
       "full_name": "International Conference on Software Engineering",
@@ -2248,23 +2214,6 @@
       "comment": "Conference Track"
     },
     {
-      "id": "ncmmsc26_20260705",
-      "title": "NCMMSC",
-      "full_name": "National Conference on Man-Machine Speech Communication",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-07-05T23:59:59+0800",
-      "abstract_deadline": null,
-      "timezone": "UTC+8",
-      "date": "Nov 5-8, 2026",
-      "place": "Hengqin, China",
-      "link": "https://www.ncmmsc.org.cn/",
-      "comment": ""
-    },
-    {
       "id": "ats2026_20260707",
       "title": "ATS",
       "full_name": "IEEE Asian Test Symposium",
@@ -2333,6 +2282,23 @@
       "comment": "summer round"
     },
     {
+      "id": "ncmmsc26_20260712",
+      "title": "NCMMSC",
+      "full_name": "National Conference on Man-Machine Speech Communication",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-07-12T23:59:00+0000",
+      "abstract_deadline": "2026-07-05T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "Nov 5-8, 2026",
+      "place": "Hengqin, China",
+      "link": "https://www.ncmmsc.org.cn/",
+      "comment": "Regular full papers; full-paper extension. Cutoff clocks and timezone unpublished; special sessions excluded. 23:59:00 uses the repository default where the source gives no clear cutoff clock. AoE uses the repository default because the source gives no timezone."
+    },
+    {
       "id": "socc26_20260714",
       "title": "SoCC",
       "full_name": "ACM Symposium on Cloud Computing",
@@ -2399,6 +2365,23 @@
       "place": "Huntington Beach, CA, USA",
       "link": "https://2027.sigmod.org/",
       "comment": "round 3"
+    },
+    {
+      "id": "apbc26_20260717",
+      "title": "APBC",
+      "full_name": "Asia Pacific Bioinformatics Conference",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-07-17T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "October 21-24, 2026",
+      "place": "Hsinchu, Taiwan， China",
+      "link": "https://www.apbc2026.com/home",
+      "comment": "Regular full papers; extended submission deadline in the organizer EasyChair CFP. 23:59:00 uses the repository default where the source gives no clear cutoff clock. AoE uses the repository default because the source gives no timezone."
     },
     {
       "id": "adma26_20260717",
@@ -2826,6 +2809,23 @@
       "comment": "Regular Paper"
     },
     {
+      "id": "icpads26_20260815",
+      "title": "ICPADS",
+      "full_name": "IEEE International Conference on Parallel and Distributed Systems",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-08-15T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 22-26 2026",
+      "place": "Tokyo, Japan",
+      "link": "https://www.cloud-conf.net/icpads2026",
+      "comment": "Research papers; extended firm deadline. Cutoff clock and timezone unpublished. 23:59:00 uses the repository default where the source gives no clear cutoff clock. AoE uses the repository default because the source gives no timezone."
+    },
+    {
       "id": "pkc27_20260816",
       "title": "PKC",
       "full_name": "International Conference on Practice and Theory of Public-Key Cryptography",
@@ -3249,6 +3249,23 @@
       "place": "Renton, WA, USA",
       "link": "https://www.usenix.org/conference/fast27",
       "comment": "Fall deadline"
+    },
+    {
+      "id": "wcnc27_20260915",
+      "title": "WCNC",
+      "full_name": "IEEE Wireless Communications and Networking Conference",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-09-15T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 5-8, 2027",
+      "place": "Panama City, Panama",
+      "link": "https://wcnc2027.ieee-wcnc.org/",
+      "comment": "Technical papers; official IEEE ComSoc calendar date. Clock 23:59:00 and timezone AoE are repository defaults, not published cutoff precision."
     },
     {
       "id": "icalp27_20260915",
@@ -4679,23 +4696,6 @@
       "comment": ""
     },
     {
-      "id": "dasfaa27_20261125",
-      "title": "DASFAA",
-      "full_name": "Database Systems for Advanced Applications",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "B",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-11-25T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "May 27-30, 2027",
-      "place": "Shenyang, China",
-      "link": "https://dasfaa2027.github.io/",
-      "comment": ""
-    },
-    {
       "id": "acisp27_20261130",
       "title": "ACISP",
       "full_name": "Australasia Conference on Information Security and Privacy",
@@ -4983,6 +4983,23 @@
       "place": "Columbia, SC, USA",
       "link": "https://icaps27.icaps-conference.org/",
       "comment": ""
+    },
+    {
+      "id": "ets2027_20261215",
+      "title": "ETS",
+      "full_name": "IEEE European Test Symposium",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-12-15T23:59:00+0000",
+      "abstract_deadline": "2026-12-08T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "May 24-28, 2027",
+      "place": "London, UK",
+      "link": "https://www.ets2027.co.uk/",
+      "comment": "Regular papers; official CFP dates. Clock 23:59:00 and timezone AoE are repository defaults, not published cutoff precision."
     },
     {
       "id": "icdf2c27_20261215",
