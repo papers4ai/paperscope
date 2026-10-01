@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-01T04:15:02Z",
+  "generated": "2026-10-01T15:06:33Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 338,
+  "total": 339,
   "conferences": [
     {
       "id": "internetware26_20260404",
@@ -49,7 +49,7 @@
       "deadline": "2026-04-08T23:59:00+0000",
       "abstract_deadline": "2026-04-01T23:59:59+0000",
       "timezone": "AoE",
-      "date": "November 15-20, 2026",
+      "date": "November 16-20, 2026",
       "place": "McCormick Place, Chicago, Illinois, USA",
       "link": "https://sc26.supercomputing.org/",
       "comment": ""
@@ -83,7 +83,7 @@
       "deadline": "2026-04-10T23:59:59+0000",
       "abstract_deadline": "2026-04-03T23:59:59+0000",
       "timezone": "AoE",
-      "date": "July 27-31, 2026",
+      "date": "July 27-30, 2026",
       "place": "Brussels, Belgium",
       "link": "https://www.appt-conference.com/2026",
       "comment": ""
@@ -188,7 +188,7 @@
       "date": "July 1 - 3, 2026",
       "place": "Bern, Switzerland",
       "link": "https://sgp26.org/",
-      "comment": "Second round"
+      "comment": "Second round: recommended abstract / full paper"
     },
     {
       "id": "asplos27_20260415",
@@ -239,7 +239,7 @@
       "date": "October 11-15, 2026",
       "place": "Antalya, Türkiye",
       "link": "https://ches.iacr.org/2026/",
-      "comment": "Schedule for TCHES Volume 2026/4"
+      "comment": "TCHES 2026/4"
     },
     {
       "id": "raid26_20260416",
@@ -253,7 +253,7 @@
       "deadline": "2026-04-16T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "October 11-14, 2026",
+      "date": "October 12-14, 2026",
       "place": "Lancaster, UK",
       "link": "https://raid2026.org",
       "comment": ""
@@ -310,23 +310,6 @@
       "comment": ""
     },
     {
-      "id": "mobihoc26_20260420",
-      "title": "MobiHoc",
-      "full_name": "International Symposium on Mobile Ad Hoc Networking and Computing",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-04-20T23:59:59+0000",
-      "abstract_deadline": "2026-04-13T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "November 23-26, 2026",
-      "place": "Tokyo, Japan",
-      "link": "https://www.sigmobile.org/mobihoc/2026/",
-      "comment": ""
-    },
-    {
       "id": "blocksys2026_20260420",
       "title": "BlockSys",
       "full_name": "International Conference on Blockchain, Artificial Intelligence, and Trustworthy Systems",
@@ -372,10 +355,10 @@
       "deadline": "2026-04-21T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "September 14-18, 2026",
+      "date": "September 14-16, 2026",
       "place": "Rome, Italy",
       "link": "https://sites.google.com/di.uniroma1.it/esorics2026/home",
-      "comment": "Second Submission deadline"
+      "comment": "Spring"
     },
     {
       "id": "assets26_20260422",
@@ -409,7 +392,7 @@
       "date": "July 22-25, 2026",
       "place": "University of Florence, Florence, Italy",
       "link": "https://qrs26.techconf.org/",
-      "comment": "Regular papers (extended)"
+      "comment": ""
     },
     {
       "id": "esa2026_20260423",
@@ -542,10 +525,10 @@
       "deadline": "2026-04-29T23:59:59+0000",
       "abstract_deadline": "2026-04-22T23:59:59+0000",
       "timezone": "AoE",
-      "date": "Oct 12-16, 2026",
+      "date": "October 13-16, 2026",
       "place": "Karlsruhe, Germany",
       "link": "https://conferences.sigcomm.org/imc/2026/",
-      "comment": "Cycle 2 Deadline"
+      "comment": "Cycle 2"
     },
     {
       "id": "ccs26_20260429",
@@ -557,12 +540,12 @@
       "core": "A*",
       "year": 2026,
       "deadline": "2026-04-29T23:59:59-1200",
-      "abstract_deadline": null,
+      "abstract_deadline": "2026-04-22T23:59:59-1200",
       "timezone": "UTC-12",
-      "date": "November 15-19, 2026",
+      "date": "November 16-18, 2026",
       "place": "World Forum, Hague, Netherlands",
       "link": "https://www.sigsac.org/ccs/CCS2026/",
-      "comment": "Second Review Cycle"
+      "comment": "Cycle 2"
     },
     {
       "id": "cgi26_20260430",
@@ -610,7 +593,7 @@
       "deadline": "2026-04-30T23:59:59+0000",
       "abstract_deadline": "2026-04-23T23:59:59+0000",
       "timezone": "AoE",
-      "date": "October 19-22, 2026",
+      "date": "October 20-22, 2026",
       "place": "Chicago, Illinois, USA",
       "link": "https://pact2026.github.io/",
       "comment": ""
@@ -631,6 +614,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "fpt2026_20260501",
+      "title": "FPT",
+      "full_name": "International Conference on Field Programmable Technology",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-05-01T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 8-10, 2026",
+      "place": "Honolulu, Hawaii, USA",
+      "link": "https://fpt2026.uark.edu",
+      "comment": "Journal track"
     },
     {
       "id": "collaboratecom26_20260501",
@@ -661,7 +661,7 @@
       "deadline": "2026-05-01T23:59:59+0000",
       "abstract_deadline": "2026-04-24T23:59:59+0000",
       "timezone": "AoE",
-      "date": "September 28-October 1, 2026",
+      "date": "September 29-October 1, 2026",
       "place": "Singapore",
       "link": "https://icpp2026.github.io/",
       "comment": ""
@@ -727,12 +727,12 @@
       "core": "B",
       "year": 2026,
       "deadline": "2026-05-04T23:59:59+0000",
-      "abstract_deadline": null,
+      "abstract_deadline": "2026-05-04T23:59:00+0000",
       "timezone": "AoE",
       "date": "October 7-9, 2026",
       "place": "Coimbra, Portugal",
       "link": "https://www.ieeelcn.org/",
-      "comment": ""
+      "comment": "Registration / full paper"
     },
     {
       "id": "internetware26_20260504",
@@ -794,13 +794,13 @@
       "ccf": "B",
       "core": "A",
       "year": 2026,
-      "deadline": "2026-05-07T23:59:59+0000",
-      "abstract_deadline": "2026-05-02T23:59:59+0000",
+      "deadline": "2026-05-07T23:59:00+0000",
+      "abstract_deadline": "2026-04-11T23:59:00+0000",
       "timezone": "AoE",
-      "date": "October 25-29, 2026",
+      "date": "October 27-29, 2026",
       "place": "Bari, Italy",
       "link": "https://iswc2026.semanticweb.org/",
-      "comment": ""
+      "comment": "ESWC transfer"
     },
     {
       "id": "cluster26_20260507",
@@ -814,7 +814,7 @@
       "deadline": "2026-05-07T23:59:59+0000",
       "abstract_deadline": "2026-05-07T23:59:59+0000",
       "timezone": "AoE",
-      "date": "September 22-25, 2026",
+      "date": "September 23-25, 2026",
       "place": "Alexandria, Virginia, USA",
       "link": "https://clustercomp.org/2026",
       "comment": ""
@@ -871,23 +871,6 @@
       "comment": "1st Round"
     },
     {
-      "id": "srds26_20260508",
-      "title": "SRDS",
-      "full_name": "IEEE International Symposium on Reliable Distributed Systems",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "B",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-05-08T23:59:59+0000",
-      "abstract_deadline": "2026-05-01T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "September 22-24, 2026",
-      "place": "Rome, Italy",
-      "link": "https://srds-conference.org/",
-      "comment": ""
-    },
-    {
       "id": "icsoc26_20260510",
       "title": "ICSOC",
       "full_name": "International Conference on Service Oriented Computing",
@@ -902,7 +885,7 @@
       "date": "December 1-4, 2026",
       "place": "Lodz, Poland",
       "link": "https://icsoc2026.it.p.lodz.pl/",
-      "comment": "Early paper submissions"
+      "comment": "Early round"
     },
     {
       "id": "seke26_20260510",
@@ -919,7 +902,7 @@
       "date": "October 1-7, 2026",
       "place": "Toronto, Canada & Virtual",
       "link": "https://ksiresearch.org/seke/seke26.html",
-      "comment": "Regular papers; midnight EST"
+      "comment": "CFP and proceedings event dates conflict"
     },
     {
       "id": "fmcad26_20260511",
@@ -970,7 +953,7 @@
       "date": "December 1-4, 2026",
       "place": "KLCC, Kuala Lumpur, Malaysia",
       "link": "https://asia.siggraph.org/2026/",
-      "comment": ""
+      "comment": "Registration / full paper"
     },
     {
       "id": "cccg2026_20260512",
@@ -1055,7 +1038,7 @@
       "date": "September 14-16, 2026",
       "place": "Newark, Delaware, USA",
       "link": "https://cns2026.ieee-cns.org/",
-      "comment": "Regular papers; official extended deadline. Clock 23:59:00 and timezone AoE are repository defaults because neither is published."
+      "comment": ""
     },
     {
       "id": "esem26_20260518",
@@ -1069,7 +1052,7 @@
       "deadline": "2026-05-18T23:59:59+0000",
       "abstract_deadline": "2026-05-11T23:59:59+0000",
       "timezone": "AoE",
-      "date": "October 4 - 9, 2026",
+      "date": "October 8-9, 2026",
       "place": "München, Germany",
       "link": "https://conf.researchr.org/home/eseiw-2026",
       "comment": ""
@@ -1089,7 +1072,7 @@
       "date": "August 07-09, 2026",
       "place": "Kunming, China",
       "link": "https://conf.ccf.org.cn/WISA2026",
-      "comment": "Regular papers; final abstract and paper cutoffs from the official submission-platform API"
+      "comment": ""
     },
     {
       "id": "tcc26_20260519",
@@ -1190,7 +1173,7 @@
       "timezone": "AoE",
       "date": "August 24-26, 2026",
       "place": "Vilnius, Lithuania",
-      "link": "https://2026.declarativeai.net/events/ruleml-rr",
+      "link": "https://2026.declarativeai.net/ruleml-rr",
       "comment": ""
     },
     {
@@ -1222,7 +1205,7 @@
       "deadline": "2026-05-22T23:59:59+0000",
       "abstract_deadline": "2026-05-15T23:59:59+0000",
       "timezone": "AoE",
-      "date": "October 5-8, 2026",
+      "date": "October 6-8, 2026",
       "place": "Tempe, Arizona, USA",
       "link": "https://icnp26.cs.ucr.edu/",
       "comment": ""
@@ -1239,7 +1222,7 @@
       "deadline": "2026-05-23T23:59:59+0000",
       "abstract_deadline": "2026-05-16T23:59:59+0000",
       "timezone": "AoE",
-      "date": "November 7-11, 2026",
+      "date": "November 9-11, 2026",
       "place": "Rome, Italy",
       "link": "https://cikm2026.diag.uniroma1.it/",
       "comment": ""
@@ -1293,7 +1276,7 @@
       "date": "September 8-9, 2026",
       "place": "Virtual",
       "link": "https://www.systor.org/2026/",
-      "comment": "Regular full papers"
+      "comment": ""
     },
     {
       "id": "emnlp26_20260525",
@@ -1307,8 +1290,8 @@
       "deadline": "2026-05-25T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "October 24 - 29, 2026",
-      "place": "Budapest, Hungary",
+      "date": "October 25-27, 2026",
+      "place": "Budapest, Hungary (Hybrid)",
       "link": "https://2026.emnlp.org/",
       "comment": "ARR Submission"
     },
@@ -1392,7 +1375,7 @@
       "deadline": "2026-05-28T23:59:59+0000",
       "abstract_deadline": "2026-05-25T23:59:59+0000",
       "timezone": "AoE",
-      "date": "November 9-12, 2026",
+      "date": "November 9-11, 2026",
       "place": "Austin, Texas, USA",
       "link": "https://www.corl.org/",
       "comment": ""
@@ -1650,7 +1633,7 @@
       "date": "November 3-6, 2026",
       "place": "Riverside, CA, USA",
       "link": "https://sigspatial2026.sigspatial.org/",
-      "comment": "Extended Research Track deadlines"
+      "comment": ""
     },
     {
       "id": "icdm2026_20260606",
@@ -1718,7 +1701,7 @@
       "date": "November 16-18, 2026",
       "place": "Hong Kong SAR, China",
       "link": "https://www.iccd-conf.com/2026/home.html",
-      "comment": "abstract and full paper deadline"
+      "comment": ""
     },
     {
       "id": "edbt27_20260610",
@@ -1749,7 +1732,7 @@
       "deadline": "2026-06-11T11:59:59+0000",
       "abstract_deadline": null,
       "timezone": "UTC+0",
-      "date": "November 15-18, 2026",
+      "date": "November 16-18, 2026",
       "place": "Hyatt Hotel, Shatin, Hong Kong, China",
       "link": "https://sigops.org/s/conferences/atc/2026/index.html",
       "comment": ""
@@ -1803,7 +1786,7 @@
       "date": "September 14-15, 2026",
       "place": "Benevento, Italy",
       "link": "https://conf.researchr.org/home/scam-2026",
-      "comment": "co-located with ICSME 2026"
+      "comment": ""
     },
     {
       "id": "sp27_20260611",
@@ -1851,10 +1834,10 @@
       "deadline": "2026-06-15T23:59:00+0000",
       "abstract_deadline": "2026-06-14T23:59:00+0000",
       "timezone": "AoE",
-      "date": "October 26-30, 2026",
+      "date": "October 27-29, 2026",
       "place": "Paris, France",
       "link": "https://mswimconf.com/2026/",
-      "comment": "Regular papers; extended abstract registration and full-paper dates. Cutoff clocks and timezone unpublished. 23:59:00 uses the repository default where the source gives no clear cutoff clock. AoE uses the repository default because the source gives no timezone."
+      "comment": ""
     },
     {
       "id": "euvip26_20260615",
@@ -1917,12 +1900,29 @@
       "core": "N",
       "year": 2026,
       "deadline": "2026-06-19T23:59:59+0000",
-      "abstract_deadline": null,
+      "abstract_deadline": "2026-06-19T23:59:59+0000",
       "timezone": "AoE",
-      "date": "December 07 - December 10, 2026",
+      "date": "December 8-10, 2026",
       "place": "Honolulu, Hawaii, USA",
       "link": "https://fpt2026.uark.edu",
-      "comment": "Title and Abstract Due (Conference Track)"
+      "comment": "Conference track"
+    },
+    {
+      "id": "acml26_20260620",
+      "title": "ACML",
+      "full_name": "Asian Conference on Machine Learning",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "C",
+      "year": 2026,
+      "deadline": "2026-06-20T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "Melbourne, Australia",
+      "link": "https://www.acml-conf.org/2026/",
+      "comment": "Journal Track"
     },
     {
       "id": "nlpcc2026_20260620",
@@ -1976,23 +1976,6 @@
       "comment": ""
     },
     {
-      "id": "slt26_20260624",
-      "title": "SLT",
-      "full_name": "IEEE Spoken Language Technology (SLT) Workshop",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-06-24T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 13-16, 2026",
-      "place": "Palermo, Sicily, Italy",
-      "link": "https://attend.ieee.org/slt-2026/",
-      "comment": ""
-    },
-    {
       "id": "wacv27_20260626",
       "title": "WACV",
       "full_name": "IEEE/CVF Winter Conference on Applications of Computer Vision",
@@ -2021,7 +2004,7 @@
       "deadline": "2026-06-27T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "Nov 16-20, 2026",
+      "date": "November 18-20, 2026",
       "place": "Guangzhou, China",
       "link": "https://2026.pricai.org/",
       "comment": ""
@@ -2093,6 +2076,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "slt26_20260701",
+      "title": "SLT",
+      "full_name": "IEEE Spoken Language Technology (SLT) Workshop",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-07-01T23:59:00+0000",
+      "abstract_deadline": "2026-06-24T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "December 13-16, 2026",
+      "place": "Palermo, Sicily, Italy",
+      "link": "https://attend.ieee.org/slt-2026/",
+      "comment": "Abstract registration / full paper"
     },
     {
       "id": "wine2026_20260702",
@@ -2174,7 +2174,7 @@
       "deadline": "2026-07-05T23:59:59+0000",
       "abstract_deadline": "2026-07-03T23:59:59+0000",
       "timezone": "UTC+0",
-      "date": "December 14-18, 2026",
+      "date": "December 16-18, 2026",
       "place": "Osaka, Japan",
       "link": "https://accv2026.org/",
       "comment": ""
@@ -2191,7 +2191,7 @@
       "deadline": "2026-07-05T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "December 1-4, 2026",
+      "date": "TBD",
       "place": "Melbourne, Australia",
       "link": "https://www.acml-conf.org/2026/",
       "comment": "Conference Track"
@@ -2325,12 +2325,12 @@
       "core": "N",
       "year": 2026,
       "deadline": "2026-07-16T23:59:59-1200",
-      "abstract_deadline": null,
+      "abstract_deadline": "2026-07-16T23:59:58-1200",
       "timezone": "UTC-12",
       "date": "November 16-17, 2026",
       "place": "Salt Lake City, Utah, USA",
       "link": "https://conferences.sigcomm.org/hotnets/2026/",
-      "comment": ""
+      "comment": "Registration / full paper"
     },
     {
       "id": "sigmod27_20260717",
@@ -2381,7 +2381,7 @@
       "date": "November 13 - 15, 2026",
       "place": "Hong Kong, China",
       "link": "https://adma2026.github.io/",
-      "comment": "Main Track"
+      "comment": ""
     },
     {
       "id": "aspdac27_20260718",
@@ -2415,7 +2415,7 @@
       "date": "December 1-4, 2026",
       "place": "Lodz, Poland",
       "link": "https://icsoc2026.it.p.lodz.pl/",
-      "comment": "Regular papers"
+      "comment": "Regular round"
     },
     {
       "id": "apsec26_20260720",
@@ -2432,7 +2432,7 @@
       "date": "December 7-10, 2026",
       "place": "Bali, Indonesia",
       "link": "https://conf.researchr.org/home/apsec-2026",
-      "comment": ""
+      "comment": "Optional abstract"
     },
     {
       "id": "iceccs26_20260720",
@@ -2605,23 +2605,6 @@
       "comment": ""
     },
     {
-      "id": "cscloud2026_20260801",
-      "title": "CSCloud",
-      "full_name": "IEEE International Conference on Cyber Security and Cloud Computing",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-08-01T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 19-21, 2026",
-      "place": "Shanghai, China",
-      "link": "https://www.cloud-conf.net/cscloud/2026/cscloud/",
-      "comment": ""
-    },
-    {
       "id": "emnlp26_20260802",
       "title": "EMNLP",
       "full_name": "The annual Conference on Empirical Methods in Natural Language Processing",
@@ -2633,8 +2616,8 @@
       "deadline": "2026-08-02T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "October 24 - 29, 2026",
-      "place": "Budapest, Hungary",
+      "date": "October 25-27, 2026",
+      "place": "Budapest, Hungary (Hybrid)",
       "link": "https://2026.emnlp.org/",
       "comment": "Commitment deadline for papers with ARR reviews and meta-reviews"
     },
@@ -2789,7 +2772,7 @@
       "date": "December 15-18, 2026",
       "place": "VinUniversity, Hanoi, Vietnam",
       "link": "https://www.mmasia2026.org/",
-      "comment": "Regular Paper"
+      "comment": ""
     },
     {
       "id": "icpads26_20260815",
@@ -3249,6 +3232,23 @@
       "place": "Panama City, Panama",
       "link": "https://wcnc2027.ieee-wcnc.org/",
       "comment": "Technical papers; official IEEE ComSoc calendar date. Clock 23:59:00 and timezone AoE are repository defaults, not published cutoff precision."
+    },
+    {
+      "id": "cscloud2026_20260915",
+      "title": "CSCloud",
+      "full_name": "IEEE International Conference on Cyber Security and Cloud Computing",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-09-15T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 19-21, 2026",
+      "place": "Shanghai, China",
+      "link": "https://www.cloud-conf.net/cscloud/2026/cscloud/",
+      "comment": ""
     },
     {
       "id": "icalp27_20260915",
@@ -5051,6 +5051,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "acl27_20270104",
+      "title": "ACL",
+      "full_name": "Annual Meeting of the Association for Computational Linguistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-01-04T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "August 17-22, 2027",
+      "place": "Kyoto, Japan",
+      "link": "https://2027.aclweb.org/",
+      "comment": "ARR Submission"
     },
     {
       "id": "isit27_20270110",
