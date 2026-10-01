@@ -1,25 +1,8 @@
 {
-  "generated": "2026-09-30T20:32:54Z",
+  "generated": "2026-10-01T04:15:02Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 340,
+  "total": 338,
   "conferences": [
-    {
-      "id": "icic26_20260404",
-      "title": "ICIC",
-      "full_name": "International Conference on Intelligent Computing",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-04-04T11:59:59+0800",
-      "abstract_deadline": null,
-      "timezone": "UTC+8",
-      "date": "July 22-26, 2026",
-      "place": "Toronto, Canada",
-      "link": "http://www.ic-icc.cn/2026/",
-      "comment": ""
-    },
     {
       "id": "internetware26_20260404",
       "title": "Internetware",
@@ -474,7 +457,7 @@
       "deadline": "2026-04-24T04:59:59-0700",
       "abstract_deadline": "2026-04-13T23:59:59-0700",
       "timezone": "UTC-7",
-      "date": "Oct 5 - 9, 2026",
+      "date": "October 6-8, 2026",
       "place": "Napoli, Italy",
       "link": "https://icmi.acm.org/2026/",
       "comment": "Paper deadline extended to Apr 23, 23:59 AoE; normalized to UTC-7"
@@ -664,7 +647,7 @@
       "date": "November 14-15, 2026",
       "place": "Hong Kong SAR, China",
       "link": "https://collaboratecom.eai-conferences.org/2026/",
-      "comment": "Regular track; cutoff clock and timezone unpublished. Separate late track excluded. 23:59:00 uses the repository default where the source gives no clear cutoff clock. AoE uses the repository default because the source gives no timezone."
+      "comment": ""
     },
     {
       "id": "icpp26_20260501",
@@ -1511,7 +1494,7 @@
       "deadline": "2026-05-31T23:59:59+0200",
       "abstract_deadline": null,
       "timezone": "UTC+2",
-      "date": "Sept 7 - 11, 2026",
+      "date": "September 8-11, 2026",
       "place": "Rende, Italy",
       "link": "https://swc-ieee-2026.github.io/uic/",
       "comment": ""
@@ -1848,13 +1831,13 @@
       "ccf": "C",
       "core": "N",
       "year": 2026,
-      "deadline": "2026-06-12T23:59:59+0000",
+      "deadline": "2026-06-12T23:59:00+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
       "date": "September 28-29, 2026",
       "place": "Prague, Czechia",
       "link": "https://www.hotstorage.org/2026/",
-      "comment": "Regular paper submission (extended)"
+      "comment": ""
     },
     {
       "id": "mswim26_20260615",
@@ -1985,9 +1968,9 @@
       "core": "C",
       "year": 2026,
       "deadline": "2026-06-22T23:59:59+0000",
-      "abstract_deadline": null,
+      "abstract_deadline": "2026-06-22T23:59:00+0000",
       "timezone": "AoE",
-      "date": "November 17-20, 2026",
+      "date": "November 18-20, 2026",
       "place": "Southampton, UK",
       "link": "https://icfem2026.github.io/",
       "comment": ""
@@ -2027,23 +2010,6 @@
       "comment": "First round"
     },
     {
-      "id": "isaac26_20260626",
-      "title": "ISAAC",
-      "full_name": "International Symposium on Algorithms and Computation",
-      "sub": "CT",
-      "sub_name": "Computing Theory",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-06-26T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 6-9, 2026",
-      "place": "Hangzhou, China",
-      "link": "https://www.algo-door.com/isaac2026/index.html",
-      "comment": ""
-    },
-    {
       "id": "pricai2026_20260627",
       "title": "PRICAI",
       "full_name": "Pacific Rim International Conference on Artificial Intelligence",
@@ -2058,6 +2024,23 @@
       "date": "Nov 16-20, 2026",
       "place": "Guangzhou, China",
       "link": "https://2026.pricai.org/",
+      "comment": ""
+    },
+    {
+      "id": "isaac26_20260629",
+      "title": "ISAAC",
+      "full_name": "International Symposium on Algorithms and Computation",
+      "sub": "CT",
+      "sub_name": "Computing Theory",
+      "ccf": "C",
+      "core": "B",
+      "year": 2026,
+      "deadline": "2026-06-29T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "December 7-9, 2026",
+      "place": "Hangzhou, China",
+      "link": "https://www.algo-door.com/isaac2026/index.html",
       "comment": ""
     },
     {
@@ -2461,12 +2444,12 @@
       "core": "B",
       "year": 2026,
       "deadline": "2026-07-20T23:59:59+0000",
-      "abstract_deadline": null,
+      "abstract_deadline": "2026-07-20T23:59:00+0000",
       "timezone": "AoE",
       "date": "November 23-24, 2026",
       "place": "Brisbane, Australia",
       "link": "https://formal-analysis.com/iceccs/2026/",
-      "comment": "Abstract and full paper submission"
+      "comment": ""
     },
     {
       "id": "ictai26_20260721",
@@ -4337,23 +4320,6 @@
       "place": "Mainz, Germany (hybrid)",
       "link": "https://www.evostar.org/2027/evomusart/",
       "comment": "Full papers"
-    },
-    {
-      "id": "ubicomp26_20261101",
-      "title": "UbiComp/ISWC",
-      "full_name": "ACM International Joint Conference on Pervasive and Ubiquitous Computing",
-      "sub": "HI",
-      "sub_name": "Human-Computer Interaction",
-      "ccf": "A",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-11-01T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 11-15, 2026",
-      "place": "Shanghai, China",
-      "link": "https://www.ubicomp.org/ubicomp-iswc-2026",
-      "comment": "fourth round"
     },
     {
       "id": "icst2027_20261102",
