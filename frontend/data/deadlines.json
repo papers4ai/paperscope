@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-02T04:08:36Z",
+  "generated": "2026-10-02T14:28:24Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 342,
+  "total": 348,
   "conferences": [
-    {
-      "id": "internetware26_20260404",
-      "title": "Internetware",
-      "full_name": "Asia-Pacific Symposium on Internetware",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-04-04T23:59:59-1200",
-      "abstract_deadline": "2026-03-28T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "July 18-20, 2026",
-      "place": "Gold Coast, Australia",
-      "link": "https://conf.researchr.org/home/internetware-2026",
-      "comment": "Round 1"
-    },
     {
       "id": "micro26_20260407",
       "title": "MICRO",
@@ -3693,23 +3676,6 @@
       "comment": ""
     },
     {
-      "id": "eg27_20261001",
-      "title": "Eurographics",
-      "full_name": "Eurographics",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "B",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-10-01T23:59:00+0000",
-      "abstract_deadline": "2026-09-26T09:59:00+0000",
-      "timezone": "UTC",
-      "date": "May 10-14, 2027",
-      "place": "Lucca, Italy",
-      "link": "https://eg2027.isti.cnr.it/",
-      "comment": ""
-    },
-    {
       "id": "computing27_20261001",
       "title": "SAI",
       "full_name": "Computing Conference (SAI)",
@@ -3744,20 +3710,20 @@
       "comment": "Round 2"
     },
     {
-      "id": "dcc2027_20261002",
-      "title": "DCC",
-      "full_name": "Data Compression Conference",
+      "id": "eg27_20261002",
+      "title": "Eurographics",
+      "full_name": "Eurographics",
       "sub": "CG",
       "sub_name": "Graphics & Multimedia",
       "ccf": "B",
       "core": "B",
       "year": 2027,
-      "deadline": "2026-10-02T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "PT",
-      "date": "March 23-26, 2027",
-      "place": "Snowbird, Utah, United States",
-      "link": "https://datacompressionconference.org/",
+      "deadline": "2026-10-02T11:59:00+0000",
+      "abstract_deadline": "2026-09-26T11:59:00+0000",
+      "timezone": "UTC",
+      "date": "May 10-14, 2027",
+      "place": "Lucca, Italy",
+      "link": "https://eg2027.isti.cnr.it/",
       "comment": ""
     },
     {
@@ -3795,7 +3761,7 @@
       "comment": ""
     },
     {
-      "id": "ecir27_20261005",
+      "id": "ecir27_20261006",
       "title": "ECIR",
       "full_name": "European Conference on Information Retrieval",
       "sub": "DB",
@@ -3803,8 +3769,8 @@
       "ccf": "C",
       "core": "A",
       "year": 2027,
-      "deadline": "2026-10-05T23:59:59+0000",
-      "abstract_deadline": "2026-09-21T23:59:59+0000",
+      "deadline": "2026-10-06T11:59:59+0000",
+      "abstract_deadline": "2026-09-22T11:59:59+0000",
       "timezone": "UTC+0",
       "date": "March 21-25, 2027",
       "place": "Southampton, UK",
@@ -3912,6 +3878,23 @@
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "fall round"
+    },
+    {
+      "id": "dcc2027_20261009",
+      "title": "DCC",
+      "full_name": "Data Compression Conference",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-09T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "PT",
+      "date": "March 23-26, 2027",
+      "place": "Snowbird, Utah, United States",
+      "link": "https://datacompressionconference.org/",
+      "comment": ""
     },
     {
       "id": "dfrws27_20261009",
@@ -4577,6 +4560,23 @@
       "comment": "Regular research papers; abstract submission is optional"
     },
     {
+      "id": "caise27_20261115",
+      "title": "CAiSE",
+      "full_name": "International Conference on Advanced Information Systems Engineering",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-11-15T23:59:00+0000",
+      "abstract_deadline": "2026-11-04T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "June 7-11, 2027",
+      "place": "Seville, Spain",
+      "link": "https://deal.us.es/caise27/",
+      "comment": ""
+    },
+    {
       "id": "cvpr27_20261116",
       "title": "CVPR",
       "full_name": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
@@ -4934,6 +4934,23 @@
       "comment": ""
     },
     {
+      "id": "ics27_20261207",
+      "title": "ICS",
+      "full_name": "ACM International Conference on Supercomputing",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-12-07T23:59:00+0000",
+      "abstract_deadline": "2026-12-01T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "Atlanta, Georgia, USA",
+      "link": "https://ics-conference.org/index.html",
+      "comment": ""
+    },
+    {
       "id": "osdi2027_20261208",
       "title": "OSDI",
       "full_name": "USENIX Symposium on Operating Systems Design and Implementation",
@@ -5153,6 +5170,23 @@
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "winter round"
+    },
+    {
+      "id": "nossdav27_20270111",
+      "title": "NOSSDAV",
+      "full_name": "International Workshop on Network and Operating System Support for Digital Audio and Video",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-01-11T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "Ghent, Belgium",
+      "link": "https://nossdav.org/",
+      "comment": ""
     },
     {
       "id": "bis2027_20270111",
@@ -5444,6 +5478,23 @@
       "comment": ""
     },
     {
+      "id": "hotos27_20270201",
+      "title": "HotOS",
+      "full_name": "USENIX Workshop on Hot Topics in Operating Systems",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-02-01T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "May 24-26, 2027",
+      "place": "Burghausen, Bavaria, Germany",
+      "link": "https://sigops.org/s/conferences/hotos/2027/",
+      "comment": ""
+    },
+    {
       "id": "interact27_20270201",
       "title": "INTERACT",
       "full_name": "IFIP TC13 International Conference on Human-Computer Interaction",
@@ -5476,6 +5527,23 @@
       "place": "Hefei, China",
       "link": "https://securecomm.eai-conferences.org/2027/",
       "comment": "Full Paper Submission deadline (Cycle 1)"
+    },
+    {
+      "id": "gi27_20270205",
+      "title": "GI",
+      "full_name": "Graphics Interface",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "C",
+      "core": "",
+      "year": 2027,
+      "deadline": "2027-02-05T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 15-18, 2027",
+      "place": "Winnipeg, Canada",
+      "link": "https://conferences.graphicsinterface.org/2027",
+      "comment": ""
     },
     {
       "id": "eusipco27_20270206",
@@ -5665,6 +5733,23 @@
       "comment": ""
     },
     {
+      "id": "iros27_20270301",
+      "title": "IROS",
+      "full_name": "IEEE/RSJ International Conference on Intelligent Robots and Systems",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-03-01T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 26 - October 1, 2027",
+      "place": "Florence, Italy",
+      "link": "https://2027.ieee-iros.org/",
+      "comment": "Paper submission deadline: March 1, 2027; exact cutoff time and timezone not specified on the official IEEE RAS event page"
+    },
+    {
       "id": "cog27_20270301",
       "title": "IEEE CoG",
       "full_name": "IEEE Conference on Games",
@@ -5714,6 +5799,23 @@
       "place": "Toronto, Canada",
       "link": "https://conf.researchr.org/home/icsme-2027",
       "comment": "Research Papers Track"
+    },
+    {
+      "id": "smi27_20270308",
+      "title": "SMI",
+      "full_name": "Shape Modeling International",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2027-03-08T23:59:00+0000",
+      "abstract_deadline": "2027-03-01T23:59:00+0000",
+      "timezone": "UTC",
+      "date": "June 21-25, 2027",
+      "place": "Singapore",
+      "link": "https://smiconf.github.io/2027/",
+      "comment": "Abstract submission is a soft deadline"
     },
     {
       "id": "oopsla27_20270407",
