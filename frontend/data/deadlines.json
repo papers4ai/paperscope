@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-02T20:22:17Z",
+  "generated": "2026-10-03T03:51:47Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 348,
+  "total": 349,
   "conferences": [
     {
       "id": "micro26_20260407",
@@ -1701,6 +1701,23 @@
       "date": "November 16-18, 2026",
       "place": "Hong Kong SAR, China",
       "link": "https://www.iccd-conf.com/2026/home.html",
+      "comment": ""
+    },
+    {
+      "id": "acmturc2026_20260610",
+      "title": "ACM TURC",
+      "full_name": "ACM Turing Award Celebration Conference - China",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "N",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-06-10T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 11-12, 2026",
+      "place": "Hangzhou, China",
+      "link": "https://www.acmturc.com/2026/en/",
       "comment": ""
     },
     {
