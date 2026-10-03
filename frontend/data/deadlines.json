@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-03T03:51:47Z",
+  "generated": "2026-10-03T09:40:59Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 349,
   "conferences": [
@@ -3761,23 +3761,6 @@
       "comment": ""
     },
     {
-      "id": "icc27_20261002",
-      "title": "ICC",
-      "full_name": "IEEE International Conference on Communications",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "N",
-      "year": 2027,
-      "deadline": "2026-10-02T23:59:59-0400",
-      "abstract_deadline": null,
-      "timezone": "UTC-4",
-      "date": "May 30 - June 3, 2027",
-      "place": "Washington, DC, USA",
-      "link": "https://icc2027.ieee-icc.org",
-      "comment": ""
-    },
-    {
       "id": "ecir27_20261006",
       "title": "ECIR",
       "full_name": "European Conference on Information Retrieval",
@@ -4115,6 +4098,23 @@
       "date": "April 26-30, 2027",
       "place": "Marrakesh, Morocco",
       "link": "https://fg2027.ieee-biometrics.org/",
+      "comment": ""
+    },
+    {
+      "id": "icc27_20261016",
+      "title": "ICC",
+      "full_name": "IEEE International Conference on Communications",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-10-16T23:59:59-0700",
+      "abstract_deadline": null,
+      "timezone": "UTC-7",
+      "date": "May 30 - June 3, 2027",
+      "place": "Washington, DC, USA",
+      "link": "https://icc2027.ieee-icc.org",
       "comment": ""
     },
     {
