@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-04T22:45:10Z",
+  "generated": "2026-10-05T04:08:37Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 349,
+  "total": 348,
   "conferences": [
-    {
-      "id": "micro26_20260407",
-      "title": "MICRO",
-      "full_name": "IEEE/ACM International Symposium on Microarchitecture",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "A",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-04-07T23:59:59-0400",
-      "abstract_deadline": "2026-03-31T23:59:59-0400",
-      "timezone": "UTC-4",
-      "date": "November 2-4, 2026",
-      "place": "Athens, Greece",
-      "link": "https://microarch.org/micro59/",
-      "comment": ""
-    },
     {
       "id": "sc26_20260408",
       "title": "SC",
