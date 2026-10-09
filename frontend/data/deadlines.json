@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-09T04:38:49Z",
+  "generated": "2026-10-09T14:59:09Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 343,
+  "total": 345,
   "conferences": [
     {
       "id": "msst2026_20260414",
@@ -1593,7 +1593,7 @@
       "ccf": "B",
       "core": "A",
       "year": 2027,
-      "deadline": "2026-06-10T23:59:59+0000",
+      "deadline": "2026-06-10T12:00:00+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
       "date": "April 6-9, 2027",
@@ -3701,7 +3701,7 @@
       "ccf": "B",
       "core": "A",
       "year": 2027,
-      "deadline": "2026-10-07T23:59:59+0000",
+      "deadline": "2026-10-07T12:00:00+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
       "date": "April 6-9, 2027",
@@ -4626,6 +4626,23 @@
       "place": "Fort Collins, Colorado, USA",
       "link": "https://www.codaspy.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "dasfaa27_20261125",
+      "title": "DASFAA",
+      "full_name": "Database Systems for Advanced Applications",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-11-25T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "May 27-30, 2027",
+      "place": "Shenyang, China",
+      "link": "https://dasfaa2027.github.io/",
+      "comment": "Research papers"
     },
     {
       "id": "acisp27_20261130",
@@ -5714,6 +5731,23 @@
       "place": "Toronto, Canada",
       "link": "https://conf.researchr.org/home/icsme-2027",
       "comment": "Research Papers Track"
+    },
+    {
+      "id": "icpr27_20270308",
+      "title": "ICPR",
+      "full_name": "International Conference on Pattern Recognition",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-03-08T23:59:59+0000",
+      "abstract_deadline": "2027-03-01T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "October 4-6 and 14-15, 2027",
+      "place": "Online",
+      "link": "https://www.icpr2027.com/",
+      "comment": "All dates tentative; March 1 is paper registration; author rebuttal April 23 (provisional, cutoff unspecified)"
     },
     {
       "id": "smi27_20270308",
