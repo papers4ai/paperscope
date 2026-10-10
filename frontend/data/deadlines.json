@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-09T20:33:36Z",
+  "generated": "2026-10-10T04:24:45Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 345,
+  "total": 346,
   "conferences": [
     {
       "id": "msst2026_20260414",
@@ -5085,6 +5085,23 @@
       "place": "Sorrento, Italy",
       "link": "https://2027.ieee-isit.org/",
       "comment": ""
+    },
+    {
+      "id": "ijcai27_20270111",
+      "title": "IJCAI",
+      "full_name": "International Joint Conference on Artificial Intelligence",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-01-11T23:59:00+0000",
+      "abstract_deadline": "2027-01-04T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "August 7-13, 2027",
+      "place": "Kyoto, Japan",
+      "link": "https://2027.ijcai.org/",
+      "comment": "Separate satellite event: August 15-17, 2027, Hengqin, China"
     },
     {
       "id": "sigmetrics27_20270111",
