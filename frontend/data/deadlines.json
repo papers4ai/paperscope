@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-10T04:24:45Z",
+  "generated": "2026-10-10T14:14:20Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 346,
+  "total": 348,
   "conferences": [
     {
       "id": "msst2026_20260414",
@@ -5784,6 +5784,23 @@
       "comment": "Abstract submission is a soft deadline"
     },
     {
+      "id": "icip27_20270331",
+      "title": "ICIP",
+      "full_name": "The IEEE International Conference on Image Processing",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-03-31T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 29-December 3, 2027",
+      "place": "Singapore",
+      "link": "https://2027.ieeeicip.org/",
+      "comment": ""
+    },
+    {
       "id": "oopsla27_20270407",
       "title": "OOPSLA",
       "full_name": "Conference on Object-Oriented Programming Systems, Languages, and Applications",
@@ -5884,6 +5901,23 @@
       "place": "Aizuwakamatsu, Japan",
       "link": "https://cog2027.u-aizu.ac.jp/",
       "comment": "Auxiliary Paper"
+    },
+    {
+      "id": "icdm2027_20270606",
+      "title": "ICDM",
+      "full_name": "IEEE International Conference on Data Mining",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-06-06T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "November 15-18, 2027",
+      "place": "Brisbane, Australia",
+      "link": "https://icdm2027-website.onrender.com/",
+      "comment": "Full papers; dates are tentative and subject to change"
     }
   ]
 }
