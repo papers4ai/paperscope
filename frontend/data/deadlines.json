@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-11T14:38:57Z",
+  "generated": "2026-10-11T19:55:31Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 350,
   "conferences": [
@@ -676,12 +676,12 @@
       "core": "A",
       "year": 2026,
       "deadline": "2026-05-07T23:59:59+0000",
-      "abstract_deadline": "2026-04-11T23:59:59+0000",
+      "abstract_deadline": "2026-05-02T23:59:59+0000",
       "timezone": "AoE",
       "date": "October 27-29, 2026",
       "place": "Bari, Italy",
       "link": "https://iswc2026.semanticweb.org/",
-      "comment": "ESWC transfer"
+      "comment": "ESWC resubmissions must be committed by April 11, 2026"
     },
     {
       "id": "cluster26_20260507",
