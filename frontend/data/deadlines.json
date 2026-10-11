@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-11T04:05:53Z",
+  "generated": "2026-10-11T14:38:57Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 348,
+  "total": 350,
   "conferences": [
     {
       "id": "msst2026_20260414",
@@ -5172,6 +5172,23 @@
       "comment": ""
     },
     {
+      "id": "ismb27_20270114",
+      "title": "ISMB",
+      "full_name": "International Conference on Intelligent Systems for Molecular Biology",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "B",
+      "core": "",
+      "year": 2027,
+      "deadline": "2027-01-14T23:59:00+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "July 18-22, 2027",
+      "place": "Copenhagen, Denmark",
+      "link": "https://www.iscb.org/ismbeccb2027/",
+      "comment": "Proceedings; conditional acceptance: March 2, 2027; revised papers due: March 18, 2027, 23:59 AoE; no extensions to submission or revision deadlines"
+    },
+    {
       "id": "icwsm2027_20270115",
       "title": "ICWSM",
       "full_name": "The International AAAI Conference on Web and Social Media",
@@ -5884,6 +5901,23 @@
       "place": "Cairns, Australia",
       "link": "https://cgs-network.org/cgi27/",
       "comment": "Regular conference papers (LNCS proceedings track)"
+    },
+    {
+      "id": "krd27_20270428",
+      "title": "KR",
+      "full_name": "International Conference on Principles of Knowledge Representation and Reasoning",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-04-28T23:59:59+0000",
+      "abstract_deadline": "2027-04-23T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "September 21-24, 2027",
+      "place": "Buenos Aires, Argentina",
+      "link": "https://kr.org/KR2027/",
+      "comment": "Main track; author response period: June 15-18, 2027"
     },
     {
       "id": "cog27_20270515",
