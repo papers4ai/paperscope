@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-11T23:27:13Z",
+  "generated": "2026-10-12T04:24:55Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 350,
+  "total": 349,
   "conferences": [
-    {
-      "id": "msst2026_20260414",
-      "title": "MSST",
-      "full_name": "International Conference on Massive Storage Systems and Technology",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-04-14T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "UTC",
-      "date": "June 1-5, 2026",
-      "place": "Santa Clara University, Santa Clara, CA, USA",
-      "link": "https://msstconference.org/2026/index.html",
-      "comment": ""
-    },
     {
       "id": "iccad26_20260414",
       "title": "ICCAD",
