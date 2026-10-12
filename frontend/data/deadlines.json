@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-12T04:24:55Z",
+  "generated": "2026-10-12T17:23:12Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 349,
+  "total": 350,
   "conferences": [
-    {
-      "id": "iccad26_20260414",
-      "title": "ICCAD",
-      "full_name": "IEEE/ACM International Conference on Computer-Aided Design",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-04-14T23:59:59-1200",
-      "abstract_deadline": "2026-04-07T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "November 8 - 12, 2026",
-      "place": "San Jose, California, USA",
-      "link": "https://iccad.com/2026",
-      "comment": ""
-    },
     {
       "id": "egsr2026_20260415",
       "title": "EGSR",
@@ -4815,6 +4798,23 @@
       "comment": "Stage 1: initial 6-page extended abstract submission"
     },
     {
+      "id": "conext27_20261204",
+      "title": "CoNEXT",
+      "full_name": "International Conference on Emerging Networking Experiments and Technologies",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-12-04T23:59:59+0000",
+      "abstract_deadline": "2026-11-27T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "December 6-9, 2027 (To be confirmed)",
+      "place": "Rio de Janeiro, Brazil",
+      "link": "https://conferences.sigcomm.org/co-next/2027/#!/home",
+      "comment": "December Cycle"
+    },
+    {
       "id": "mobisys27_20261204",
       "title": "MobiSys",
       "full_name": "ACM International Conference on Mobile Systems, Applications, and Services",
@@ -5918,6 +5918,23 @@
       "place": "Aizuwakamatsu, Japan",
       "link": "https://cog2027.u-aizu.ac.jp/",
       "comment": "Auxiliary Paper"
+    },
+    {
+      "id": "conext27_20270604",
+      "title": "CoNEXT",
+      "full_name": "International Conference on Emerging Networking Experiments and Technologies",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-06-04T23:59:59+0000",
+      "abstract_deadline": "2027-05-28T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "December 6-9, 2027 (To be confirmed)",
+      "place": "Rio de Janeiro, Brazil",
+      "link": "https://conferences.sigcomm.org/co-next/2027/#!/home",
+      "comment": "June Cycle"
     },
     {
       "id": "icdm2027_20270606",
