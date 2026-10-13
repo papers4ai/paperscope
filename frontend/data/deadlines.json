@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-13T01:49:27Z",
+  "generated": "2026-10-13T11:25:44Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 345,
+  "total": 348,
   "conferences": [
     {
       "id": "raid26_20260416",
@@ -4373,6 +4373,23 @@
       "comment": ""
     },
     {
+      "id": "isca27_20261116",
+      "title": "ISCA",
+      "full_name": "International Symposium on Computer Architecture",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-11-16T23:59:59+0000",
+      "abstract_deadline": "2026-11-09T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "June 5-9, 2027",
+      "place": "Atlanta, Georgia, USA",
+      "link": "https://iscaconf.org/isca2027/",
+      "comment": "Main Track; rebuttal/revision period: February 16-March 8, 2027"
+    },
+    {
       "id": "cvpr27_20261116",
       "title": "CVPR",
       "full_name": "IEEE/CVF Conference on Computer Vision and Pattern Recognition",
@@ -5206,6 +5223,23 @@
       "comment": "Research Papers"
     },
     {
+      "id": "idc27_20270125",
+      "title": "IDC",
+      "full_name": "ACM Interaction Design and Children Conference",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "C",
+      "core": "",
+      "year": 2027,
+      "deadline": "2027-01-25T23:59:59+0000",
+      "abstract_deadline": "2027-01-18T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "June 21-24, 2027",
+      "place": "Seattle, Washington, USA",
+      "link": "https://idc.acm.org/2027/",
+      "comment": "Full and Short Papers; abstract deadline includes author information"
+    },
+    {
       "id": "uss27_20270126",
       "title": "USENIX Security",
       "full_name": "USENIX Security Symposium",
@@ -5646,6 +5680,23 @@
       "place": "Melbourne, Australia",
       "link": "https://acisp.org/",
       "comment": "2nd round Deadline"
+    },
+    {
+      "id": "re27_20270301",
+      "title": "RE",
+      "full_name": "IEEE International Requirements Engineering Conference",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-03-01T23:59:59+0000",
+      "abstract_deadline": "2027-02-22T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "August 23-27, 2027",
+      "place": "Milan, Italy",
+      "link": "https://conf.researchr.org/home/RE-2027",
+      "comment": "Research Papers"
     },
     {
       "id": "icsme27_20270305",
