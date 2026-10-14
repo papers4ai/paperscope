@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-14T03:36:25Z",
+  "generated": "2026-10-14T09:17:56Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 348,
+  "total": 350,
   "conferences": [
     {
       "id": "sca26_20260417",
@@ -3761,23 +3761,6 @@
       "comment": "ARR Submission"
     },
     {
-      "id": "iscas27_20261013",
-      "title": "ISCAS",
-      "full_name": "IEEE International Symposium on Circuits and Systems",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "C",
-      "year": 2027,
-      "deadline": "2026-10-13T23:59:59-0500",
-      "abstract_deadline": null,
-      "timezone": "UTC-5",
-      "date": "June 6-9, 2027",
-      "place": "Bordeaux, France",
-      "link": "https://2027.ieee-iscas.org/",
-      "comment": ""
-    },
-    {
       "id": "oopsla27_20261014",
       "title": "OOPSLA",
       "full_name": "Conference on Object-Oriented Programming Systems, Languages, and Applications",
@@ -3912,6 +3895,23 @@
       "place": "Changsha, China",
       "link": "https://www.pd-cat.org/2026/",
       "comment": "Second Cycle"
+    },
+    {
+      "id": "iscas27_20261022",
+      "title": "ISCAS",
+      "full_name": "IEEE International Symposium on Circuits and Systems",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2026-10-22T23:59:59-0500",
+      "abstract_deadline": null,
+      "timezone": "UTC-5",
+      "date": "June 6-9, 2027",
+      "place": "Bordeaux, France",
+      "link": "https://2027.ieee-iscas.org/",
+      "comment": ""
     },
     {
       "id": "ct-rsa27_20261022",
@@ -4541,6 +4541,23 @@
       "place": "Melbourne, Australia",
       "link": "https://acisp.org/",
       "comment": "1st round Deadline"
+    },
+    {
+      "id": "blocksys2027_20261130",
+      "title": "BlockSys",
+      "full_name": "International Conference on Blockchain, Artificial Intelligence, and Trustworthy Systems",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-11-30T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 9-11, 2027",
+      "place": "Foshan, China",
+      "link": "https://blocksys.info/2027/",
+      "comment": "Round 1 Submission Deadline"
     },
     {
       "id": "pets27_20261130",
@@ -5306,6 +5323,23 @@
       "place": "Boston, Massachusetts, USA",
       "link": "https://2027.worldhaptics.org/",
       "comment": ""
+    },
+    {
+      "id": "blocksys2027_20270131",
+      "title": "BlockSys",
+      "full_name": "International Conference on Blockchain, Artificial Intelligence, and Trustworthy Systems",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2027-01-31T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 9-11, 2027",
+      "place": "Foshan, China",
+      "link": "https://blocksys.info/2027/",
+      "comment": "Round 2 Submission Deadline"
     },
     {
       "id": "compsac27_20270131",
