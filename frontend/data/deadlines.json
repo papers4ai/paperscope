@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-13T23:36:36Z",
+  "generated": "2026-10-14T03:36:25Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 348,
   "conferences": [
-    {
-      "id": "raid26_20260416",
-      "title": "RAID",
-      "full_name": "International Symposium on Recent Advances in Intrusion Detection",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-04-16T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 12-14, 2026",
-      "place": "Lancaster, UK",
-      "link": "https://raid2026.org",
-      "comment": ""
-    },
     {
       "id": "sca26_20260417",
       "title": "SCA",
@@ -4898,6 +4881,23 @@
       "place": "New York, USA",
       "link": "https://icdf2c.eai-conferences.org/2027/",
       "comment": "Full Paper Submission deadline"
+    },
+    {
+      "id": "eswc27_20261217",
+      "title": "ESWC",
+      "full_name": "European Semantic Web Conference",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-12-17T23:59:59+0000",
+      "abstract_deadline": "2026-12-10T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "May 23-27, 2027",
+      "place": "Limassol, Cyprus",
+      "link": "https://2027.eswc-conferences.org/",
+      "comment": "Research track; rebuttal period January 26-29, 2027"
     },
     {
       "id": "gmp27_20261221",
