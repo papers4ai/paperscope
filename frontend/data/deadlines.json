@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-15T08:52:15Z",
+  "generated": "2026-10-15T16:20:48Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 348,
+  "total": 349,
   "conferences": [
     {
       "id": "blocksys2026_20260420",
@@ -767,6 +767,23 @@
       "place": "Kunming, China",
       "link": "https://conf.ccf.org.cn/WISA2026",
       "comment": ""
+    },
+    {
+      "id": "er26_20260519",
+      "title": "ER",
+      "full_name": "International Conference on Conceptual Modeling",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "",
+      "year": 2026,
+      "deadline": "2026-05-19T23:59:59+0000",
+      "abstract_deadline": "2026-05-12T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "October 6-8, 2026",
+      "place": "St. John's, NL, Canada",
+      "link": "https://www.er2026.org/",
+      "comment": "Main conference full and short papers; extended deadlines; abstract mandatory"
     },
     {
       "id": "tcc26_20260519",
