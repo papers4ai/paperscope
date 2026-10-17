@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-17T14:59:27Z",
+  "generated": "2026-10-17T18:10:13Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 350,
+  "total": 349,
   "conferences": [
-    {
-      "id": "blocksys2026_20260420",
-      "title": "BlockSys",
-      "full_name": "International Conference on Blockchain, Artificial Intelligence, and Trustworthy Systems",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-04-20T23:59:59+0800",
-      "abstract_deadline": null,
-      "timezone": "UTC+8",
-      "date": "July 29-31, 2026",
-      "place": "Chengdu, China",
-      "link": "https://blocksys.info/2026/",
-      "comment": ""
-    },
     {
       "id": "recsys26_20260421",
       "title": "RecSys",
