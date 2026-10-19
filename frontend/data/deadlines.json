@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T09:36:18Z",
+  "generated": "2026-10-19T18:21:39Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 347,
   "conferences": [
@@ -3761,23 +3761,6 @@
       "comment": ""
     },
     {
-      "id": "icc27_20261016",
-      "title": "ICC",
-      "full_name": "IEEE International Conference on Communications",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "N",
-      "year": 2027,
-      "deadline": "2026-10-16T23:59:59-0700",
-      "abstract_deadline": null,
-      "timezone": "UTC-7",
-      "date": "May 30 - June 3, 2027",
-      "place": "Washington, DC, USA",
-      "link": "https://icc2027.ieee-icc.org",
-      "comment": ""
-    },
-    {
       "id": "sigmod27_20261017",
       "title": "SIGMOD",
       "full_name": "ACM Conference on Management of Data",
@@ -3946,6 +3929,23 @@
       "place": "Durham, England, United Kingdom",
       "link": "https://www.sacmat.org/2027/",
       "comment": "First Cycle"
+    },
+    {
+      "id": "icc27_20261030",
+      "title": "ICC",
+      "full_name": "IEEE International Conference on Communications",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-10-30T23:59:59-0700",
+      "abstract_deadline": null,
+      "timezone": "UTC-7",
+      "date": "May 30 - June 3, 2027",
+      "place": "Washington, DC, USA",
+      "link": "https://icc2027.ieee-icc.org",
+      "comment": ""
     },
     {
       "id": "cscwd27_20261031",
