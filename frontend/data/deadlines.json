@@ -1,42 +1,8 @@
 {
-  "generated": "2026-10-19T23:18:39Z",
+  "generated": "2026-10-20T03:28:26Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 347,
   "conferences": [
-    {
-      "id": "assets26_20260422",
-      "title": "ASSETS",
-      "full_name": "ACM SIGACCESS Conference on Computers and Accessibility",
-      "sub": "HI",
-      "sub_name": "Human-Computer Interaction",
-      "ccf": "C",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-04-22T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "October 25-28, 2026",
-      "place": "Porto, Portugal",
-      "link": "https://assets26.sigaccess.org/",
-      "comment": ""
-    },
-    {
-      "id": "qrs26_20260422",
-      "title": "QRS",
-      "full_name": "IEEE International Conference on Software Quality, Reliability and Security",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-04-22T23:59:59+0000",
-      "abstract_deadline": "2026-04-08T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "July 22-25, 2026",
-      "place": "University of Florence, Florence, Italy",
-      "link": "https://qrs26.techconf.org/",
-      "comment": ""
-    },
     {
       "id": "esa2026_20260423",
       "title": "ESA",
@@ -4305,6 +4271,23 @@
       "comment": ""
     },
     {
+      "id": "imc27_20261117",
+      "title": "IMC",
+      "full_name": "ACM Internet Measurement Conference",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-11-17T23:59:59+0000",
+      "abstract_deadline": "2026-11-10T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "Oct 25-29, 2027",
+      "place": "Atlanta, GA, USA",
+      "link": "https://conferences.sigcomm.org/imc/2027/",
+      "comment": "Cycle 1; rebuttal period January 26-February 2, 2027"
+    },
+    {
       "id": "sp27_20261117",
       "title": "S&P",
       "full_name": "IEEE Symposium on Security and Privacy",
@@ -5748,6 +5731,23 @@
       "place": "Singapore",
       "link": "https://2027.ieeeicip.org/",
       "comment": ""
+    },
+    {
+      "id": "imc27_20270407",
+      "title": "IMC",
+      "full_name": "ACM Internet Measurement Conference",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-04-07T23:59:59+0000",
+      "abstract_deadline": "2027-03-31T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "Oct 25-29, 2027",
+      "place": "Atlanta, GA, USA",
+      "link": "https://conferences.sigcomm.org/imc/2027/",
+      "comment": "Cycle 2"
     },
     {
       "id": "oopsla27_20270407",
