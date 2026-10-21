@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-21T09:07:49Z",
+  "generated": "2026-10-21T16:38:46Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 346,
+  "total": 345,
   "conferences": [
-    {
-      "id": "icmi26_20260424",
-      "title": "ICMI",
-      "full_name": "ACM International Conference on Multimodal Interaction",
-      "sub": "HI",
-      "sub_name": "Human-Computer Interaction",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-04-24T04:59:59-0700",
-      "abstract_deadline": "2026-04-13T23:59:59-0700",
-      "timezone": "UTC-7",
-      "date": "October 6-8, 2026",
-      "place": "Napoli, Italy",
-      "link": "https://icmi.acm.org/2026/",
-      "comment": "Paper deadline extended to Apr 23, 23:59 AoE; normalized to UTC-7"
-    },
     {
       "id": "itc2026_20260424",
       "title": "ITC",
