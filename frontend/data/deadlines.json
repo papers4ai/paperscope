@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-20T22:56:05Z",
+  "generated": "2026-10-21T03:23:04Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 348,
+  "total": 347,
   "conferences": [
-    {
-      "id": "esa2026_20260423",
-      "title": "ESA",
-      "full_name": "European Symposium on Algorithms",
-      "sub": "CT",
-      "sub_name": "Computing Theory",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-04-23T23:59:59+0000",
-      "abstract_deadline": "2026-04-21T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "August 31 - September 4, 2026",
-      "place": "L'Aquila, Italy",
-      "link": "https://algo-conference.org/2026/esa/",
-      "comment": ""
-    },
     {
       "id": "nsdi27_20260423",
       "title": "NSDI",
