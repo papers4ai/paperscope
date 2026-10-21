@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-21T03:23:04Z",
+  "generated": "2026-10-21T09:07:49Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 347,
+  "total": 346,
   "conferences": [
-    {
-      "id": "nsdi27_20260423",
-      "title": "NSDI",
-      "full_name": "USENIX Symposium on Networked Systems Design and Implementation",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "A",
-      "core": "N",
-      "year": 2027,
-      "deadline": "2026-04-23T23:59:59-0400",
-      "abstract_deadline": "2026-04-16T23:59:59-0400",
-      "timezone": "UTC-4",
-      "date": "May 11-13, 2027",
-      "place": "Providence, RI, USA",
-      "link": "https://www.usenix.org/conference/nsdi27",
-      "comment": ""
-    },
     {
       "id": "icmi26_20260424",
       "title": "ICMI",
