@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-22T09:10:19Z",
+  "generated": "2026-10-22T16:39:49Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 344,
+  "total": 347,
   "conferences": [
     {
       "id": "concur26_20260427",
@@ -2129,6 +2129,23 @@
       "comment": ""
     },
     {
+      "id": "sigir-ap26_20260729",
+      "title": "SIGIR-AP",
+      "full_name": "International ACM SIGIR Conference on Information Retrieval in the Asia Pacific",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "N",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-07-29T23:59:59+0000",
+      "abstract_deadline": "2026-07-22T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "December 13-15, 2026",
+      "place": "Singapore",
+      "link": "https://www.sigir-ap.org/sigir-ap-2026/",
+      "comment": "Extended deadlines"
+    },
+    {
       "id": "hpca27_20260731",
       "title": "HPCA",
       "full_name": "IEEE International Symposium on High-Performance Computer Architecture",
@@ -3572,6 +3589,23 @@
       "place": "Prague, Czechia",
       "link": "https://2027.splashcon.org/track/splashoopsla2027",
       "comment": "Submission Deadline Round 1"
+    },
+    {
+      "id": "chiir27_20261015",
+      "title": "CHIIR",
+      "full_name": "ACM SIGIR Conference on Human Information Interaction and Retrieval",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "N",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-15T23:59:59+0000",
+      "abstract_deadline": "2026-10-08T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "March 7-11, 2027",
+      "place": "Berlin, Germany",
+      "link": "https://chiir2027.github.io/",
+      "comment": ""
     },
     {
       "id": "ches27_20261015",
@@ -5306,6 +5340,23 @@
       "place": "Bangkok, Thailand",
       "link": "https://conferences.sigcomm.org/sigcomm/2027/",
       "comment": ""
+    },
+    {
+      "id": "sais27_20270204",
+      "title": "SAIS",
+      "full_name": "USENIX Conference on Secure Agentic-AI Systems",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "N",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2027-02-04T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 7-8, 2027",
+      "place": "Santa Clara, CA, USA",
+      "link": "https://www.usenix.org/conference/sais27",
+      "comment": "Paper submission deadline"
     },
     {
       "id": "gi27_20270205",
