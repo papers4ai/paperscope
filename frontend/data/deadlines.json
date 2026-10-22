@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-22T03:21:39Z",
+  "generated": "2026-10-22T09:10:19Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 343,
+  "total": 344,
   "conferences": [
     {
       "id": "concur26_20260427",
@@ -5288,6 +5288,23 @@
       "date": "May 24-26, 2027",
       "place": "Burghausen, Bavaria, Germany",
       "link": "https://sigops.org/s/conferences/hotos/2027/",
+      "comment": ""
+    },
+    {
+      "id": "sigcomm27_20270202",
+      "title": "SIGCOMM",
+      "full_name": "ACM International Conference on Applications, Technologies, Architectures, and Protocols for Computer Communication",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-02-02T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "August 8 - 12, 2027",
+      "place": "Bangkok, Thailand",
+      "link": "https://conferences.sigcomm.org/sigcomm/2027/",
       "comment": ""
     },
     {
