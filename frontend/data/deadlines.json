@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T22:58:14Z",
+  "generated": "2026-10-23T03:26:56Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 347,
   "conferences": [
@@ -3710,23 +3710,6 @@
       "comment": "Second Cycle"
     },
     {
-      "id": "iscas27_20261022",
-      "title": "ISCAS",
-      "full_name": "IEEE International Symposium on Circuits and Systems",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "C",
-      "year": 2027,
-      "deadline": "2026-10-22T23:59:59-0500",
-      "abstract_deadline": null,
-      "timezone": "UTC-5",
-      "date": "June 6-9, 2027",
-      "place": "Bordeaux, France",
-      "link": "https://2027.ieee-iscas.org/",
-      "comment": ""
-    },
-    {
       "id": "ct-rsa27_20261022",
       "title": "CT-RSA",
       "full_name": "Cryptographer's Track at RSA Conference",
@@ -3809,6 +3792,23 @@
       "date": "April 9-11, 2027",
       "place": "Nanyang Technological University, Singapore",
       "link": "http://iccvm.org/2027/",
+      "comment": ""
+    },
+    {
+      "id": "iscas27_20261026",
+      "title": "ISCAS",
+      "full_name": "IEEE International Symposium on Circuits and Systems",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "B",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2026-10-26T23:59:59-0500",
+      "abstract_deadline": null,
+      "timezone": "UTC-5",
+      "date": "June 6-9, 2027",
+      "place": "Bordeaux, France",
+      "link": "https://2027.ieee-iscas.org/",
       "comment": ""
     },
     {
@@ -4823,12 +4823,12 @@
       "ccf": "B",
       "core": "A",
       "year": 2027,
-      "deadline": "2026-12-30T23:59:59-1200",
+      "deadline": "2026-12-30T23:59:59+0000",
       "abstract_deadline": null,
-      "timezone": "UTC-12",
+      "timezone": "AoE",
       "date": "July 13-17, 2027",
       "place": "Xiamen, China",
-      "link": "https://ieee-cas.org/event/conference/2027-ieee-international-conference-multimedia-expo-icme",
+      "link": "https://2027.ieeeicme.org/",
       "comment": ""
     },
     {
