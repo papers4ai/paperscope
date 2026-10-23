@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-23T09:06:40Z",
+  "generated": "2026-10-23T16:29:37Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 347,
+  "total": 348,
   "conferences": [
     {
       "id": "concur26_20260427",
@@ -801,6 +801,23 @@
       "place": "Danang, Vietnam / Online",
       "link": "https://conferences.sigappfr.org/apweb2026/",
       "comment": "second round"
+    },
+    {
+      "id": "clef26_20260525",
+      "title": "CLEF",
+      "full_name": "Conference and Labs of the Evaluation Forum",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "N",
+      "core": "N",
+      "year": 2026,
+      "deadline": "2026-05-25T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 21-24, 2026",
+      "place": "Jena, Germany",
+      "link": "https://clef2026.clef-initiative.eu/",
+      "comment": ""
     },
     {
       "id": "systor26_20260525",
