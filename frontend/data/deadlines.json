@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-25T15:34:55Z",
+  "generated": "2026-10-25T18:44:02Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 347,
+  "total": 348,
   "conferences": [
     {
       "id": "imc26_20260429",
@@ -2758,6 +2758,23 @@
       "comment": "Summer Deadlines"
     },
     {
+      "id": "pacificvis27_20260908",
+      "title": "PacificVis",
+      "full_name": "IEEE Pacific Visualization Symposium",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-09-08T23:59:59+0000",
+      "abstract_deadline": "2026-09-01T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "April 19-22, 2027",
+      "place": "Busan, South Korea",
+      "link": "https://pacificvis2027.github.io/",
+      "comment": "Journal track"
+    },
+    {
       "id": "asplos27_20260909",
       "title": "ASPLOS",
       "full_name": "International Conference on Architectural Support for Programming Languages and Operating Systems",
@@ -3534,8 +3551,8 @@
       "deadline": "2026-10-12T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "May 9-14, 2027",
-      "place": "Macau SAR, China",
+      "date": "May 9-14 (in-person) and 6-7 (virtual), 2027",
+      "place": "Macau SAR, China / Online",
       "link": "https://2027.coling-iccl.org/",
       "comment": "ARR Submission"
     },
@@ -3770,7 +3787,7 @@
       "core": "N",
       "year": 2027,
       "deadline": "2026-10-26T23:59:59+0000",
-      "abstract_deadline": "2026-10-23T23:59:59+0000",
+      "abstract_deadline": "2026-10-26T23:59:59+0000",
       "timezone": "UTC+0",
       "date": "April 9-11, 2027",
       "place": "Nanyang Technological University, Singapore",
@@ -4792,8 +4809,8 @@
       "deadline": "2026-12-23T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "May 9-14, 2027",
-      "place": "Macau SAR, China",
+      "date": "May 9-14 (in-person) and 6-7 (virtual), 2027",
+      "place": "Macau SAR, China / Online",
       "link": "https://2027.coling-iccl.org/",
       "comment": "COLING commitment after ARR meta-reviews; reviewed papers only"
     },
