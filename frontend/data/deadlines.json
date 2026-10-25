@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-24T22:15:22Z",
+  "generated": "2026-10-25T03:16:37Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 348,
+  "total": 347,
   "conferences": [
-    {
-      "id": "concur26_20260427",
-      "title": "CONCUR",
-      "full_name": "International Conference on Concurrency Theory",
-      "sub": "CT",
-      "sub_name": "Computing Theory",
-      "ccf": "B",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-04-27T23:59:59+0000",
-      "abstract_deadline": "2026-04-20T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "Sep 1-4, 2026",
-      "place": "Liverpool, UK",
-      "link": "https://confest-2026.github.io/concur/",
-      "comment": ""
-    },
     {
       "id": "imc26_20260429",
       "title": "IMC",
@@ -1511,7 +1494,7 @@
       "deadline": "2026-06-20T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD",
+      "date": "December 1-4, 2026",
       "place": "Melbourne, Australia",
       "link": "https://www.acml-conf.org/2026/",
       "comment": "Journal Track"
@@ -1766,7 +1749,7 @@
       "deadline": "2026-07-05T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "TBD",
+      "date": "December 1-4, 2026",
       "place": "Melbourne, Australia",
       "link": "https://www.acml-conf.org/2026/",
       "comment": "Conference Track"
@@ -3285,23 +3268,6 @@
       "comment": ""
     },
     {
-      "id": "cvc27_20261001",
-      "title": "CVC",
-      "full_name": "Computer Vision Conference",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "",
-      "year": 2027,
-      "deadline": "2026-10-01T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "April 15-16, 2027",
-      "place": "Amsterdam, Netherlands",
-      "link": "https://saiconference.com/CVC",
-      "comment": "Round 2"
-    },
-    {
       "id": "computing27_20261001",
       "title": "SAI",
       "full_name": "Computing Conference (SAI)",
@@ -3912,6 +3878,23 @@
       "place": "Athens, Greece",
       "link": "https://www.vldb.org/2027/",
       "comment": ""
+    },
+    {
+      "id": "cvc27_20261101",
+      "title": "CVC",
+      "full_name": "Computer Vision Conference",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "",
+      "year": 2027,
+      "deadline": "2026-11-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "April 15-16, 2027",
+      "place": "Amsterdam, Netherlands",
+      "link": "https://saiconference.com/CVC",
+      "comment": "Round 2"
     },
     {
       "id": "eurogp27_20261101",
