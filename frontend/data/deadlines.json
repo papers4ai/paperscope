@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T09:43:25Z",
+  "generated": "2026-10-26T18:15:51Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 348,
   "conferences": [
@@ -4390,6 +4390,23 @@
       "comment": "Research papers"
     },
     {
+      "id": "cpal27_20261125",
+      "title": "CPAL",
+      "full_name": "The Conference on Parsimony and Learning",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-11-25T23:59:59+0000",
+      "abstract_deadline": "2026-11-13T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "March 23-26, 2027",
+      "place": "Tokyo, Japan",
+      "link": "https://cpal.cc/",
+      "comment": ""
+    },
+    {
       "id": "acisp27_20261130",
       "title": "ACISP",
       "full_name": "Australasia Conference on Information Security and Privacy",
@@ -4625,23 +4642,6 @@
       "date": "June 21-25, 2027",
       "place": "Ho Chi Minh City, Vietnam",
       "link": "https://www.sigmobile.org/mobisys/2027/",
-      "comment": ""
-    },
-    {
-      "id": "cpal27_20261205",
-      "title": "CPAL",
-      "full_name": "The Conference on Parsimony and Learning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "N",
-      "year": 2027,
-      "deadline": "2026-12-05T23:59:59+0000",
-      "abstract_deadline": "2026-11-23T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "March 23-26, 2027",
-      "place": "Tokyo, Japan",
-      "link": "https://cpal.cc/",
       "comment": ""
     },
     {
