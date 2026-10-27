@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-27T03:46:52Z",
+  "generated": "2026-10-27T09:37:01Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 347,
+  "total": 348,
   "conferences": [
     {
       "id": "ccs26_20260429",
@@ -5153,6 +5153,23 @@
       "place": "Tokyo, Japan",
       "link": "https://www.ieee-security.org/TC/CSF2027/",
       "comment": "Winter"
+    },
+    {
+      "id": "colt27_20270129",
+      "title": "COLT",
+      "full_name": "Annual Conference on Learning Theory",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-01-29T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 28 - July 2, 2027",
+      "place": "Tokyo, Japan",
+      "link": "https://learningtheory.org/colt2027/",
+      "comment": "Expected rebuttal March 29 - April 2; author notification on or before May 3."
     },
     {
       "id": "spaa27_20270129",
