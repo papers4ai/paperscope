@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-27T09:37:01Z",
+  "generated": "2026-10-27T17:29:46Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 348,
+  "total": 347,
   "conferences": [
-    {
-      "id": "ccs26_20260429",
-      "title": "CCS",
-      "full_name": "ACM Conference on Computer and Communications Security",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-04-29T23:59:59-1200",
-      "abstract_deadline": "2026-04-22T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "November 16-18, 2026",
-      "place": "World Forum, Hague, Netherlands",
-      "link": "https://www.sigsac.org/ccs/CCS2026/",
-      "comment": "Cycle 2"
-    },
     {
       "id": "ijcb2026_20260430",
       "title": "IJCB",
