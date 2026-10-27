@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-26T23:35:04Z",
+  "generated": "2026-10-27T03:46:52Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 348,
+  "total": 347,
   "conferences": [
-    {
-      "id": "imc26_20260429",
-      "title": "IMC",
-      "full_name": "ACM Internet Measurement Conference",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-04-29T23:59:59+0000",
-      "abstract_deadline": "2026-04-22T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "October 13-16, 2026",
-      "place": "Karlsruhe, Germany",
-      "link": "https://conferences.sigcomm.org/imc/2026/",
-      "comment": "Cycle 2"
-    },
     {
       "id": "ccs26_20260429",
       "title": "CCS",
