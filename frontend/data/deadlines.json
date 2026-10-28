@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-28T04:03:53Z",
+  "generated": "2026-10-28T14:52:10Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 346,
+  "total": 347,
   "conferences": [
     {
       "id": "vldb27_20260501",
@@ -4643,6 +4643,23 @@
       "place": "Macau, China",
       "link": "https://asiaccs2027.cityu.edu.mo/index.html",
       "comment": "2nd round Deadline"
+    },
+    {
+      "id": "isca27_20261213",
+      "title": "ISCA",
+      "full_name": "International Symposium on Computer Architecture",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2026-12-13T23:59:59+0000",
+      "abstract_deadline": "2026-12-06T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "June 5-9, 2027",
+      "place": "Atlanta, Georgia, USA",
+      "link": "https://iscaconf.org/isca2027/",
+      "comment": "Industry Track; rebuttal period: February 15-26, 2027"
     },
     {
       "id": "icaps27_20261214",
