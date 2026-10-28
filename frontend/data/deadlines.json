@@ -1,59 +1,8 @@
 {
-  "generated": "2026-10-27T23:29:53Z",
+  "generated": "2026-10-28T04:03:53Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 347,
+  "total": 346,
   "conferences": [
-    {
-      "id": "ijcb2026_20260430",
-      "title": "IJCB",
-      "full_name": "International Joint Conference on Biometrics",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-04-30T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "September 1-4, 2026",
-      "place": "Rome, Italy",
-      "link": "https://ijcb2026.ieee-biometrics.org/",
-      "comment": ""
-    },
-    {
-      "id": "cgi26_20260430",
-      "title": "CGI",
-      "full_name": "Computer Graphics International",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-04-30T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "UTC",
-      "date": "July 7-10, 2026",
-      "place": "London, UK (Hybrid)",
-      "link": "https://www.cgs-network.org/cgi26/",
-      "comment": "Conference second call"
-    },
-    {
-      "id": "pact26_20260430",
-      "title": "PACT",
-      "full_name": "International Conference on Parallel Architectures and Compilation Techniques",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "B",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-04-30T23:59:59+0000",
-      "abstract_deadline": "2026-04-23T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "October 20-22, 2026",
-      "place": "Chicago, Illinois, USA",
-      "link": "https://pact2026.github.io/",
-      "comment": ""
-    },
     {
       "id": "vldb27_20260501",
       "title": "VLDB",
@@ -1293,7 +1242,7 @@
       "date": "May 17-21, 2027",
       "place": "Copenhagen, Denmark",
       "link": "https://icde2027.github.io/",
-      "comment": "first round"
+      "comment": "first round; notification date is approximate"
     },
     {
       "id": "cgo2027_20260611",
@@ -3520,7 +3469,7 @@
       "date": "May 9-14 (in-person) and 6-7 (virtual), 2027",
       "place": "Macau SAR, China / Online",
       "link": "https://2027.coling-iccl.org/",
-      "comment": "ARR Submission"
+      "comment": ""
     },
     {
       "id": "naacl27_20261012",
@@ -4115,7 +4064,7 @@
       "date": "May 17-21, 2027",
       "place": "Copenhagen, Denmark",
       "link": "https://icde2027.github.io/",
-      "comment": "second round"
+      "comment": "second round; notification date is approximate"
     },
     {
       "id": "pldi27_20261112",
@@ -4218,6 +4167,23 @@
       "place": "Atlanta, GA, USA",
       "link": "https://conferences.sigcomm.org/imc/2027/",
       "comment": "Cycle 1; rebuttal period January 26-February 2, 2027"
+    },
+    {
+      "id": "wsdm27_20261117",
+      "title": "WSDM",
+      "full_name": "International Conference on Web Search and Data Mining",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-11-17T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "February 15 - 19, 2027",
+      "place": "Cordis, Hong Kong SAR, China",
+      "link": "https://wsdm-conference.org/2027/",
+      "comment": "Short Paper"
     },
     {
       "id": "sp27_20261117",
@@ -4764,23 +4730,6 @@
       "comment": ""
     },
     {
-      "id": "coling27_20261223",
-      "title": "COLING",
-      "full_name": "International Conference on Computational Linguistics",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "B",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-12-23T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "May 9-14 (in-person) and 6-7 (virtual), 2027",
-      "place": "Macau SAR, China / Online",
-      "link": "https://2027.coling-iccl.org/",
-      "comment": "COLING commitment after ARR meta-reviews; reviewed papers only"
-    },
-    {
       "id": "naacl27_20261223",
       "title": "NAACL",
       "full_name": "The Annual Conference of the North American Chapter of the Association for Computational Linguistics",
@@ -5085,6 +5034,23 @@
       "place": "Hanoi, Vietnam",
       "link": "https://conf.researchr.org/home/ease-2027",
       "comment": "Research Papers"
+    },
+    {
+      "id": "gecco27_20270125",
+      "title": "GECCO",
+      "full_name": "Genetic and Evolutionary Computation Conference",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-01-25T23:59:59+0000",
+      "abstract_deadline": "2027-01-18T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "July 12-16, 2027",
+      "place": "Kraków, Poland",
+      "link": "https://gecco-2027.sigevo.org/HomePage",
+      "comment": ""
     },
     {
       "id": "idc27_20270125",
@@ -5765,6 +5731,23 @@
       "place": "Prague, Czechia",
       "link": "https://2027.splashcon.org/track/splashoopsla2027",
       "comment": "Submission Deadline Round 2"
+    },
+    {
+      "id": "ijcb2027_20270410",
+      "title": "IJCB",
+      "full_name": "International Joint Conference on Biometrics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-04-10T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 13-17, 2027",
+      "place": "Foz do Iguaçu, Brazil",
+      "link": "https://ijcb2027.ieee-biometrics.org/",
+      "comment": ""
     },
     {
       "id": "ecai27_20270414",
