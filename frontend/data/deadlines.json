@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-31T04:08:05Z",
+  "generated": "2026-10-31T14:18:01Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 340,
+  "total": 339,
   "conferences": [
-    {
-      "id": "smc26_20260503",
-      "title": "SMC",
-      "full_name": "IEEE International Conference on Systems, Man, and Cybernetics",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-05-03T23:59:59-0700",
-      "abstract_deadline": null,
-      "timezone": "UTC-7",
-      "date": "October 4-7, 2026",
-      "place": "Bellevue, WA, USA",
-      "link": "https://www.ieeesmc2026.org/",
-      "comment": ""
-    },
     {
       "id": "lcn26_20260504",
       "title": "LCN",
