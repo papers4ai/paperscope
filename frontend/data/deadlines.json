@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-01T04:29:18Z",
+  "generated": "2026-11-01T14:44:57Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 338,
+  "total": 337,
   "conferences": [
-    {
-      "id": "internetware26_20260504",
-      "title": "Internetware",
-      "full_name": "Asia-Pacific Symposium on Internetware",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-04T23:59:59-1200",
-      "abstract_deadline": "2026-04-27T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "July 18-20, 2026",
-      "place": "Gold Coast, Australia",
-      "link": "https://conf.researchr.org/home/internetware-2026",
-      "comment": "Round 2"
-    },
     {
       "id": "ndss27_20260506",
       "title": "NDSS",
