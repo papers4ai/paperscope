@@ -1,25 +1,8 @@
 {
-  "generated": "2026-10-31T23:05:55Z",
+  "generated": "2026-11-01T04:29:18Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 339,
+  "total": 338,
   "conferences": [
-    {
-      "id": "lcn26_20260504",
-      "title": "LCN",
-      "full_name": "IEEE Conference on Local Computer Networks",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-05-04T23:59:59+0000",
-      "abstract_deadline": "2026-05-04T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "October 7-9, 2026",
-      "place": "Coimbra, Portugal",
-      "link": "https://www.ieeelcn.org/",
-      "comment": "Registration / full paper"
-    },
     {
       "id": "internetware26_20260504",
       "title": "Internetware",
