@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-02T04:31:00Z",
+  "generated": "2026-11-02T17:49:22Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 337,
+  "total": 338,
   "conferences": [
     {
       "id": "ndss27_20260506",
@@ -3038,7 +3038,7 @@
       "ccf": "B",
       "core": "B",
       "year": 2027,
-      "deadline": "2026-10-02T11:59:00+0000",
+      "deadline": "2026-10-02T12:59:00+0000",
       "abstract_deadline": "2026-09-26T11:59:00+0000",
       "timezone": "UTC",
       "date": "May 10-14, 2027",
@@ -4320,6 +4320,23 @@
       "place": "Maastricht, Netherlands",
       "link": "https://fse.iacr.org/2027/",
       "comment": "ToSC, Volume 2027, Issue 1 Submission deadline"
+    },
+    {
+      "id": "eurovis2027_20261202",
+      "title": "EuroVis",
+      "full_name": "Eurographics Conference on Visualization",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-12-02T23:59:59+0000",
+      "abstract_deadline": "2026-11-23T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "May 31-June 4, 2027",
+      "place": "Stuttgart, Germany",
+      "link": "https://eurovis27.github.io/web/",
+      "comment": "Full papers"
     },
     {
       "id": "dsn27_20261202",
