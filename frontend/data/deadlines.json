@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-03T02:00:30Z",
+  "generated": "2026-11-03T11:38:19Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 340,
+  "total": 341,
   "conferences": [
     {
       "id": "ndss27_20260506",
@@ -4558,6 +4558,23 @@
       "place": "London, UK",
       "link": "https://www.ets2027.co.uk/",
       "comment": "Regular papers; official CFP dates. Clock 23:59:59 and timezone AoE are repository defaults, not published cutoff precision."
+    },
+    {
+      "id": "sec27_20261215",
+      "title": "SEC",
+      "full_name": "IFIP International Information Security Conference",
+      "sub": "SC",
+      "sub_name": "Security",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-12-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 14-16, 2027",
+      "place": "Linköping University, Linköping, Sweden",
+      "link": "https://ifipsec.org/",
+      "comment": "Full papers"
     },
     {
       "id": "icdf2c27_20261215",
