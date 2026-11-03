@@ -1,42 +1,8 @@
 {
-  "generated": "2026-11-03T11:38:19Z",
+  "generated": "2026-11-03T19:04:15Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 341,
+  "total": 339,
   "conferences": [
-    {
-      "id": "ndss27_20260506",
-      "title": "NDSS",
-      "full_name": "Network and Distributed System Security (NDSS) Symposium",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2027,
-      "deadline": "2026-05-06T23:59:59-1200",
-      "abstract_deadline": null,
-      "timezone": "UTC-12",
-      "date": "March 22 - March 26, 2027",
-      "place": "Seoul, Republic of Korea",
-      "link": "https://www.ndss-symposium.org/ndss2027/",
-      "comment": "Summer; author rebuttal date tentative; decision is final major-revision notification"
-    },
-    {
-      "id": "nips26_20260507",
-      "title": "NeurIPS",
-      "full_name": "Conference on Neural Information Processing Systems",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-05-07T11:59:59+0000",
-      "abstract_deadline": "2026-05-05T11:59:59+0000",
-      "timezone": "UTC+0",
-      "date": "December 8-10 (Sydney), December 9-11 (Atlanta and Paris), 2026",
-      "place": "Sydney, Australia; Atlanta, USA; Paris, France",
-      "link": "https://neurips.cc/Conferences/2026",
-      "comment": ""
-    },
     {
       "id": "iswc26_20260507",
       "title": "ISWC",
@@ -5274,7 +5240,7 @@
       "comment": ""
     },
     {
-      "id": "interspeech27_20270209",
+      "id": "interspeech27_20270210",
       "title": "InterSpeech",
       "full_name": "Conference of the International Speech Communication Association",
       "sub": "CG",
@@ -5282,13 +5248,13 @@
       "ccf": "B",
       "core": "A",
       "year": 2027,
-      "deadline": "2027-02-09T23:59:59+0000",
+      "deadline": "2027-02-10T11:59:59+0000",
       "abstract_deadline": null,
       "timezone": "UTC+0",
       "date": "August 29 - September 2, 2027",
       "place": "São Paulo, Brazil",
       "link": "https://interspeech2027.org/",
-      "comment": ""
+      "comment": "Regular papers; rebuttal April 13-20. Date-only milestones use AoE end-of-day convention, converted to UTC."
     },
     {
       "id": "ecoop27_20270211",
@@ -5357,23 +5323,6 @@
       "place": "Rome, Italy",
       "link": "http://www.icccn.org/ICCCN27/",
       "comment": ""
-    },
-    {
-      "id": "icdar2027_20270220",
-      "title": "ICDAR",
-      "full_name": "International Conference on Document Analysis and Recognition",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2027-02-20T23:59:59+0000",
-      "abstract_deadline": "2027-01-31T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "August 18 - 22, 2027",
-      "place": "Kuala Lumpur, Malaysia",
-      "link": "https://icdar2027.org/",
-      "comment": "Conference track"
     },
     {
       "id": "cade27_20270222",
@@ -5527,6 +5476,23 @@
       "place": "Milan, Italy",
       "link": "https://conf.researchr.org/home/RE-2027",
       "comment": "Research Papers"
+    },
+    {
+      "id": "icdar2027_20270302",
+      "title": "ICDAR",
+      "full_name": "International Conference on Document Analysis and Recognition",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-03-02T23:59:59+0000",
+      "abstract_deadline": "2027-02-23T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "August 18 - 22, 2027",
+      "place": "Kuala Lumpur, Malaysia",
+      "link": "https://icdar2027.org/",
+      "comment": "Conference track"
     },
     {
       "id": "icsme27_20270305",
