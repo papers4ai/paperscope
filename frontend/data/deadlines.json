@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-05T00:44:02Z",
+  "generated": "2026-11-05T11:52:14Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 334,
+  "total": 337,
   "conferences": [
     {
       "id": "icsoc26_20260510",
@@ -4832,6 +4832,23 @@
       "comment": ""
     },
     {
+      "id": "mdm27_20270125",
+      "title": "MDM",
+      "full_name": "IEEE International Conference on Mobile Data Management",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-01-25T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 28 - July 1, 2027",
+      "place": "Hamilton, New Zealand",
+      "link": "https://mdm2027.github.io/index.html",
+      "comment": ""
+    },
+    {
       "id": "idc27_20270125",
       "title": "IDC",
       "full_name": "ACM Interaction Design and Children Conference",
@@ -5427,6 +5444,23 @@
       "comment": "Research Papers Track"
     },
     {
+      "id": "apweb27_20270307",
+      "title": "APWeb-WAIM",
+      "full_name": "APWeb-WAIM joint international conference on Web and Big Data",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2027-03-07T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "August 29-31, 2027",
+      "place": "Guiyang, China / Online",
+      "link": "https://conferences.sigappfr.org/apweb2027/",
+      "comment": ""
+    },
+    {
       "id": "icpr27_20270308",
       "title": "ICPR",
       "full_name": "International Conference on Pattern Recognition",
@@ -5629,6 +5663,23 @@
       "place": "Buenos Aires, Argentina",
       "link": "https://kr.org/KR2027/",
       "comment": "Main track; author response period: June 15-18, 2027"
+    },
+    {
+      "id": "apweb27_20270514",
+      "title": "APWeb-WAIM",
+      "full_name": "APWeb-WAIM joint international conference on Web and Big Data",
+      "sub": "DB",
+      "sub_name": "Database / Data Mining",
+      "ccf": "C",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2027-05-14T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "August 29-31, 2027",
+      "place": "Guiyang, China / Online",
+      "link": "https://conferences.sigappfr.org/apweb2027/",
+      "comment": ""
     },
     {
       "id": "cog27_20270515",
