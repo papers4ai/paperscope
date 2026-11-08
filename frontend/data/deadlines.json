@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-08T14:46:44Z",
+  "generated": "2026-11-08T20:12:19Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 334,
+  "total": 336,
   "conferences": [
     {
       "id": "cccg2026_20260512",
@@ -406,7 +406,7 @@
       "deadline": "2026-05-25T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "Nov 6-10, 2026",
+      "date": "Nov 6-8, 2026",
       "place": "Hengqin, Zhuhai, China (Hybrid)",
       "link": "https://2026.aaclnet.org/",
       "comment": "ARR initial submission"
@@ -1902,7 +1902,7 @@
       "deadline": "2026-08-07T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "Nov 6-10, 2026",
+      "date": "Nov 6-8, 2026",
       "place": "Hengqin, Zhuhai, China (Hybrid)",
       "link": "https://2026.aaclnet.org/",
       "comment": "Reviewed-paper commitment, round 1"
@@ -2106,7 +2106,7 @@
       "deadline": "2026-08-25T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "Nov 6-10, 2026",
+      "date": "Nov 6-8, 2026",
       "place": "Hengqin, Zhuhai, China (Hybrid)",
       "link": "https://2026.aaclnet.org/",
       "comment": "Reviewed-paper commitment, round 2"
@@ -2579,12 +2579,12 @@
       "ccf": "B",
       "core": "A",
       "year": 2027,
-      "deadline": "2026-09-20T23:59:59+0000",
-      "abstract_deadline": "2026-09-13T23:59:59+0000",
+      "deadline": "2026-09-20T23:59:00+0000",
+      "abstract_deadline": "2026-09-13T23:59:00+0000",
       "timezone": "AoE",
       "date": "March 22-24, 2027",
       "place": "Dresden, Germany",
-      "link": "https://www.date-conference.com/date-2027-call-papers",
+      "link": "https://www.date-conference.com/call-for-papers",
       "comment": ""
     },
     {
@@ -5070,6 +5070,23 @@
       "comment": ""
     },
     {
+      "id": "casa2027_20270204",
+      "title": "CASA",
+      "full_name": "International Conference on Computer Animation and Social Agents",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2027-02-04T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "UTC+0",
+      "date": "June 4-6, 2027",
+      "place": "Xi'an, China",
+      "link": "https://www.cgs-network.org/casaxr27/",
+      "comment": ""
+    },
+    {
       "id": "sais27_20270204",
       "title": "SAIS",
       "full_name": "USENIX Conference on Secure Agentic-AI Systems",
@@ -5595,6 +5612,23 @@
       "place": "Cairns, Australia",
       "link": "https://cgs-network.org/cgi27/",
       "comment": "Regular conference papers (LNCS proceedings track)"
+    },
+    {
+      "id": "fscd27_20270426",
+      "title": "FSCD",
+      "full_name": "International Conference on Formal Structures for Computation and Deduction",
+      "sub": "CT",
+      "sub_name": "Computing Theory",
+      "ccf": "C",
+      "core": "",
+      "year": 2027,
+      "deadline": "2027-04-26T23:59:59+0000",
+      "abstract_deadline": "2027-04-19T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "August 23-26, 2027",
+      "place": "Nijmegen, Netherlands",
+      "link": "https://fscd-cade.science.ru.nl/",
+      "comment": ""
     },
     {
       "id": "krd27_20270428",
