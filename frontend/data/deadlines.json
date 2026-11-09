@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-08T20:12:19Z",
+  "generated": "2026-11-09T04:44:03Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 336,
+  "total": 337,
   "conferences": [
-    {
-      "id": "cccg2026_20260512",
-      "title": "CCCG",
-      "full_name": "Canadian Conference on Computational Geometry",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "N",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-12T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "August 12-14, 2026",
-      "place": "Orillia, Ontario, Canada",
-      "link": "https://sites.google.com/view/cccg-2026/home",
-      "comment": ""
-    },
     {
       "id": "siggrapha26_20260512",
       "title": "ACM SIGGRAPH ASIA",
@@ -1120,7 +1103,7 @@
       "deadline": "2026-06-26T23:59:59+0000",
       "abstract_deadline": "2026-06-19T23:59:59+0000",
       "timezone": "AoE",
-      "date": "Jan 4 - 8, 2027",
+      "date": "Jan 6 - 8, 2027",
       "place": "Disney Springs, Buena Vista, FL, USA",
       "link": "https://wacv.thecvf.com/",
       "comment": "First round"
@@ -2157,7 +2140,7 @@
       "deadline": "2026-08-28T23:59:59+0000",
       "abstract_deadline": "2026-08-21T23:59:59+0000",
       "timezone": "AoE",
-      "date": "Jan 4 - 8, 2027",
+      "date": "Jan 6 - 8, 2027",
       "place": "Disney Springs, Buena Vista, FL, USA",
       "link": "https://wacv.thecvf.com/",
       "comment": "Second round"
@@ -4679,6 +4662,23 @@
       "comment": "Schedule for TCHES Volume 2027/3"
     },
     {
+      "id": "fccm27_20270117",
+      "title": "FCCM",
+      "full_name": "IEEE Symposium on Field-Programmable Custom Computing Machines",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-01-17T23:59:59-1200",
+      "abstract_deadline": "2027-01-10T23:59:59-1200",
+      "timezone": "UTC-12",
+      "date": "May 10-11, 2027",
+      "place": "Provo, Utah, USA",
+      "link": "https://www.fccm.org/",
+      "comment": ""
+    },
+    {
       "id": "dis27_20270118",
       "title": "DIS",
       "full_name": "ACM Conference on Designing Interactive Systems",
@@ -5663,6 +5663,23 @@
       "place": "Guiyang, China / Online",
       "link": "https://conferences.sigappfr.org/apweb2027/",
       "comment": ""
+    },
+    {
+      "id": "icmla27_20270515",
+      "title": "ICMLA",
+      "full_name": "International Conference on Machine Learning and Applications",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2027-05-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "PT",
+      "date": "December 14-16, 2027",
+      "place": "University of Miami, Coral Gables Campus, Miami, Florida, USA",
+      "link": "https://www.icmla-conference.org/icmla27/",
+      "comment": "Main Conference Papers DDL."
     },
     {
       "id": "cog27_20270515",
