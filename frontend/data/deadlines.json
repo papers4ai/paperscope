@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-09T04:44:03Z",
+  "generated": "2026-11-09T18:20:09Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 337,
+  "total": 336,
   "conferences": [
-    {
-      "id": "siggrapha26_20260512",
-      "title": "ACM SIGGRAPH ASIA",
-      "full_name": "ACM SIGGRAPH Annual Conference in Asia",
-      "sub": "CG",
-      "sub_name": "Graphics & Multimedia",
-      "ccf": "N",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-05-12T23:59:59-1200",
-      "abstract_deadline": "2026-05-05T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "December 1-4, 2026",
-      "place": "KLCC, Kuala Lumpur, Malaysia",
-      "link": "https://asia.siggraph.org/2026/",
-      "comment": "Registration / full paper"
-    },
     {
       "id": "eurosys2027_20260514",
       "title": "EuroSys",
@@ -2684,7 +2667,7 @@
       "deadline": "2026-09-25T23:59:59+0000",
       "abstract_deadline": "2026-09-18T23:59:59+0000",
       "timezone": "AoE",
-      "date": "April 26-30, 2027",
+      "date": "April 26-28, 2027",
       "place": "San Francisco, CA, USA",
       "link": "https://iclr.cc/Conferences/2027",
       "comment": ""
@@ -4526,6 +4509,23 @@
       "comment": ""
     },
     {
+      "id": "bis2027_20270110",
+      "title": "BIS",
+      "full_name": "International Conference on Business Information Systems",
+      "sub": "MX",
+      "sub_name": "Interdisciplinary",
+      "ccf": "N",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2027-01-10T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 23-25, 2027",
+      "place": "Poznań, Poland",
+      "link": "https://bisconf.org/2027/",
+      "comment": ""
+    },
+    {
       "id": "ijcai27_20270111",
       "title": "IJCAI",
       "full_name": "International Joint Conference on Artificial Intelligence",
@@ -4558,23 +4558,6 @@
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "winter round"
-    },
-    {
-      "id": "bis2027_20270111",
-      "title": "BIS",
-      "full_name": "International Conference on Business Information Systems",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "N",
-      "core": "N",
-      "year": 2027,
-      "deadline": "2027-01-11T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "June 23-25, 2027",
-      "place": "Poznań, Poland",
-      "link": "https://bisconf.org/2027/",
-      "comment": ""
     },
     {
       "id": "nossdav27_20270111",
