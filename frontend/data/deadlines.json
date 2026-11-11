@@ -1,42 +1,8 @@
 {
-  "generated": "2026-11-10T21:39:45Z",
+  "generated": "2026-11-11T04:46:39Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 337,
+  "total": 335,
   "conferences": [
-    {
-      "id": "eurosys2027_20260514",
-      "title": "EuroSys",
-      "full_name": "European Conference on Computer Systems",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "A",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-05-14T23:59:59+0000",
-      "abstract_deadline": "2026-05-07T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "April 19-23, 2027",
-      "place": "Rabat, Morocco",
-      "link": "https://2027.eurosys.org/",
-      "comment": "Spring Submission Deadline"
-    },
-    {
-      "id": "nspw26_20260514",
-      "title": "NSPW",
-      "full_name": "New Security Paradigms Workshop",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-05-14T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "September 27-30, 2026",
-      "place": "Sooke, BC, Canada",
-      "link": "https://www.nspw.org/2026",
-      "comment": ""
-    },
     {
       "id": "icwsm2027_20260515",
       "title": "ICWSM",
@@ -3149,23 +3115,6 @@
       "comment": "Fall"
     },
     {
-      "id": "fg27_20261016",
-      "title": "FG",
-      "full_name": "International Conference on Automatic Face and Gesture Recognition",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-10-16T23:59:59+0000",
-      "abstract_deadline": "2026-10-09T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "April 26-30, 2027",
-      "place": "Marrakesh, Morocco",
-      "link": "https://fg2027.ieee-biometrics.org/",
-      "comment": ""
-    },
-    {
       "id": "sigmod27_20261017",
       "title": "SIGMOD",
       "full_name": "ACM Conference on Management of Data",
@@ -3333,6 +3282,23 @@
       "date": "June 21-25, 2027",
       "place": "Bellevue, Washington, USA",
       "link": "https://mlsys.org/",
+      "comment": ""
+    },
+    {
+      "id": "fg27_20261030",
+      "title": "FG",
+      "full_name": "International Conference on Automatic Face and Gesture Recognition",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-30T23:59:59+0000",
+      "abstract_deadline": "2026-10-23T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "April 27-29, 2027",
+      "place": "Marrakesh, Morocco",
+      "link": "https://fg2027.ieee-biometrics.org/",
       "comment": ""
     },
     {
