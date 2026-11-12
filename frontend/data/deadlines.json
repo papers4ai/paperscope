@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-11T22:29:11Z",
+  "generated": "2026-11-12T05:49:16Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 335,
+  "total": 334,
   "conferences": [
-    {
-      "id": "icwsm2027_20260515",
-      "title": "ICWSM",
-      "full_name": "The International AAAI Conference on Web and Social Media",
-      "sub": "HI",
-      "sub_name": "Human-Computer Interaction",
-      "ccf": "B",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-05-15T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "TBD",
-      "place": "Edinburgh, Scotland",
-      "link": "https://www.icwsm.org/2027/",
-      "comment": "1st Full-paper Deadline"
-    },
     {
       "id": "cns26_20260518",
       "title": "CNS",
@@ -3880,23 +3863,6 @@
       "comment": ""
     },
     {
-      "id": "cpal27_20261125",
-      "title": "CPAL",
-      "full_name": "The Conference on Parsimony and Learning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "N",
-      "year": 2027,
-      "deadline": "2026-11-25T23:59:59+0000",
-      "abstract_deadline": "2026-11-13T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "March 23-26, 2027",
-      "place": "Tokyo, Japan",
-      "link": "https://cpal.cc/",
-      "comment": ""
-    },
-    {
       "id": "dasfaa27_20261125",
       "title": "DASFAA",
       "full_name": "Database Systems for Advanced Applications",
@@ -4200,6 +4166,23 @@
       "date": "June 21-25, 2027",
       "place": "Ho Chi Minh City, Vietnam",
       "link": "https://www.sigmobile.org/mobisys/2027/",
+      "comment": ""
+    },
+    {
+      "id": "cpal27_20261205",
+      "title": "CPAL",
+      "full_name": "The Conference on Parsimony and Learning",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2026-12-05T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "March 23-26, 2027",
+      "place": "Tokyo, Japan",
+      "link": "https://cpal.cc/",
       "comment": ""
     },
     {
