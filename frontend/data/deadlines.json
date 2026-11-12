@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-12T05:49:16Z",
+  "generated": "2026-11-12T16:35:19Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 334,
+  "total": 336,
   "conferences": [
     {
       "id": "cns26_20260518",
@@ -3591,6 +3591,23 @@
       "comment": "Journal track; initial decision Jan 15, revised submission Apr 1"
     },
     {
+      "id": "intellisys27_20261115",
+      "title": "IntelliSys",
+      "full_name": "Intelligent Systems Conference",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "",
+      "year": 2027,
+      "deadline": "2026-11-15T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 2-3, 2027",
+      "place": "Amsterdam, Netherlands",
+      "link": "https://saiconference.com/IntelliSys",
+      "comment": "Round 1"
+    },
+    {
       "id": "caise27_20261115",
       "title": "CAiSE",
       "full_name": "International Conference on Advanced Information Systems Engineering",
@@ -3982,6 +3999,23 @@
       "comment": ""
     },
     {
+      "id": "intellisys27_20261201",
+      "title": "IntelliSys",
+      "full_name": "Intelligent Systems Conference",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "",
+      "year": 2027,
+      "deadline": "2026-12-01T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "September 2-3, 2027",
+      "place": "Amsterdam, Netherlands",
+      "link": "https://saiconference.com/IntelliSys",
+      "comment": "Round 2"
+    },
+    {
       "id": "ccgrid27_20261201",
       "title": "CCGRID",
       "full_name": "IEEE International Symposium on Cluster, Cloud and Internet Computing",
@@ -4197,9 +4231,9 @@
       "deadline": "2026-12-07T23:59:59+0000",
       "abstract_deadline": "2026-12-01T23:59:59+0000",
       "timezone": "AoE",
-      "date": "TBD",
+      "date": "June 5-11, 2027",
       "place": "Atlanta, Georgia, USA",
-      "link": "https://ics-conference.org/index.html",
+      "link": "https://klab-ai3.github.io/ics2027/",
       "comment": ""
     },
     {
