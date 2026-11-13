@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-13T00:54:11Z",
+  "generated": "2026-11-13T11:52:07Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 336,
   "conferences": [
@@ -3795,23 +3795,6 @@
       "comment": ""
     },
     {
-      "id": "esann27_20261119",
-      "title": "ESANN",
-      "full_name": "European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "N",
-      "core": "B",
-      "year": 2027,
-      "deadline": "2026-11-19T03:59:59-0800",
-      "abstract_deadline": null,
-      "timezone": "UTC-8",
-      "date": "April 21 - 23, 2027",
-      "place": "Bruges, Belgium and Online",
-      "link": "https://www.esann.org/",
-      "comment": ""
-    },
-    {
       "id": "mmsys27_20261119",
       "title": "MMSys",
       "full_name": "ACM International Conference on Multimedia Systems",
@@ -3895,6 +3878,23 @@
       "place": "Shenyang, China",
       "link": "https://dasfaa2027.github.io/",
       "comment": "Research papers"
+    },
+    {
+      "id": "esann27_20261126",
+      "title": "ESANN",
+      "full_name": "European Symposium on Artificial Neural Networks, Computational Intelligence and Machine Learning",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "N",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-11-26T03:59:59-0800",
+      "abstract_deadline": null,
+      "timezone": "UTC-8",
+      "date": "April 21 - 23, 2027",
+      "place": "Bruges, Belgium and Online",
+      "link": "https://www.esann.org/",
+      "comment": ""
     },
     {
       "id": "cscwd27_20261130",
