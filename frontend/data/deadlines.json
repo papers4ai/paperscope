@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T11:13:14Z",
+  "generated": "2026-11-14T17:40:48Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 337,
   "conferences": [
@@ -35,23 +35,6 @@
       "date": "October 8-9, 2026",
       "place": "München, Germany",
       "link": "https://conf.researchr.org/home/eseiw-2026",
-      "comment": ""
-    },
-    {
-      "id": "wisa2026_20260518",
-      "title": "WISA",
-      "full_name": "Web Information Systems and Applications",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-18T23:59:59+0800",
-      "abstract_deadline": "2026-05-18T23:59:59+0800",
-      "timezone": "UTC+8",
-      "date": "August 07-09, 2026",
-      "place": "Kunming, China",
-      "link": "https://conf.ccf.org.cn/WISA2026",
       "comment": ""
     },
     {
@@ -4439,6 +4422,23 @@
       "place": "Singapore",
       "link": "https://gmp-conference-2027.github.io/gmp2027/",
       "comment": ""
+    },
+    {
+      "id": "coling27_20261223",
+      "title": "COLING",
+      "full_name": "International Conference on Computational Linguistics",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-12-23T23:59:59-1200",
+      "abstract_deadline": null,
+      "timezone": "UTC-12",
+      "date": "May 9-14 (in-person) and 6-7 (virtual), 2027",
+      "place": "Macau SAR, China / Online",
+      "link": "https://2027.coling-iccl.org/",
+      "comment": "Commitment deadline for long and short research papers reviewed by ARR"
     },
     {
       "id": "naacl27_20261223",
