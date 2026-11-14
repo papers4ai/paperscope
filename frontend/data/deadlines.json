@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-14T00:40:24Z",
+  "generated": "2026-11-14T11:13:14Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 336,
+  "total": 337,
   "conferences": [
     {
       "id": "cns26_20260518",
@@ -4149,6 +4149,23 @@
       "date": "July 5 - 9, 2027",
       "place": "Madrid, Spain",
       "link": "https://eurosp2027.ieee-security.org/",
+      "comment": ""
+    },
+    {
+      "id": "cc27_20261203",
+      "title": "CC",
+      "full_name": "International Conference on Compiler Construction",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-12-03T23:59:59+0000",
+      "abstract_deadline": "2026-12-01T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "March 20-21, 2027",
+      "place": "Salt Lake City, Utah, USA",
+      "link": "https://conf.researchr.org/home/CC-2027",
       "comment": ""
     },
     {
