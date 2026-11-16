@@ -1,42 +1,8 @@
 {
-  "generated": "2026-11-15T20:49:56Z",
+  "generated": "2026-11-16T04:49:09Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 335,
+  "total": 334,
   "conferences": [
-    {
-      "id": "er26_20260519",
-      "title": "ER",
-      "full_name": "International Conference on Conceptual Modeling",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "C",
-      "core": "",
-      "year": 2026,
-      "deadline": "2026-05-19T23:59:59+0000",
-      "abstract_deadline": "2026-05-12T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "October 6-8, 2026",
-      "place": "St. John's, NL, Canada",
-      "link": "https://www.er2026.org/",
-      "comment": "Main conference full and short papers; extended deadlines; abstract mandatory"
-    },
-    {
-      "id": "tcc26_20260519",
-      "title": "TCC",
-      "full_name": "Theory of Cryptography Conference",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-05-19T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "November 10-13, 2026",
-      "place": "New York City, USA",
-      "link": "https://tcc.iacr.org/2026/",
-      "comment": ""
-    },
     {
       "id": "apsys2026_20260520",
       "title": "APSys",
@@ -4404,7 +4370,7 @@
       "date": "May 9-14 (in-person) and 6-7 (virtual), 2027",
       "place": "Macau SAR, China / Online",
       "link": "https://2027.coling-iccl.org/",
-      "comment": "Commitment deadline for long and short research papers reviewed by ARR"
+      "comment": "Commitment deadline for long research papers reviewed by ARR"
     },
     {
       "id": "naacl27_20261223",
@@ -4711,6 +4677,23 @@
       "place": "Royal Holloway, Egham, UK",
       "link": "https://acns2027.isg.rhul.ac.uk/",
       "comment": "Cycle 2 Submission deadline"
+    },
+    {
+      "id": "icml27_20270122",
+      "title": "ICML",
+      "full_name": "International Conference on Machine Learning",
+      "sub": "AI",
+      "sub_name": "Artificial Intelligence",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-01-22T23:59:59+0000",
+      "abstract_deadline": "2027-01-14T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "August 2-4, 2027",
+      "place": "Riocentro, Rio de Janeiro, Brazil",
+      "link": "https://icml.cc/Conferences/2027",
+      "comment": ""
     },
     {
       "id": "ease27_20270122",
