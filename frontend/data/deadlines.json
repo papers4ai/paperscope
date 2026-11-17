@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-16T04:49:09Z",
+  "generated": "2026-11-17T02:47:03Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 334,
+  "total": 333,
   "conferences": [
-    {
-      "id": "apsys2026_20260520",
-      "title": "APSys",
-      "full_name": "ACM SIGOPS Asia-Pacific Workshop on Systems",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "N",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-20T23:59:59+0000",
-      "abstract_deadline": "2026-05-13T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "September 17-18, 2026",
-      "place": "Bangkok, Thailand",
-      "link": "https://apsys26.github.io/",
-      "comment": ""
-    },
     {
       "id": "iiswc2026_20260521",
       "title": "IISWC",
