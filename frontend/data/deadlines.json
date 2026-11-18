@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-18T05:57:34Z",
+  "generated": "2026-11-18T16:57:16Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 332,
   "conferences": [
-    {
-      "id": "asiacrypt26_20260522",
-      "title": "ASIACRYPT",
-      "full_name": "International Conference on the Theory and Application of Cryptology and Information Security",
-      "sub": "SC",
-      "sub_name": "Security",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-05-22T11:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "UTC",
-      "date": "December 7-11, 2026",
-      "place": "Hong Kong, China",
-      "link": "https://asiacrypt.iacr.org/2026/",
-      "comment": ""
-    },
     {
       "id": "rulemlrr2026_20260522",
       "title": "RuleML+RR",
@@ -3146,6 +3129,23 @@
       "date": "April 27-29, 2027",
       "place": "Marrakesh, Morocco",
       "link": "https://fg2027.ieee-biometrics.org/",
+      "comment": ""
+    },
+    {
+      "id": "icse-chase27_20261030",
+      "title": "ICSE-CHASE",
+      "full_name": "International Conference on Cooperative and Human Aspects of Software Engineering",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "N",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-10-30T23:59:59+0000",
+      "abstract_deadline": "2026-10-23T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "April 26-27, 2027",
+      "place": "Dublin, Ireland",
+      "link": "https://conf.researchr.org/home/chase-2027",
       "comment": ""
     },
     {
