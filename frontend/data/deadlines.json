@@ -1,42 +1,8 @@
 {
-  "generated": "2026-11-17T23:20:38Z",
+  "generated": "2026-11-18T05:57:34Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 333,
+  "total": 332,
   "conferences": [
-    {
-      "id": "iiswc2026_20260521",
-      "title": "IISWC",
-      "full_name": "IEEE International Symposium on Workload Characterization",
-      "sub": "DS",
-      "sub_name": "Computer Architecture",
-      "ccf": "N",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-21T23:59:59+0000",
-      "abstract_deadline": "2026-05-14T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "September 28-29, 2026",
-      "place": "Boulder, USA",
-      "link": "https://iiswc.org/iiswc2026/",
-      "comment": ""
-    },
-    {
-      "id": "atva26_20260521",
-      "title": "ATVA",
-      "full_name": "International Symposium on Automated Technology for Verification and Analysis",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-05-21T23:59:59+0000",
-      "abstract_deadline": "2026-05-19T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "December 1-4, 2026",
-      "place": "Hong Kong SAR, China",
-      "link": "https://conf.researchr.org/track/aplas-atva-2026/atva-2026",
-      "comment": ""
-    },
     {
       "id": "asiacrypt26_20260522",
       "title": "ASIACRYPT",
@@ -4608,6 +4574,23 @@
       "date": "June 28 - July 2, 2027",
       "place": "Stockholm, Sweden",
       "link": "https://dis.acm.org/2027/",
+      "comment": ""
+    },
+    {
+      "id": "atc2027_20270119",
+      "title": "SIGOPS ATC",
+      "full_name": "ACM SIGOPS Annual Technical Conference",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "A",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-01-19T23:59:59+0000",
+      "abstract_deadline": null,
+      "timezone": "AoE",
+      "date": "June 28-July 1, 2027",
+      "place": "Rennes, France",
+      "link": "https://atc.sigops.org/2027/",
       "comment": ""
     },
     {
