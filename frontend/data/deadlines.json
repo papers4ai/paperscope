@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-19T12:30:32Z",
+  "generated": "2026-11-19T22:54:53Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 333,
+  "total": 338,
   "conferences": [
     {
       "id": "cikm26_20260523",
@@ -4254,6 +4254,23 @@
       "comment": "Research track; rebuttal period January 26-29, 2027"
     },
     {
+      "id": "ispass27_20261218",
+      "title": "ISPASS",
+      "full_name": "International Symposium on Performance Analysis of Systems and Software",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2026-12-18T23:59:59+0000",
+      "abstract_deadline": "2026-12-11T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "May 9-11, 2027",
+      "place": "New York City, USA",
+      "link": "https://ispass.org/2027/",
+      "comment": ""
+    },
+    {
       "id": "gmp27_20261221",
       "title": "GMP",
       "full_name": "International Conference on Geometric Modeling and Processing",
@@ -4543,6 +4560,23 @@
       "comment": ""
     },
     {
+      "id": "hpdc2027_20270118",
+      "title": "HPDC",
+      "full_name": "ACM Symposium on High-Performance Parallel and Distributed Computing",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "A",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-01-18T23:59:59+0000",
+      "abstract_deadline": "2027-01-11T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "June 7-9, 2027",
+      "place": "Atlanta, GA, USA",
+      "link": "https://hpdc.sci.utah.edu/2027/",
+      "comment": ""
+    },
+    {
       "id": "dis27_20270118",
       "title": "DIS",
       "full_name": "ACM Conference on Designing Interactive Systems",
@@ -4594,6 +4628,23 @@
       "comment": ""
     },
     {
+      "id": "lics27_20270121",
+      "title": "LICS",
+      "full_name": "IEEE Symposium on Logic in Computer Science",
+      "sub": "CT",
+      "sub_name": "Computing Theory",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-01-21T23:59:59+0000",
+      "abstract_deadline": "2027-01-14T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "June 21-24, 2027",
+      "place": "Montréal, Canada",
+      "link": "https://lics.siglog.org/lics27/",
+      "comment": ""
+    },
+    {
       "id": "sigir27_20270121",
       "title": "SIGIR",
       "full_name": "International Conference on Research on Development in Information Retrieval",
@@ -4605,7 +4656,7 @@
       "deadline": "2027-01-21T23:59:59+0000",
       "abstract_deadline": "2027-01-14T23:59:59+0000",
       "timezone": "AoE",
-      "date": "July 18-24, 2027",
+      "date": "July 20-22, 2027",
       "place": "San Jose, California, USA",
       "link": "https://sigir2027.org/",
       "comment": ""
@@ -4642,6 +4693,23 @@
       "date": "August 2-4, 2027",
       "place": "Riocentro, Rio de Janeiro, Brazil",
       "link": "https://icml.cc/Conferences/2027",
+      "comment": ""
+    },
+    {
+      "id": "networking27_20270122",
+      "title": "Networking",
+      "full_name": "IFIP International Conference on Networking",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "C",
+      "core": "B",
+      "year": 2027,
+      "deadline": "2027-01-22T23:59:59+0000",
+      "abstract_deadline": "2027-01-15T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "June 13-16, 2027",
+      "place": "Dublin, Ireland",
+      "link": "https://networking.ifip.org/2027/",
       "comment": ""
     },
     {
@@ -4693,6 +4761,23 @@
       "date": "June 28 - July 1, 2027",
       "place": "Hamilton, New Zealand",
       "link": "https://mdm2027.github.io/index.html",
+      "comment": ""
+    },
+    {
+      "id": "cf2027_20270125",
+      "title": "CF",
+      "full_name": "ACM International Conference on Computing Frontiers",
+      "sub": "DS",
+      "sub_name": "Computer Architecture",
+      "ccf": "C",
+      "core": "N",
+      "year": 2027,
+      "deadline": "2027-01-25T23:59:59+0000",
+      "abstract_deadline": "2027-01-18T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "May 25-27, 2027",
+      "place": "Trento, Italy",
+      "link": "https://www.computingfrontiers.org/2027/",
       "comment": ""
     },
     {
@@ -5155,6 +5240,23 @@
       "comment": ""
     },
     {
+      "id": "icsme27_20270226",
+      "title": "ICSME",
+      "full_name": "International Conference on Software Maintenance and Evolution",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-02-26T23:59:59+0000",
+      "abstract_deadline": "2027-02-19T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "September 7-11, 2027",
+      "place": "Toronto, Canada",
+      "link": "https://conf.researchr.org/home/icsme-2027",
+      "comment": "Research Papers Track"
+    },
+    {
       "id": "pets27_20270228",
       "title": "PETS",
       "full_name": "Privacy Enhancing Technologies Symposium",
@@ -5289,23 +5391,6 @@
       "place": "Kuala Lumpur, Malaysia",
       "link": "https://icdar2027.org/",
       "comment": "Conference track"
-    },
-    {
-      "id": "icsme27_20270305",
-      "title": "ICSME",
-      "full_name": "International Conference on Software Maintenance and Evolution",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "B",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2027-03-05T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "September 7-11, 2027",
-      "place": "Toronto, Canada",
-      "link": "https://conf.researchr.org/home/icsme-2027",
-      "comment": "Research Papers Track"
     },
     {
       "id": "apweb27_20270307",
