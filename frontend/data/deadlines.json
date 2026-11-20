@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-20T05:46:43Z",
+  "generated": "2026-11-20T16:42:47Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 337,
+  "total": 338,
   "conferences": [
     {
       "id": "setta26_20260524",
@@ -5475,6 +5475,23 @@
       "date": "November 29-December 3, 2027",
       "place": "Singapore",
       "link": "https://2027.ieeeicip.org/",
+      "comment": ""
+    },
+    {
+      "id": "uist2027_20270407",
+      "title": "UIST",
+      "full_name": "ACM Symposium on User Interface Software and Technology",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "A",
+      "core": "A*",
+      "year": 2027,
+      "deadline": "2027-04-07T23:59:59+0000",
+      "abstract_deadline": "2027-03-31T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "October 27-29, 2027",
+      "place": "VIECON - Vienna Congress & Convention Center, Vienna, Austria",
+      "link": "https://uist.acm.org/2027/",
       "comment": ""
     },
     {
