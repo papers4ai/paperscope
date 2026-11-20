@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-19T22:54:53Z",
+  "generated": "2026-11-20T05:46:43Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 338,
+  "total": 337,
   "conferences": [
-    {
-      "id": "cikm26_20260523",
-      "title": "CIKM",
-      "full_name": "ACM International Conference on Information and Knowledge Management",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "B",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-05-23T23:59:59+0000",
-      "abstract_deadline": "2026-05-16T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "November 9-11, 2026",
-      "place": "Rome, Italy",
-      "link": "https://cikm2026.diag.uniroma1.it/",
-      "comment": ""
-    },
     {
       "id": "setta26_20260524",
       "title": "SETTA",
