@@ -1,42 +1,8 @@
 {
-  "generated": "2026-11-20T16:42:47Z",
+  "generated": "2026-11-21T01:05:46Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 338,
+  "total": 337,
   "conferences": [
-    {
-      "id": "setta26_20260524",
-      "title": "SETTA",
-      "full_name": "Symposium on Dependable Software Engineering: Theories, Tools and Applications",
-      "sub": "CT",
-      "sub_name": "Computing Theory",
-      "ccf": "C",
-      "core": "N",
-      "year": 2026,
-      "deadline": "2026-05-24T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "December 2-4, 2026",
-      "place": "Singapore",
-      "link": "https://www.setta2026.sg/",
-      "comment": "Round 1 (extended)"
-    },
-    {
-      "id": "apweb26_20260524",
-      "title": "APWeb-WAIM",
-      "full_name": "APWeb-WAIM joint international conference on Web and Big Data",
-      "sub": "DB",
-      "sub_name": "Database / Data Mining",
-      "ccf": "C",
-      "core": "C",
-      "year": 2026,
-      "deadline": "2026-05-24T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "September 7-9, 2026",
-      "place": "Danang, Vietnam / Online",
-      "link": "https://conferences.sigappfr.org/apweb2026/",
-      "comment": "second round"
-    },
     {
       "id": "clef26_20260525",
       "title": "CLEF",
@@ -1086,7 +1052,7 @@
       "deadline": "2026-07-10T23:59:59+0000",
       "abstract_deadline": "2026-07-03T23:59:59+0000",
       "timezone": "AoE",
-      "date": "June 7-11, 2027",
+      "date": "June 7-10, 2027",
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "summer round"
@@ -1783,7 +1749,7 @@
       "deadline": "2026-08-24T23:59:59-1200",
       "abstract_deadline": "2026-08-17T23:59:59-1200",
       "timezone": "UTC-12",
-      "date": "February 15 - 19, 2027",
+      "date": "February 16 - 18, 2027",
       "place": "Cordis, Hong Kong SAR, China",
       "link": "https://wsdm-conference.org/2027/",
       "comment": "Full Paper"
@@ -2039,7 +2005,7 @@
       "abstract_deadline": null,
       "timezone": "AoE",
       "date": "April 11-15, 2027",
-      "place": "Crete, Greece",
+      "place": "Heraklion, Crete, Greece",
       "link": "https://www.asplos-conference.org/asplos2027/cfp/",
       "comment": "September Cycle Submission Deadline"
     },
@@ -2701,7 +2667,7 @@
       "deadline": "2026-10-09T23:59:59+0000",
       "abstract_deadline": "2026-10-02T23:59:59+0000",
       "timezone": "AoE",
-      "date": "June 7-11, 2027",
+      "date": "June 7-10, 2027",
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "fall round"
@@ -3551,7 +3517,7 @@
       "deadline": "2026-11-17T23:59:59-1200",
       "abstract_deadline": null,
       "timezone": "UTC-12",
-      "date": "February 15 - 19, 2027",
+      "date": "February 16 - 18, 2027",
       "place": "Cordis, Hong Kong SAR, China",
       "link": "https://wsdm-conference.org/2027/",
       "comment": "Short Paper"
@@ -4163,7 +4129,7 @@
       "deadline": "2026-12-14T23:59:59-1200",
       "abstract_deadline": "2026-12-07T23:59:59-1200",
       "timezone": "UTC-12",
-      "date": "June 27 - July 2, 2027",
+      "date": "June 30 - July 2, 2027",
       "place": "Columbia, SC, USA",
       "link": "https://icaps27.icaps-conference.org/",
       "comment": ""
@@ -4418,7 +4384,7 @@
       "deadline": "2027-01-11T23:59:59+0000",
       "abstract_deadline": "2027-01-04T23:59:59+0000",
       "timezone": "AoE",
-      "date": "June 7-11, 2027",
+      "date": "June 7-10, 2027",
       "place": "Atlanta, Georgia, USA",
       "link": "https://www.sigmetrics.org/sigmetrics2027/",
       "comment": "winter round"
@@ -4866,23 +4832,6 @@
       "comment": "Cycle 2"
     },
     {
-      "id": "whc27_20270129",
-      "title": "WHC",
-      "full_name": "IEEE World Haptics Conference",
-      "sub": "HI",
-      "sub_name": "Human-Computer Interaction",
-      "ccf": "C",
-      "core": "",
-      "year": 2027,
-      "deadline": "2027-01-29T23:59:59+0000",
-      "abstract_deadline": null,
-      "timezone": "AoE",
-      "date": "July 12-15, 2027",
-      "place": "Boston, Massachusetts, USA",
-      "link": "https://2027.worldhaptics.org/",
-      "comment": ""
-    },
-    {
       "id": "blocksys2027_20270131",
       "title": "BlockSys",
       "full_name": "International Conference on Blockchain, Artificial Intelligence, and Trustworthy Systems",
@@ -5084,6 +5033,23 @@
       "date": "June 15-18, 2027",
       "place": "Winnipeg, Canada",
       "link": "https://conferences.graphicsinterface.org/2027",
+      "comment": ""
+    },
+    {
+      "id": "whc27_20270205",
+      "title": "WHC",
+      "full_name": "IEEE World Haptics Conference",
+      "sub": "HI",
+      "sub_name": "Human-Computer Interaction",
+      "ccf": "C",
+      "core": "",
+      "year": 2027,
+      "deadline": "2027-02-05T23:59:59+0000",
+      "abstract_deadline": "2027-01-29T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "July 13-16, 2027",
+      "place": "Boston, Massachusetts, USA",
+      "link": "https://2027.worldhaptics.org/",
       "comment": ""
     },
     {
@@ -5444,6 +5410,23 @@
       "comment": "Regular papers; rebuttal notification April 15, 2027"
     },
     {
+      "id": "models27_20270319",
+      "title": "MoDELS",
+      "full_name": "International Conference on Model Driven Engineering Languages and Systems",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2027-03-19T23:59:59+0000",
+      "abstract_deadline": "2027-03-12T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "TBD",
+      "place": "Budapest, Hungary",
+      "link": "https://conf.researchr.org/home/models-2027",
+      "comment": ""
+    },
+    {
       "id": "ecaf27_20270325",
       "title": "ECAF",
       "full_name": "European Conference on Algorithmic Fairness",
@@ -5557,7 +5540,7 @@
       "deadline": "2027-04-14T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "October 2-7, 2027",
+      "date": "October 4-7, 2027",
       "place": "Athens, Greece",
       "link": "https://ecai2027.org/",
       "comment": ""
