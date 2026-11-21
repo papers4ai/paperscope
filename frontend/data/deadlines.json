@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-21T12:07:00Z",
+  "generated": "2026-11-21T21:27:20Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 337,
   "conferences": [
@@ -3638,7 +3638,7 @@
       "timezone": "AoE",
       "date": "May 26-28, 2027",
       "place": "Brisbane, Australia",
-      "link": "http://2027.cscwd.org",
+      "link": "https://cscwd2027.dailyeliteevents.com.au/",
       "comment": "Paper submission due (extended)"
     },
     {
@@ -3889,12 +3889,12 @@
       "core": "B",
       "year": 2027,
       "deadline": "2026-12-03T23:59:59+0000",
-      "abstract_deadline": "2026-12-01T23:59:59+0000",
+      "abstract_deadline": null,
       "timezone": "AoE",
       "date": "March 20-21, 2027",
       "place": "Salt Lake City, Utah, USA",
       "link": "https://conf.researchr.org/home/CC-2027",
-      "comment": ""
+      "comment": "Optional abstract registration: December 1, 2026 (AoE)"
     },
     {
       "id": "middleware27_20261204",
