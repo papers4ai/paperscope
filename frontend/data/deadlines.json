@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-22T15:56:03Z",
+  "generated": "2026-11-22T21:33:11Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
   "total": 333,
   "conferences": [
@@ -3639,7 +3639,7 @@
       "date": "May 5-7, 2027",
       "place": "Lisbon, Portugal",
       "link": "https://secon2027.ieee-secon.org/",
-      "comment": ""
+      "comment": "Acceptance results: February 15 (date-only; AoE end-of-day default converted to UTC-5)."
     },
     {
       "id": "vldb27_20261201",
@@ -3846,6 +3846,23 @@
       "comment": "Winter cycle"
     },
     {
+      "id": "conext27_20261204",
+      "title": "CoNEXT",
+      "full_name": "International Conference on Emerging Networking Experiments and Technologies",
+      "sub": "NW",
+      "sub_name": "Network Systems",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-12-04T23:59:00+0000",
+      "abstract_deadline": "2026-11-27T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "December 6-9, 2027 (To be confirmed)",
+      "place": "Rio de Janeiro, Brazil",
+      "link": "https://conferences.sigcomm.org/co-next/2027/#!/home",
+      "comment": "December Cycle"
+    },
+    {
       "id": "rss27_20261204",
       "title": "RSS",
       "full_name": "Robotics Science and Systems",
@@ -3880,23 +3897,6 @@
       "comment": ""
     },
     {
-      "id": "conext27_20261204",
-      "title": "CoNEXT",
-      "full_name": "International Conference on Emerging Networking Experiments and Technologies",
-      "sub": "NW",
-      "sub_name": "Network Systems",
-      "ccf": "B",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-12-04T23:59:59+0000",
-      "abstract_deadline": "2026-11-27T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "December 6-9, 2027 (To be confirmed)",
-      "place": "Rio de Janeiro, Brazil",
-      "link": "https://conferences.sigcomm.org/co-next/2027/#!/home",
-      "comment": "December Cycle"
-    },
-    {
       "id": "mobisys27_20261204",
       "title": "MobiSys",
       "full_name": "ACM International Conference on Mobile Systems, Applications, and Services",
@@ -3911,7 +3911,7 @@
       "date": "June 21-25, 2027",
       "place": "Ho Chi Minh City, Vietnam",
       "link": "https://www.sigmobile.org/mobisys/2027/",
-      "comment": ""
+      "comment": "Acceptance is conditional on shepherding. March 6 is date-only; clock and time zone are repository defaults."
     },
     {
       "id": "cpal27_20261205",
@@ -3942,7 +3942,7 @@
       "deadline": "2026-12-07T23:59:59+0000",
       "abstract_deadline": "2026-12-01T23:59:59+0000",
       "timezone": "AoE",
-      "date": "June 5-11, 2027",
+      "date": "June 5-8, 2027",
       "place": "Atlanta, Georgia, USA",
       "link": "https://klab-ai3.github.io/ics2027/",
       "comment": ""
