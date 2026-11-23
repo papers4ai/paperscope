@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-22T21:33:11Z",
+  "generated": "2026-11-23T05:51:01Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 333,
+  "total": 332,
   "conferences": [
-    {
-      "id": "rtss26_20260526",
-      "title": "RTSS",
-      "full_name": "The IEEE Real-Time Systems Symposium",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "A",
-      "core": "A*",
-      "year": 2026,
-      "deadline": "2026-05-26T23:59:59+0000",
-      "abstract_deadline": "2026-05-21T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "December 9-11, 2026",
-      "place": "Yokohama, Japan",
-      "link": "http://2026.rtss.org/",
-      "comment": ""
-    },
     {
       "id": "acsac26_20260526",
       "title": "ACSAC",
