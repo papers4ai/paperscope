@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-24T04:36:48Z",
+  "generated": "2026-11-24T19:20:33Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 331,
+  "total": 330,
   "conferences": [
-    {
-      "id": "aft26_20260527",
-      "title": "AFT",
-      "full_name": "Advances in Financial Technologies",
-      "sub": "MX",
-      "sub_name": "Interdisciplinary",
-      "ccf": "C",
-      "core": "B",
-      "year": 2026,
-      "deadline": "2026-05-27T23:59:59-1200",
-      "abstract_deadline": "2026-05-20T23:59:59-1200",
-      "timezone": "UTC-12",
-      "date": "October 7-9, 2026",
-      "place": "London, UK",
-      "link": "https://aft.ifca.ai/aft26/index.html",
-      "comment": ""
-    },
     {
       "id": "corl26_20260528",
       "title": "CoRL",
@@ -2327,7 +2310,7 @@
       "deadline": "2026-09-29T23:59:59-1200",
       "abstract_deadline": "2026-09-22T23:59:59-1200",
       "timezone": "UTC-12",
-      "date": "May 2027 (exact dates TBD)",
+      "date": "May 4-6, 2027",
       "place": "Reykjavik, Iceland",
       "link": "https://satml.org/",
       "comment": ""
