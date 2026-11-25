@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-25T13:54:09Z",
+  "generated": "2026-11-25T23:59:34Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 328,
+  "total": 329,
   "conferences": [
     {
       "id": "bmvc26_20260529",
@@ -865,7 +865,7 @@
       "deadline": "2026-07-09T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "January 10-16, 2027",
+      "date": "January 13-15, 2027",
       "place": "Mexico City",
       "link": "https://popl27.sigplan.org/",
       "comment": "Submission Deadline"
@@ -2242,7 +2242,7 @@
       "deadline": "2026-09-25T23:59:59+0000",
       "abstract_deadline": "2026-09-21T23:59:59+0000",
       "timezone": "AoE",
-      "date": "March 9-12, 2027",
+      "date": "March 10-12, 2027",
       "place": "Richmond, Virginia, United States",
       "link": "https://conf.researchr.org/home/saner-2027",
       "comment": "Research Track Paper submission deadline"
@@ -2616,7 +2616,7 @@
       "deadline": "2026-10-14T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "October 10-15, 2027",
+      "date": "October 13-15, 2027",
       "place": "Prague, Czechia",
       "link": "https://2027.splashcon.org/track/splashoopsla2027",
       "comment": "Submission Deadline Round 1"
@@ -3727,23 +3727,6 @@
       "comment": "Optional abstract registration: December 1, 2026 (AoE)"
     },
     {
-      "id": "middleware27_20261204",
-      "title": "Middleware",
-      "full_name": "International Middleware Conference",
-      "sub": "SE",
-      "sub_name": "Software Engineering",
-      "ccf": "B",
-      "core": "A",
-      "year": 2027,
-      "deadline": "2026-12-04T00:00:00+0000",
-      "abstract_deadline": "2026-11-27T00:00:00+0000",
-      "timezone": "AoE",
-      "date": "December 13-17, 2027",
-      "place": "Kyoto, Japan",
-      "link": "https://middleware-conf.github.io/2027/",
-      "comment": "Winter cycle"
-    },
-    {
       "id": "conext27_20261204",
       "title": "CoNEXT",
       "full_name": "International Conference on Emerging Networking Experiments and Technologies",
@@ -3759,6 +3742,23 @@
       "place": "Rio de Janeiro, Brazil",
       "link": "https://conferences.sigcomm.org/co-next/2027/#!/home",
       "comment": "December Cycle"
+    },
+    {
+      "id": "middleware27_20261204",
+      "title": "Middleware",
+      "full_name": "International Middleware Conference",
+      "sub": "SE",
+      "sub_name": "Software Engineering",
+      "ccf": "B",
+      "core": "A",
+      "year": 2027,
+      "deadline": "2026-12-04T23:59:00+0000",
+      "abstract_deadline": "2026-11-27T23:59:00+0000",
+      "timezone": "AoE",
+      "date": "December 13-17, 2027",
+      "place": "Kyoto, Japan",
+      "link": "https://middleware-conf.github.io/2027/",
+      "comment": "Winter cycle"
     },
     {
       "id": "rss27_20261204",
@@ -4917,6 +4917,23 @@
       "comment": ""
     },
     {
+      "id": "spm27_20270207",
+      "title": "SPM",
+      "full_name": "Symposium on Solid and Physical Modeling",
+      "sub": "CG",
+      "sub_name": "Graphics & Multimedia",
+      "ccf": "B",
+      "core": "C",
+      "year": 2027,
+      "deadline": "2027-02-07T23:59:59+0000",
+      "abstract_deadline": "2027-01-31T23:59:59+0000",
+      "timezone": "AoE",
+      "date": "June 21-25, 2027",
+      "place": "Singapore",
+      "link": "https://spmconf2027.github.io/",
+      "comment": "First review notification: Mar 26, 2027; revised paper due: Apr 23, 2027"
+    },
+    {
       "id": "interspeech27_20270210",
       "title": "InterSpeech",
       "full_name": "Conference of the International Speech Communication Association",
@@ -5353,7 +5370,7 @@
       "deadline": "2027-04-07T23:59:59+0000",
       "abstract_deadline": null,
       "timezone": "AoE",
-      "date": "October 10-15, 2027",
+      "date": "October 13-15, 2027",
       "place": "Prague, Czechia",
       "link": "https://2027.splashcon.org/track/splashoopsla2027",
       "comment": "Submission Deadline Round 2"
