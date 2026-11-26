@@ -1,25 +1,8 @@
 {
-  "generated": "2026-11-25T23:59:34Z",
+  "generated": "2026-11-26T08:00:33Z",
   "source": "https://ccfddl.github.io/conference/allconf.yml",
-  "total": 329,
+  "total": 328,
   "conferences": [
-    {
-      "id": "bmvc26_20260529",
-      "title": "BMVC",
-      "full_name": "British Machine Vision Conference",
-      "sub": "AI",
-      "sub_name": "Artificial Intelligence",
-      "ccf": "C",
-      "core": "A",
-      "year": 2026,
-      "deadline": "2026-05-29T23:59:59+0000",
-      "abstract_deadline": "2026-05-22T23:59:59+0000",
-      "timezone": "AoE",
-      "date": "November 23-26, 2026",
-      "place": "Lancaster, UK",
-      "link": "https://bmvc2026.bmva.org/",
-      "comment": ""
-    },
     {
       "id": "prcv26_20260530",
       "title": "PRCV",
